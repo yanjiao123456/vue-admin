@@ -3,23 +3,25 @@
         <div class="seek-box">
             <el-input class="seek" v-model="input" placeholder="请输入内容" suffix-icon="el-icon-search"></el-input>
         </div>
-        <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#1A3459"
-            text-color="#bfcbd9" active-text-color="#20a0ff" unique-opened router>
-            <template v-for="item in items">
+        <el-menu class="sidebar-el-menu ul-box" :default-active="onRoutes" :collapse="collapse" active-text-color="#2DF3FF" unique-opened router>
+
+            <template v-for="item in screet">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index" :key="item.index">
                         <template slot="title">
                             <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
                         </template>
+
                         <template v-for="subItem in item.subs">
                             <el-submenu v-if="subItem.subs" :index="subItem.index" :key="subItem.index">
-                                <template slot="title">{{ subItem.title }}</template>
+                                <template slot="title"><i :class="subItem.icon"></i>{{ subItem.title }}</template>
+
                                 <el-menu-item v-for="(threeItem,i) in subItem.subs" :key="i" :index="threeItem.index">
-                                    {{ threeItem.title }}
+                                   <i :class="threeItem.icon"></i>{{ threeItem.title }}
                                 </el-menu-item>
                             </el-submenu>
                             <el-menu-item v-else :index="subItem.index" :key="subItem.index">
-                                {{ subItem.title }}
+                                <i :class="subItem.icon"></i>{{ subItem.title }}
                             </el-menu-item>
                         </template>
                     </el-submenu>
@@ -43,32 +45,56 @@ export default {
       collapse: false,
       items: [
         {
-          icon: "el-icon-lx-home",
+          icon: "ml5 icon-all icon-home",
           index: "dashboard",
           title: "系统首页"
         },
         {
-          icon: "el-icon-lx-cascades",
+          icon: "ml5 icon-all icon-ssjc",
           index: "table",
-          title: "基础表格"
-        },
-        {
-          icon: "el-icon-lx-copy",
-          index: "tabs",
-          title: "tab选项卡"
-        },
-        {
-          icon: "el-icon-lx-calendar",
-          index: "3",
-          title: "表单相关",
+          title: "实时监测",
           subs: [
             {
+              icon: "ml5 icon-all icon-pdjc",
               index: "form",
-              title: "基本表单"
+              title: "配电检测",
+              subs: [
+                {
+                  icon: "ml20",
+                  index: "peidiantu",
+                  title: "配电图"
+                },
+                {
+                  icon: "ml20",
+                  index: "shishishuju",
+                  title: "实时数据"
+                },
+                {
+                  icon: "ml20",
+                  index: "shujuchaxun",
+                  title: "数据查询"
+                },
+                {
+                  icon: "ml20",
+                  index: "shujuduibi",
+                  title: "数据对比"
+                },
+                {
+                  icon: "ml20",
+                  index: "yunxingbaobiao",
+                  title: "运行报表"
+                },
+                {
+                  icon: "ml20",
+                  index: "yuanchengchaobiao",
+                  title: "远程抄表"
+                }
+              ]
             },
             {
-              index: "3-2",
-              title: "三级菜单",
+              icon: "ml5 icon-all icon-jsjc",
+              index: "geishuijiance",
+              title: "给水检测",
               subs: [
                 {
                   index: "editor",
@@ -81,47 +107,146 @@ export default {
               ]
             },
             {
-              index: "upload",
-              title: "文件上传"
-            }
-          ]
-        },
-        {
-          icon: "el-icon-lx-emoji",
-          index: "icon",
-          title: "自定义图标"
-        },
-        {
-          icon: "el-icon-lx-favor",
-          index: "charts",
-          title: "schart图表"
-        },
-        {
-          icon: "el-icon-rank",
-          index: "drag",
-          title: "拖拽列表"
-        },
-        {
-          icon: "el-icon-lx-warn",
-          index: "6",
-          title: "错误处理",
-          subs: [
-            {
-              index: "permission",
-              title: "权限测试"
+              icon: "ml5 icon-all icon-lrjc",
+              index: "lengrejiance",
+              title: "冷热检测"
             },
             {
-              index: "404",
-              title: "404页面"
+              icon: "ml5 icon-all icon-yskqzl",
+              index: "yskqjc",
+              title: "压缩空气监测"
+            },
+            {
+              icon: "ml5 icon-all icon-wsd",
+              index: "wsd",
+              title: "温湿度监测"
+            },
+            {
+              icon: "ml5 icon-all icon-gf",
+              index: "gf",
+              title: "光伏监测"
+            },
+            {
+              icon: "ml5 icon-all icon-bdsjk",
+              index: "bdsjk",
+              title: "变电所监控"
             }
           ]
+        },
+        {
+          icon: "ml5 icon-all icon-nhcx",
+          index: "nhcx",
+          title: "能耗查询"
+        },
+        {
+          icon: "ml5 icon-all icon-nxfx",
+          index: "nxfx",
+          title: "能效分析"
+        },
+        {
+          icon: "ml5 icon-all icon-bjgl",
+          index: "bjgl",
+          title: "报警管理"
+        },
+        {
+          icon: "ml5 icon-all icon-sbgl",
+          index: "sbgl",
+          title: "设备管理"
+        },
+        {
+          icon: "ml5 icon-all icon-dnzl",
+          index: "dnzl",
+          title: "电能质量"
+        },
+        {
+          icon: "ml5 icon-all icon-bbsc",
+          index: "bbsc",
+          title: "报表输出"
+        },
+        {
+          icon: "ml5 icon-all icon-rgtb",
+          index: "rgtb",
+          title: "人工填报"
+        },
+        {
+          icon: "ml5 icon-all icon-nhbg",
+          index: "nhbg",
+          title: "能耗报告"
+        },
+        {
+          icon: "ml5 icon-all icon-jlwl",
+          index: "jlwl",
+          title: "计量网络"
+        },
+        {
+          icon: "ml5 icon-all icon-gjyy",
+          index: "gjyy",
+          title: "高级应用"
+        },
+        {
+          icon: "ml5 icon-all icon-xtgl",
+          index: "xtgl",
+          title: "系统管理"
         }
+        // {
+        //   icon: "el-icon-lx-emoji",
+        //   index: "icon",
+        //   title: "自定义图标"
+        // },
+        // {
+        //   icon: "el-icon-lx-favor",
+        //   index: "charts",
+        //   title: "schart图表"
+        // },
+        // {
+        //   icon: "el-icon-rank",
+        //   index: "drag",
+        //   title: "拖拽列表"
+        // },
+        // {
+        //   icon: "el-icon-lx-warn",
+        //   index: "6",
+        //   title: "错误处理",
+        //   subs: [
+        //     {
+        //       index: "permission",
+        //       title: "权限测试"
+        //     },
+        //     {
+        //       index: "404",
+        //       title: "404页面"
+        //     }
+        //   ]
+        // }
       ]
     };
   },
   computed: {
     onRoutes() {
       return this.$route.path.replace("/", "");
+    },
+    screet() {
+      var _this = this;
+      //逻辑-->根据input的value值筛选goodsList中的数据
+      var arrByZM = []; //声明一个空数组来存放数据
+      for (var i = 0; i < this.items.length; i++) {
+        //for循环数据中的每一项（根据title值）
+        if (this.items[i].title.search(this.input) != -1) {
+          //判断输入框中的值是否可以匹配到数据，如果匹配成功
+          arrByZM.push(this.items[i]);
+          //向空数组中添加数据
+        }
+        if (this.items[i].subs) {
+          for (let k = 0; k < this.items[i].subs.length; k++) {
+            if (this.items[i].subs[k].title.search(this.input) != -1) {
+              //判断输入框中的值是否可以匹配到数据，如果匹配成功
+              arrByZM.push(this.items[i].subs[k]);
+              //向空数组中添加数据
+            }
+          }
+        }
+      }
+      return arrByZM;
     }
   },
   created() {
@@ -141,6 +266,45 @@ export default {
   border: 0;
   color: #fff;
 }
+.ul-box .el-menu-item {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 26px;
+  font-size: 14px;
+  font-family: HiraginoSansGB-W3;
+  font-weight: normal;
+  border-left: 2px solid rgba(248, 248, 248, 0);
+
+  background-color: #1a3459;
+  color: #f9fffb;
+}
+.ul-box .el-submenu__title {
+  height: 30px;
+  line-height: 30px;
+  color: #f9fffb;
+  background-color: #1a3459;
+}
+.ul-box .is-opened .el-menu--inline .el-menu-item,
+.ul-box .is-opened .el-submenu__title {
+  background-color: #132d52;
+}
+.ul-box .is-opened > .el-submenu__title {
+  background-color: #132d52;
+  color: #2df3ff;
+}
+.ul-box .el-menu-item.is-active {
+  background: url(../../assets/PeiDianJianCe/矩形-9.png) no-repeat;
+  border-left: 2px solid #2df3ff;
+}
+
+.ul-box .el-submenu.is-opened > .el-submenu__title .el-submenu__icon-arrow {
+  transform: rotateZ(90deg);
+  color: #2df3ff;
+}
+.ul-box .el-submenu__title i {
+  color: #f9fffb;
+  transform: rotateZ(-90deg);
+}
 </style>
 
 <style lang="scss" scoped>
@@ -158,6 +322,86 @@ export default {
     margin-top: 14px;
     box-sizing: border-box;
     padding: 0 22px;
+  }
+  .ul-box {
+    margin-top: 26px;
+    background-color: #1a3459;
+    .icon-all {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-right: 10px;
+    }
+    .ml5 {
+      margin-left: 5px;
+    }
+    .ml10 {
+      margin-left: 10px;
+    }
+    .ml20 {
+      margin-left: 20px;
+    }
+
+    .icon-home {
+      background: url("../../assets/PeiDianJianCe/home8.png") no-repeat;
+    }
+    .icon-ssjc {
+      background: url("../../assets/PeiDianJianCe/icon_ssjc.png") no-repeat;
+    }
+    .icon-pdjc {
+      background: url("../../assets/PeiDianJianCe/icon_pdjc.png") no-repeat;
+    }
+    .icon-jsjc {
+      background: url("../../assets/PeiDianJianCe/icon_jsjc.png") no-repeat;
+    }
+    .icon-lrjc {
+      background: url("../../assets/PeiDianJianCe/icon_lr.png") no-repeat;
+    }
+    .icon-yskqzl {
+      background: url("../../assets/PeiDianJianCe/icon_yskqzl.png") no-repeat;
+    }
+    .icon-wsd {
+      background: url("../../assets/PeiDianJianCe/icon_wsd.png") no-repeat;
+    }
+    .icon-gf {
+      background: url("../../assets/PeiDianJianCe/icon_gf.png") no-repeat;
+    }
+    .icon-bdsjk {
+      background: url("../../assets/PeiDianJianCe/icon_bdsjk.png") no-repeat;
+    }
+    .icon-nhcx {
+      background: url("../../assets/PeiDianJianCe/icon_nhcx.png") no-repeat;
+    }
+    .icon-nxfx {
+      background: url("../../assets/PeiDianJianCe/icon_nxfx.png") no-repeat;
+    }
+    .icon-bjgl {
+      background: url("../../assets/PeiDianJianCe/icon_bjgl.png") no-repeat;
+    }
+    .icon-sbgl {
+      background: url("../../assets/PeiDianJianCe/icon_sbgl.png") no-repeat;
+    }
+    .icon-dnzl {
+      background: url("../../assets/PeiDianJianCe/icon_dnzl.png") no-repeat;
+    }
+    .icon-bbsc {
+      background: url("../../assets/PeiDianJianCe/icon_bb.png") no-repeat;
+    }
+    .icon-rgtb {
+      background: url("../../assets/PeiDianJianCe/icon_qb.png") no-repeat;
+    }
+    .icon-nhbg {
+      background: url("../../assets/PeiDianJianCe/icon_nhbg.png") no-repeat;
+    }
+    .icon-jlwl {
+      background: url("../../assets/PeiDianJianCe/icon_jlwl.png") no-repeat;
+    }
+    .icon-gjyy {
+      background: url("../../assets/PeiDianJianCe/icon_yy.png") no-repeat;
+    }
+    .icon-xtgl {
+      background: url("../../assets/PeiDianJianCe/icon_xtgl.png") no-repeat;
+    }
   }
 }
 .sidebar::-webkit-scrollbar {

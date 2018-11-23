@@ -23,22 +23,26 @@ a {
 
 .content-box {
     position: absolute;
-    left: 250px;
     right: 0;
-    top: 70px;
+    left: 230px;
+    top: 80px;
     bottom: 0;
     padding-bottom: 30px;
     -webkit-transition: left .3s ease-in-out;
     transition: left .3s ease-in-out;
-    background: #f0f0f0;
+    /* background: #083C6C; */
+    background:radial-gradient(circle,rgba(23,46,80,1),rgba(41,85,138,1));
+
+   
 }
 
 .content {
     width: auto;
     height: 100%;
-    padding: 10px;
+    padding: 20px;
     overflow-y: scroll;
     box-sizing: border-box;
+
 }
 
 .content-collapse {

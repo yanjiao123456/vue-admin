@@ -226,27 +226,41 @@ export default {
       return this.$route.path.replace("/", "");
     },
     screet() {
-      var _this = this;
-      //逻辑-->根据input的value值筛选goodsList中的数据
-      var arrByZM = []; //声明一个空数组来存放数据
-      for (var i = 0; i < this.items.length; i++) {
-        //for循环数据中的每一项（根据title值）
-        if (this.items[i].title.search(this.input) != -1) {
-          //判断输入框中的值是否可以匹配到数据，如果匹配成功
-          arrByZM.push(this.items[i]);
-          //向空数组中添加数据
-        }
-        if (this.items[i].subs) {
-          for (let k = 0; k < this.items[i].subs.length; k++) {
-            if (this.items[i].subs[k].title.search(this.input) != -1) {
-              //判断输入框中的值是否可以匹配到数据，如果匹配成功
-              arrByZM.push(this.items[i].subs[k]);
-              //向空数组中添加数据
+      if (this.input == "") {
+        return this.items;
+      } else {
+        var _this = this;
+        //逻辑-->根据input的value值筛选goodsList中的数据
+        var arrByZM = []; //声明一个空数组来存放数据
+        for (var i = 0; i < this.items.length; i++) {
+          //for循环数据中的每一项（根据title值）
+          if (this.items[i].title.search(this.input) != -1) {
+            //判断输入框中的值是否可以匹配到数据，如果匹配成功
+            arrByZM.push(this.items[i]);
+            //向空数组中添加数据
+          }
+          if (this.items[i].subs) {
+            for (let k = 0; k < this.items[i].subs.length; k++) {
+              if (this.items[i].subs[k].title.search(this.input) != -1) {
+                //判断输入框中的值是否可以匹配到数据，如果匹配成功
+                arrByZM.push(this.items[i].subs[k]);
+                //向空数组中添加数据
+              }
+              //第三层
+              if (this.items[i].subs[k].subs) {
+                for (let l = 0; l < this.items[i].subs[k].subs.length; l++) {
+                  if (this.items[i].subs[k].subs[l].title.search(this.input) != -1) {
+                    //判断输入框中的值是否可以匹配到数据，如果匹配成功
+                    arrByZM.push(this.items[i].subs[k].subs[l]);
+                    //向空数组中添加数据
+                  }
+                }
+              }
             }
           }
         }
+        return arrByZM;
       }
-      return arrByZM;
     }
   },
   created() {

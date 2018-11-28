@@ -67,6 +67,7 @@
                         </div>
                     </div>
                     <div class="item-row">
+                        <!--<el-col :xs="24" :sm="24" :lg="8">-->
                         <span class="date-select">时间选择</span>
                         <el-date-picker
                                 v-model="value6"
@@ -75,25 +76,27 @@
                                 start-placeholder="开始日期"
                                 end-placeholder="结束日期">
                         </el-date-picker>
-
-                        <div class="days-box">
+                        <!--</el-col>-->
+                        <el-col :xs="24" :sm="24" :lg="8">
+                            <div class="days-box">
                         <span class="days-tit date-select">
                             <i class="el-icon-search"></i>
                             快捷查询:
                         </span>
-                            <div class="days-btn">
-                                <span @click="days=0" :class="{cur:days==0}">前1天</span>
-                                <span @click="days=1" :class="{cur:days==1}">前3天</span>
-                                <span @click="days=2" :class="{cur:days==2}">前7天</span>
-                                <span @click="days=3" :class="{cur:days==3}">前1月</span>
+                                <div class="days-btn">
+                                    <span @click="days=0" :class="{cur:days==0}">前1天</span>
+                                    <span @click="days=1" :class="{cur:days==1}">前3天</span>
+                                    <span @click="days=2" :class="{cur:days==2}">前7天</span>
+                                    <span @click="days=3" :class="{cur:days==3}">前1月</span>
+                                </div>
                             </div>
-                        </div>
+                        </el-col>
                     </div>
 
                     <div class="btns-box">
                         <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">查询</div>
                         <div @click="btns=1" :class="{'btn-item':true,cur:btns==1}">重置</div>
-                        <div @click="btns=2" :class="{'btn-item':true,cur:btns==2}">查询</div>
+                        <div @click="btns=2" :class="{'btn-item':true,cur:btns==2}">个性化</div>
                     </div>
 
                 </div>
@@ -103,24 +106,117 @@
 
         <!--能耗-->
         <div class="consumption-box">
-            <div class="consumption-item">
-                <div class="head">
+            <div v-for="v in consumptionData" :class="v.class">
+                <div class="bg"></div>
+                <div :class="v.col">
                     <i class="icon-nh"></i>
-                    hakdjsfnaldsf
+                    {{ v.tit }}
                 </div>
                 <div class="electricity">
                     <span class="ele-tit">用电量</span>
-                    <span class="num">1066.56</span>
+                    <span class="num">{{ v.electricity }}</span>
                     <span class="unit">kWh</span>
+                </div>
+                <div class="number-box">
+                    <div class="electricity-number">
+                        <span class="nums">{{ v.num1 }}</span>
+                        <span class="date">{{ v.data1 }}</span>
+                    </div>
+                    <div class="electricity-center">
+                        <i class="point"></i>
+                    </div>
+                    <div class="electricity-number">
+                        <span class="nums">{{ v.num2 }}</span>
+                        <span class="date">{{ v.data2 }}</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!--能耗-->
+
+        <!--能耗大数据图表 start-->
+        <div class="energy-Echarts">
+            <div class="bg"></div>
+            <div id="myChart" style="width: 100%;height: 100%;"></div>
+        </div>
+        <!--能耗大数据图表 end-->
+
+        <div class="Table">
+            <div class="bg"></div>
+            <div class="title"><h3>数据列表</h3>
+                <div class="head-right"><i class="icon-pdf"></i><i class="icon-excel"></i></div>
+            </div>
+
+            <div class="table-box">
+                <div class="table-tit">【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】</div>
+                <el-table
+                        :data="tableData6"
+                        border
+                        stripe
+                        show-summary
+                        style="width: 100%">
+                    <el-table-column
+                            class="trs"
+                            prop="id"
+                            label="ID"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            class="trs"
+                            prop="name"
+                            label="姓名">
+                    </el-table-column>
+                    <el-table-column
+                            class="trs"
+                            prop="amount1"
+                            sortable
+                            label="数值 1">
+                    </el-table-column>
+                    <el-table-column
+                            class="trs"
+                            prop="amount2"
+                            sortable
+                            label="数值 2">
+                    </el-table-column>
+                    <el-table-column
+                            prop="amount3"
+                            sortable
+                            label="数值 3">
+                    </el-table-column>
+                </el-table>
+            </div>
+            <div class="selector">
+                <i class="icon-front"></i>
+                <i class="icon-prev"></i>
+                <div class="page-num">
+                    <div class="bg"></div>
+                    <input type="text" value="1">
+                </div>
+
+                <span class="page-all">
+                        /共1页
+                    </span>
+                <i class="icon-next"></i>
+                <i class="icon-last"></i>
+                <div class="count">
+                    <div class="bg"></div>
+                    <select>
+                        <option>10</option>
+                        <option>20</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select>
                 </div>
             </div>
         </div>
-        <!--能耗-->
 
     </div>
 </template>
 
 <script>
+    var echarts = require('echarts');
     export default {
         name: "inquire",
         data() {
@@ -128,6 +224,7 @@
                 radio: '1',
                 filtrateShow: true,
                 days: 2,
+                count: '',
                 btns: 0,
                 checked1: true,
                 checked2: false,
@@ -139,6 +236,37 @@
                 select4: '',
                 sw: true,
                 value6: '',
+                tableData6: [{
+                    id: '12987122',
+                    name: '王小虎',
+                    amount1: '234',
+                    amount2: '3.2',
+                    amount3: 10
+                }, {
+                    id: '12987123',
+                    name: '王小虎',
+                    amount1: '165',
+                    amount2: '4.43',
+                    amount3: 12
+                }, {
+                    id: '12987124',
+                    name: '王小虎',
+                    amount1: '324',
+                    amount2: '1.9',
+                    amount3: 9
+                }, {
+                    id: '12987125',
+                    name: '王小虎',
+                    amount1: '621',
+                    amount2: '2.2',
+                    amount3: 17
+                }, {
+                    id: '12987126',
+                    name: '王小虎',
+                    amount1: '539',
+                    amount2: '4.1',
+                    amount3: 15
+                }],
                 options: [{
                     value: '选项1',
                     label: '黄金糕'
@@ -155,8 +283,201 @@
                     value: '选项5',
                     label: '北京烤鸭'
                 }],
+                consumptionData: [
+                    {
+                        tit: '2AAH101-1电源线_能耗',
+                        col: 'head col1',
+                        class: 'consumption-item',
+                        electricity: 1066.56,
+                        num1: 156345666.56,
+                        num2: 126065666.54,
+                        data1: '2018-10-01 10:02 30',
+                        data2: '2018-10-01 10:02 60',
+                    },
+                    {
+                        tit: '2AAH101-1电源线_能耗',
+                        col: 'head col2',
+                        class: 'consumption-item ml27',
+                        electricity: 1066.56,
+                        num1: 156345666.56,
+                        num2: 126065666.54,
+                        data1: '2018-10-01 10:02 30',
+                        data2: '2018-10-01 10:02 60',
+                    },
+                    {
+                        tit: '2AAH101-1电源线_能耗',
+                        col: 'head col3',
+                        class: 'consumption-item ml27',
+                        electricity: 1066.56,
+                        num1: 156345666.56,
+                        num2: 126065666.54,
+                        data1: '2018-10-01 10:02 30',
+                        data2: '2018-10-01 10:02 60',
+                    },
+                    {
+                        tit: '2AAH101-1电源线_能耗',
+                        col: 'head col4',
+                        class: 'consumption-item ml27',
+                        electricity: 1066.56,
+                        num1: 156345666.56,
+                        num2: 126065666.54,
+                        data1: '2018-10-01 10:02 30',
+                        data2: '2018-10-01 10:02 60',
+                    }
+                ]
             }
+        },
+        methods: {
+            SetEchart() {
+                // 基于准备好的dom，初始化echarts实例
+                // var growRanking = echarts.init(document.getElementById('myChart'));
+
+                var growRanking = document.getElementById('myChart');
+                var growRankingChart = echarts.init(growRanking);
+                var one = [224, 220, 335, 188, 350, 230, 354, 261];
+                var two = [110, 220, 115, 300, 188, 120, 241, 321];
+                var three = [300, 150, 215, 200, 108, 160, 223, 241];
+                var four = [200, 100, 315, 100, 168, 220, 330, 210];
+                var color = "#fff";
+                // 指定图表的配置项和数据
+
+
+                var option = {
+                    color: ['#637EF9', '#1C97FF', '#38E68D', '#CFDB48', '#66A9C9', '#00BFC7', '#99D683', '#B4C1D7', '#21834B'],
+                    //title: [{
+                    //    text: '对比定标单耗增长排名',
+                    //    x: 'center',
+                    //    y: 'top',
+                    //    textStyle: {
+                    //        color: '#01CED4',
+                    //        textAlign: 'center',
+                    //        fontSize: 14,
+                    //        fontWeight: 'bold'
+                    //    }
+                    //}],
+                    legend: {
+                        data: ['2AA101-1号电源线_能耗', '2AA102-1号电源线_能耗', '2AA103-1号电源线_能耗', '2AA104-1号电源线_能耗'],
+                        align: 'left',
+                        // x: 'right',
+                        right: '4%',
+                        icon: 'rect',
+                        itemWidth: 10, // 图例图形宽度
+                        itemHeight: 10, // 图例图形高度
+                        //itemGap: 13,
+                        textStyle: {
+                            color: 'rgb(91,227,224)',
+                            fontSize: 12
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '1%',
+                        bottom: '3%',
+                        top: '15%',
+                        containLabel: true
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'shadow'
+                        }
+                    },
+                    xAxis: [{
+                        data: ['2018年10月16日', '2018年10月17日', '2018年10月18日', '2018年10月19日', '2018年10月20日', '2018年10月21日', '2018年10月22日', '2018年10月23日'],
+                        type: 'category',
+                        axisLine: {
+                            lineStyle: {
+                                color: 'rgb(91,227,224)'//x轴坐标颜色
+                            }
+                        },
+                        boundaryGap: true
+                    }],
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: '单位（%）',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(223,253,255)'
+                                }
+                            },
+                            axisLabel: {
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgb(42,81,125)'
+                                }
+                            }
+                        }
+                    ],
+                    series: [{
+                        name: '2AA101-1号电源线_能耗',
+                        type: 'bar',
+                        stack: '2AA101-1号电源线_能耗',
+                        data: one
+                    }, {
+                        name: '2AA102-1号电源线_能耗',
+                        type: 'bar',
+                        stack: '2AA102-1号电源线_能耗',
+                        data: two
+                    }, {
+                        name: '2AA103-1号电源线_能耗',
+                        type: 'bar',
+                        stack: '2AA103-1号电源线_能耗',
+                        data: three
+                    }, {
+                        name: '2AA104-1号电源线_能耗',
+                        type: 'bar',
+                        stack: '2AA104-1号电源线_能耗',
+                        data: four
+                    }
+                    ]
+                }
+
+
+                // 使用刚指定的配置项和数据显示图表。
+                growRankingChart.setOption(option);
+            },
+            getSummaries(param) {
+                const {columns, data} = param;
+                const sums = [];
+                columns.forEach((column, index) => {
+                    if (index === 0) {
+                        sums[index] = '总价';
+                        return;
+                    }
+                    const values = data.map(item => Number(item[column.property]));
+                    if (!values.every(value => isNaN(value))) {
+                        sums[index] = values.reduce((prev, curr) => {
+                            const value = Number(curr);
+                            if (!isNaN(value)) {
+                                return prev + curr;
+                            } else {
+                                return prev;
+                            }
+                        }, 0);
+                        sums[index] += ' 元';
+                    } else {
+                        sums[index] = 'N/A';
+                    }
+                });
+
+                return sums;
+            }
+
+        },
+        mounted() {
+            this.SetEchart();
+            // =================================================
         }
+
     }
 </script>
 <style>
@@ -314,6 +635,117 @@
         font-size: 13px;
         color: #2DF3FF;
     }
+</style>
+<style>
+    .table-box .el-table--border, .el-table--group {
+        border: 0;
+    }
+
+    .table-box .el-table td, .el-table th.is-leaf {
+        border-bottom: 0;
+    }
+
+    .table-box .el-table_2_column_6 {
+        background-color: #1A6191;
+    }
+
+    .table-box .el-table th, .el-table tr {
+        background: #185588;
+    }
+
+    .table-box .el-table--striped .el-table__body tr.el-table__row--striped td {
+        background: #0A3E6E;
+    }
+
+    .table-box .el-table tr:hover {
+        background: #085E96;
+    }
+
+    .table-box .el-table--enable-row-hover .el-table__body tr:hover > td {
+        background: #085E96;
+    }
+
+    .table-box .el-table .cell, .el-table th div, .el-table--border th:first-child .cell {
+        padding-left: 10px;
+        font-size: 14px;
+        font-family: HiraginoSansGB-W6;
+        font-weight: normal;
+        color: rgba(95, 251, 248, 1);
+        text-align: center;
+    }
+
+    .table-box .el-table--border td, .el-table--border th, .el-table__body-wrapper .el-table--border.is-scrolling-left ~ .el-table__fixed {
+        border-right: 1px solid #14658F;
+    }
+
+    .table-box .el-table__footer-wrapper tbody td, .el-table__header-wrapper tbody td {
+        background-color: #104C7B;
+        color: #606266;
+        border-top: 0;
+        border-bottom: 0;
+    }
+
+    .table-box .el-table::before {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 0;
+    }
+
+    .table-box .el-table--border::after, .el-table--group::after {
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 100%;
+    }
+
+    .table-box .el-table--striped .el-table__body tr.el-table__row--striped td.el-table_1_column_1 {
+        /*background:rgba(45,243,255,1);*/
+        /*opacity:0.08;*/
+    }
+
+    .table-box td.el-table_1_column_1, .table-box th.el-table_1_column_1 {
+        position: relative;
+    }
+
+    .table-box td.el-table_1_column_1 {
+        position: relative;
+
+    }
+
+    .table-box .el-table td .cell {
+        font-size: 14px;
+        font-family: HiraginoSansGB-W3;
+        font-weight: normal;
+        color: rgba(223, 253, 255, 1);
+    }
+
+    .table-box td.el-table_1_column_1::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(45, 243, 255, 1);
+        opacity: 0.08;
+    }
+
+    .table-box th.el-table_1_column_1 {
+        position: relative;
+    }
+
+    .table-box th.el-table_1_column_1::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(45, 243, 255, 1);
+        opacity: 0.08;
+    }
+
 </style>
 <style lang="scss" scoped>
     .Inquire {
@@ -496,6 +928,275 @@
                 }
             }
         }
+        .consumption-box {
+            width: 100%;
+            height: 164px;
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 5;
+            .ml27 {
+                margin-left: 27px;
+            }
+            .consumption-item {
+                flex: 1;
+                position: relative;
+                .col1 {
+                    background: #637EF9;
+                }
+                .col2 {
+                    background: #1C97FF;
+                }
+                .col3 {
+                    background: #38E68D;
+                }
+                .col4 {
+                    background: #CFDB48;
+                }
+                .head {
+                    width: 100%;
+                    height: 38px;
 
+                    opacity: 0.8;
+                    border-radius: 3px 3px 0px 0px;
+                    box-sizing: border-box;
+                    padding: 0 21px;
+                    position: relative;
+                    z-index: 5;
+
+                    font-size: 16px;
+                    font-family: HiraginoSansGB-W6;
+                    font-weight: normal;
+                    color: rgba(232, 238, 234, 1);
+                    line-height: 38px;
+                    .icon-nh {
+                        display: inline-block;
+                        width: 11px;
+                        height: 15px;
+                        background: url("../../assets/NengHaoChaXun/icon_nh.png") no-repeat;
+                    }
+                }
+                .electricity {
+                    width: 100%;
+                    margin-top: 28px;
+                    display: flex;
+                    justify-content: space-between;
+                    box-sizing: border-box;
+                    padding: 0 21px;
+                    position: relative;
+                    z-index: 5;
+                    .ele-tit {
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(183, 208, 210, 1);
+                    }
+                    .num {
+                        font-size: 18px;
+                        font-family: DigitaldreamFat;
+                        font-weight: 400;
+                        color: rgba(44, 244, 242, 1);
+                    }
+                    .unit {
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(232, 238, 234, 1);
+                    }
+                }
+                .number-box {
+                    display: flex;
+                    justify-content: space-between;
+                    box-sizing: border-box;
+                    padding: 0 21px;
+                    margin-top: 30px;
+                    position: relative;
+                    z-index: 5;
+                    .electricity-number {
+                        display: flex;
+                        flex-direction: column;
+                        .nums {
+                            font-size: 12px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(255, 255, 255, 1);
+                        }
+                        .date {
+                            font-size: 10px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(183, 208, 210, 1);
+                        }
+
+                    }
+                    .electricity-center {
+                        position: relative;
+                        .point {
+                            position: absolute;
+                            bottom: 0;
+                            left: -18px;
+                            display: inline-block;
+                            width: 38px;
+                            height: 6px;
+                            background: url("../../assets/NengHaoChaXun/point.png") no-repeat;
+                        }
+                    }
+
+                }
+            }
+        }
+        /*大数据图表*/
+        .energy-Echarts {
+            width: 100%;
+            height: 486px;
+            margin-top: 25px;
+            background: #0B3F6F;
+            position: relative;
+            #main {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .Table {
+            width: 100%;
+            position: relative;
+            box-sizing: border-box;
+            padding: 23px 20px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            .title {
+                display: flex;
+                justify-content: space-between;
+                position: relative;
+                z-index: 5;
+                /*margin-bottom: 15px;*/
+                h3 {
+                    font-size: 16px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: bold;
+                    color: rgba(254, 254, 255, 1);
+                }
+                .icon-pdf {
+                    display: inline-block;
+                    width: 21px;
+                    height: 21px;
+                    background: url("../../assets/NengHaoChaXun/pdf.png") no-repeat;
+                    margin-right: 20px;
+                }
+                .icon-excel {
+                    display: inline-block;
+                    width: 21px;
+                    height: 21px;
+                    background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
+                }
+            }
+            .table-box {
+                position: relative;
+                z-index: 5;
+                border: 1px solid #15759A;
+                /*padding-bottom: 60px;*/
+                .table-tit {
+                    padding: 20px;
+                    width: 100%;
+                    /*letter-spacing:2px;*/
+                    font-size: 14px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: normal;
+                    color: rgba(95, 251, 248, 1);
+                    text-align: center;
+                }
+
+            }
+            .selector {
+                position: relative;
+                z-index: 5;
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 20px;
+                align-items: center;
+
+                .icon-front {
+                    width: 10px;
+                    height: 14px;
+                    display: inline-block;
+                    background: url("../../assets/NengHaoChaXun/icon_zz.png") no-repeat;
+                }
+                .icon-prev {
+                    width: 8px;
+                    height: 14px;
+                    display: inline-block;
+                    transform: rotate(180deg);
+                    margin-left: 10px;
+                    background: url("../../assets/NengHaoChaXun/箭头2.png") no-repeat;
+                }
+                .icon-next {
+                    width: 8px;
+                    height: 14px;
+                    display: inline-block;
+                    margin-left: 20px;
+                    background: url("../../assets/NengHaoChaXun/箭头2.png") no-repeat;
+                }
+                .icon-last {
+                    margin-left: 10px;
+                    width: 10px;
+                    height: 14px;
+                    display: inline-block;
+                    background: url("../../assets/NengHaoChaXun/icon_yy.png") no-repeat;
+                }
+                .page-num {
+
+                    width: 38px;
+                    height: 26px;
+                    margin-left: 20px;
+                    position: relative;
+                    input {
+                        position: relative;
+                        z-index: 5;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(26, 96, 134, 0);
+                        border: 0px;
+                        outline: none;
+                        cursor: pointer;
+                        font-size: 12px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(45, 243, 255, 1);
+                        text-align: center;
+                    }
+                }
+                .page-all {
+                    font-size: 12px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: bold;
+                    color: rgba(45, 243, 255, 1);
+                    margin-left: 10px;
+                }
+                .count {
+                    width: 48px;
+                    height: 26px;
+                    margin-left: 22px;
+                    position: relative;
+                    select {
+                        border: 0px;
+                        outline: none;
+                        cursor: pointer;
+                        position: relative;
+                        z-index: 5;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(26, 96, 134, 0);
+                        font-size: 12px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(45, 243, 255, 1);
+                        option {
+                            background-color: #0B3F6F;
+                        }
+                    }
+                }
+            }
+        }
     }
 </style>

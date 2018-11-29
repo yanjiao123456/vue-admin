@@ -20,9 +20,20 @@ export default new Router({
                     meta: { title: '系统首页' }
                 },
                 {
+                    path:'/PeiDianTu',
+                    component: resolve => require(['../components/page/PeiDianTu.vue'], resolve),
+                    meta: { title: '配电图' }
+                },
+                {
                     path:'/inquire',
                     component: resolve => require(['../components/page/inquire.vue'], resolve),
                     meta: { title: '数据查询' }
+                },
+                {
+                    path:'/PeiDianInquire',
+                    component: resolve => require(['../components/page/PeiDianInquire.vue'], resolve),
+                    meta: { title: '数据查询2' }
+
                 },
                 {
                     path: '/icon',

@@ -73,7 +73,7 @@
                                     },
                                     {
                                         icon: "ml20",
-                                        index: "shujuchaxun",
+                                        index: "PeiDianInquire",
                                         title: "数据查询"
                                     },
                                     {

@@ -7,12 +7,7 @@
                  :class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>
             <el-collapse-transition>
                 <div v-show="filtrateShow" class="filtrate-show">
-                    <div class="item-row">
-                        <el-radio class="choice" v-model="radio" label="1">电</el-radio>
-                        <el-radio class="choice" v-model="radio" label="2">水</el-radio>
-                        <el-radio class="choice" v-model="radio" label="3">冷热</el-radio>
-                        <el-radio class="choice" v-model="radio" label="4">压缩空气</el-radio>
-                    </div>
+
                     <div class="item-row item2">
                         <div class="more-box">
                             <el-checkbox v-model="checked1">支路:</el-checkbox>
@@ -67,6 +62,15 @@
                         </div>
                     </div>
                     <div class="item-row">
+                        <el-checkbox class="ml92 checkbox-tit" v-model="checked5">参数:</el-checkbox>
+                        <el-checkbox class="" v-model="checked6">电压</el-checkbox>
+                        <el-checkbox class="ml92" v-model="checked7">电流</el-checkbox>
+                        <el-checkbox class="ml92" v-model="checked8">功率</el-checkbox>
+                        <el-checkbox class="ml92" v-model="checked9">标底</el-checkbox>
+                        <el-checkbox class="ml92" v-model="checked10">功率因数</el-checkbox>
+
+                    </div>
+                    <div class="item-row">
                         <!--<el-col :xs="24" :sm="24" :lg="8">-->
                         <span class="date-select">时间选择</span>
                         <el-date-picker
@@ -105,41 +109,14 @@
         </div>
 
         <!--能耗-->
-        <div class="consumption-box">
-            <div v-for="v in consumptionData" :class="v.class">
-                <div class="bg"></div>
-                <div :class="v.col">
-                    <i class="icon-nh"></i>
-                    {{ v.tit }}
-                </div>
-                <div class="electricity">
-                    <span class="ele-tit">用电量</span>
-                    <span class="num">{{ v.electricity }}</span>
-                    <span class="unit">kWh</span>
-                </div>
-                <div class="number-box">
-                    <div class="electricity-number">
-                        <span class="nums">{{ v.num1 }}</span>
-                        <span class="date">{{ v.data1 }}</span>
-                    </div>
-                    <div class="electricity-center">
-                        <i class="point"></i>
-                    </div>
-                    <div class="electricity-number">
-                        <span class="nums">{{ v.num2 }}</span>
-                        <span class="date">{{ v.data2 }}</span>
-                    </div>
-                </div>
 
-            </div>
-
-        </div>
         <!--能耗-->
 
         <!--能耗大数据图表 start-->
         <div class="energy-Echarts">
             <div class="bg"></div>
-            <div id="myChart" style="width: 100%;height: 100%;"></div>
+            <div class="title"><h3>数据列表</h3></div>
+            <div class="myChart" id="myChart" style="width: 100%;height: 100%;"></div>
         </div>
         <!--能耗大数据图表 end-->
 
@@ -149,7 +126,8 @@
                 <div class="head-right"><i class="icon-pdf"></i><i class="icon-excel"></i></div>
             </div>
 
-            <template-table></template-table>
+
+            <template-table :data-tit="tableTitle"></template-table>
             <div class="selector">
                 <i class="icon-front"></i>
                 <i class="icon-prev"></i>
@@ -194,12 +172,69 @@
                 checked2: false,
                 checked3: false,
                 checked4: false,
+                checked5: true,
+                checked6: false,
+                checked7: false,
+                checked8: false,
+                checked9: false,
+                checked10: false,
                 select1: '',
                 select2: '',
                 select3: '',
                 select4: '',
+
                 sw: true,
                 value6: '',
+                tableTitle:{
+                    title:'【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】',
+                    titArr:[
+                        {
+                            prop:"id",
+                            label:"日期",
+                            sortable:false
+                        },
+                        {
+                            prop:"dianliuIa",
+                            label:"电流Ia",
+                            sortable:false
+                        },
+                        {
+                            prop:"dianliuIb",
+                            label:"电流Ib",
+                            sortable:false
+                        },
+                        {
+                            prop:"dianliuIc",
+                            label:"电流Ic",
+                            sortable:false
+                        },
+                        {
+                            prop:"zhengDianNeng",
+                            label:"当前正向有功总电能",
+                            sortable:false
+                        },
+                        {
+                            prop:"cuUan",
+                            label:"粗电压Uan",
+                            sortable:false
+                        },
+                        {
+                            prop:"cuUbn",
+                            label:"粗电压Ubn",
+                            sortable:false
+                        },
+                        {
+                            prop:"cuUcn",
+                            label:"粗电压Ucn",
+                            sortable:false
+                        },
+                        {
+                            prop:"sum",
+                            label:"总有功功率W",
+                            sortable:false
+                        },
+                    ]
+                },
 
                 options: [{
                     value: '选项1',
@@ -217,48 +252,7 @@
                     value: '选项5',
                     label: '北京烤鸭'
                 }],
-                consumptionData: [
-                    {
-                        tit: '2AAH101-1电源线_能耗',
-                        col: 'head col1',
-                        class: 'consumption-item',
-                        electricity: 1066.56,
-                        num1: 156345666.56,
-                        num2: 126065666.54,
-                        data1: '2018-10-01 10:02 30',
-                        data2: '2018-10-01 10:02 60',
-                    },
-                    {
-                        tit: '2AAH101-1电源线_能耗',
-                        col: 'head col2',
-                        class: 'consumption-item ml27',
-                        electricity: 1066.56,
-                        num1: 156345666.56,
-                        num2: 126065666.54,
-                        data1: '2018-10-01 10:02 30',
-                        data2: '2018-10-01 10:02 60',
-                    },
-                    {
-                        tit: '2AAH101-1电源线_能耗',
-                        col: 'head col3',
-                        class: 'consumption-item ml27',
-                        electricity: 1066.56,
-                        num1: 156345666.56,
-                        num2: 126065666.54,
-                        data1: '2018-10-01 10:02 30',
-                        data2: '2018-10-01 10:02 60',
-                    },
-                    {
-                        tit: '2AAH101-1电源线_能耗',
-                        col: 'head col4',
-                        class: 'consumption-item ml27',
-                        electricity: 1066.56,
-                        num1: 156345666.56,
-                        num2: 126065666.54,
-                        data1: '2018-10-01 10:02 30',
-                        data2: '2018-10-01 10:02 60',
-                    }
-                ]
+
             }
         },
         components:{
@@ -418,9 +412,33 @@
     }
 </script>
 <style>
+    .Inquire .el-checkbox+.el-checkbox {
+         margin-left: 10px;
+    }
+    .Inquire .el-checkbox__inner{
+        display: inline-block;
+        position: relative;
+        border:1px solid rgba(146, 226, 234, 1);
+        border-radius: 2px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 14px;
+        height: 14px;
+        background-color: #3496AE;
+        z-index: 1;
+        -webkit-transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
+        -o-transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
+        transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
+    }
     .Inquire .el-radio__input.is-checked .el-radio__inner {
         background: url("../../assets/NengHaoChaXun/icon_xz.png") no-repeat;
 
+    }
+    .Inquire .filtrate-show .item-row .checkbox-tit .el-checkbox__label{
+        font-size:14px;
+        font-family:HiraginoSansGB-W3;
+        font-weight:bold;
+        color:rgba(45,243,255,1);
     }
 
     .Inquire .el-radio__inner {
@@ -513,8 +531,8 @@
         color: #BECDDE;
         display: inline-block;
         font-size: inherit;
-        height: 28px;
-        line-height: 28px;
+        height: 40px;
+        line-height: 40px;
         outline: 0;
         padding: 0 15px;
         -webkit-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
@@ -657,6 +675,12 @@
                     border-bottom: 2px solid #0B3F6F;
                     box-sizing: border-box;
                     padding: 0 10px;
+                    .choice-title{
+                        font-size:14px;
+                        font-family:HiraginoSansGB-W3;
+                        font-weight:bold;
+                        color:rgba(45,243,255,1);
+                    }
                     .select {
                         /*width: 220px;*/
                         margin-left: 7px;
@@ -878,8 +902,24 @@
             width: 100%;
             height: 486px;
             margin-top: 25px;
+            box-sizing: border-box;
+            padding: 15px 20px;
             background: #0B3F6F;
             position: relative;
+            .myChart{
+                position: relative;
+                z-index: 5;
+            }
+            .title{
+                position: relative;
+                z-index: 5;
+                h3 {
+                    font-size: 16px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: bold;
+                    color: rgba(254, 254, 255, 1);
+                }
+            }
             #main {
                 width: 100%;
                 height: 100%;

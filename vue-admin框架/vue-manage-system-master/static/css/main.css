@@ -33,7 +33,7 @@ a {
     /* background: #083C6C; */
     background:radial-gradient(circle,rgba(23,46,80,1),rgba(41,85,138,1));
 
-   
+
 }
 
 .content {
@@ -42,6 +42,7 @@ a {
     padding: 20px;
     overflow-y: scroll;
     box-sizing: border-box;
+    overflow-x: hidden;
 
 }
 

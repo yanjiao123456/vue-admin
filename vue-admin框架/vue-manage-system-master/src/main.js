@@ -23,6 +23,7 @@ Vue.prototype.$axios = axios;
 // Vue.component('icon', Icon)
 // Icon.inject('dlz'); // SVG图片名字（无扩展名）
 
+
 // ==========================================================================
 
 import router from './router';
@@ -46,7 +47,7 @@ router.beforeEach((to, from, next) => {
     }
 })
 // ===========================================================================
-new Vue({
+var vm = new Vue({
     router,
     render: h => h(App)
 }).$mount('#app');

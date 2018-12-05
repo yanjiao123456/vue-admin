@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91dbf1b6-1785-4e9e-879d-5d0cbd4dff66" name="Default Changelist" comment="shy-11-26">
-      <change afterPath="$PROJECT_DIR$/src/components/page/PeiDianInquire.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/views/template-table.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/page/ShiShiShuJu.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/views/pop.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/views/template-popEcharts.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Sidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/svg/dlz.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/svg/dlz.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/PeiDianInquire.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/PeiDianInquire.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/PeiDianTu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/PeiDianTu.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/page/inquire.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/inquire.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/views/template-table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/views/template-table.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery.imageView.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/jquery.imageView.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,38 +33,44 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="8" />
-          <entry key="js" value="4" />
+          <entry key="css" value="3" />
+          <entry key="html" value="20" />
+          <entry key="js" value="18" />
           <entry key="json" value="3" />
-          <entry key="svg" value="2" />
+          <entry key="svg" value="5" />
           <entry key="txt" value="1" />
-          <entry key="vue" value="8" />
+          <entry key="vue" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="8" />
+          <entry key="CSS" value="3" />
+          <entry key="HTML" value="20" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="4" />
+          <entry key="JavaScript" value="18" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="SVG" value="2" />
-          <entry key="Vue.js" value="8" />
+          <entry key="SVG" value="5" />
+          <entry key="Vue.js" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="75" />
-          <entry key="js" value="134" />
+          <entry key="css" value="3" />
+          <entry key="html" value="166" />
+          <entry key="js" value="484" />
+          <entry key="svg" value="160" />
           <entry key="txt" value="9" />
-          <entry key="vue" value="6183" />
+          <entry key="vue" value="10695" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="75" />
-          <entry key="JavaScript" value="134" />
+          <entry key="CSS" value="3" />
+          <entry key="HTML" value="173" />
+          <entry key="JavaScript" value="484" />
           <entry key="PLAIN_TEXT" value="9" />
-          <entry key="Vue.js" value="6183" />
+          <entry key="SVG" value="160" />
+          <entry key="Vue.js" value="10688" />
         </counts>
       </usages-collector>
     </session>
@@ -64,119 +78,82 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/router/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="27" column="43" lean-forward="true" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/page/PeiDianInquire.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1830">
-              <caret line="168" column="26" lean-forward="true" selection-start-line="168" selection-start-column="26" selection-end-line="168" selection-end-column="26" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#3;n#div#3;n#div#0;n#template#0;n#!!top" />
-                <element signature="e#13475#18153#0" />
-                <element signature="e#14116#18048#0" />
-                <element signature="e#28712#29122#0" />
-                <element signature="e#38382#39325#0" />
-                <element signature="e#39916#43232#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/common/Sidebar.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1412">
-              <caret line="77" column="38" lean-forward="true" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/../../../../element-ui-admin/天诚楼3#和4#变压器(1).svg">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/page/inquire.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1297">
-              <caret line="519" column="12" selection-start-line="519" selection-start-column="12" selection-end-line="519" selection-end-column="12" />
+            <state relative-caret-position="236">
+              <caret line="588" column="27" selection-start-line="586" selection-start-column="8" selection-end-line="588" selection-end-column="27" />
               <folding>
+                <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#3;n#div#3;n#div#0;n#template#0;n#!!top" />
-                <element signature="e#8720#12056#0" />
-                <element signature="e#7605#9146#0" />
-                <element signature="e#9939#13504#0" />
-                <element signature="e#10580#14597#0" />
-                <element signature="e#10534#12829#0" />
-                <element signature="e#10722#10900#0" />
-                <element signature="e#10927#12815#0" />
-                <element signature="e#29126#29400#0" />
-                <element signature="e#34798#37008#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/views/template-table.vue">
+        <entry file="file://$PROJECT_DIR$/../../../../element-ui-admin/svg.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-220">
-              <caret line="2" column="47" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="47" />
+            <state relative-caret-position="331">
+              <caret line="706" column="46" selection-start-line="706" selection-start-column="46" selection-end-line="706" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/page/ShiShiShuJu.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="273" column="39" selection-start-line="273" selection-start-column="39" selection-end-line="273" selection-end-column="39" />
               <folding>
-                <element signature="n#style#0;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#597#3267#0" />
+                <element signature="n#style#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/excheck/checkbox.html">
+        <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/excheck/checkbox_count.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/excheck/checkbox_chkDisabled.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="53" column="51" lean-forward="true" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
+            <state relative-caret-position="396">
+              <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/super/fuzzySearch.html">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="85" />
+            <state relative-caret-position="220">
+              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/core/custom_icon.html">
+        <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/css/zTreeStyle/zTreeStyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="739">
-              <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
+            <state relative-caret-position="286">
+              <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/core/custom_iconSkin.html">
+        <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/css/demo.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="37" column="61" lean-forward="true" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+            <state relative-caret-position="211">
+              <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -197,6 +174,19 @@
       <find>stripe</find>
       <find>fuzzySearch</find>
       <find>showNode</find>
+      <find>complete</find>
+      <find>matrix(1.019931,0.015068,-0.016625,0.9244009,1023.938,24.28126)</find>
+      <find>message</find>
+      <find>imageView_container</find>
+      <find>matrix(0.8095999,0,0,0.9999999,-627.9828,18.69671)</find>
+      <find>svg</find>
+      <find>svg.js</find>
+      <find>handleEvent</find>
+      <find>Inquire</find>
+      <find>key</find>
+      <find>alter</find>
+      <find>pIcon01</find>
+      <find>icon01</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -205,19 +195,30 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/build/webpack.base.conf.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/components/page/Dashboard.vue" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/super/fuzzySearch.html" />
-        <option value="$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/excheck/checkbox.html" />
+        <option value="$PROJECT_DIR$/src/components/views/table.vue" />
+        <option value="$PROJECT_DIR$/src/components/page/PeiDianInquire.vue" />
+        <option value="$PROJECT_DIR$/src/components/page/inquire.vue" />
+        <option value="$PROJECT_DIR$/src/components/views/template-table.vue" />
+        <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/src/components/views/template-popEcharts.vue" />
+        <option value="$PROJECT_DIR$/static/css/main.css" />
+        <option value="$PROJECT_DIR$/static/js/jquery.imageView.js" />
+        <option value="$PROJECT_DIR$/src/components/views/pop.vue" />
+        <option value="$PROJECT_DIR$/../../../../element-ui-admin/svg.js" />
+        <option value="$PROJECT_DIR$/src/assets/svg/dlz.svg" />
+        <option value="$PROJECT_DIR$/src/components/page/PeiDianTu.vue" />
+        <option value="$PROJECT_DIR$/static/img/svg.js" />
         <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/src/components/common/Sidebar.vue" />
-        <option value="$PROJECT_DIR$/src/components/views/table.vue" />
-        <option value="$PROJECT_DIR$/src/components/views/template-table.vue" />
-        <option value="$PROJECT_DIR$/src/components/page/inquire.vue" />
-        <option value="$PROJECT_DIR$/src/components/page/PeiDianInquire.vue" />
+        <option value="$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/excheck/checkbox.html" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/core/custom_icon.html" />
+        <option value="$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/core/custom_iconSkin.html" />
+        <option value="$PROJECT_DIR$/src/components/page/ShiShiShuJu.vue" />
       </list>
     </option>
   </component>
@@ -238,10 +239,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="17" />
-    <option name="y" value="284" />
+    <option name="x" value="349" />
+    <option name="y" value="-22" />
     <option name="width" value="1926" />
-    <option name="height" value="1040" />
+    <option name="height" value="1029" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -260,13 +261,45 @@
             <path>
               <item name="vue-manage-system-master" type="b2602c69:ProjectViewProjectNode" />
               <item name="vue-manage-system-master" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-manage-system-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-manage-system-master" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vue-manage-system-master" type="b2602c69:ProjectViewProjectNode" />
               <item name="vue-manage-system-master" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-manage-system-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-manage-system-master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="svg" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-manage-system-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-manage-system-master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-manage-system-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-manage-system-master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-manage-system-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-manage-system-master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vue-manage-system-master" type="b2602c69:ProjectViewProjectNode" />
@@ -274,6 +307,23 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-manage-system-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-manage-system-master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="router" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-manage-system-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-manage-system-master" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-manage-system-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-manage-system-master" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -309,12 +359,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1543197624845</updated>
-      <workItem from="1543197626279" duration="81080000" />
+      <workItem from="1543197626279" duration="152546000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81080000" />
+    <option name="totallyTimeSpent" value="152546000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -322,11 +372,11 @@
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="2" weight="0.25053304" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.33223686" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.33116177" />
       <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="4" weight="0.32899022" />
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
@@ -342,6 +392,29 @@
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info id="npm" order="1" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.25053304" />
+      <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.33116177" />
+      <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="4" weight="0.32899022" />
+      <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="6" />
+      <window_info anchor="bottom" id="Find" order="7" />
+      <window_info anchor="bottom" id="Run" order="8" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -357,9 +430,6 @@
     <entry file="file://D:/微信/WeChat Files/qq1445300018/Files/动力站.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/svg/dlz.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/vue2-svg-icon/Icon.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -370,26 +440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="41" column="7" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <element signature="e#127#162#0" expanded="true" />
-            <element signature="e#403#435#0" expanded="true" />
-            <element signature="e#539#567#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -426,20 +476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/core/custom_iconSkin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="37" column="61" lean-forward="true" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/core/custom_icon.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="739">
-          <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/super/fuzzySearch.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -447,17 +483,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/excheck/checkbox.html">
+    <entry file="file://$PROJECT_DIR$/config/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/PeiDianInquire.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="53" column="51" lean-forward="true" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
+        <state relative-caret-position="312">
+          <caret line="607" column="23" selection-start-line="607" selection-start-column="19" selection-end-line="607" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#3;n#div#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#13475#18153#0" />
+            <element signature="e#14116#18048#0" />
+            <element signature="e#28712#29122#0" />
+            <element signature="e#29149#32454#0" />
+            <element signature="e#38382#39325#0" />
+            <element signature="e#39916#43232#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/Home.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/page/Dashboard.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="255" column="27" selection-start-line="255" selection-start-column="27" selection-end-line="255" selection-end-column="27" />
+          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#2;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -465,65 +521,241 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/Sidebar.vue">
+    <entry file="file://$PROJECT_DIR$/static/js/vendor.dll.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1412">
-          <caret line="77" column="38" lean-forward="true" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
+        <state relative-caret-position="-61" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/jquery-browser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/index.js">
+    <entry file="file://$PROJECT_DIR$/static/js/jquery-1.10.2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="43" lean-forward="true" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+        <state relative-caret-position="-61">
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/Header.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="29" column="33" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="29" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/拖放API/ceshi/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-858">
+          <caret line="19" column="47" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/views/template-popEcharts.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="968">
+          <caret line="44" column="22" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/views/template-table.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-220">
-          <caret line="2" column="47" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="47" />
+        <state relative-caret-position="198">
+          <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="26" />
           <folding>
             <element signature="n#style#0;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/inquire.vue">
+    <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1297">
-          <caret line="519" column="12" selection-start-line="519" selection-start-column="12" selection-end-line="519" selection-end-column="12" />
+        <state relative-caret-position="651">
+          <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#div#3;n#div#0;n#template#0;n#!!top" />
-            <element signature="e#8720#12056#0" />
-            <element signature="e#7605#9146#0" />
-            <element signature="e#9939#13504#0" />
-            <element signature="e#10580#14597#0" />
-            <element signature="e#10534#12829#0" />
-            <element signature="e#10722#10900#0" />
-            <element signature="e#10927#12815#0" />
-            <element signature="e#29126#29400#0" />
-            <element signature="e#34798#37008#0" />
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#127#162#0" expanded="true" />
+            <element signature="e#403#435#0" expanded="true" />
+            <element signature="e#539#567#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/PeiDianInquire.vue">
+    <entry file="file://$PROJECT_DIR$/static/js/jquery.imageView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1830">
-          <caret line="168" column="26" lean-forward="true" selection-start-line="168" selection-start-column="26" selection-end-line="168" selection-end-column="26" />
+        <state relative-caret-position="827">
+          <caret line="65" column="20" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/BaiduNetdiskDownload/02/课件/自定义指令-拖拽(1).html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/views/pop.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
           <folding>
+            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#2962#8026#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/案例/拖拽.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1056">
+          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/BaiduNetdiskDownload/02/课件/自定义指令-拖拽.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/svg/dlz.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../element-ui-admin/svg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="706" column="46" selection-start-line="706" selection-start-column="46" selection-end-line="706" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/img/svg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="747" column="23" selection-start-line="747" selection-start-column="23" selection-end-line="747" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/Sidebar.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/PeiDianTu.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="191" column="39" lean-forward="true" selection-start-line="191" selection-start-column="39" selection-end-line="191" selection-end-column="39" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#embed#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#2926#2958#0" expanded="true" />
+            <element signature="e#3556#5075#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../element-ui-admin/天诚楼3#和4#变压器(1).svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/inquire.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="588" column="27" selection-start-line="586" selection-start-column="8" selection-end-line="588" selection-end-column="27" />
+          <folding>
+            <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#div#3;n#div#0;n#template#0;n#!!top" />
-            <element signature="e#13475#18153#0" />
-            <element signature="e#14116#18048#0" />
-            <element signature="e#28712#29122#0" />
-            <element signature="e#38382#39325#0" />
-            <element signature="e#39916#43232#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/css/demo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/css/zTreeStyle/zTreeStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/core/custom_icon.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/core/custom_iconSkin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1204">
+          <caret line="45" column="188" lean-forward="true" selection-start-line="45" selection-end-line="45" selection-end-column="188" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/excheck/checkbox_chkDisabled.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/excheck/checkbox_count.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../z-Tree/zTree_v3/demo/cn/excheck/checkbox.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1531">
+          <caret line="84" column="11" lean-forward="true" selection-start-line="17" selection-end-line="84" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/ShiShiShuJu.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="273" column="39" selection-start-line="273" selection-start-column="39" selection-end-line="273" selection-end-column="39" />
+          <folding>
+            <element signature="e#597#3267#0" />
+            <element signature="n#style#0;n#!!top" />
           </folding>
         </state>
       </provider>

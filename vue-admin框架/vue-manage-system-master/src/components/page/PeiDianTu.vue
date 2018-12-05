@@ -6,10 +6,17 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="tabNav-list">
+
                             <span @click="tabId=index" v-for="(v,index) in tabNavList.list1"
                                   :class="{'tabNav-item':true,able:index==tabId}">
-                            {{ v }}
-                                <i class="icon-xl el-icon-arrow-down"></i>
+                                <el-tooltip effect="dark" :content="v" placement="bottom">
+                                <span>
+                                    {{ v }}
+                                    <i class="icon-xl el-icon-arrow-down"></i>
+                                </span>
+
+                                </el-tooltip>
+
                             </span>
                         </div>
                     </div>
@@ -51,11 +58,27 @@
                 <div class="form-title">
                     【天诚楼5#、5#变接线图（ 2018-10-16绘制)】
                 </div>
+                <!--onmousedown="handleEvent(evt)"-->
+                <!--onmouseup="handleEvent(evt)"-->
+                <!--onmousemove="handleEvent(evt)"-->
+                <!--<span @click="$router.push('pop')">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>-->
                 <div class="svg-box">
                     <div id="imageView_container"
                          style="overflow: hidden; position: relative; width: 1487.5px; height: 700px; ">
-                        <img src="../../assets/svg/dlz.svg" id="rotImg"
-                             style="cursor: move; visibility: visible; position: absolute; width: 100%; height: 100%;"/>
+
+                        <div id="imgBox" style="width: 100%;height: 100%; position: absolute;cursor:move">
+                            <embed style="width: 100%;height: 100%; position: absolute;cursor:move" id="rotImg"
+                                   :src="dlz" wmode="transparent" type="image/svg+xml"/>
+                        </div>
+                        <!--<div v-drag style="width: 100px;height: 100px;position: absolute;background-color:red;"></div>-->
+
+
+                        <!--<object data="../../assets/svg/dlz.svg" type="image/svg+xml" codebase="http://www.adobe.com/svg/viewer/install/" />-->
+
+                        <!--<iframe id="rotImg" :src="dlz" width="100%" height="100%"></iframe>-->
+
+                        <!--<embed style="" src="../../assets/svg/dlz.svg" wmode="transparent" id="ofelec1"/>-->
+                        <!--<img src="../../assets/svg/dlz.svg" id="rotImg" style="cursor: move; visibility: visible; position: absolute; width: 100%; height: 100%;"/>-->
                     </div>
                 </div>
             </div>
@@ -67,13 +90,13 @@
     import Schart from "vue-schart";
     import bus from "../common/bus";
     import Swiper from "swiper";
-    // import Icon from 'vue-svg-icon/Icon.vue'
-    import '../../assets/svg/dlz.svg';
+
 
     export default {
         name: "dashboard",
         data() {
             return {
+                dlz: require('../../assets/svg/dlz.svg'),
                 w: '1000px',
                 // name: localStorage.getItem("ms_username"),
                 btnCur: -1,
@@ -122,6 +145,25 @@
                 ]
             };
         },
+        //组件内的拖拽指令
+        directives: {
+            drag(el) {
+                el.onmousedown = function (e) {
+                    var disx = e.pageX - el.offsetLeft;
+                    var disy = e.pageY - el.offsetTop;
+                    document.onmousemove = function (e) {
+                        el.style.left = e.pageX - disx + 'px';
+                        el.style.top = e.pageY - disy + 'px';
+                    }
+                    document.onmouseup = function (e) {
+                        document.onmouseup = document.onmousemove = null
+                    }
+                    e.preventDefault();
+                }
+            }
+
+        },
+//大致的框架就是这样其中el指的是绑定的元素，value就是传的值了，
         components: {
             Schart
         },
@@ -142,9 +184,12 @@
             bus.$off("collapse", this.handleBus);
         },
         methods: {
+            popup(id) {
+                alert(id);
+            },
             imgToSize(size) {
 
-                var img = $("#rotImg");
+                var img = $('#rotImg');
                 if (size == 0) {
                     img.width('100%');
                     img.height('100%');
@@ -181,6 +226,8 @@
             }
         },
         mounted() {
+
+            var _this = this;
             var mySwiper = new Swiper(".swiper-container", {
                 // autoplay: true,
                 // loop: true
@@ -192,56 +239,62 @@
                     el: ".swiper-pagination"
                 }
             });
+            // setTimeout()
+            var ss = document.getElementById('rotImg');
+
+            ss.src = _this.dlz;
+            ss.onload = function () {
+                var aaa = ss.getSVGDocument();
+                // console.log();
+                var svg = ss.getSVGDocument();
+                var text = svg.getElementsByTagName('text');
 
 
-            var param = {
-                // right: document.getElementById("rotRight"),
-                // left: document.getElementById("rotLeft"),
-                img: document.getElementById("rotImg"),
-                rot: 0
-            };
+                // console.log(text.length);
+                // console.log(text);
+                // outerHTML
 
-            var fun = {
-                right: function () {
-                    param.rot += 1;
-                    param.img.className = "rot" + param.rot;
-                    if (param.rot === 3) {
-                        param.rot = -1;
+                var myArr = [];
+
+
+                for (let i = 0; i < text.length; i++) {
+                    let outerHtml = text[i].outerHTML
+                    // console.log(outerHtml);
+                    var substr = outerHtml.match(/stroke="(\S*)"/);
+                    // console.log(substr[1]);
+                    if (substr[1] != '#ffffff' && substr[1] != '#FFFFFF') {
+
+
+                        var str = trimStr(text[i].innerHTML);
+
+                        // console.log(str);
+                        if (str != 'Ia' && str != 'P' && str != 'Q' && str != 'COSϕ') {
+                            // console.log(str);
+                            myArr.push(text[i]);
+                        }
+
+
                     }
-                },
-                left: function () {
-                    param.rot -= 1;
-                    if (param.rot === -1) {
-                        param.rot = 3;
-                    }
-                    param.img.className = "rot" + param.rot;
                 }
-            };
-            // param.right.onclick = function() {
-            //     fun.right();
-            //     return false;
-            // };
-            // param.left.onclick = function() {
-            //     fun.left();
-            //     return false;
-            // };
 
-            $("#imageView_container").imageView({width: 1604, height: 700});
+                console.log(myArr);
 
-            var size = 0;
 
-            //放大缩小图片
-            function imgToSize(size) {
-                var img = $("#rotImg");
-                var oWidth = img.width(); //取得图片的实际宽度
-                var oHeight = img.height(); //取得图片的实际高度
+                $(myArr).css('cursor', 'pointer');
+                $(myArr).click(function () {
+                    _this.$router.push('pop');
+                })
 
-                img.width(oWidth + size);
-                img.height(oHeight + (size / oWidth) * oHeight);
+
             }
 
+            function trimStr(str) {
+                return str.replace(/(^\s*)|(\s*$)/g, "");
+            }
+
+
         }
-    };
+    }
 </script>
 <style>
     .Dashboard .swiper-pagination-bullet-active {
@@ -280,6 +333,7 @@
                 padding: 22px 9px 35px 20px;
                 z-index: 10;
                 position: relative;
+                overflow: hidden;
                 h3 {
                     color: #fff;
                 }
@@ -351,6 +405,9 @@
         flex-direction: row;
         flex-wrap: nowrap;
         .tabNav-item {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             flex: 1;
             cursor: pointer;
             text-align: center;
@@ -374,6 +431,7 @@
         }
         .able {
             background: url("../../assets/PeiDianJianCe/tab-2.png") no-repeat;
+            background-size: 100% 100%;
             color: #2DF3FF;
         }
 

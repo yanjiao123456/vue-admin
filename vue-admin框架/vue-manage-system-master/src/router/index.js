@@ -36,6 +36,11 @@ export default new Router({
 
                 },
                 {
+                    path:'/ShiShiShuJu',
+                    component: resolve => require(['../components/page/ShiShiShuJu.vue'], resolve),
+                    meta: { title: '实时数据' }
+                },
+                {
                     path: '/icon',
                     component: resolve => require(['../components/page/Icon.vue'], resolve),
                     meta: { title: '自定义图标' }
@@ -102,6 +107,11 @@ export default new Router({
                     meta: { title: '403' }
                 }
             ]
+        },
+        {
+            path:'/pop',
+            component: resolve => require(['../components/views/pop.vue'], resolve),
+            meta: { title: '配电图弹框' }
         },
         {
             path: '/login',

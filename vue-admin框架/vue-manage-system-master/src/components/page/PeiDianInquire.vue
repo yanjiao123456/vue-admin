@@ -70,31 +70,34 @@
                         <el-checkbox class="ml92" v-model="checked10">功率因数</el-checkbox>
 
                     </div>
-                    <div class="item-row">
+                    <div class="item-row-2 item-row">
                         <!--<el-col :xs="24" :sm="24" :lg="8">-->
-                        <span class="date-select">时间选择</span>
-                        <el-date-picker
-                                v-model="value6"
-                                type="daterange"
-                                range-separator="—"
-                                start-placeholder="开始日期"
-                                end-placeholder="结束日期">
-                        </el-date-picker>
+                        <div class="fl">
+                            <span class="date-select">时间选择</span>
+                            <el-date-picker
+                                    class=""
+                                    v-model="value6"
+                                    type="daterange"
+                                    range-separator="—"
+                                    start-placeholder="开始日期"
+                                    end-placeholder="结束日期">
+                            </el-date-picker>
+                        </div>
                         <!--</el-col>-->
-                        <el-col :xs="24" :sm="24" :lg="8">
-                            <div class="days-box">
+                        <!--<el-col :xs="24" :sm="24" :lg="8">-->
+                        <div class="fl days-box">
                         <span class="days-tit date-select">
                             <i class="el-icon-search"></i>
                             快捷查询:
                         </span>
-                                <div class="days-btn">
-                                    <span @click="days=0" :class="{cur:days==0}">前1天</span>
-                                    <span @click="days=1" :class="{cur:days==1}">前3天</span>
-                                    <span @click="days=2" :class="{cur:days==2}">前7天</span>
-                                    <span @click="days=3" :class="{cur:days==3}">前1月</span>
-                                </div>
+                            <div class="days-btn">
+                                <span @click="days=0" :class="{cur:days==0}">前1天</span>
+                                <span @click="days=1" :class="{cur:days==1}">前3天</span>
+                                <span @click="days=2" :class="{cur:days==2}">前7天</span>
+                                <span @click="days=3" :class="{cur:days==3}">前1月</span>
                             </div>
-                        </el-col>
+                        </div>
+                        <!--</el-col>-->
                     </div>
 
                     <div class="btns-box">
@@ -158,6 +161,7 @@
 
 <script>
     import TemplateTable from '../views/template-table'
+
     var echarts = require('echarts');
     export default {
         name: "inquire",
@@ -185,53 +189,53 @@
 
                 sw: true,
                 value6: '',
-                tableTitle:{
-                    title:'【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】',
-                    titArr:[
+                tableTitle: {
+                    title: '【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】',
+                    titArr: [
                         {
-                            prop:"id",
-                            label:"日期",
-                            sortable:false
+                            prop: "id",
+                            label: "日期",
+                            sortable: false
                         },
                         {
-                            prop:"dianliuIa",
-                            label:"电流Ia",
-                            sortable:false
+                            prop: "dianliuIa",
+                            label: "电流Ia",
+                            sortable: false
                         },
                         {
-                            prop:"dianliuIb",
-                            label:"电流Ib",
-                            sortable:false
+                            prop: "dianliuIb",
+                            label: "电流Ib",
+                            sortable: false
                         },
                         {
-                            prop:"dianliuIc",
-                            label:"电流Ic",
-                            sortable:false
+                            prop: "dianliuIc",
+                            label: "电流Ic",
+                            sortable: false
                         },
                         {
-                            prop:"zhengDianNeng",
-                            label:"当前正向有功总电能",
-                            sortable:false
+                            prop: "zhengDianNeng",
+                            label: "当前正向有功总电能",
+                            sortable: false
                         },
                         {
-                            prop:"cuUan",
-                            label:"粗电压Uan",
-                            sortable:false
+                            prop: "cuUan",
+                            label: "粗电压Uan",
+                            sortable: false
                         },
                         {
-                            prop:"cuUbn",
-                            label:"粗电压Ubn",
-                            sortable:false
+                            prop: "cuUbn",
+                            label: "粗电压Ubn",
+                            sortable: false
                         },
                         {
-                            prop:"cuUcn",
-                            label:"粗电压Ucn",
-                            sortable:false
+                            prop: "cuUcn",
+                            label: "粗电压Ucn",
+                            sortable: false
                         },
                         {
-                            prop:"sum",
-                            label:"总有功功率W",
-                            sortable:false
+                            prop: "sum",
+                            label: "总有功功率W",
+                            sortable: false
                         },
                     ]
                 },
@@ -255,7 +259,7 @@
 
             }
         },
-        components:{
+        components: {
             TemplateTable
         },
         methods: {
@@ -412,13 +416,14 @@
     }
 </script>
 <style>
-    .Inquire .el-checkbox+.el-checkbox {
-         margin-left: 10px;
+    .Inquire .el-checkbox + .el-checkbox {
+        margin-left: 10px;
     }
-    .Inquire .el-checkbox__inner{
+
+    .Inquire .el-checkbox__inner {
         display: inline-block;
         position: relative;
-        border:1px solid rgba(146, 226, 234, 1);
+        border: 1px solid rgba(146, 226, 234, 1);
         border-radius: 2px;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
@@ -426,19 +431,21 @@
         height: 14px;
         background-color: #3496AE;
         z-index: 1;
-        -webkit-transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
-        -o-transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
-        transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
+        -webkit-transition: border-color .25s cubic-bezier(.71, -.46, .29, 1.46), background-color .25s cubic-bezier(.71, -.46, .29, 1.46);
+        -o-transition: border-color .25s cubic-bezier(.71, -.46, .29, 1.46), background-color .25s cubic-bezier(.71, -.46, .29, 1.46);
+        transition: border-color .25s cubic-bezier(.71, -.46, .29, 1.46), background-color .25s cubic-bezier(.71, -.46, .29, 1.46);
     }
+
     .Inquire .el-radio__input.is-checked .el-radio__inner {
         background: url("../../assets/NengHaoChaXun/icon_xz.png") no-repeat;
 
     }
-    .Inquire .filtrate-show .item-row .checkbox-tit .el-checkbox__label{
-        font-size:14px;
-        font-family:HiraginoSansGB-W3;
-        font-weight:bold;
-        color:rgba(45,243,255,1);
+
+    .Inquire .filtrate-show .item-row .checkbox-tit .el-checkbox__label {
+        font-size: 14px;
+        font-family: HiraginoSansGB-W3;
+        font-weight: bold;
+        color: rgba(45, 243, 255, 1);
     }
 
     .Inquire .el-radio__inner {
@@ -597,7 +604,9 @@
         width: 100%;
         height: 100%;
         position: relative;
-
+        .fl{
+            float: left;
+        }
         .bg {
             width: 100%;
             height: 100%;
@@ -675,11 +684,11 @@
                     border-bottom: 2px solid #0B3F6F;
                     box-sizing: border-box;
                     padding: 0 10px;
-                    .choice-title{
-                        font-size:14px;
-                        font-family:HiraginoSansGB-W3;
-                        font-weight:bold;
-                        color:rgba(45,243,255,1);
+                    .choice-title {
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(45, 243, 255, 1);
                     }
                     .select {
                         /*width: 220px;*/
@@ -750,6 +759,17 @@
                         }
                     }
 
+                }
+                .item-row-2{
+                    height: auto;
+                    width: 100%;
+                    padding: 13px 10px;
+                    background-color: #174B7B;
+                    display: block;
+
+                    border-bottom: 2px solid #0B3F6F;
+                    box-sizing: border-box;
+                    /*padding: 0 10px;*/
                 }
                 .btns-box {
                     width: 100%;
@@ -906,11 +926,11 @@
             padding: 15px 20px;
             background: #0B3F6F;
             position: relative;
-            .myChart{
+            .myChart {
                 position: relative;
                 z-index: 5;
             }
-            .title{
+            .title {
                 position: relative;
                 z-index: 5;
                 h3 {

@@ -16,7 +16,9 @@ image_view_last_id = 0;
         if ($container.length == 0) return false;
         var container = $container[0];
         var $img = $('img', container);
+        console.log('$img',$img);
         var img = $img[0];
+        console.log('img',img);
 
         if (!$img.attr('id')) {
             image_view_last_id++;

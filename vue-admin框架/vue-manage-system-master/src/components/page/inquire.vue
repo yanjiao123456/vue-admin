@@ -66,31 +66,38 @@
                             <span v-show="!sw">更多</span>
                         </div>
                     </div>
-                    <div class="item-row">
+                    <div class="item-row-2 item-row">
                         <!--<el-col :xs="24" :sm="24" :lg="8">-->
-                        <span class="date-select">时间选择</span>
-                        <el-date-picker
-                                v-model="value6"
-                                type="daterange"
-                                range-separator="—"
-                                start-placeholder="开始日期"
-                                end-placeholder="结束日期">
-                        </el-date-picker>
+                        <div class="fl">
+                            <span class="date-select">时间选择</span>
+                            <el-date-picker
+                                    class=""
+                                    v-model="value6"
+                                    type="daterange"
+                                    range-separator="—"
+                                    start-placeholder="开始日期"
+                                    end-placeholder="结束日期">
+                            </el-date-picker>
+                        </div>
+                        <!--<br>-->
+
+
+
                         <!--</el-col>-->
-                        <el-col :xs="24" :sm="24" :lg="8">
-                            <div class="days-box">
+                        <!--<el-col :xs="24" :sm="24" :lg="8">-->
+                        <div class="fl days-box">
                         <span class="days-tit date-select">
                             <i class="el-icon-search"></i>
                             快捷查询:
                         </span>
-                                <div class="days-btn">
-                                    <span @click="days=0" :class="{cur:days==0}">前1天</span>
-                                    <span @click="days=1" :class="{cur:days==1}">前3天</span>
-                                    <span @click="days=2" :class="{cur:days==2}">前7天</span>
-                                    <span @click="days=3" :class="{cur:days==3}">前1月</span>
-                                </div>
+                            <div class="days-btn">
+                                <span @click="days=0" :class="{cur:days==0}">前1天</span>
+                                <span @click="days=1" :class="{cur:days==1}">前3天</span>
+                                <span @click="days=2" :class="{cur:days==2}">前7天</span>
+                                <span @click="days=3" :class="{cur:days==3}">前1月</span>
                             </div>
-                        </el-col>
+                        </div>
+                        <!--</el-col>-->
                     </div>
 
                     <div class="btns-box">
@@ -106,33 +113,33 @@
 
         <!--能耗-->
         <div class="consumption-box">
-            <div v-for="v in consumptionData" :class="v.class">
-                <div class="bg"></div>
-                <div :class="v.col">
-                    <i class="icon-nh"></i>
-                    {{ v.tit }}
-                </div>
-                <div class="electricity">
-                    <span class="ele-tit">用电量</span>
-                    <span class="num">{{ v.electricity }}</span>
-                    <span class="unit">kWh</span>
-                </div>
-                <div class="number-box">
-                    <div class="electricity-number">
-                        <span class="nums">{{ v.num1 }}</span>
-                        <span class="date">{{ v.data1 }}</span>
+            <el-col :key="index" v-for="(v, index) in consumptionData" :xs="24" :sm="24" :lg="6">
+                <div :class="v.class">
+                    <div class="bg"></div>
+                    <div :class="v.col">
+                        <i class="icon-nh"></i>
+                        {{ v.tit }}
                     </div>
-                    <div class="electricity-center">
-                        <i class="point"></i>
+                    <div class="electricity">
+                        <span class="ele-tit">用电量</span>
+                        <span class="num">{{ v.electricity }}</span>
+                        <span class="unit">kWh</span>
                     </div>
-                    <div class="electricity-number">
-                        <span class="nums">{{ v.num2 }}</span>
-                        <span class="date">{{ v.data2 }}</span>
+                    <div class="number-box">
+                        <div class="electricity-number">
+                            <span class="nums">{{ v.num1 }}</span>
+                            <span class="date">{{ v.data1 }}</span>
+                        </div>
+                        <div class="electricity-center">
+                            <i class="point"></i>
+                        </div>
+                        <div class="electricity-number">
+                            <span class="nums">{{ v.num2 }}</span>
+                            <span class="date">{{ v.data2 }}</span>
+                        </div>
                     </div>
                 </div>
-
-            </div>
-
+            </el-col>
         </div>
         <!--能耗-->
 
@@ -180,6 +187,7 @@
 
 <script>
     import TemplateTable from '../views/template-table'
+
     var echarts = require('echarts');
     export default {
         name: "inquire",
@@ -261,7 +269,7 @@
                 ]
             }
         },
-        components:{
+        components: {
             TemplateTable
         },
         methods: {
@@ -579,7 +587,9 @@
         width: 100%;
         height: 100%;
         position: relative;
-
+        .fl {
+            float: left;
+        }
         .bg {
             width: 100%;
             height: 100%;
@@ -648,6 +658,7 @@
                         align-items: center;
                     }
                 }
+
                 .item-row {
                     height: 60px;
                     width: 100%;
@@ -727,6 +738,17 @@
                     }
 
                 }
+                .item-row-2{
+                    height: auto;
+                    width: 100%;
+                    padding: 13px 10px;
+                    background-color: #174B7B;
+                    display: block;
+
+                    border-bottom: 2px solid #0B3F6F;
+                    box-sizing: border-box;
+                    /*padding: 0 10px;*/
+                }
                 .btns-box {
                     width: 100%;
                     display: flex;
@@ -757,18 +779,24 @@
         }
         .consumption-box {
             width: 100%;
-            height: 164px;
+            /*height: 164px;*/
             margin-top: 24px;
-            display: flex;
-            justify-content: space-between;
+            overflow: hidden;
+            /*display: flex;*/
+            /*justify-content: space-between;*/
             position: relative;
             z-index: 5;
             .ml27 {
                 margin-left: 27px;
             }
             .consumption-item {
-                flex: 1;
+                /*flex: 1;*/
+                /*float: left;*/
                 position: relative;
+                @media screen and (max-width: 1200px) {
+                    margin-left: 0;
+                    margin-top: 15px;
+                }
                 .col1 {
                     background: #637EF9;
                 }

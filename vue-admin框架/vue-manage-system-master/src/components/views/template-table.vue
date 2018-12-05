@@ -7,7 +7,7 @@
                 stripe
                 show-summary
                 style="width: 100%">
-            <el-table-column v-for="v in dataTit.titArr" class="trs" :prop="v.prop" :label="v.label"></el-table-column>
+            <el-table-column :key="index" v-for="(v,index) in dataTit.titArr" class="trs" :prop="v.prop" :label="v.label"></el-table-column>
             <!--<el-table-column-->
                     <!--class="trs"-->
                     <!--prop="id"-->

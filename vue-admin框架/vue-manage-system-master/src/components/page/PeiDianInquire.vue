@@ -1,5 +1,73 @@
 <template>
     <div class="Inquire">
+        <div v-show="gxhShow || treeShow" class="gxhPop">
+            <div class="bgc"></div>
+            <div v-show="treeShow" class="tree-block">
+                <div class="bg-box">
+                    <div class="block-bg"></div>
+                    <div class="details">
+                        <i @click="treeShow=false" class="icon-close"></i>
+                        <div class="title">个性化查询</div>
+                        <div class="tree-content">
+                            <div class="import-box">
+                                <input id="key" type="text" class="import" placeholder="请输入您所需查询的信息">
+                            </div>
+                            <!--树-->
+                            <ul id="treeDemo" class="ztree"></ul>
+                        </div>
+                        <div class="tree-btns">
+                            <span>提交</span>
+                            <span>重置</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div v-show="gxhShow" class="block">
+                <div class="bg-box">
+                    <div class="block-bg"></div>
+                    <div class="details">
+                        <i @click="gxhShow=false" class="icon-close"></i>
+                        <div class="title">个性化查询</div>
+                        <div class="list-box">
+                            <ul>
+                                <li>
+                                    <p>生产一车间二组</p>
+                                    <div class="compile">
+                                        <span class="item-span">第二生产线前1月用电</span>
+                                        <span class="item-span">2017-10-12</span>
+                                        <div class="btns">
+                                            <span>编辑</span>
+                                            <span>编辑</span>
+                                            <span>编辑</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p>生产一车间二组</p>
+                                    <div class="compile">
+                                        <span class="item-span">第二生产线前1月用电</span>
+                                        <span class="item-span">2017-10-12</span>
+                                        <div class="btns">
+                                            <span>编辑</span>
+                                            <span>编辑</span>
+                                            <span>编辑</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="import-box">
+                            <input type="text" class="import" placeholder="请输入您所要添加的个性化查询条件">
+                            <span class="save">保存当前查询条件</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--1321231231-->
+            </div>
+        </div>
         <div class="filtrate-box">
             <div class="bg"></div>
             <div class="title"><h3>筛选条件</h3></div>
@@ -102,8 +170,8 @@
 
                     <div class="btns-box">
                         <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">查询</div>
-                        <div @click="btns=1" :class="{'btn-item':true,cur:btns==1}">重置</div>
-                        <div @click="btns=2" :class="{'btn-item':true,cur:btns==2}">个性化</div>
+                        <div @click="btns=1,treeShow=true" :class="{'btn-item':true,cur:btns==1}">重置</div>
+                        <div @click="btns=2,gxhShow=true" :class="{'btn-item':true,cur:btns==2}">个性化</div>
                     </div>
 
                 </div>
@@ -169,6 +237,8 @@
             return {
                 radio: '1',
                 filtrateShow: true,
+                gxhShow: false,
+                treeShow: false,
                 days: 2,
                 count: '',
                 btns: 0,
@@ -410,8 +480,211 @@
         },
         mounted() {
             this.SetEchart();
+
             // =================================================
+
+            var setting = {
+                check: {
+                    enable: true,
+
+                },
+                view: {
+                    nameIsHTML: true, //允许name支持html
+                    selectedMulti: false
+                },
+                edit: {
+                    enable: false,
+                    editNameSelectAll: false
+                },
+                data: {
+                    simpleData: {
+                        enable: true
+                    }
+                }
+            };
+
+            var zNodes = [
+                {
+                    id: 1,
+                    pId: 0,
+                    name: "随意勾选 1",
+                    open: true,
+                    // iconSkin: "icon01"
+                },
+                {
+                    id: 11,
+                    pId: 1,
+                    name: "随意勾选 1-1",
+                    open: true,
+                    // iconSkin: "icon01"
+                },
+                {
+                    id: 111,
+                    pId: 11,
+                    name: "随意勾选 1-1-1"
+                },
+                {
+                    id: 111,
+                    pId: 11,
+                    name: "随意勾选 1-1-1",
+                    open:true
+                },
+                {
+                    id: 111,
+                    pId: 11,
+                    name: "随意勾选 1-1-1",
+                    open:true
+                },
+                {
+                    id: 111,
+                    pId: 11,
+                    name: "随意勾选 1-1-1",
+                    open:true
+                },{
+                    id: 111,
+                    pId: 11,
+                    name: "随意勾选 1-1-1",
+                    open:true
+                },
+
+                {
+                    id: 112,
+                    pId: 11,
+                    name: "随意勾选 1-1-2",
+                    open:true
+                },
+                {
+                    id: 1121,
+                    pId: 111,
+                    name: "随意勾选 1-1-21",
+                    // open:true
+                },
+                {
+                    id: 1111,
+                    pId: 111,
+                    name: "随意勾选 1-1-21",
+                    // open:true
+                },
+                {
+                    id: 1112,
+                    pId: 111,
+                    name: "随意勾选 1-1-21",
+                    // open:true
+                },{
+                    id: 1113,
+                    pId: 111,
+                    name: "随意勾选 1-1-21",
+                    // open:true
+                },
+                {
+                    id: 1114,
+                    pId: 111,
+                    name: "随意勾选 1-1-21",
+                    // open:true
+                },
+                {
+                    id: 1115,
+                    pId: 111,
+                    name: "随意勾选 1-1-21",
+                    // open:true
+                },{
+                    id: 1116,
+                    pId: 111,
+                    name: "随意勾选 1-1-21",
+                    // open:true
+                },
+
+
+                {
+                    id: 112,
+                    pId: 12,
+                    name: "随意勾选 1-1-1"
+                },
+                {
+                    id: 12,
+                    pId: 1,
+                    name: "随意勾选 1-2",
+                    open: true,
+                    // iconSkin: "icon01"
+                },
+                {
+                    id: 121,
+                    pId: 12,
+                    name: "随意勾选 1-2-1"
+                },
+                {
+                    id: 122,
+                    pId: 12,
+                    name: "随意勾选 1-2-2"
+                },
+                {
+                    id: 2,
+                    pId: 0,
+                    name: "随意勾选 2",
+                    checked: true,
+                    open: true,
+                    // iconSkin: "icon01"
+                },
+                {
+                    id: 21,
+                    pId: 2,
+                    name: "随意勾选 2-1"
+                },
+                {
+                    id: 22,
+                    pId: 2,
+                    name: "随意勾选 2-2",
+                    open: true,
+                    // iconSkin: "icon01"
+                },
+                {
+                    id: 221,
+                    pId: 22,
+                    name: "随意勾选 2-2-1",
+                    // checked: true,
+                },
+                {
+                    id: 222,
+                    pId: 22,
+                    name: "随意勾选 2-2-2"
+                },
+                {
+                    id: 23,
+                    pId: 2,
+                    name: "随意勾选 2-3"
+                }
+            ];
+
+            var code;
+
+            function setCheck() {
+                var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                    py = $("#py").attr("checked") ? "p" : "",
+                    sy = $("#sy").attr("checked") ? "s" : "",
+                    pn = $("#pn").attr("checked") ? "p" : "",
+                    sn = $("#sn").attr("checked") ? "s" : "",
+                    type = {"Y": py + sy, "N": pn + sn};
+                zTree.setting.check.chkboxType = type;
+                showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
+            }
+
+            function showCode(str) {
+                if (!code) code = $("#code");
+                code.empty();
+                code.append("<li>" + str + "</li>");
+            }
+
+
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+            fuzzySearch('treeDemo', '#key', null, true); //初始化模糊搜索方法
+            setCheck();
+            $("#py").bind("change", setCheck);
+            $("#sy").bind("change", setCheck);
+            $("#pn").bind("change", setCheck);
+            $("#sn").bind("change", setCheck);
+
         }
+
 
     }
 </script>
@@ -604,7 +877,7 @@
         width: 100%;
         height: 100%;
         position: relative;
-        .fl{
+        .fl {
             float: left;
         }
         .bg {
@@ -618,6 +891,314 @@
             opacity: 0.5;
             border-radius: 3px;
             z-index: 0;
+        }
+        .gxhPop {
+            width: calc(100% - 250px);
+            height: 100%;
+            margin-top: -20px;
+            margin-left: -20px;
+            position: fixed;
+            overflow: hidden;
+
+            z-index: 500;
+
+            .bgc {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: rgba(1, 14, 17, 1);
+                opacity: 0.8;
+                z-index: 0;
+            }
+            .tree-block {
+                width: 640px;
+                height: 546px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+                .bg-box {
+                    width: 100%;
+                    height: 100%;
+
+                    position: relative;
+                    box-sizing: border-box;
+                    padding: 20px;
+                    .block-bg {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background: rgba(33, 152, 229, 1);
+                        border: 1px solid rgba(42, 244, 255, 1);
+                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                        opacity: 0.5;
+                        /*z-index: 0;*/
+                    }
+                    .details {
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        z-index: 5;
+                        .icon-close {
+                            cursor: pointer;
+                            width: 11px;
+                            height: 11px;
+                            display: inline-block;
+                            background: url("../../assets/NengHaoChaXun/icon_gb 拷贝.png") no-repeat;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                        }
+                        .tree-btns{
+                            display: flex;
+                            justify-content: flex-end;
+                            margin-top: 11px;
+                            span{
+                                cursor: pointer;
+                                width: 81px;
+                                height: 40px;
+                                display: inline-block;
+                                background: url("../../assets/NengHaoChaXun/矩形 831.png") no-repeat;
+                                text-align: center;
+
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W6;
+                                font-weight: normal;
+                                color: rgba(97, 213, 255, 1);
+                                line-height: 37px;
+                            }
+
+                        }
+                        .tree-content {
+                            width: 100%;
+                            height: 444px;
+                            overflow-x: hidden;
+                            overflow-y: auto;
+                            border-bottom: 1px solid #174162;
+                        }
+                        .title {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W6;
+                            font-weight: normal;
+                            color: rgba(255, 255, 255, 1);
+                        }
+                        .list-box {
+                            margin-top: 12px;
+                            ul {
+                                list-style: none;
+                                li {
+                                    width: 100%;
+                                    height: 80px;
+                                    box-sizing: border-box;
+                                    padding: 17px 12px;
+                                    background-color: #0B3451;
+                                    border-bottom: 1px solid #072B49;
+                                    p {
+                                        font-size: 14px;
+                                        font-family: HiraginoSansGB-W3;
+                                        font-weight: normal;
+                                        color: rgba(45, 243, 255, 1);
+                                    }
+                                    .compile {
+                                        width: 100%;
+                                        display: flex;
+                                        justify-content: space-between;
+                                        align-items: center;
+                                        .item-span {
+                                            font-size: 14px;
+                                            font-family: HiraginoSansGB-W3;
+                                            font-weight: normal;
+                                            color: rgba(223, 253, 255, 1);
+                                        }
+                                        .btns {
+                                            span {
+                                                cursor: pointer;
+                                                width: 67px;
+                                                height: 37px;
+                                                display: inline-block;
+                                                background: url("../../assets/NengHaoChaXun/矩形 1.png") no-repeat;
+                                                text-align: center;
+
+                                                font-size: 14px;
+                                                font-family: HiraginoSansGB-W6;
+                                                font-weight: normal;
+                                                color: rgba(97, 213, 255, 1);
+                                                line-height: 37px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .import-box {
+                            margin-top: 23px;
+                            display: flex;
+                            flex-wrap: nowrap;
+                            justify-content: space-between;
+                            .import {
+                                width: 416px;
+                                height: 31px;
+                                background-color: #06253E;
+                                border: 1px solid #76BECA;
+                                color: rgba(187, 187, 187, 1);
+                                box-sizing: border-box;
+                                padding: 0 14px;
+
+                            }
+                            .save {
+                                cursor: pointer;
+                                display: inline-block;
+                                width: 143px;
+                                height: 30px;
+                                background-color: #39A4BC;
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W6;
+                                font-weight: normal;
+                                color: rgba(255, 255, 255, 1);
+                                line-height: 30px;
+                                text-align: center;
+                            }
+                        }
+
+                    }
+                }
+            }
+            .block {
+                width: 630px;
+                height: 300px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+                .bg-box {
+                    width: 100%;
+                    height: 100%;
+
+                    position: relative;
+                    box-sizing: border-box;
+                    padding: 20px;
+                    .block-bg {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background: rgba(33, 152, 229, 1);
+                        border: 1px solid rgba(42, 244, 255, 1);
+                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                        opacity: 0.5;
+                        /*z-index: 0;*/
+                    }
+                    .details {
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        z-index: 5;
+                        .icon-close {
+                            cursor: pointer;
+                            width: 11px;
+                            height: 11px;
+                            display: inline-block;
+                            background: url("../../assets/NengHaoChaXun/icon_gb 拷贝.png") no-repeat;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                        }
+                        .title {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W6;
+                            font-weight: normal;
+                            color: rgba(255, 255, 255, 1);
+                        }
+                        .list-box {
+                            margin-top: 12px;
+                            ul {
+                                list-style: none;
+                                li {
+                                    width: 100%;
+                                    height: 80px;
+                                    box-sizing: border-box;
+                                    padding: 17px 12px;
+                                    background-color: #0B3451;
+                                    border-bottom: 1px solid #072B49;
+                                    p {
+                                        font-size: 14px;
+                                        font-family: HiraginoSansGB-W3;
+                                        font-weight: normal;
+                                        color: rgba(45, 243, 255, 1);
+                                    }
+                                    .compile {
+                                        width: 100%;
+                                        display: flex;
+                                        justify-content: space-between;
+                                        align-items: center;
+                                        .item-span {
+                                            font-size: 14px;
+                                            font-family: HiraginoSansGB-W3;
+                                            font-weight: normal;
+                                            color: rgba(223, 253, 255, 1);
+                                        }
+                                        .btns {
+                                            span {
+                                                cursor: pointer;
+                                                width: 67px;
+                                                height: 37px;
+                                                display: inline-block;
+                                                background: url("../../assets/NengHaoChaXun/矩形 1.png") no-repeat;
+                                                text-align: center;
+
+                                                font-size: 14px;
+                                                font-family: HiraginoSansGB-W6;
+                                                font-weight: normal;
+                                                color: rgba(97, 213, 255, 1);
+                                                line-height: 37px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .import-box {
+                            margin-top: 23px;
+                            display: flex;
+                            flex-wrap: nowrap;
+                            justify-content: space-between;
+                            .import {
+                                width: 416px;
+                                height: 31px;
+                                background-color: #06253E;
+                                border: 1px solid #76BECA;
+                                color: rgba(187, 187, 187, 1);
+                                box-sizing: border-box;
+                                padding: 0 14px;
+
+                            }
+                            .save {
+                                cursor: pointer;
+                                display: inline-block;
+                                width: 143px;
+                                height: 30px;
+                                background-color: #39A4BC;
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W6;
+                                font-weight: normal;
+                                color: rgba(255, 255, 255, 1);
+                                line-height: 30px;
+                                text-align: center;
+                            }
+                        }
+
+                    }
+                }
+            }
         }
         .filtrate-box {
             width: 100%;
@@ -760,7 +1341,7 @@
                     }
 
                 }
-                .item-row-2{
+                .item-row-2 {
                     height: auto;
                     width: 100%;
                     padding: 13px 10px;

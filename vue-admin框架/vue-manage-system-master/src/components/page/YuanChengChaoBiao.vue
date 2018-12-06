@@ -1,5 +1,5 @@
 <template>
-    <div class="RTData">
+    <div class="RTData Inquire">
         <transition name="el-zoom-in-center">
             <div v-show="leftShow" class="left-branch">
                 <div class="tit">选择支路</div>
@@ -37,17 +37,42 @@
                 <el-collapse-transition>
                     <div v-show="filtrateShow" class="filtrate-show">
                         <div class="item-row">
-                            <div class="item-input">
-                                <span>仪表名称：</span>
-                                <input type="text" placeholder="仪表名称">
+                            <div class="fl">
+                            <span class="date-select">时间选择</span>
+                            <el-date-picker
+                                    class=""
+                                    v-model="value6"
+                                    type="datetimerange"
+                                    range-separator="—"
+                                    start-placeholder="开始日期"
+                                    end-placeholder="结束日期">
+                            </el-date-picker>
                             </div>
-                            <div class="item-input">
-                                <span>仪表名称：</span>
-                                <input type="text" placeholder="仪表名称">
+                            <div class="fl days-box">
+                        <span class="days-tit date-select">
+                            <i class="el-icon-search"></i>
+                            快捷查询:
+                        </span>
+                                <div class="days-btn">
+                                    <span @click="days=0" :class="{cur:days==0}">前1天</span>
+                                    <span @click="days=1" :class="{cur:days==1}">前3天</span>
+                                    <span @click="days=2" :class="{cur:days==2}">前7天</span>
+                                    <span @click="days=3" :class="{cur:days==3}">前1月</span>
+                                </div>
                             </div>
-                            <div class="item-input">
-                                <span>仪表名称：</span>
-                                <input type="text" placeholder="仪表名称">
+                        </div>
+                        <div class="item-row">
+                            <i class="icon-time"></i>
+                            <span class="interval">间隔时间（分)：</span>
+                            <div class="count">
+                                <!--<div class="bg"></div>-->
+                                <select>
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>15</option>
+                                    <option>30</option>
+                                    <option>60</option>
+                                </select>
                             </div>
                         </div>
 
@@ -66,7 +91,7 @@
                     <div class="head-right"><i class="icon-pdf"></i><i class="icon-excel"></i></div>
                 </div>
                 <div class="content-table">
-                    <div class="tit">【 2018-10-18  16:05:30 】</div>
+                    <div class="tit">【 2018-10-18 16:05:30 】</div>
 
                     <div class="table-box">
                         <div class="table-header">
@@ -129,7 +154,9 @@
                 leftShow: true,
                 filtrateShow: true,
                 btns: 0,
-                no2off:true
+                no2off: true,
+                value6: '',
+                days: 2,
             }
         },
         mounted() {
@@ -494,6 +521,46 @@
                 box-sizing: border-box;
                 padding: 15px 20px 9px 20px;
                 background-color: #0B3F6F;
+                .interval {
+                    font-size: 14px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: bold;
+                    color: rgba(45, 243, 255, 1);
+                }
+                .fl {
+                    float: left;
+                }
+                .icon-time {
+                    width: 14px;
+                    height: 15px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_sj.png") no-repeat;
+                    margin-right: 5px;
+                }
+                .count {
+                    width: 70px;
+                    height: 28px;
+                    margin-left: 12px;
+                    position: relative;
+                    border: 1px solid #29D1E5;
+                    select {
+                        border: 0px;
+                        outline: none;
+                        cursor: pointer;
+                        position: relative;
+                        z-index: 5;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(26, 96, 134, 0);
+                        font-size: 12px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(45, 243, 255, 1);
+                        option {
+                            background-color: #0B3F6F;
+                        }
+                    }
+                }
                 .shift-knob-t {
                     width: 61px;
                     height: 20px;
@@ -523,25 +590,25 @@
                         font-weight: bold;
                         color: rgba(254, 254, 255, 1);
                     }
-                    .updataTime{
+                    .updataTime {
                         display: flex;
                         justify-content: space-between;
-                        align-items:center;
-                        span{
-                            font-size:12px;
-                            font-family:HiraginoSansGB-W3;
-                            font-weight:bold;
-                            color:rgba(183,208,210,1);
+                        align-items: center;
+                        span {
+                            font-size: 12px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(183, 208, 210, 1);
                             margin-right: 19px;
                         }
                     }
-                    .off{
+                    .off {
                         cursor: pointer;
                         width: 40px;
                         height: 24px;
                         background: url("../../assets/PeiDianJianCe/btn_kq.png") no-repeat;
                     }
-                    .no{
+                    .no {
                         cursor: pointer;
                         width: 40px;
                         height: 24px;
@@ -712,7 +779,7 @@
                     }
                 }
             }
-            .data-box{
+            .data-box {
                 width: 100%;
                 position: relative;
                 height: 703px;
@@ -745,82 +812,81 @@
                         background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
                     }
                 }
-                .content-table{
+                .content-table {
                     position: relative;
                     width: 100%;
                     height: 577px;
-                    border:1px solid #15759A;
+                    border: 1px solid #15759A;
                     margin-top: 15px;
                     text-align: center;
                     box-sizing: border-box;
                     padding-top: 16px;
-                    .tit{
-                        font-size:14px;
-                        font-family:HiraginoSansGB-W3;
-                        font-weight:normal;
-                        color:rgba(95,251,248,1);
+                    .tit {
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(95, 251, 248, 1);
                     }
-                    .table-box{
+                    .table-box {
                         width: 100%;
                         height: 528px;
                         margin-top: 12px;
                         /*display: flex;*/
                         /*flex-wrap: nowrap;*/
-                        table{
+                        table {
                             width: 100%;
                             height: 100%;
                             position: relative;
-                            border-collapse:collapse;
-                            border:0;//表示表格没有边框。
-                            cellspacing:'0';//表示单元格之间间隙为0。
-                            cellpadding:'0';//表示单元格的边框宽度为0。
+                            border-collapse: collapse;
+                            border: 0; //表示表格没有边框。
+                            cellspacing: '0'; //表示单元格之间间隙为0。
+                            cellpadding: '0'; //表示单元格的边框宽度为0。
                             /*z-index: 5;*/
-                            tr{
+                            tr {
                                 background-color: #0A3E6E;
                                 height: 48px;
                             }
-                            tr:nth-child(2n-1){
+                            tr:nth-child(2n-1) {
                                 background-color: #104C7B;
                             }
-                            td, th{
+                            td, th {
                                 border-right: 1px solid #0F5A84;
                             }
-                            th{
+                            th {
                                 background-color: #185588;
-                                font-size:14px;
-                                font-family:HiraginoSansGB-W6;
-                                font-weight:normal;
-                                color:rgba(95,251,248,1);
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W6;
+                                font-weight: normal;
+                                color: rgba(95, 251, 248, 1);
                             }
-                            td{
-                                font-size:14px;
-                                font-family:HiraginoSansGB-W3;
-                                font-weight:normal;
-                                color:rgba(223,253,255,1);
+                            td {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
                             }
                         }
-                        .icon-bxz{
+                        .icon-bxz {
                             display: inline-block;
                             width: 20px;
                             height: 17px;
                             background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
                             margin-left: 20px;
                         }
-                        .table-header{
+                        .table-header {
                             height: 100%;
                             width: 215px;
                             position: relative;
                             overflow: hidden;
                             float: left;
 
-
                         }
-                        .table-right{
+                        .table-right {
                             width: calc(100% - 215px);
                             /*width: 100%;*/
                             overflow-y: hidden;
                             overflow-x: scroll;
-                            table{
+                            table {
                                 width: 2000px;
                             }
                         }
@@ -918,7 +984,7 @@
             }
 
         }
-        .mainShow{
+        .mainShow {
             width: calc(100% - 273px);
         }
     }

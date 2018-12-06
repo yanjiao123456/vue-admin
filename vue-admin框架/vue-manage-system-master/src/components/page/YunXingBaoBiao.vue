@@ -1,5 +1,5 @@
 <template>
-    <div class="RTData">
+    <div class="RTData Inquire">
         <transition name="el-zoom-in-center">
             <div v-show="leftShow" class="left-branch">
                 <div class="tit">选择支路</div>
@@ -37,17 +37,28 @@
                 <el-collapse-transition>
                     <div v-show="filtrateShow" class="filtrate-show">
                         <div class="item-row">
-                            <div class="item-input">
-                                <span>仪表名称：</span>
-                                <input type="text" placeholder="仪表名称">
-                            </div>
-                            <div class="item-input">
-                                <span>仪表名称：</span>
-                                <input type="text" placeholder="仪表名称">
-                            </div>
-                            <div class="item-input">
-                                <span>仪表名称：</span>
-                                <input type="text" placeholder="仪表名称">
+                            <span class="date-select">时间选择</span>
+                            <el-date-picker
+                                    class=""
+                                    v-model="value6"
+                                    type="datetimerange"
+                                    range-separator="—"
+                                    start-placeholder="开始日期"
+                                    end-placeholder="结束日期">
+                            </el-date-picker>
+                        </div>
+                        <div class="item-row">
+                            <i class="icon-time"></i>
+                            <span class="interval">间隔时间（分)：</span>
+                            <div class="count">
+                                <!--<div class="bg"></div>-->
+                                <select>
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>15</option>
+                                    <option>30</option>
+                                    <option>60</option>
+                                </select>
                             </div>
                         </div>
 
@@ -129,7 +140,8 @@
                 leftShow: true,
                 filtrateShow: true,
                 btns: 0,
-                no2off:true
+                no2off:true,
+                value6:''
             }
         },
         mounted() {
@@ -494,6 +506,43 @@
                 box-sizing: border-box;
                 padding: 15px 20px 9px 20px;
                 background-color: #0B3F6F;
+                .interval{
+                    font-size:14px;
+                    font-family:HiraginoSansGB-W3;
+                    font-weight:bold;
+                    color:rgba(45,243,255,1);
+                }
+                .icon-time{
+                    width: 14px;
+                    height: 15px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_sj.png") no-repeat;
+                    margin-right: 5px;
+                }
+                .count {
+                    width: 70px;
+                    height: 28px;
+                    margin-left: 12px;
+                    position: relative;
+                    border: 1px solid #29D1E5;
+                    select {
+                        border: 0px;
+                        outline: none;
+                        cursor: pointer;
+                        position: relative;
+                        z-index: 5;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(26, 96, 134, 0);
+                        font-size: 12px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(45, 243, 255, 1);
+                        option {
+                            background-color: #0B3F6F;
+                        }
+                    }
+                }
                 .shift-knob-t {
                     width: 61px;
                     height: 20px;

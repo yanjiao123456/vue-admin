@@ -41,6 +41,16 @@ export default new Router({
                     meta: { title: '实时数据' }
                 },
                 {
+                    path:'/YunXingBaoBiao',
+                    component: resolve => require(['../components/page/YunXingBaoBiao.vue'], resolve),
+                    meta: { title: '运行报表' }
+                },
+                {
+                    path:'/YuanChengChaoBiao',
+                    component: resolve => require(['../components/page/YuanChengChaoBiao.vue'], resolve),
+                    meta: { title: '远程抄表' }
+                },
+                {
                     path: '/icon',
                     component: resolve => require(['../components/page/Icon.vue'], resolve),
                     meta: { title: '自定义图标' }

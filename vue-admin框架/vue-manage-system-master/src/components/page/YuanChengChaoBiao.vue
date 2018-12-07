@@ -25,12 +25,12 @@
             <div class="filtrate-box">
                 <div class="bg"></div>
                 <div class="title"><h3>筛选条件</h3>
-                    <div class="updataTime">
-                        <span>更新时间：2018年10-18日 16:05:30</span>
-                        <div @click="no2off=!no2off" :class="no2off? 'no' : 'off'">
+                    <!--<div class="updataTime">-->
+                        <!--<span>更新时间：2018年10-18日 16:05:30</span>-->
+                        <!--<div @click="no2off=!no2off" :class="no2off? 'no' : 'off'">-->
 
-                        </div>
-                    </div>
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
                 <div @click="filtrateShow=!filtrateShow"
                      :class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>

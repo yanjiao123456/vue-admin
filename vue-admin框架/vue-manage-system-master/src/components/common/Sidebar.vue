@@ -150,7 +150,14 @@
                     {
                         icon: "ml5 icon-all icon-nxfx",
                         index: "nxfx",
-                        title: "能效分析"
+                        title: "能效分析",
+                        subs: [
+                            {
+                                icon: "ml5 icon-all icon-sjcx",
+                                index: "nenghaoqushi",
+                                title: "能耗趋势"
+                            }
+                        ]
                     },
                     {
                         icon: "ml5 icon-all icon-bjgl",

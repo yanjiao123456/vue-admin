@@ -26,10 +26,10 @@
                 <div class="bg"></div>
                 <div class="title"><h3>筛选条件</h3>
                     <!--<div class="updataTime">-->
-                        <!--<span>更新时间：2018年10-18日 16:05:30</span>-->
-                        <!--<div @click="no2off=!no2off" :class="no2off? 'no' : 'off'">-->
+                    <!--<span>更新时间：2018年10-18日 16:05:30</span>-->
+                    <!--<div @click="no2off=!no2off" :class="no2off? 'no' : 'off'">-->
 
-                        <!--</div>-->
+                    <!--</div>-->
                     <!--</div>-->
                 </div>
                 <div @click="filtrateShow=!filtrateShow"
@@ -37,30 +37,29 @@
                 <el-collapse-transition>
                     <div v-show="filtrateShow" class="filtrate-show">
                         <div class="item-row">
-                            <span class="date-select">时间选择</span>
-                            <el-date-picker
-                                    class=""
-                                    v-model="value6"
-                                    type="datetimerange"
-                                    range-separator="—"
-                                    start-placeholder="开始日期"
-                                    end-placeholder="结束日期">
-                            </el-date-picker>
+                            <i class="icon-lx"></i>
+                            <span class="checkbox-tit">数据类型：</span>
+                            <el-checkbox class="" v-model="checked6">电压</el-checkbox>
+                            <el-checkbox class="ml92" v-model="checked7">电流</el-checkbox>
+                            <el-checkbox class="ml92" v-model="checked8">功率</el-checkbox>
+                            <el-checkbox class="ml92" v-model="checked9">标底</el-checkbox>
+                            <el-checkbox class="ml92" v-model="checked10">功率因数</el-checkbox>
                         </div>
                         <div class="item-row">
-                            <i class="icon-time"></i>
-                            <span class="interval">间隔时间（分)：</span>
-                            <div class="count">
-                                <!--<div class="bg"></div>-->
-                                <select>
-                                    <option>5</option>
-                                    <option>10</option>
-                                    <option>15</option>
-                                    <option>30</option>
-                                    <option>60</option>
-                                </select>
+                            <div class="fl">
+                                <span class="date-select">时间选择：</span>
+                                <el-date-picker
+                                        class=""
+                                        v-model="value6"
+                                        type="datetimerange"
+                                        range-separator="—"
+                                        start-placeholder="开始日期"
+                                        end-placeholder="结束日期">
+                                </el-date-picker>
                             </div>
+
                         </div>
+
 
                         <div class="btns-box">
                             <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">查询</div>
@@ -73,59 +72,27 @@
             </div>
             <div class="data-box">
                 <div class="bg"></div>
-                <div class="title"><h3>数据列表</h3>
-                    <div class="head-right"><i class="icon-pdf"></i><i class="icon-excel"></i></div>
+                <div class="title"><h3>总功率因数pf</h3>
                 </div>
-                <div class="content-table">
-                    <div class="tit">【 2018-10-18  16:05:30 】</div>
-
-                    <div class="table-box">
-                        <div class="table-header">
-                            <table>
-                                <tr>
-                                    <th>名称 <i class="icon-bxz"></i></th>
-                                </tr>
-                                <tr v-for="v in 10">
-                                    <td>01-03-LPB-E4-00</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="table-right">
-                            <table>
-                                <tr>
-                                    <th v-for="v in 15">名称 <i class="icon-bxz"></i></th>
-                                </tr>
-                                <tr v-for="v in 10">
-                                    <td v-for="v in 15">01-03-LPB-E4-00</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="selector">
-                        <i class="icon-front"></i>
-                        <i class="icon-prev"></i>
-                        <div class="page-num">
-                            <div class="bg"></div>
-                            <input type="text" value="1">
-                        </div>
-
-                        <span class="page-all">
-                        /共1页
-                    </span>
-                        <i class="icon-next"></i>
-                        <i class="icon-last"></i>
-                        <div class="count">
-                            <div class="bg"></div>
-                            <select>
-                                <option>10</option>
-                                <option>20</option>
-                                <option>50</option>
-                                <option>100</option>
-                            </select>
-                        </div>
-                    </div>
-
+                <div class="my-charts"></div>
+            </div>
+            <div class="data-box">
+                <div class="bg"></div>
+                <div class="title"><h3>总有功功率w</h3>
                 </div>
+                <div class="my-charts"></div>
+            </div>
+            <div class="data-box">
+                <div class="bg"></div>
+                <div class="title"><h3>总无功功率q</h3>
+                </div>
+                <div class="my-charts"></div>
+            </div>
+            <div class="data-box">
+                <div class="bg"></div>
+                <div class="title"><h3>三项电流</h3>
+                </div>
+                <div class="my-charts"></div>
             </div>
         </div>
     </div>
@@ -133,15 +100,22 @@
 
 <script>
     export default {
-        name: "ShiShiShuJu",
+        name: "shujuduibi",
         data() {
             return {
                 option: '2',
                 leftShow: true,
                 filtrateShow: true,
                 btns: 0,
-                no2off:true,
-                value6:''
+                no2off: true,
+                value6: '',
+                days: 2,
+                checked5:true,
+                checked6:true,
+                checked7:true,
+                checked8:false,
+                checked9:false,
+                checked10:false,
             }
         },
         mounted() {
@@ -483,6 +457,8 @@
         .main {
             width: 100%;
             height: 894px;
+            overflow-y: auto;
+            overflow-x: hidden;
 
             position: relative;
             margin-left: 4px;
@@ -506,13 +482,16 @@
                 box-sizing: border-box;
                 padding: 15px 20px 9px 20px;
                 background-color: #0B3F6F;
-                .interval{
-                    font-size:14px;
-                    font-family:HiraginoSansGB-W3;
-                    font-weight:bold;
-                    color:rgba(45,243,255,1);
+                .interval {
+                    font-size: 14px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: bold;
+                    color: rgba(45, 243, 255, 1);
                 }
-                .icon-time{
+                .fl {
+                    float: left;
+                }
+                .icon-time {
                     width: 14px;
                     height: 15px;
                     display: inline-block;
@@ -572,25 +551,25 @@
                         font-weight: bold;
                         color: rgba(254, 254, 255, 1);
                     }
-                    .updataTime{
+                    .updataTime {
                         display: flex;
                         justify-content: space-between;
-                        align-items:center;
-                        span{
-                            font-size:12px;
-                            font-family:HiraginoSansGB-W3;
-                            font-weight:bold;
-                            color:rgba(183,208,210,1);
+                        align-items: center;
+                        span {
+                            font-size: 12px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(183, 208, 210, 1);
                             margin-right: 19px;
                         }
                     }
-                    .off{
+                    .off {
                         cursor: pointer;
                         width: 40px;
                         height: 24px;
                         background: url("../../assets/PeiDianJianCe/btn_kq.png") no-repeat;
                     }
-                    .no{
+                    .no {
                         cursor: pointer;
                         width: 40px;
                         height: 24px;
@@ -629,6 +608,20 @@
                         border-bottom: 2px solid #0B3F6F;
                         box-sizing: border-box;
                         padding: 0 10px;
+                        .icon-lx{
+                            display: inline-block;
+                            width: 14px;
+                            height: 14px;
+                            background: url("../../assets/PeiDianJianCe/icon_lx.png") no-repeat;
+                        }
+                        .checkbox-tit{
+                            font-size:14px;
+                            font-family:HiraginoSansGB-W3;
+                            font-weight:bold;
+                            color:rgba(45,243,255,1);
+                            margin-left: 4px;
+                            margin-right: 20px;
+                        }
                         .item-input {
                             /*margin-right: 1rem;*/
                             @media screen and (min-width: 1200px) {
@@ -761,10 +754,10 @@
                     }
                 }
             }
-            .data-box{
+            .data-box {
                 width: 100%;
                 position: relative;
-                height: 703px;
+                height: 394px;
                 margin-top: 24px;
                 box-sizing: border-box;
                 padding: 15px 20px;
@@ -794,86 +787,10 @@
                         background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
                     }
                 }
-                .content-table{
-                    position: relative;
+                .my-charts{
+                    margin-top: 13px;
                     width: 100%;
-                    height: 577px;
-                    border:1px solid #15759A;
-                    margin-top: 15px;
-                    text-align: center;
-                    box-sizing: border-box;
-                    padding-top: 16px;
-                    .tit{
-                        font-size:14px;
-                        font-family:HiraginoSansGB-W3;
-                        font-weight:normal;
-                        color:rgba(95,251,248,1);
-                    }
-                    .table-box{
-                        width: 100%;
-                        height: 528px;
-                        margin-top: 12px;
-                        /*display: flex;*/
-                        /*flex-wrap: nowrap;*/
-                        table{
-                            width: 100%;
-                            height: 100%;
-                            position: relative;
-                            border-collapse:collapse;
-                            border:0;//表示表格没有边框。
-                            cellspacing:'0';//表示单元格之间间隙为0。
-                            cellpadding:'0';//表示单元格的边框宽度为0。
-                            /*z-index: 5;*/
-                            tr{
-                                background-color: #0A3E6E;
-                                height: 48px;
-                            }
-                            tr:nth-child(2n-1){
-                                background-color: #104C7B;
-                            }
-                            td, th{
-                                border-right: 1px solid #0F5A84;
-                            }
-                            th{
-                                background-color: #185588;
-                                font-size:14px;
-                                font-family:HiraginoSansGB-W6;
-                                font-weight:normal;
-                                color:rgba(95,251,248,1);
-                            }
-                            td{
-                                font-size:14px;
-                                font-family:HiraginoSansGB-W3;
-                                font-weight:normal;
-                                color:rgba(223,253,255,1);
-                            }
-                        }
-                        .icon-bxz{
-                            display: inline-block;
-                            width: 20px;
-                            height: 17px;
-                            background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
-                            margin-left: 20px;
-                        }
-                        .table-header{
-                            height: 100%;
-                            width: 215px;
-                            position: relative;
-                            overflow: hidden;
-                            float: left;
-
-
-                        }
-                        .table-right{
-                            width: calc(100% - 215px);
-                            /*width: 100%;*/
-                            overflow-y: hidden;
-                            overflow-x: scroll;
-                            table{
-                                width: 2000px;
-                            }
-                        }
-                    }
+                    height: 100%;
                 }
                 .selector {
                     position: relative;
@@ -967,7 +884,7 @@
             }
 
         }
-        .mainShow{
+        .mainShow {
             width: calc(100% - 273px);
         }
     }

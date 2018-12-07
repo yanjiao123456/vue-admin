@@ -51,6 +51,16 @@ export default new Router({
                     meta: { title: '远程抄表' }
                 },
                 {
+                    path:'/ShuJuDuiBi',
+                    component: resolve => require(['../components/page/ShuJuDuiBi.vue'], resolve),
+                    meta: { title: '数据对比' }
+                },
+                {
+                    path:'/NengHaoQuShi',
+                    component: resolve => require(['../components/page/NengHaoQuShi.vue'], resolve),
+                    meta: { title: '能耗趋势' }
+                },
+                {
                     path: '/icon',
                     component: resolve => require(['../components/page/Icon.vue'], resolve),
                     meta: { title: '自定义图标' }

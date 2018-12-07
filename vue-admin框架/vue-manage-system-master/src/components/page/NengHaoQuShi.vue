@@ -2,7 +2,13 @@
     <div class="RTData Inquire">
         <transition name="el-zoom-in-center">
             <div v-show="leftShow" class="left-branch">
-                <div class="tit">选择支路</div>
+                <div class="tabTit">
+                    <span @click="tabTit=0" :class="{cur:tabTit==0}">分项</span>
+                    <span @click="tabTit=1" :class="{cur:tabTit==1}">部门</span>
+                    <span @click="tabTit=2" :class="{cur:tabTit==2}">位置</span>
+                    <span @click="tabTit=3" :class="{cur:tabTit==3}">支路</span>
+                </div>
+                <!--<div class="tit">选择支路</div>-->
                 <div class="inputBox">
                     <i class="icon-ss"></i>
                     <input placeholder="请输入支路名称" type="text" id="key" value="" class="empty"/><br/>
@@ -25,35 +31,19 @@
             <div class="filtrate-box">
                 <div class="bg"></div>
                 <div class="title"><h3>筛选条件</h3>
-                    <!--<div class="updataTime">-->
-                        <!--<span>更新时间：2018年10-18日 16:05:30</span>-->
-                        <!--<div @click="no2off=!no2off" :class="no2off? 'no' : 'off'">-->
 
-                        <!--</div>-->
-                    <!--</div>-->
                 </div>
                 <div @click="filtrateShow=!filtrateShow"
                      :class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>
                 <el-collapse-transition>
                     <div v-show="filtrateShow" class="filtrate-show">
                         <div class="item-row">
-                            <span class="date-select">时间选择</span>
-                            <el-date-picker
-                                    class=""
-                                    v-model="value6"
-                                    type="datetimerange"
-                                    range-separator="—"
-                                    start-placeholder="开始日期"
-                                    end-placeholder="结束日期">
-                            </el-date-picker>
-                        </div>
-                        <div class="item-row">
-                            <i class="icon-time"></i>
-                            <span class="interval">间隔时间（分)：</span>
+                            <i class="icon-lx"></i>
+                            <span class="checkbox-tit">分析方法:</span>
                             <div class="count">
                                 <!--<div class="bg"></div>-->
                                 <select>
-                                    <option>5</option>
+                                    <option>同比</option>
                                     <option>10</option>
                                     <option>15</option>
                                     <option>30</option>
@@ -61,6 +51,39 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="item-row">
+                            <i class="icon-wd"></i>
+                            <span class="checkbox-tit">维度:</span>
+                            <el-radio class="choice" v-model="radio" label="1">时</el-radio>
+                            <el-radio class="choice" v-model="radio" label="2">天</el-radio>
+                            <el-radio class="choice" v-model="radio" label="3">月</el-radio>
+                        </div>
+                        <div class="item-row item-row-br">
+                            <div class="fl">
+                                <span class="date-select">时间选择</span>
+                                <el-date-picker
+                                        class=""
+                                        v-model="value6"
+                                        type="datetimerange"
+                                        range-separator="—"
+                                        start-placeholder="开始日期"
+                                        end-placeholder="结束日期">
+                                </el-date-picker>
+                            </div>
+                            <div class="fl days-box">
+                        <span class="days-tit date-select">
+                            <i class="el-icon-search"></i>
+                            快捷查询:
+                        </span>
+                                <div class="days-btn">
+                                    <span @click="days=0" :class="{cur:days==0}">前1天</span>
+                                    <span @click="days=1" :class="{cur:days==1}">前3天</span>
+                                    <span @click="days=2" :class="{cur:days==2}">前7天</span>
+                                    <span @click="days=3" :class="{cur:days==3}">前1月</span>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="btns-box">
                             <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">查询</div>
@@ -71,83 +94,165 @@
                 </el-collapse-transition>
 
             </div>
+            <!--对比-->
+            <div class="contrast">
+                <div class="lists" v-for="v in 5">
+                    <div class="current-period">
+                        <div class="item-left">
+                            <i class="item-icon-hz"></i>
+                        </div>
+                        <div class="item-right">
+                            <p>本期汇总</p>
+                            <div class="kwh">
+                                <span class="number">166.56</span>
+                                <span class="unit">kWh</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="before">
+                        <div class="item-left">
+                            <i class="item-icon-hz"></i>
+                        </div>
+                        <div class="item-right">
+                            <p>本期汇总</p>
+                            <div class="kwh">
+                                <span class="number">166.56</span>
+                                <span class="unit">kWh</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="data-box">
+                <div class="bg"></div>
+                <div class="title"><h3>总功率因数pf</h3>
+                </div>
+                <div class="my-charts"></div>
+            </div>
+
+
+            <div class="Table">
                 <div class="bg"></div>
                 <div class="title"><h3>数据列表</h3>
                     <div class="head-right"><i class="icon-pdf"></i><i class="icon-excel"></i></div>
                 </div>
-                <div class="content-table">
-                    <div class="tit">【 2018-10-18  16:05:30 】</div>
 
-                    <div class="table-box">
-                        <div class="table-header">
-                            <table>
-                                <tr>
-                                    <th>名称 <i class="icon-bxz"></i></th>
-                                </tr>
-                                <tr v-for="v in 10">
-                                    <td>01-03-LPB-E4-00</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="table-right">
-                            <table>
-                                <tr>
-                                    <th v-for="v in 15">名称 <i class="icon-bxz"></i></th>
-                                </tr>
-                                <tr v-for="v in 10">
-                                    <td v-for="v in 15">01-03-LPB-E4-00</td>
-                                </tr>
-                            </table>
-                        </div>
+
+                <template-table :data-tit="tableTitle"></template-table>
+                <div class="selector">
+                    <i class="icon-front"></i>
+                    <i class="icon-prev"></i>
+                    <div class="page-num">
+                        <div class="bg"></div>
+                        <input type="text" value="1">
                     </div>
-                    <div class="selector">
-                        <i class="icon-front"></i>
-                        <i class="icon-prev"></i>
-                        <div class="page-num">
-                            <div class="bg"></div>
-                            <input type="text" value="1">
-                        </div>
 
-                        <span class="page-all">
+                    <span class="page-all">
                         /共1页
                     </span>
-                        <i class="icon-next"></i>
-                        <i class="icon-last"></i>
-                        <div class="count">
-                            <div class="bg"></div>
-                            <select>
-                                <option>10</option>
-                                <option>20</option>
-                                <option>50</option>
-                                <option>100</option>
-                            </select>
-                        </div>
+                    <i class="icon-next"></i>
+                    <i class="icon-last"></i>
+                    <div class="count">
+                        <div class="bg"></div>
+                        <select>
+                            <option>10</option>
+                            <option>20</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
                     </div>
-
                 </div>
             </div>
+
         </div>
     </div>
 </template>
 
 <script>
+    import TemplateTable from '../views/template-table'
     export default {
-        name: "ShiShiShuJu",
+        name: "nenghaoqushi",
         data() {
             return {
                 option: '2',
+                tabTit: 0,
+                radio: 2,
                 leftShow: true,
                 filtrateShow: true,
                 btns: 0,
-                no2off:true,
-                value6:''
+                no2off: true,
+                value6: '',
+                days: 2,
+                checked5: true,
+                checked6: true,
+                checked7: true,
+                checked8: false,
+                checked9: false,
+                checked10: false,
+                tableTitle: {
+                    title: '【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】',
+                    titArr: [
+                        {
+                            prop: "id",
+                            label: "日期",
+                            sortable: false
+                        },
+                        {
+                            prop: "dianliuIa",
+                            label: "电流Ia",
+                            sortable: false
+                        },
+                        {
+                            prop: "dianliuIb",
+                            label: "电流Ib",
+                            sortable: false
+                        },
+                        {
+                            prop: "dianliuIc",
+                            label: "电流Ic",
+                            sortable: false
+                        },
+                        {
+                            prop: "zhengDianNeng",
+                            label: "当前正向有功总电能",
+                            sortable: false
+                        },
+                        {
+                            prop: "cuUan",
+                            label: "粗电压Uan",
+                            sortable: false
+                        },
+                        {
+                            prop: "cuUbn",
+                            label: "粗电压Ubn",
+                            sortable: false
+                        },
+                        {
+                            prop: "cuUcn",
+                            label: "粗电压Ucn",
+                            sortable: false
+                        },
+                        {
+                            prop: "sum",
+                            label: "总有功功率W",
+                            sortable: false
+                        },
+                    ]
+                },
+
             }
+        },
+        components: {
+            TemplateTable
         },
         mounted() {
             var setting = {
                 check: {
                     enable: true,
+                    // enable: true,
+                    chkStyle: "radio",
+                    radioType: "level"
 
                 },
                 view: {
@@ -349,11 +454,43 @@
         background-position: 0 0;
     }
 
+    .ztree li span.button.chk.radio_true_full, .ztree li span.button.chk.radio_true_full_focus {
+        background-position: 0 0;
+    }
+
+    .ztree li span.button.radio_true_full, .ztree li span.button.radio_true_full_focus, .ztree li span.button.chk.radio_true_part, .ztree li span.button.chk.radio_true_part_focus {
+        width: 16px;
+        height: 16px;
+        background: url("../../assets/NengHaoChaXun/icon_xz.png") no-repeat;
+        background-position: 0 0;
+    }
+
+    .ztree li span.button.radio_false_full, .ztree li span.button.radio_false_full_focus, .ztree li span.button.radio_false_part, .ztree li span.button.radio_false_part_focus {
+        width: 14px;
+        height: 14px;
+        background: url("../../assets/NengHaoChaXun/椭圆 884.png") no-repeat;
+        background-position: 0 0;
+    }
+
+    .ztree li span.button.chk.radio_false_full, .ztree li span.button.chk.radio_false_full_focus, .ztree li span.button.radio_false_part, .ztree li span.button.radio_false_part_focus {
+        background-position: 0 0;
+        -webkit-background-size: 100% 100%;
+        background-size: 100% 100%;
+    }
+
+    .ztree li span.button.chk.radio_false_part, .ztree li span.button.chk.radio_false_part_focus {
+        background-position: 0 0;
+    }
+
 
 </style>
 
 
 <style lang="scss" scoped>
+    @media screen and (max-width: 1500px) {
+
+    }
+
     .RTData {
         width: 100%;
         height: 100%;
@@ -380,6 +517,27 @@
             box-shadow: 0px 3px 9px 0px #01101f, 0px 3px 30px 2px #1A8EA0 inset;
             border-radius: 3px;
             padding: 14px 13px;
+            .tabTit {
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                span {
+                    font-size: 12px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: bold;
+                    color: rgba(97, 213, 255, 1);
+                    margin-right: 27px;
+                    cursor: pointer;
+                    &.cur {
+                        font-size: 12px;
+                        font-family: HiraginoSansGB-W6;
+                        font-weight: bold;
+                        color: rgba(45, 243, 255, 1);
+                        padding-bottom: 3px;
+                        border-bottom: 2px solid #2DF3FF;
+                    }
+                }
+            }
             .inputBox {
                 position: relative;
                 .icon-ss {
@@ -483,9 +641,167 @@
         .main {
             width: 100%;
             height: 894px;
+            overflow-y: auto;
+            overflow-x: hidden;
 
             position: relative;
             margin-left: 4px;
+            .contrast {
+                width: 100%;
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                margin-top: 24px;
+                @media screen and (max-width: 1500px) {
+                    flex-direction: column;
+                }
+                .lists {
+
+                    @media screen and (min-width: 1500px) {
+                        &:not(:first-child) {
+                            margin-left: 25px;
+                        }
+                    }
+                    @media screen and (max-width: 1500px) {
+                        margin-left: 0;
+                        margin-top: 20px;
+                    }
+                    width: 100%;
+
+                    display: flex;
+                    flex-direction: column;
+                    .current-period {
+                        /*width: calc(100% - 25px);*/
+                        width: 100%;
+                        height: 90px;
+                        box-sizing: border-box;
+                        /*padding: 20px 0;*/
+
+                        border: 1px solid rgba(42, 244, 255, 1);
+                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                        /*opacity:0.5;*/
+                        border-radius: 3px;
+                        .item-left {
+                            width: 90px;
+                            height: 90px;
+                            box-sizing: border-box;
+                            /*padding: ;*/
+                            float: left;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            background-color: #01A8F2;
+                            border-radius: 3px 3px 0px 0px;
+                            margin-top: -1px;
+                            margin-left: -1px;
+                            .item-icon-hz {
+                                /*line-height: 90px;*/
+                                width: 43px;
+                                height: 43px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
+                            }
+                        }
+                        .item-right {
+                            box-sizing: border-box;
+                            /*padding-left: 90px;*/
+                            /*box-sizing: border-box;*/
+                            /*padding: 20px 0;*/
+                            padding: 20px 20px 20px 110px;
+                            p {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
+                            }
+                            .kwh {
+                                margin-top: 6px;
+                                display: flex;
+                                justify-content: space-between;
+                            }
+                            .number {
+                                font-size: 18px;
+                                font-family: DigitaldreamFat;
+                                font-weight: 400;
+                                color: rgba(44, 244, 242, 1);
+                            }
+                            .unit {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
+                            }
+
+                        }
+                    }
+                    .before {
+                        width: 100%;
+                        height: 90px;
+                        box-sizing: border-box;
+                        margin-top: 25px;
+                        /*padding: 20px 0;*/
+
+                        border: 1px solid rgba(42, 244, 255, 1);
+                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                        /*opacity:0.5;*/
+                        border-radius: 3px;
+                        .item-left {
+                            width: 90px;
+                            height: 90px;
+                            box-sizing: border-box;
+                            /*padding: ;*/
+                            float: left;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            background-color: #5361DB;
+                            border-radius: 3px 3px 0px 0px;
+                            margin-top: -1px;
+                            margin-left: -1px;
+                            .item-icon-hz {
+                                /*line-height: 90px;*/
+                                width: 43px;
+                                height: 43px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
+                            }
+                        }
+                        .item-right {
+                            box-sizing: border-box;
+                            /*padding-left: 90px;*/
+                            /*box-sizing: border-box;*/
+                            /*padding: 20px 0;*/
+                            padding: 20px 20px 20px 110px;
+                            p {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
+                            }
+                            .kwh {
+                                margin-top: 6px;
+                                display: flex;
+                                justify-content: space-between;
+                            }
+                            .number {
+                                font-size: 18px;
+                                font-family: DigitaldreamFat;
+                                font-weight: 400;
+                                color: rgba(44, 244, 242, 1);
+                            }
+                            .unit {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
+                            }
+
+                        }
+                    }
+                }
+            }
 
             .bg {
                 width: 100%;
@@ -506,13 +822,16 @@
                 box-sizing: border-box;
                 padding: 15px 20px 9px 20px;
                 background-color: #0B3F6F;
-                .interval{
-                    font-size:14px;
-                    font-family:HiraginoSansGB-W3;
-                    font-weight:bold;
-                    color:rgba(45,243,255,1);
+                .interval {
+                    font-size: 14px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: bold;
+                    color: rgba(45, 243, 255, 1);
                 }
-                .icon-time{
+                .fl {
+                    float: left;
+                }
+                .icon-time {
                     width: 14px;
                     height: 15px;
                     display: inline-block;
@@ -520,7 +839,7 @@
                     margin-right: 5px;
                 }
                 .count {
-                    width: 70px;
+                    width: 80px;
                     height: 28px;
                     margin-left: 12px;
                     position: relative;
@@ -537,7 +856,7 @@
                         font-size: 12px;
                         font-family: HiraginoSansGB-W3;
                         font-weight: bold;
-                        color: rgba(45, 243, 255, 1);
+                        color: rgba(219, 253, 255, 1);
                         option {
                             background-color: #0B3F6F;
                         }
@@ -572,25 +891,25 @@
                         font-weight: bold;
                         color: rgba(254, 254, 255, 1);
                     }
-                    .updataTime{
+                    .updataTime {
                         display: flex;
                         justify-content: space-between;
-                        align-items:center;
-                        span{
-                            font-size:12px;
-                            font-family:HiraginoSansGB-W3;
-                            font-weight:bold;
-                            color:rgba(183,208,210,1);
+                        align-items: center;
+                        span {
+                            font-size: 12px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(183, 208, 210, 1);
                             margin-right: 19px;
                         }
                     }
-                    .off{
+                    .off {
                         cursor: pointer;
                         width: 40px;
                         height: 24px;
                         background: url("../../assets/PeiDianJianCe/btn_kq.png") no-repeat;
                     }
-                    .no{
+                    .no {
                         cursor: pointer;
                         width: 40px;
                         height: 24px;
@@ -629,6 +948,26 @@
                         border-bottom: 2px solid #0B3F6F;
                         box-sizing: border-box;
                         padding: 0 10px;
+                        .icon-lx {
+                            display: inline-block;
+                            width: 15px;
+                            height: 11px;
+                            background: url("../../assets/NengHaoChaXun/icon _fxff.png") no-repeat;
+                        }
+                        .icon-wd {
+                            display: inline-block;
+                            width: 16px;
+                            height: 15px;
+                            background: url("../../assets/NengHaoChaXun/icon_wd.png") no-repeat;
+                        }
+                        .checkbox-tit {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(45, 243, 255, 1);
+                            margin-left: 4px;
+                            margin-right: 20px;
+                        }
                         .item-input {
                             /*margin-right: 1rem;*/
                             @media screen and (min-width: 1200px) {
@@ -722,6 +1061,14 @@
                         }
 
                     }
+                    .item-row-br {
+                        @media screen and (max-width: 1200px) {
+                            height: auto;
+                            justify-content: flex-start;
+                            flex-direction: column;
+                            align-items: flex-start
+                        }
+                    }
                     .item-row-2 {
                         height: auto;
                         width: 100%;
@@ -761,10 +1108,10 @@
                     }
                 }
             }
-            .data-box{
+            .data-box {
                 width: 100%;
                 position: relative;
-                height: 703px;
+                height: 436px;
                 margin-top: 24px;
                 box-sizing: border-box;
                 padding: 15px 20px;
@@ -794,86 +1141,150 @@
                         background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
                     }
                 }
-                .content-table{
-                    position: relative;
+                .my-charts {
+                    margin-top: 13px;
                     width: 100%;
-                    height: 577px;
-                    border:1px solid #15759A;
-                    margin-top: 15px;
-                    text-align: center;
-                    box-sizing: border-box;
-                    padding-top: 16px;
-                    .tit{
-                        font-size:14px;
-                        font-family:HiraginoSansGB-W3;
-                        font-weight:normal;
-                        color:rgba(95,251,248,1);
+                    height: 100%;
+                }
+                .selector {
+                    position: relative;
+                    z-index: 5;
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 20px;
+                    align-items: center;
+
+                    .icon-front {
+                        width: 10px;
+                        height: 14px;
+                        display: inline-block;
+                        background: url("../../assets/NengHaoChaXun/icon_zz.png") no-repeat;
                     }
-                    .table-box{
-                        width: 100%;
-                        height: 528px;
-                        margin-top: 12px;
-                        /*display: flex;*/
-                        /*flex-wrap: nowrap;*/
-                        table{
+                    .icon-prev {
+                        width: 8px;
+                        height: 14px;
+                        display: inline-block;
+                        transform: rotate(180deg);
+                        margin-left: 10px;
+                        background: url("../../assets/NengHaoChaXun/箭头2.png") no-repeat;
+                    }
+                    .icon-next {
+                        width: 8px;
+                        height: 14px;
+                        display: inline-block;
+                        margin-left: 20px;
+                        background: url("../../assets/NengHaoChaXun/箭头2.png") no-repeat;
+                    }
+                    .icon-last {
+                        margin-left: 10px;
+                        width: 10px;
+                        height: 14px;
+                        display: inline-block;
+                        background: url("../../assets/NengHaoChaXun/icon_yy.png") no-repeat;
+                    }
+                    .page-num {
+
+                        width: 38px;
+                        height: 26px;
+                        margin-left: 20px;
+                        position: relative;
+                        input {
+                            position: relative;
+                            z-index: 5;
                             width: 100%;
                             height: 100%;
+                            background: rgba(26, 96, 134, 0);
+                            border: 0px;
+                            outline: none;
+                            cursor: pointer;
+                            font-size: 12px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(45, 243, 255, 1);
+                            text-align: center;
+                        }
+                    }
+                    .page-all {
+                        font-size: 12px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(45, 243, 255, 1);
+                        margin-left: 10px;
+                    }
+                    .count {
+                        width: 48px;
+                        height: 26px;
+                        margin-left: 22px;
+                        position: relative;
+                        select {
+                            border: 0px;
+                            outline: none;
+                            cursor: pointer;
                             position: relative;
-                            border-collapse:collapse;
-                            border:0;//表示表格没有边框。
-                            cellspacing:'0';//表示单元格之间间隙为0。
-                            cellpadding:'0';//表示单元格的边框宽度为0。
-                            /*z-index: 5;*/
-                            tr{
-                                background-color: #0A3E6E;
-                                height: 48px;
-                            }
-                            tr:nth-child(2n-1){
-                                background-color: #104C7B;
-                            }
-                            td, th{
-                                border-right: 1px solid #0F5A84;
-                            }
-                            th{
-                                background-color: #185588;
-                                font-size:14px;
-                                font-family:HiraginoSansGB-W6;
-                                font-weight:normal;
-                                color:rgba(95,251,248,1);
-                            }
-                            td{
-                                font-size:14px;
-                                font-family:HiraginoSansGB-W3;
-                                font-weight:normal;
-                                color:rgba(223,253,255,1);
-                            }
-                        }
-                        .icon-bxz{
-                            display: inline-block;
-                            width: 20px;
-                            height: 17px;
-                            background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
-                            margin-left: 20px;
-                        }
-                        .table-header{
+                            z-index: 5;
+                            width: 100%;
                             height: 100%;
-                            width: 215px;
-                            position: relative;
-                            overflow: hidden;
-                            float: left;
-
-
-                        }
-                        .table-right{
-                            width: calc(100% - 215px);
-                            /*width: 100%;*/
-                            overflow-y: hidden;
-                            overflow-x: scroll;
-                            table{
-                                width: 2000px;
+                            background: rgba(26, 96, 134, 0);
+                            font-size: 12px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(45, 243, 255, 1);
+                            option {
+                                background-color: #0B3F6F;
                             }
                         }
                     }
+                }
+            }
+            .Table {
+                width: 100%;
+                position: relative;
+                box-sizing: border-box;
+                padding: 23px 20px;
+                margin-top: 25px;
+                margin-bottom: 25px;
+                .title {
+                    display: flex;
+                    justify-content: space-between;
+                    position: relative;
+                    z-index: 5;
+                    /*margin-bottom: 15px;*/
+                    h3 {
+                        font-size: 16px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(254, 254, 255, 1);
+                    }
+                    .icon-pdf {
+                        display: inline-block;
+                        width: 21px;
+                        height: 21px;
+                        background: url("../../assets/NengHaoChaXun/pdf.png") no-repeat;
+                        margin-right: 20px;
+                    }
+                    .icon-excel {
+                        display: inline-block;
+                        width: 21px;
+                        height: 21px;
+                        background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
+                    }
+                }
+                .table-box {
+                    position: relative;
+                    z-index: 5;
+                    border: 1px solid #15759A;
+                    /*padding-bottom: 60px;*/
+                    .table-tit {
+                        padding: 20px;
+                        width: 100%;
+                        /*letter-spacing:2px;*/
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(95, 251, 248, 1);
+                        text-align: center;
+                    }
+
                 }
                 .selector {
                     position: relative;
@@ -967,7 +1378,7 @@
             }
 
         }
-        .mainShow{
+        .mainShow {
             width: calc(100% - 273px);
         }
     }

@@ -61,6 +61,21 @@ export default new Router({
                     meta: { title: '能耗趋势' }
                 },
                 {
+                    path:'/NengHaoChengBen',
+                    component: resolve => require(['../components/page/NengHaoChengBen.vue'], resolve),
+                    meta: { title: '能耗成本' }
+                },
+                {
+                    path:'/DuiBiFenXi',
+                    component: resolve => require(['../components/page/DuiBiFenXi.vue'], resolve),
+                    meta: { title: '对比分析' }
+                },
+                {
+                    path:'/NengYuanJiHua',
+                    component: resolve => require(['../components/page/NengYuanJiHua.vue'], resolve),
+                    meta: { title: '能源计划' }
+                },
+                {
                     path: '/icon',
                     component: resolve => require(['../components/page/Icon.vue'], resolve),
                     meta: { title: '自定义图标' }

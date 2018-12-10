@@ -1,32 +1,6 @@
 <template>
     <div class="RTData Inquire">
-        <transition name="el-zoom-in-center">
-            <div v-show="leftShow" class="left-branch">
-                <div class="tabTit">
-                    <span @click="tabTit=0" :class="{cur:tabTit==0}">分项</span>
-                    <span @click="tabTit=1" :class="{cur:tabTit==1}">部门</span>
-                    <span @click="tabTit=2" :class="{cur:tabTit==2}">位置</span>
-                    <span @click="tabTit=3" :class="{cur:tabTit==3}">支路</span>
-                </div>
-                <!--<div class="tit">选择支路</div>-->
-                <div class="inputBox">
-                    <i class="icon-ss"></i>
-                    <input placeholder="请输入支路名称" type="text" id="key" value="" class="empty"/><br/>
-                </div>
-                <!--<div class="zTreeDemoBackground left">-->
-                <ul id="treeDemo" class="ztree"></ul>
-                <!--</div>-->
-                <div class="butt">
-                    <div class="tit">已选支路</div>
-                    <ul>
-                        <li><i :class="option == 0?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
-                        <li><i :class="option == 1?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
-                        <li><i :class="option == 2?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
-                    </ul>
-                </div>
-            </div>
-        </transition>
-        <div @click="leftShow=!leftShow" :class="{btn:true,shrinkBtn:!leftShow}">支 路 选 择</div>
+
         <div :class="{main:true,mainShow:leftShow}">
             <div class="filtrate-box">
                 <div class="bg"></div>
@@ -37,57 +11,84 @@
                      :class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>
                 <el-collapse-transition>
                     <div v-show="filtrateShow" class="filtrate-show">
+
                         <div class="item-row">
-                            <i class="icon-lx"></i>
-                            <span class="checkbox-tit">分析方法:</span>
-                            <div class="count">
-                                <!--<div class="bg"></div>-->
-                                <select>
-                                    <option>同比</option>
-                                    <option>10</option>
-                                    <option>15</option>
-                                    <option>30</option>
-                                    <option>60</option>
-                                </select>
+                            <el-radio class="choice" v-model="radio" label="1">电</el-radio>
+                            <el-radio class="choice" v-model="radio" label="2">水</el-radio>
+                            <el-radio class="choice" v-model="radio" label="3">蒸汽</el-radio>
+                        </div>
+                        <div class="item-row item2">
+                            <div class="more-box">
+                                <el-checkbox v-model="checked1">支路:</el-checkbox>
+                                <el-select class="select" v-model="select1" placeholder="请选择支路">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div class="more-box">
+                                <el-checkbox class="ml92" v-model="checked2">分项:</el-checkbox>
+                                <el-select class="select" v-model="select2" placeholder="请选择分项">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div v-show="sw" class="item-show more-box">
+                                <el-checkbox class="ml92" v-model="checked3">部门:</el-checkbox>
+                                <el-select class="select" v-model="select3" placeholder="请选择部门">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div v-show="sw" class="item-show more-box">
+                                <el-checkbox class="ml92" v-model="checked4">位置:</el-checkbox>
+                                <el-select class="select" v-model="select4" placeholder="请选择位置">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+
+
+                            <div @click="sw=!sw" class="no-off more-box">
+                                <i :class="{'icon-left':sw,'icon-right':!sw}"></i>
+                                <span v-show="sw">收缩</span>
+                                <span v-show="!sw">更多</span>
                             </div>
                         </div>
-                        <div class="item-row">
-                            <i class="icon-wd"></i>
-                            <span class="checkbox-tit">维度:</span>
-                            <el-radio class="choice" v-model="radio" label="1">时</el-radio>
-                            <el-radio class="choice" v-model="radio" label="2">天</el-radio>
-                            <el-radio class="choice" v-model="radio" label="3">月</el-radio>
-                        </div>
+
                         <div class="item-row item-row-br">
                             <div class="fl">
                                 <span class="date-select">时间选择</span>
                                 <el-date-picker
                                         class=""
                                         v-model="value6"
-                                        type="datetimerange"
-                                        range-separator="—"
-                                        start-placeholder="开始日期"
-                                        end-placeholder="结束日期">
+                                        type="year"
+                                        placeholder="选择年">
                                 </el-date-picker>
                             </div>
-                            <div class="fl days-box">
-                        <span class="days-tit date-select">
-                            <i class="el-icon-search"></i>
-                            快捷查询:
-                        </span>
-                                <div class="days-btn">
-                                    <span @click="days=0" :class="{cur:days==0}">前1天</span>
-                                    <span @click="days=1" :class="{cur:days==1}">前3天</span>
-                                    <span @click="days=2" :class="{cur:days==2}">前7天</span>
-                                    <span @click="days=3" :class="{cur:days==3}">前1月</span>
-                                </div>
-                            </div>
+
                         </div>
 
 
                         <div class="btns-box">
                             <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">查询</div>
                             <div @click="btns=1" :class="{'btn-item':true,cur:btns==1}">重置</div>
+                            <div @click="btns=2" :class="{'btn-item':true,cur:btns==2}">个性化</div>
                         </div>
 
                     </div>
@@ -95,38 +96,47 @@
 
             </div>
             <!--对比-->
-            <div class="contrast">
-                <div class="lists" v-for="v in lists">
-                    <div class="current-period">
-                        <div class="item-left">
-                            <i :class="v.icon"></i>
-                        </div>
-                        <div class="item-right">
-                            <p>{{ v.title }}</p>
-                            <div class="kwh">
-                                <span class="number">166.56</span>
-                                <span class="unit">kWh</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="before">
-                        <div class="item-left">
-                            <i :class="v.icon"></i>
-                        </div>
-                        <div class="item-right">
-                            <p>{{ v.title2 }}</p>
-                            <div class="kwh">
-                                <span class="number">166.56</span>
-                                <span class="unit">kWh</span>
-                            </div>
-                        </div>
-                    </div>
+
+            <div class="annual">
+                <div class="annual-left">
+                    <div class="icon-jh"></div>
+                </div>
+                <div class="annual-right">
+                    <p>2018年度计划完成指标</p>
+                    <span class="num">34567.56</span>
+                    <el-progress :percentage="80" color="#01D9DF" :stroke-width="10"></el-progress>
                 </div>
             </div>
 
+            <div class="month-box">
+                <el-row :gutter="24">
+                    <el-col :key="index" v-for="(v,index) in monthData" :xl="4" :lg="4" :md="8" :sm="12" :xs="24">
+                        <div class="month-content">
+                            <div class="bg"></div>
+                            <span class="month-badge">{{ v.month }}</span>
+                            <p>{{ v.title }}</p>
+                            <div class="num">{{ v.num }}</div>
+                            <el-progress :percentage="80" color="#01D9DF" :stroke-width="6"></el-progress>
+                        </div>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="24">
+                    <el-col :key="index" v-for="(v,index) in monthData2" :xl="4" :lg="4" :md="8" :sm="12" :xs="24">
+                        <div class="month-content">
+                            <div class="bg"></div>
+                            <span class="month-badge">{{ v.month }}</span>
+                            <p>{{ v.title }}</p>
+                            <div class="num">{{ v.num }}</div>
+                            <el-progress :percentage="50" color="#01D9DF" :stroke-width="6"></el-progress>
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+
+
             <div class="data-box">
                 <div class="bg"></div>
-                <div class="title"><h3>总功率因数pf</h3>
+                <div class="title"><h3>对比趋势图</h3>
                 </div>
                 <div class="my-charts"></div>
             </div>
@@ -139,7 +149,64 @@
                 </div>
 
 
-                <template-table :data-tit="tableTitle"></template-table>
+                <div class="content-table">
+                    <div class="tit">【xxxx部门2018年度用电计划】</div>
+
+                    <div class="table-box">
+                        <div class="table-header">
+                            <table>
+                                <tr>
+                                    <th>日期</th>
+                                    <!--<th>日期</th>-->
+                                </tr>
+                                <!--<tr></tr>-->
+
+                                <tr v-for="v in 10">
+                                    <td>01-03-LPB-E4-00</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="table-right">
+                            <table>
+                                <!--<tr style="border-bottom: 1px solid #1B6D9A;">-->
+                                    <!--<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项1</th>-->
+                                    <!--<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项2</th>-->
+                                    <!--<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项3</th>-->
+                                <!--</tr>-->
+                                <tr>
+                                    <th v-for="v in 5">名称</th>
+                                </tr>
+                                <tr v-for="v in 10">
+                                    <td v-for="v in 5">01-03-LPB-E4-00</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="selector">
+                        <i class="icon-front"></i>
+                        <i class="icon-prev"></i>
+                        <div class="page-num">
+                            <div class="bg"></div>
+                            <input type="text" value="1">
+                        </div>
+
+                        <span class="page-all">
+                        /共1页
+                    </span>
+                        <i class="icon-next"></i>
+                        <i class="icon-last"></i>
+                        <div class="count">
+                            <div class="bg"></div>
+                            <select>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>50</option>
+                                <option>100</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="selector">
                     <i class="icon-front"></i>
                     <i class="icon-prev"></i>
@@ -170,54 +237,140 @@
 </template>
 
 <script>
-    import TemplateTable from '../views/template-table'
+    // import TemplateTable from '../views/template-table'
     export default {
-        name: "nenghaoqushi",
+        name: "nengyuanjihua",
         data() {
             return {
-                lists:[
+                monthData: [
                     {
-                        title:'本期汇总',
-                        icon:'item-icon-hz',
-                        title2:'同期汇总',
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '1月'
                     },
                     {
-                        title:'本期平均',
-                        icon:'item-icon-pjf',
-                        title2:'同期平均',
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '2月'
                     },
                     {
-                        title:'本期最大值',
-                        icon:'item-icon-max',
-                        title2:'同期最大值',
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '3月'
                     },
                     {
-                        title:'本期最小值 ',
-                        icon:'item-icon-min',
-                        title2:'同期最小值',
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '4月'
                     },
                     {
-                        title:'本期同比',
-                        icon:'item-icon-tb',
-                        title2:'同期同比',
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '5月'
+                    },
+                    {
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '6月'
+                    },
+                ],
+                monthData2: [
+                    {
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '7月'
+                    },
+                    {
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '8月'
+                    },
+                    {
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '9月'
+                    },
+                    {
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '10月'
+                    },
+                    {
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '11月'
+                    },
+                    {
+                        title: '计划完成指标',
+                        num: '166.56',
+                        month: '12月'
+                    },
+                ],
+                lists: [
+                    {
+                        title: '本阶段总能耗成本',
+                        icon: 'item-icon-hz',
+                        color: '#00C3F4'
+                    },
+                    {
+                        title: '本阶段平均能耗成本',
+                        icon: 'item-icon-pjf',
+                        color: '#2CD27D'
+                    },
+                    {
+                        title: '本阶段最大用能成本',
+                        icon: 'item-icon-max',
+                        color: '#D69B44'
+                    },
+                    {
+                        title: '本阶段最小用能成本 ',
+                        icon: 'item-icon-min',
+                        color: '#C6D242'
                     },
 
                 ],
+                consumption: 0,
+                sw: true,
                 option: '2',
                 tabTit: 0,
                 radio: 2,
-                leftShow: true,
+                leftShow: false,
                 filtrateShow: true,
                 btns: 0,
                 no2off: true,
+                checked1: true,
+                checked2: false,
+                checked3: false,
+                checked4: false,
+                select1: '',
+                select2: '',
+                select3: '',
+                select4: '',
                 value6: '',
                 days: 2,
+                select2: 2,
                 checked5: true,
                 checked6: true,
                 checked7: true,
                 checked8: false,
                 checked9: false,
                 checked10: false,
+                options: [{
+                    value: '选项1',
+                    label: '黄金糕'
+                }, {
+                    value: '选项2',
+                    label: '双皮奶'
+                }, {
+                    value: '选项3',
+                    label: '蚵仔煎'
+                }, {
+                    value: '选项4',
+                    label: '龙须面'
+                }, {
+                    value: '选项5',
+                    label: '北京烤鸭'
+                }],
                 tableTitle: {
                     title: '【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】',
                     titArr: [
@@ -272,139 +425,139 @@
             }
         },
         components: {
-            TemplateTable
+            // TemplateTable
         },
         mounted() {
-            var setting = {
-                check: {
-                    enable: true,
-                    // enable: true,
-                    chkStyle: "radio",
-                    radioType: "level"
-
-                },
-                view: {
-                    nameIsHTML: true, //允许name支持html
-                    selectedMulti: false
-                },
-                edit: {
-                    enable: false,
-                    editNameSelectAll: false
-                },
-                data: {
-                    simpleData: {
-                        enable: true
-                    }
-                }
-            };
-
-            var zNodes = [
-                {
-                    id: 1,
-                    pId: 0,
-                    name: "随意勾选 1",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 11,
-                    pId: 1,
-                    name: "随意勾选 1-1",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 111,
-                    pId: 11,
-                    name: "随意勾选 1-1-1"
-                },
-                {
-                    id: 112,
-                    pId: 11,
-                    name: "随意勾选 1-1-2"
-                },
-                {
-                    id: 12,
-                    pId: 1,
-                    name: "随意勾选 1-2",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 121,
-                    pId: 12,
-                    name: "随意勾选 1-2-1"
-                },
-                {
-                    id: 122,
-                    pId: 12,
-                    name: "随意勾选 1-2-2"
-                },
-                {
-                    id: 2,
-                    pId: 0,
-                    name: "随意勾选 2",
-                    checked: true,
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 21,
-                    pId: 2,
-                    name: "随意勾选 2-1"
-                },
-                {
-                    id: 22,
-                    pId: 2,
-                    name: "随意勾选 2-2",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 221,
-                    pId: 22,
-                    name: "随意勾选 2-2-1",
-                    // checked: true,
-                },
-                {
-                    id: 222,
-                    pId: 22,
-                    name: "随意勾选 2-2-2"
-                },
-                {
-                    id: 23,
-                    pId: 2,
-                    name: "随意勾选 2-3"
-                }
-            ];
-
-            var code;
-
-            function setCheck() {
-                var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
-                    py = $("#py").attr("checked") ? "p" : "",
-                    sy = $("#sy").attr("checked") ? "s" : "",
-                    pn = $("#pn").attr("checked") ? "p" : "",
-                    sn = $("#sn").attr("checked") ? "s" : "",
-                    type = {"Y": py + sy, "N": pn + sn};
-                zTree.setting.check.chkboxType = type;
-                showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
-            }
-
-            function showCode(str) {
-                if (!code) code = $("#code");
-                code.empty();
-                code.append("<li>" + str + "</li>");
-            }
-
-
-            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-            fuzzySearch('treeDemo', '#key', null, true); //初始化模糊搜索方法
-            setCheck();
-            $("#py").bind("change", setCheck);
-            $("#sy").bind("change", setCheck);
-            $("#pn").bind("change", setCheck);
-            $("#sn").bind("change", setCheck);
+            // var setting = {
+            //     check: {
+            //         enable: true,
+            //         // enable: true,
+            //         chkStyle: "radio",
+            //         radioType: "level"
+            //
+            //     },
+            //     view: {
+            //         nameIsHTML: true, //允许name支持html
+            //         selectedMulti: false
+            //     },
+            //     edit: {
+            //         enable: false,
+            //         editNameSelectAll: false
+            //     },
+            //     data: {
+            //         simpleData: {
+            //             enable: true
+            //         }
+            //     }
+            // };
+            //
+            // var zNodes = [
+            //     {
+            //         id: 1,
+            //         pId: 0,
+            //         name: "随意勾选 1",
+            //         open: true,
+            //         // iconSkin: "icon01"
+            //     },
+            //     {
+            //         id: 11,
+            //         pId: 1,
+            //         name: "随意勾选 1-1",
+            //         open: true,
+            //         // iconSkin: "icon01"
+            //     },
+            //     {
+            //         id: 111,
+            //         pId: 11,
+            //         name: "随意勾选 1-1-1"
+            //     },
+            //     {
+            //         id: 112,
+            //         pId: 11,
+            //         name: "随意勾选 1-1-2"
+            //     },
+            //     {
+            //         id: 12,
+            //         pId: 1,
+            //         name: "随意勾选 1-2",
+            //         open: true,
+            //         // iconSkin: "icon01"
+            //     },
+            //     {
+            //         id: 121,
+            //         pId: 12,
+            //         name: "随意勾选 1-2-1"
+            //     },
+            //     {
+            //         id: 122,
+            //         pId: 12,
+            //         name: "随意勾选 1-2-2"
+            //     },
+            //     {
+            //         id: 2,
+            //         pId: 0,
+            //         name: "随意勾选 2",
+            //         checked: true,
+            //         open: true,
+            //         // iconSkin: "icon01"
+            //     },
+            //     {
+            //         id: 21,
+            //         pId: 2,
+            //         name: "随意勾选 2-1"
+            //     },
+            //     {
+            //         id: 22,
+            //         pId: 2,
+            //         name: "随意勾选 2-2",
+            //         open: true,
+            //         // iconSkin: "icon01"
+            //     },
+            //     {
+            //         id: 221,
+            //         pId: 22,
+            //         name: "随意勾选 2-2-1",
+            //         // checked: true,
+            //     },
+            //     {
+            //         id: 222,
+            //         pId: 22,
+            //         name: "随意勾选 2-2-2"
+            //     },
+            //     {
+            //         id: 23,
+            //         pId: 2,
+            //         name: "随意勾选 2-3"
+            //     }
+            // ];
+            //
+            // var code;
+            //
+            // function setCheck() {
+            //     var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+            //         py = $("#py").attr("checked") ? "p" : "",
+            //         sy = $("#sy").attr("checked") ? "s" : "",
+            //         pn = $("#pn").attr("checked") ? "p" : "",
+            //         sn = $("#sn").attr("checked") ? "s" : "",
+            //         type = {"Y": py + sy, "N": pn + sn};
+            //     zTree.setting.check.chkboxType = type;
+            //     showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
+            // }
+            //
+            // function showCode(str) {
+            //     if (!code) code = $("#code");
+            //     code.empty();
+            //     code.append("<li>" + str + "</li>");
+            // }
+            //
+            //
+            // $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+            // fuzzySearch('treeDemo', '#key', null, true); //初始化模糊搜索方法
+            // setCheck();
+            // $("#py").bind("change", setCheck);
+            // $("#sy").bind("change", setCheck);
+            // $("#pn").bind("change", setCheck);
+            // $("#sn").bind("change", setCheck);
 
         }
 
@@ -669,11 +822,101 @@
         .main {
             width: 100%;
             height: 894px;
-            overflow-y: auto;
-            overflow-x: hidden;
+            /*overflow-y: auto;*/
+            /*overflow-x: hidden;*/
 
             position: relative;
-            margin-left: 4px;
+            .month-box {
+                width: 100%;
+                margin-top: 24px;
+                .el-row {
+                    margin-bottom: 24px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+                .month-content {
+                    width: 100%;
+                    height: 90px;
+                    position: relative;
+                    box-sizing: border-box;
+                    padding: 10px;
+
+                    .month-badge {
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                        padding: 2px 17px;
+                        background-color: #0571AD;
+                        border-radius: 11px;
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W6;
+                        font-weight: normal;
+                        color: rgba(232, 238, 234, 1);
+                    }
+                    p {
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(223, 253, 255, 1);
+                        position: relative;
+                    }
+                    .num {
+                        font-size: 16px;
+                        font-family: DigitaldreamFat;
+                        font-weight: 400;
+                        color: rgba(44, 244, 242, 1);
+                        line-height: 37px;
+                        position: relative;
+                    }
+                }
+
+            }
+            .annual {
+                width: 100%;
+                height: 120px;
+                margin-top: 24px;
+                background-color: #075888;
+                border-radius: 3px 3px 0px 0px;
+                .annual-left {
+                    width: 120px;
+                    height: 120px;
+                    float: left;
+                    background-color: #0788B6;
+                    border-radius: 3px 3px 0px 0px;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    .icon-jh {
+                        width: 60px;
+                        height: 70px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/icon_jh.png") no-repeat;
+                    }
+                }
+                .annual-right {
+                    box-sizing: border-box;
+                    padding: 16px 30px 16px 150px;
+
+                    p {
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(223, 253, 255, 1);
+                    }
+                    .num {
+                        font-size: 18px;
+                        font-family: DigitaldreamFat;
+                        font-weight: 400;
+                        color: rgba(254, 254, 254, 1);
+                        line-height: 52px;
+                    }
+                }
+            }
+            /*margin-left: 4px;*/
             .contrast {
                 width: 100%;
                 display: flex;
@@ -698,41 +941,6 @@
 
                     display: flex;
                     flex-direction: column;
-                    .item-icon-hz {
-                        /*line-height: 90px;*/
-                        width: 43px;
-                        height: 43px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
-                    }
-                    .item-icon-pjf {
-                        /*line-height: 90px;*/
-                        width: 40px;
-                        height: 37px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
-                    }
-                    .item-icon-max {
-                        /*line-height: 90px;*/
-                        width: 59px;
-                        height: 21px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
-                    }
-                    .item-icon-min {
-                        /*line-height: 90px;*/
-                        width: 60px;
-                        height: 24px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
-                    }
-                    .item-icon-tb {
-                        /*line-height: 90px;*/
-                        width: 41px;
-                        height: 34px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
-                    }
                     .current-period {
                         /*width: calc(100% - 25px);*/
                         width: 100%;
@@ -744,9 +952,6 @@
                         box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
                         /*opacity:0.5;*/
                         border-radius: 3px;
-
-
-
                         .item-left {
                             width: 90px;
                             height: 90px;
@@ -761,7 +966,34 @@
                             border-radius: 3px 3px 0px 0px;
                             margin-top: -1px;
                             margin-left: -1px;
-
+                            .item-icon-hz {
+                                /*line-height: 90px;*/
+                                width: 43px;
+                                height: 43px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
+                            }
+                            .item-icon-pjf {
+                                /*line-height: 90px;*/
+                                width: 40px;
+                                height: 37px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
+                            }
+                            .item-icon-max {
+                                /*line-height: 90px;*/
+                                width: 59px;
+                                height: 21px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
+                            }
+                            .item-icon-min {
+                                /*line-height: 90px;*/
+                                width: 60px;
+                                height: 24px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
+                            }
                         }
                         .item-right {
                             box-sizing: border-box;
@@ -1187,6 +1419,61 @@
                         font-weight: bold;
                         color: rgba(254, 254, 255, 1);
                     }
+                    .head-right {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                    .tab-box {
+                        width: 120px;
+                        height: 30px;
+                        display: flex;
+                        margin-left: 30px;
+                        span {
+                            flex: 1;
+                            text-align: center;
+                            background: rgba(11, 116, 162, 1);
+                            box-shadow: 0px 0px 18px 0px rgba(52, 150, 174, 1) inset;
+                            border-radius: 0px 3px 3px 0px;
+                            font-size: 14px;
+                            line-height: 30px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(255, 255, 255, 1);
+
+                            &.cur {
+                                background-color: #23BDD4;
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W6;
+                                font-weight: normal;
+                                color: rgba(255, 255, 255, 1);
+                            }
+                        }
+
+                    }
+                    .count {
+                        width: 70px;
+                        height: 28px;
+                        margin-left: 12px;
+                        position: relative;
+                        border: 1px solid #29D1E5;
+                        select {
+                            border: 0px;
+                            outline: none;
+                            cursor: pointer;
+                            position: relative;
+                            z-index: 5;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(26, 96, 134, 0);
+                            font-size: 12px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(45, 243, 255, 1);
+                            option {
+                                background-color: #0B3F6F;
+                            }
+                        }
+                    }
                     .icon-pdf {
                         display: inline-block;
                         width: 21px;
@@ -1194,6 +1481,7 @@
                         background: url("../../assets/NengHaoChaXun/pdf.png") no-repeat;
                         margin-right: 20px;
                     }
+
                     .icon-excel {
                         display: inline-block;
                         width: 21px;
@@ -1292,6 +1580,86 @@
                             option {
                                 background-color: #0B3F6F;
                             }
+                        }
+                    }
+                }
+            }
+            .content-table {
+                position: relative;
+                width: 100%;
+                height: 577px;
+                border: 1px solid #15759A;
+                margin-top: 15px;
+                text-align: center;
+                box-sizing: border-box;
+                padding-top: 16px;
+                .tit {
+                    font-size: 14px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: normal;
+                    color: rgba(95, 251, 248, 1);
+                }
+                .table-box {
+                    width: 100%;
+                    height: 528px;
+                    margin-top: 12px;
+                    /*display: flex;*/
+                    /*flex-wrap: nowrap;*/
+                    table {
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        border-collapse: collapse;
+                        border: 0; //表示表格没有边框。
+                        cellspacing: '0'; //表示单元格之间间隙为0。
+                        cellpadding: '0'; //表示单元格的边框宽度为0。
+                        /*z-index: 5;*/
+                        tr {
+                            background-color: #0A3E6E;
+                            height: 48px;
+                        }
+                        tr:nth-child(2n-1) {
+                            background-color: #104C7B;
+                        }
+                        td, th {
+                            border-right: 1px solid #0F5A84;
+                        }
+                        th {
+                            background-color: #185588;
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W6;
+                            font-weight: normal;
+                            color: rgba(95, 251, 248, 1);
+                        }
+                        td {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
+                    }
+                    .icon-bxz {
+                        display: inline-block;
+                        width: 20px;
+                        height: 17px;
+                        background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
+                        margin-left: 20px;
+                    }
+                    .table-header {
+                        height: 100%;
+                        width: 215px;
+                        position: relative;
+                        overflow: hidden;
+                        float: left;
+
+                    }
+                    .table-right {
+                        width: calc(100% - 215px);
+                        /*width: 100%;*/
+                        overflow-y: hidden;
+                        overflow-x: scroll;
+                        table {
+                            width: 2000px;
                         }
                     }
                 }

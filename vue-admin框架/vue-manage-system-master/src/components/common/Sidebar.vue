@@ -156,7 +156,22 @@
                                 icon: "ml5 icon-all icon-sjcx",
                                 index: "nenghaoqushi",
                                 title: "能耗趋势"
-                            }
+                            },
+                            {
+                                icon: "ml5 icon-all icon-sjcx",
+                                index: "nenghaochengben",
+                                title: "能耗成本"
+                            },
+                            {
+                                icon: "ml5 icon-all icon-sjcx",
+                                index: "duibifenxi",
+                                title: "对比分析"
+                            },
+                            {
+                                icon: "ml5 icon-all icon-sjcx",
+                                index: "nengyuanjihua",
+                                title: "能源计划"
+                            },
                         ]
                     },
                     {

@@ -1,32 +1,6 @@
 <template>
     <div class="RTData Inquire">
-        <transition name="el-zoom-in-center">
-            <div v-show="leftShow" class="left-branch">
-                <div class="tabTit">
-                    <span @click="tabTit=0" :class="{cur:tabTit==0}">分项</span>
-                    <span @click="tabTit=1" :class="{cur:tabTit==1}">部门</span>
-                    <span @click="tabTit=2" :class="{cur:tabTit==2}">位置</span>
-                    <span @click="tabTit=3" :class="{cur:tabTit==3}">支路</span>
-                </div>
-                <!--<div class="tit">选择支路</div>-->
-                <div class="inputBox">
-                    <i class="icon-ss"></i>
-                    <input placeholder="请输入支路名称" type="text" id="key" value="" class="empty"/><br/>
-                </div>
-                <!--<div class="zTreeDemoBackground left">-->
-                <ul id="treeDemo" class="ztree"></ul>
-                <!--</div>-->
-                <div class="butt">
-                    <div class="tit">已选支路</div>
-                    <ul>
-                        <li><i :class="option == 0?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
-                        <li><i :class="option == 1?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
-                        <li><i :class="option == 2?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
-                    </ul>
-                </div>
-            </div>
-        </transition>
-        <div @click="leftShow=!leftShow" :class="{btn:true,shrinkBtn:!leftShow}">支 路 选 择</div>
+
         <div :class="{main:true,mainShow:leftShow}">
             <div class="filtrate-box">
                 <div class="bg"></div>
@@ -38,17 +12,63 @@
                 <el-collapse-transition>
                     <div v-show="filtrateShow" class="filtrate-show">
                         <div class="item-row">
-                            <i class="icon-lx"></i>
-                            <span class="checkbox-tit">分析方法:</span>
-                            <div class="count">
-                                <!--<div class="bg"></div>-->
-                                <select>
-                                    <option>同比</option>
-                                    <option>10</option>
-                                    <option>15</option>
-                                    <option>30</option>
-                                    <option>60</option>
-                                </select>
+                            <el-checkbox class="ml92 checkbox-tit" v-model="checked5">总:</el-checkbox>
+                            <el-checkbox class="" v-model="checked6">电</el-checkbox>
+                            <el-checkbox class="ml92" v-model="checked7">水</el-checkbox>
+                            <el-checkbox class="ml92" v-model="checked8">蒸汽</el-checkbox>
+
+                        </div>
+                        <div class="item-row item2">
+                            <div class="more-box">
+                                <el-checkbox v-model="checked1">支路:</el-checkbox>
+                                <el-select class="select" v-model="select1" placeholder="请选择支路">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div class="more-box">
+                                <el-checkbox class="ml92" v-model="checked2">分项:</el-checkbox>
+                                <el-select class="select" v-model="select2" placeholder="请选择分项">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div v-show="sw" class="item-show more-box">
+                                <el-checkbox class="ml92" v-model="checked3">部门:</el-checkbox>
+                                <el-select class="select" v-model="select3" placeholder="请选择部门">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div v-show="sw" class="item-show more-box">
+                                <el-checkbox class="ml92" v-model="checked4">位置:</el-checkbox>
+                                <el-select class="select" v-model="select4" placeholder="请选择位置">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+
+
+                            <div @click="sw=!sw" class="no-off more-box">
+                                <i :class="{'icon-left':sw,'icon-right':!sw}"></i>
+                                <span v-show="sw">收缩</span>
+                                <span v-show="!sw">更多</span>
                             </div>
                         </div>
                         <div class="item-row">
@@ -98,23 +118,11 @@
             <div class="contrast">
                 <div class="lists" v-for="v in lists">
                     <div class="current-period">
-                        <div class="item-left">
+                        <div :style="{background:v.color}" class="item-left">
                             <i :class="v.icon"></i>
                         </div>
                         <div class="item-right">
                             <p>{{ v.title }}</p>
-                            <div class="kwh">
-                                <span class="number">166.56</span>
-                                <span class="unit">kWh</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="before">
-                        <div class="item-left">
-                            <i :class="v.icon"></i>
-                        </div>
-                        <div class="item-right">
-                            <p>{{ v.title2 }}</p>
                             <div class="kwh">
                                 <span class="number">166.56</span>
                                 <span class="unit">kWh</span>
@@ -126,7 +134,7 @@
 
             <div class="data-box">
                 <div class="bg"></div>
-                <div class="title"><h3>总功率因数pf</h3>
+                <div class="title"><h3>能耗趋势</h3>
                 </div>
                 <div class="my-charts"></div>
             </div>
@@ -139,7 +147,64 @@
                 </div>
 
 
-                <template-table :data-tit="tableTitle"></template-table>
+                <div class="content-table">
+                    <div class="tit">【 2018-10-16 至 2018-10-23能耗成本统计报表 】</div>
+
+                    <div class="table-box">
+                        <div class="table-header">
+                            <table>
+                                <tr>
+                                    <th rowspan="2">日期</th>
+                                    <!--<th>日期</th>-->
+                                </tr>
+                                <tr></tr>
+
+                                <tr v-for="v in 9">
+                                    <td>01-03-LPB-E4-00</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="table-right">
+                            <table>
+                                <tr style="border-bottom: 1px solid #1B6D9A;">
+                                    <th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项1</th>
+                                    <th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项2</th>
+                                    <th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项3</th>
+                                </tr>
+                                <tr>
+                                    <th v-for="v in 15">名称</th>
+                                </tr>
+                                <tr v-for="v in 9">
+                                    <td v-for="v in 15">01-03-LPB-E4-00</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="selector">
+                        <i class="icon-front"></i>
+                        <i class="icon-prev"></i>
+                        <div class="page-num">
+                            <div class="bg"></div>
+                            <input type="text" value="1">
+                        </div>
+
+                        <span class="page-all">
+                        /共1页
+                    </span>
+                        <i class="icon-next"></i>
+                        <i class="icon-last"></i>
+                        <div class="count">
+                            <div class="bg"></div>
+                            <select>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>50</option>
+                                <option>100</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="selector">
                     <i class="icon-front"></i>
                     <i class="icon-prev"></i>
@@ -172,41 +237,45 @@
 <script>
     import TemplateTable from '../views/template-table'
     export default {
-        name: "nenghaoqushi",
+        name: "nenghaochengben",
         data() {
             return {
                 lists:[
                     {
-                        title:'本期汇总',
+                        title:'本阶段总能耗成本',
                         icon:'item-icon-hz',
-                        title2:'同期汇总',
+                        color:'#00C3F4'
                     },
                     {
-                        title:'本期平均',
+                        title:'本阶段平均能耗成本',
                         icon:'item-icon-pjf',
-                        title2:'同期平均',
+                        color:'#2CD27D'
                     },
                     {
-                        title:'本期最大值',
+                        title:'本阶段最大用能成本',
                         icon:'item-icon-max',
-                        title2:'同期最大值',
+                        color:'#D69B44'
                     },
                     {
-                        title:'本期最小值 ',
+                        title:'本阶段最小用能成本 ',
                         icon:'item-icon-min',
-                        title2:'同期最小值',
-                    },
-                    {
-                        title:'本期同比',
-                        icon:'item-icon-tb',
-                        title2:'同期同比',
+                        color:'#C6D242'
                     },
 
                 ],
+                sw: true,
                 option: '2',
                 tabTit: 0,
                 radio: 2,
-                leftShow: true,
+                checked1: true,
+                checked2: false,
+                checked3: false,
+                checked4: false,
+                select1: '',
+                select2: '',
+                select3: '',
+                select4: '',
+                leftShow: false,
                 filtrateShow: true,
                 btns: 0,
                 no2off: true,
@@ -218,6 +287,22 @@
                 checked8: false,
                 checked9: false,
                 checked10: false,
+                options: [{
+                    value: '选项1',
+                    label: '黄金糕'
+                }, {
+                    value: '选项2',
+                    label: '双皮奶'
+                }, {
+                    value: '选项3',
+                    label: '蚵仔煎'
+                }, {
+                    value: '选项4',
+                    label: '龙须面'
+                }, {
+                    value: '选项5',
+                    label: '北京烤鸭'
+                }],
                 tableTitle: {
                     title: '【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】',
                     titArr: [
@@ -669,11 +754,11 @@
         .main {
             width: 100%;
             height: 894px;
-            overflow-y: auto;
-            overflow-x: hidden;
+            /*overflow-y: auto;*/
+            /*overflow-x: hidden;*/
 
             position: relative;
-            margin-left: 4px;
+            /*margin-left: 4px;*/
             .contrast {
                 width: 100%;
                 display: flex;
@@ -698,41 +783,6 @@
 
                     display: flex;
                     flex-direction: column;
-                    .item-icon-hz {
-                        /*line-height: 90px;*/
-                        width: 43px;
-                        height: 43px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
-                    }
-                    .item-icon-pjf {
-                        /*line-height: 90px;*/
-                        width: 40px;
-                        height: 37px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
-                    }
-                    .item-icon-max {
-                        /*line-height: 90px;*/
-                        width: 59px;
-                        height: 21px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
-                    }
-                    .item-icon-min {
-                        /*line-height: 90px;*/
-                        width: 60px;
-                        height: 24px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
-                    }
-                    .item-icon-tb {
-                        /*line-height: 90px;*/
-                        width: 41px;
-                        height: 34px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
-                    }
                     .current-period {
                         /*width: calc(100% - 25px);*/
                         width: 100%;
@@ -744,9 +794,6 @@
                         box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
                         /*opacity:0.5;*/
                         border-radius: 3px;
-
-
-
                         .item-left {
                             width: 90px;
                             height: 90px;
@@ -761,7 +808,34 @@
                             border-radius: 3px 3px 0px 0px;
                             margin-top: -1px;
                             margin-left: -1px;
-
+                            .item-icon-hz {
+                                /*line-height: 90px;*/
+                                width: 43px;
+                                height: 43px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
+                            }
+                            .item-icon-pjf {
+                                /*line-height: 90px;*/
+                                width: 40px;
+                                height: 37px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
+                            }
+                            .item-icon-max {
+                                /*line-height: 90px;*/
+                                width: 59px;
+                                height: 21px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
+                            }
+                            .item-icon-min {
+                                /*line-height: 90px;*/
+                                width: 60px;
+                                height: 24px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
+                            }
                         }
                         .item-right {
                             box-sizing: border-box;
@@ -1292,6 +1366,87 @@
                             option {
                                 background-color: #0B3F6F;
                             }
+                        }
+                    }
+                }
+            }
+            .content-table{
+                position: relative;
+                width: 100%;
+                height: 577px;
+                border:1px solid #15759A;
+                margin-top: 15px;
+                text-align: center;
+                box-sizing: border-box;
+                padding-top: 16px;
+                .tit{
+                    font-size:14px;
+                    font-family:HiraginoSansGB-W3;
+                    font-weight:normal;
+                    color:rgba(95,251,248,1);
+                }
+                .table-box{
+                    width: 100%;
+                    height: 528px;
+                    margin-top: 12px;
+                    /*display: flex;*/
+                    /*flex-wrap: nowrap;*/
+                    table{
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        border-collapse:collapse;
+                        border:0;//表示表格没有边框。
+                        cellspacing:'0';//表示单元格之间间隙为0。
+                        cellpadding:'0';//表示单元格的边框宽度为0。
+                        /*z-index: 5;*/
+                        tr{
+                            background-color: #0A3E6E;
+                            height: 48px;
+                        }
+                        tr:nth-child(2n-1){
+                            background-color: #104C7B;
+                        }
+                        td, th{
+                            border-right: 1px solid #0F5A84;
+                        }
+                        th{
+                            background-color: #185588;
+                            font-size:14px;
+                            font-family:HiraginoSansGB-W6;
+                            font-weight:normal;
+                            color:rgba(95,251,248,1);
+                        }
+                        td{
+                            font-size:14px;
+                            font-family:HiraginoSansGB-W3;
+                            font-weight:normal;
+                            color:rgba(223,253,255,1);
+                        }
+                    }
+                    .icon-bxz{
+                        display: inline-block;
+                        width: 20px;
+                        height: 17px;
+                        background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
+                        margin-left: 20px;
+                    }
+                    .table-header{
+                        height: 100%;
+                        width: 215px;
+                        position: relative;
+                        overflow: hidden;
+                        float: left;
+
+
+                    }
+                    .table-right{
+                        width: calc(100% - 215px);
+                        /*width: 100%;*/
+                        overflow-y: hidden;
+                        overflow-x: scroll;
+                        table{
+                            width: 2000px;
                         }
                     }
                 }

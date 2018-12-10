@@ -156,7 +156,7 @@
                 <div class="head-right"><i class="icon-pdf"></i><i class="icon-excel"></i></div>
             </div>
 
-            <template-table></template-table>
+            <template-table :data-tit="tableTitle"></template-table>
             <div class="selector">
                 <i class="icon-front"></i>
                 <i class="icon-prev"></i>
@@ -266,7 +266,57 @@
                         data1: '2018-10-01 10:02 30',
                         data2: '2018-10-01 10:02 60',
                     }
-                ]
+                ],
+                tableTitle: {
+                    title: '【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】',
+                    titArr: [
+                        {
+                            prop: "id",
+                            label: "日期",
+                            sortable: false
+                        },
+                        {
+                            prop: "dianliuIa",
+                            label: "电流Ia",
+                            sortable: false
+                        },
+                        {
+                            prop: "dianliuIb",
+                            label: "电流Ib",
+                            sortable: false
+                        },
+                        {
+                            prop: "dianliuIc",
+                            label: "电流Ic",
+                            sortable: false
+                        },
+                        {
+                            prop: "zhengDianNeng",
+                            label: "当前正向有功总电能",
+                            sortable: false
+                        },
+                        {
+                            prop: "cuUan",
+                            label: "粗电压Uan",
+                            sortable: false
+                        },
+                        {
+                            prop: "cuUbn",
+                            label: "粗电压Ubn",
+                            sortable: false
+                        },
+                        {
+                            prop: "cuUcn",
+                            label: "粗电压Ucn",
+                            sortable: false
+                        },
+                        {
+                            prop: "sum",
+                            label: "总有功功率W",
+                            sortable: false
+                        },
+                    ]
+                },
             }
         },
         components: {
@@ -289,7 +339,7 @@
 
                 var option = {
                     color: ['#637EF9', '#1C97FF', '#38E68D', '#CFDB48', '#66A9C9', '#00BFC7', '#99D683', '#B4C1D7', '#21834B'],
-                    //title: [{
+                    // title: [{
                     //    text: '对比定标单耗增长排名',
                     //    x: 'center',
                     //    y: 'top',
@@ -299,7 +349,7 @@
                     //        fontSize: 14,
                     //        fontWeight: 'bold'
                     //    }
-                    //}],
+                    // }],
                     legend: {
                         data: ['2AA101-1号电源线_能耗', '2AA102-1号电源线_能耗', '2AA103-1号电源线_能耗', '2AA104-1号电源线_能耗'],
                         align: 'left',
@@ -426,7 +476,7 @@
     }
 </script>
 <style>
-    
+
 </style>
 
 <style lang="scss" scoped>

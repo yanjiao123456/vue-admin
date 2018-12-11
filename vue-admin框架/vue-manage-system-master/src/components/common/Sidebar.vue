@@ -172,12 +172,31 @@
                                 index: "nengyuanjihua",
                                 title: "能源计划"
                             },
+                            {
+                                icon: "ml5 icon-all icon-sjcx",
+                                index: "fuhefenxi",
+                                title: "负荷分析",
+                                subs:[
+                                    {
+                                        icon: "ml5 icon-all icon-sjcx",
+                                        index: "rifuhe",
+                                        title: "日负荷"
+                                    }
+                                ]
+                            },
                         ]
                     },
                     {
                         icon: "ml5 icon-all icon-bjgl",
                         index: "bjgl",
-                        title: "报警管理"
+                        title: "报警管理",
+                        subs:[
+                            {
+                                icon: "ml5 icon-all icon-sjcx",
+                                index: "baojingguanli",
+                                title: "报警管理"
+                            }
+                        ]
                     },
                     {
                         icon: "ml5 icon-all icon-sbgl",
@@ -355,6 +374,9 @@
     .ul-box .el-submenu__title i {
         color: #f9fffb;
         transform: rotateZ(-90deg);
+    }
+    .ul-box .el-submenu__title .icon-all{
+        transform: rotateZ(0deg);
     }
 </style>
 

@@ -2,93 +2,83 @@
     <div class="RTData Inquire">
         <transition name="el-zoom-in-center">
             <div v-show="leftShow" class="left-branch">
-                <div class="tabTit">
-                    <span @click="tabTit=0" :class="{cur:tabTit==0}">分项</span>
-                    <span @click="tabTit=1" :class="{cur:tabTit==1}">部门</span>
-                    <span @click="tabTit=2" :class="{cur:tabTit==2}">位置</span>
-                    <span @click="tabTit=3" :class="{cur:tabTit==3}">支路</span>
-                </div>
-                <!--<div class="tit">选择支路</div>-->
-                <div class="inputBox">
-                    <i class="icon-ss"></i>
-                    <input placeholder="请输入支路名称" type="text" id="key" value="" class="empty"/><br/>
-                </div>
-                <!--<div class="zTreeDemoBackground left">-->
-                <ul id="treeDemo" class="ztree"></ul>
-                <!--</div>-->
-                <div class="butt">
-                    <div class="tit">已选支路</div>
+                <div class="tit"><h3>报警分类</h3></div>
+                <div class="alarm-type">
                     <ul>
-                        <li><i :class="option == 0?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
-                        <li><i :class="option == 1?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
-                        <li><i :class="option == 2?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
+                        <li>全部类型 <span>17</span></li>
+                        <li class="f2">安全报警 <span>1</span></li>
+                        <li class="f3">配电监控 <span>1</span></li>
+                        <li class="f2">环境报警 <span>4</span></li>
+                        <li class="f3">温度报警 <span>2</span></li>
+                        <li class="f3">湿度报警 <span>2</span></li>
+                        <li class="f2">缴费提醒 <span>12</span></li>
+                        <li class="f3">预付费用户 <span>8</span></li>
+                        <li class="f3">后付费用户 <span>4</span></li>
                     </ul>
                 </div>
             </div>
         </transition>
-        <div @click="leftShow=!leftShow" :class="{btn:true,shrinkBtn:!leftShow}">支 路 选 择</div>
+        <div @click="leftShow=!leftShow" :class="{btn:true,shrinkBtn:!leftShow}">报 警 分 类</div>
         <div :class="{main:true,mainShow:leftShow}">
             <div class="filtrate-box">
                 <div class="bg"></div>
                 <div class="title"><h3>筛选条件</h3>
 
                 </div>
-                <div @click="filtrateShow=!filtrateShow"
-                     :class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>
+                <!--<div @click="filtrateShow=!filtrateShow"-->
+                <!--:class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>-->
                 <el-collapse-transition>
                     <div v-show="filtrateShow" class="filtrate-show">
-                        <div class="item-row">
-                            <i class="icon-lx"></i>
-                            <span class="checkbox-tit">分析方法:</span>
-                            <div class="count">
-                                <!--<div class="bg"></div>-->
-                                <select>
-                                    <option>同比</option>
-                                    <option>10</option>
-                                    <option>15</option>
-                                    <option>30</option>
-                                    <option>60</option>
-                                </select>
+
+
+                        <div class="item-row item-row-btns">
+                            <div class="menu-left">
+                                <div @click="plclCur=!plclCur" :class="{'btn-plcl':true,cur:plclCur}"></div>
+                                <div class="commit">
+                                    <span style="color: #FF755E">100</span>条未读，<span style="color: #48D997">234</span>条已处理
+                                </div>
                             </div>
-                        </div>
-                        <div class="item-row">
-                            <i class="icon-wd"></i>
-                            <span class="checkbox-tit">维度:</span>
-                            <el-radio class="choice" v-model="radio" label="1">时</el-radio>
-                            <el-radio class="choice" v-model="radio" label="2">天</el-radio>
-                            <el-radio class="choice" v-model="radio" label="3">月</el-radio>
-                        </div>
-                        <div class="item-row item-row-br">
-                            <div class="fl">
-                                <span class="date-select">时间选择</span>
-                                <el-date-picker
-                                        class=""
-                                        v-model="value6"
-                                        type="datetimerange"
-                                        range-separator="—"
-                                        start-placeholder="开始日期"
-                                        end-placeholder="结束日期">
-                                </el-date-picker>
-                            </div>
-                            <div class="fl days-box">
-                        <span class="days-tit date-select">
-                            <i class="el-icon-search"></i>
-                            快捷查询:
-                        </span>
-                                <div class="days-btn">
-                                    <span @click="days=0" :class="{cur:days==0}">前1天</span>
-                                    <span @click="days=1" :class="{cur:days==1}">前3天</span>
-                                    <span @click="days=2" :class="{cur:days==2}">前7天</span>
-                                    <span @click="days=3" :class="{cur:days==3}">前1月</span>
+                            <div class="menu-right">
+                                <div class="right-btn">
+                                    <div @click="btnCur=0" :class="{'btn-all':true,cur:btnCur==0}"></div>
+                                    <div @click="btnCur=1" :class="{'btn-ycl':true,cur:btnCur==1}"></div>
+                                    <div @click="btnCur=2" :class="{'btn-wcl':true,cur:btnCur==2}"></div>
+                                </div>
+                                <div class="sort-box">
+                                    <div class="select-sort">
+                                        <span>默认排序</span>
+                                        <i class="icon-arrow"></i>
+                                    </div>
+                                    <div class="pull-down">
+                                        <div>默认排序</div>
+                                        <div>默认排序</div>
+                                        <div>自定义时间段</div>
+                                        <div class="custom">
+                                            <div class="time-start">
+                                                <input type="text" class="input-year">
+                                                <span>年</span>
+                                                <input type="text" class="input-month">
+                                                <span>月</span>
+                                                <input type="text" class="input-day">
+                                                <span>日</span>
+                                            </div>
+                                            <div class="to">至</div>
+                                            <div class="time-end">
+                                                <input type="text" class="input-year">
+                                                <span>年</span>
+                                                <input type="text" class="input-month">
+                                                <span>月</span>
+                                                <input type="text" class="input-day">
+                                                <span>日</span>
+                                            </div>
+                                        </div>
+                                        <div class="confirm">确定</div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-
-                        <div class="btns-box">
-                            <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">查询</div>
-                            <div @click="btns=1" :class="{'btn-item':true,cur:btns==1}">重置</div>
-                        </div>
 
                     </div>
                 </el-collapse-transition>
@@ -96,32 +86,46 @@
             </div>
             <!--对比-->
             <div class="contrast">
-                <div class="lists" v-for="v in lists">
-                    <div class="current-period">
-                        <div class="item-left">
-                            <i :class="v.icon"></i>
-                        </div>
-                        <div class="item-right">
-                            <p>{{ v.title }}</p>
-                            <div class="kwh">
-                                <span class="number">166.56</span>
-                                <span class="unit">kWh</span>
+                <el-row :gutter="24">
+                    <el-col :key="index" v-for="(v,index) in lists" :xl="8" :lg="8" :md="24" :sm="24" :xs="24">
+                        <div class="current-period">
+                            <div :style="{background:v.color}" class="item-left">
+                                <i :class="v.icon"></i>
+                            </div>
+                            <div class="item-right">
+                                <div class="p">
+                                    <span>{{ v.title }}</span>
+                                    <span class="time">2018-10-26   00：46：00</span>
+                                </div>
+
+                                <div class="kwh">
+                                    <span class="number">166.56</span>
+                                    <span class="unit">kWh</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="before">
-                        <div class="item-left">
-                            <i :class="v.icon"></i>
-                        </div>
-                        <div class="item-right">
-                            <p>{{ v.title2 }}</p>
-                            <div class="kwh">
-                                <span class="number">166.56</span>
-                                <span class="unit">kWh</span>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="24">
+                    <el-col :key="index" v-for="(v,index) in lists2" :xl="8" :lg="8" :md="24" :sm="24" :xs="24">
+                        <div class="current-period">
+                            <div :style="{background:v.color}" class="item-left">
+                                <i :class="v.icon"></i>
+                            </div>
+                            <div class="item-right">
+                                <div class="p">
+                                    <span>{{ v.title }}</span>
+                                    <span class="time">2018-10-26   00：46：00</span>
+                                </div>
+                                <div class="kwh">
+                                    <span class="number">166.56</span>
+                                    <span class="unit">kWh</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </el-col>
+                </el-row>
+
             </div>
 
             <div class="data-box">
@@ -171,37 +175,46 @@
 
 <script>
     import TemplateTable from '../views/template-table'
+
     export default {
-        name: "nenghaoqushi",
+        name: "baojingguanli",
         data() {
             return {
-                lists:[
+                plclCur: false,
+                btnCur: 0,
+                lists: [
                     {
-                        title:'本期汇总',
-                        icon:'item-icon-hz',
-                        title2:'同期汇总',
+                        title: '最大负荷',
+                        icon: 'item-icon-max',
+                        color: '#00C3F4',
                     },
                     {
-                        title:'本期平均',
-                        icon:'item-icon-pjf',
-                        title2:'同期平均',
+                        title: '最小负荷',
+                        icon: 'item-icon-min',
+                        color: '#2CD27D',
                     },
                     {
-                        title:'本期最大值',
-                        icon:'item-icon-max',
-                        title2:'同期最大值',
+                        title: '平均负荷',
+                        icon: 'item-icon-pjf',
+                        color: '#D69B44',
+                    },
+                ],
+                lists2: [
+                    {
+                        title: '日负荷率',
+                        icon: 'item-icon-r',
+                        color: '#656EE8',
                     },
                     {
-                        title:'本期最小值 ',
-                        icon:'item-icon-min',
-                        title2:'同期最小值',
+                        title: '最低负荷率',
+                        icon: 'item-icon-zdfh',
+                        color: '#CFDB48',
                     },
                     {
-                        title:'本期同比',
-                        icon:'item-icon-tb',
-                        title2:'同期同比',
-                    },
-
+                        title: '负荷系数',
+                        icon: 'item-icon-fhxs',
+                        color: '#BE6A3C',
+                    }
                 ],
                 option: '2',
                 tabTit: 0,
@@ -275,136 +288,6 @@
             TemplateTable
         },
         mounted() {
-            var setting = {
-                check: {
-                    enable: true,
-                    // enable: true,
-                    chkStyle: "radio",
-                    radioType: "level"
-
-                },
-                view: {
-                    nameIsHTML: true, //允许name支持html
-                    selectedMulti: false
-                },
-                edit: {
-                    enable: false,
-                    editNameSelectAll: false
-                },
-                data: {
-                    simpleData: {
-                        enable: true
-                    }
-                }
-            };
-
-            var zNodes = [
-                {
-                    id: 1,
-                    pId: 0,
-                    name: "随意勾选 1",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 11,
-                    pId: 1,
-                    name: "随意勾选 1-1",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 111,
-                    pId: 11,
-                    name: "随意勾选 1-1-1"
-                },
-                {
-                    id: 112,
-                    pId: 11,
-                    name: "随意勾选 1-1-2"
-                },
-                {
-                    id: 12,
-                    pId: 1,
-                    name: "随意勾选 1-2",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 121,
-                    pId: 12,
-                    name: "随意勾选 1-2-1"
-                },
-                {
-                    id: 122,
-                    pId: 12,
-                    name: "随意勾选 1-2-2"
-                },
-                {
-                    id: 2,
-                    pId: 0,
-                    name: "随意勾选 2",
-                    checked: true,
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 21,
-                    pId: 2,
-                    name: "随意勾选 2-1"
-                },
-                {
-                    id: 22,
-                    pId: 2,
-                    name: "随意勾选 2-2",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 221,
-                    pId: 22,
-                    name: "随意勾选 2-2-1",
-                    // checked: true,
-                },
-                {
-                    id: 222,
-                    pId: 22,
-                    name: "随意勾选 2-2-2"
-                },
-                {
-                    id: 23,
-                    pId: 2,
-                    name: "随意勾选 2-3"
-                }
-            ];
-
-            var code;
-
-            function setCheck() {
-                var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
-                    py = $("#py").attr("checked") ? "p" : "",
-                    sy = $("#sy").attr("checked") ? "s" : "",
-                    pn = $("#pn").attr("checked") ? "p" : "",
-                    sn = $("#sn").attr("checked") ? "s" : "",
-                    type = {"Y": py + sy, "N": pn + sn};
-                zTree.setting.check.chkboxType = type;
-                showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
-            }
-
-            function showCode(str) {
-                if (!code) code = $("#code");
-                code.empty();
-                code.append("<li>" + str + "</li>");
-            }
-
-
-            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-            fuzzySearch('treeDemo', '#key', null, true); //初始化模糊搜索方法
-            setCheck();
-            $("#py").bind("change", setCheck);
-            $("#sy").bind("change", setCheck);
-            $("#pn").bind("change", setCheck);
-            $("#sn").bind("change", setCheck);
 
         }
 
@@ -546,41 +429,55 @@
             box-shadow: 0px 3px 9px 0px #01101f, 0px 3px 30px 2px #1A8EA0 inset;
             border-radius: 3px;
             padding: 14px 13px;
-            .tabTit {
+            .alarm-type {
                 width: 100%;
-                display: flex;
-                justify-content: flex-start;
-                span {
-                    font-size: 12px;
-                    font-family: HiraginoSansGB-W3;
-                    font-weight: bold;
-                    color: rgba(97, 213, 255, 1);
-                    margin-right: 27px;
-                    cursor: pointer;
-                    &.cur {
+                margin-top: 30px;
+                ul {
+                    list-style: none;
+                    li {
                         font-size: 12px;
-                        font-family: HiraginoSansGB-W6;
-                        font-weight: bold;
-                        color: rgba(45, 243, 255, 1);
-                        padding-bottom: 3px;
-                        border-bottom: 2px solid #2DF3FF;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(254, 254, 254, 1);
+                        margin-bottom: 17px;
+                        display: flex;
+                        justify-content: space-between;
+                        &.f2 {
+                            position: relative;
+                            margin-left: 15px;
+                            span {
+                                background-color: #F39800;
+                            }
+                        }
+                        &.f2::before {
+                            content: '';
+                            position: absolute;
+                            top: 5px;
+                            left: -15px;
+                            width: 5px;
+                            height: 5px;
+                            border: 1px solid rgba(72, 206, 230, 1);
+                            border-radius: 50%;
+                        }
+                        &.f3 {
+                            margin-left: 27px;
+                            span {
+                                background-color: #00A0E9;
+                            }
+                        }
+                        span {
+                            font-size: 10px;
+                            font-family: HiraginoSansGB-W6;
+                            font-weight: normal;
+                            color: rgba(255, 255, 255, 1);
+                            padding: 0 7px;
+                            border-radius: 8px;
+                            background-color: #FC5135;
+                        }
                     }
                 }
             }
-            .inputBox {
-                position: relative;
-                .icon-ss {
-                    display: inline-block;
-                    position: absolute;
-                    right: 15px;
-                    bottom: 6px;
-                    float: right;
-                    width: 14px;
-                    height: 14px;
-                    background: url("../../assets/PeiDianJianCe/icon_ss（1）.png") no-repeat;
-                    z-index: 5;
-                }
-            }
+
             .empty {
                 width: 223px;
                 height: 28px;
@@ -601,11 +498,13 @@
             }
 
             .tit {
-                font-size: 18px;
-                font-family: 'HiraginoSansGB-W3';
-                font-weight: bold;
-                /*font-weight: 500;*/
-                color: rgba(254, 254, 255, 1);
+                h3 {
+                    font-size: 16px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: 600;
+                    color: rgba(254, 254, 255, 1);
+                }
+
             }
             .butt {
                 width: 100%;
@@ -678,191 +577,221 @@
             margin-left: 4px;
             .contrast {
                 width: 100%;
-                display: flex;
-                flex-wrap: nowrap;
-                justify-content: space-between;
+                /*display: flex;*/
+                /*flex-wrap: nowrap;*/
+                /*justify-content: space-between;*/
                 margin-top: 24px;
-                @media screen and (max-width: 1500px) {
-                    flex-direction: column;
-                }
-                .lists {
+                .el-row {
+                    margin-bottom: 24px;
 
-                    @media screen and (min-width: 1500px) {
-                        &:not(:first-child) {
-                            margin-left: 25px;
-                        }
+                    &:last-child {
+                        margin-bottom: 0;
                     }
-                    @media screen and (max-width: 1500px) {
-                        margin-left: 0;
-                        margin-top: 20px;
+                    @media screen and (max-width: 1200px) {
+                        margin-bottom: 0;
                     }
+                }
+
+                /*@media screen and (min-width: 1500px) {*/
+                /*&:not(:first-child) {*/
+                /*margin-left: 25px;*/
+                /*}*/
+                /*}*/
+                /*@media screen and (max-width: 1500px) {*/
+                /*margin-left: 0;*/
+                /*margin-top: 20px;*/
+                /*}*/
+                /*width: 100%;*/
+
+                /*display: flex;*/
+                /*flex-direction: column;*/
+                .item-icon-hz {
+                    /*line-height: 90px;*/
+                    width: 43px;
+                    height: 43px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
+                }
+                .item-icon-pjf {
+                    /*line-height: 90px;*/
+                    width: 40px;
+                    height: 37px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
+                }
+                .item-icon-max {
+                    /*line-height: 90px;*/
+                    width: 59px;
+                    height: 21px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
+                }
+                .item-icon-min {
+                    /*line-height: 90px;*/
+                    width: 60px;
+                    height: 24px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
+                }
+                .item-icon-tb {
+                    /*line-height: 90px;*/
+                    width: 41px;
+                    height: 34px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
+                }
+                .item-icon-r {
+                    /*line-height: 90px;*/
+                    width: 32px;
+                    height: 41px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_r.png") no-repeat;
+                }
+                .item-icon-zdfh {
+                    /*line-height: 90px;*/
+                    width: 49px;
+                    height: 41px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_zdfh.png") no-repeat;
+                }
+                .item-icon-fhxs {
+                    /*line-height: 90px;*/
+                    width: 48px;
+                    height: 41px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_fhxs.png") no-repeat;
+                }
+                .current-period {
+                    /*width: calc(100% - 25px);*/
                     width: 100%;
+                    height: 90px;
+                    box-sizing: border-box;
+                    /*padding: 20px 0;*/
 
-                    display: flex;
-                    flex-direction: column;
-                    .item-icon-hz {
-                        /*line-height: 90px;*/
-                        width: 43px;
-                        height: 43px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
+                    border: 1px solid rgba(42, 244, 255, 1);
+                    box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                    /*opacity:0.5;*/
+                    border-radius: 3px;
+                    @media screen and (max-width: 1200px) {
+                        margin-top: 24px;
                     }
-                    .item-icon-pjf {
-                        /*line-height: 90px;*/
-                        width: 40px;
-                        height: 37px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
-                    }
-                    .item-icon-max {
-                        /*line-height: 90px;*/
-                        width: 59px;
-                        height: 21px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
-                    }
-                    .item-icon-min {
-                        /*line-height: 90px;*/
-                        width: 60px;
-                        height: 24px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
-                    }
-                    .item-icon-tb {
-                        /*line-height: 90px;*/
-                        width: 41px;
-                        height: 34px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
-                    }
-                    .current-period {
-                        /*width: calc(100% - 25px);*/
-                        width: 100%;
+
+                    .item-left {
+                        width: 90px;
                         height: 90px;
                         box-sizing: border-box;
-                        /*padding: 20px 0;*/
+                        /*padding: ;*/
+                        float: left;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        background-color: #01A8F2;
+                        border-radius: 3px 3px 0px 0px;
+                        margin-top: -1px;
+                        margin-left: -1px;
 
-                        border: 1px solid rgba(42, 244, 255, 1);
-                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
-                        /*opacity:0.5;*/
-                        border-radius: 3px;
-
-
-
-                        .item-left {
-                            width: 90px;
-                            height: 90px;
-                            box-sizing: border-box;
-                            /*padding: ;*/
-                            float: left;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            text-align: center;
-                            background-color: #01A8F2;
-                            border-radius: 3px 3px 0px 0px;
-                            margin-top: -1px;
-                            margin-left: -1px;
-
-                        }
-                        .item-right {
-                            box-sizing: border-box;
-                            /*padding-left: 90px;*/
-                            /*box-sizing: border-box;*/
-                            /*padding: 20px 0;*/
-                            padding: 20px 20px 20px 110px;
-                            p {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
-                            }
-                            .kwh {
-                                margin-top: 6px;
-                                display: flex;
-                                justify-content: space-between;
-                            }
-                            .number {
-                                font-size: 18px;
-                                font-family: DigitaldreamFat;
-                                font-weight: 400;
-                                color: rgba(44, 244, 242, 1);
-                            }
-                            .unit {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
-                            }
-
-                        }
                     }
-                    .before {
-                        width: 100%;
-                        height: 90px;
+                    .item-right {
                         box-sizing: border-box;
-                        margin-top: 25px;
+                        /*padding-left: 90px;*/
+                        /*box-sizing: border-box;*/
                         /*padding: 20px 0;*/
-
-                        border: 1px solid rgba(42, 244, 255, 1);
-                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
-                        /*opacity:0.5;*/
-                        border-radius: 3px;
-                        .item-left {
-                            width: 90px;
-                            height: 90px;
-                            box-sizing: border-box;
-                            /*padding: ;*/
-                            float: left;
+                        padding: 20px 20px 20px 110px;
+                        .p {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
                             display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            text-align: center;
-                            background-color: #5361DB;
-                            border-radius: 3px 3px 0px 0px;
-                            margin-top: -1px;
-                            margin-left: -1px;
-                            .item-icon-hz {
-                                /*line-height: 90px;*/
-                                width: 43px;
-                                height: 43px;
-                                display: inline-block;
-                                background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
-                            }
+                            justify-content: space-between;
                         }
-                        .item-right {
-                            box-sizing: border-box;
-                            /*padding-left: 90px;*/
-                            /*box-sizing: border-box;*/
-                            /*padding: 20px 0;*/
-                            padding: 20px 20px 20px 110px;
-                            p {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
-                            }
-                            .kwh {
-                                margin-top: 6px;
-                                display: flex;
-                                justify-content: space-between;
-                            }
-                            .number {
-                                font-size: 18px;
-                                font-family: DigitaldreamFat;
-                                font-weight: 400;
-                                color: rgba(44, 244, 242, 1);
-                            }
-                            .unit {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
-                            }
+                        .kwh {
+                            margin-top: 6px;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .number {
+                            font-size: 18px;
+                            font-family: DigitaldreamFat;
+                            font-weight: 400;
+                            color: rgba(44, 244, 242, 1);
+                        }
+                        .unit {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
 
-                        }
                     }
                 }
+                .before {
+                    width: 100%;
+                    height: 90px;
+                    box-sizing: border-box;
+                    margin-top: 25px;
+                    /*padding: 20px 0;*/
+
+                    border: 1px solid rgba(42, 244, 255, 1);
+                    box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                    /*opacity:0.5;*/
+                    border-radius: 3px;
+                    .item-left {
+                        width: 90px;
+                        height: 90px;
+                        box-sizing: border-box;
+                        /*padding: ;*/
+                        float: left;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        background-color: #5361DB;
+                        border-radius: 3px 3px 0px 0px;
+                        margin-top: -1px;
+                        margin-left: -1px;
+                        .item-icon-hz {
+                            /*line-height: 90px;*/
+                            width: 43px;
+                            height: 43px;
+                            display: inline-block;
+                            background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
+                        }
+                    }
+                    .item-right {
+                        box-sizing: border-box;
+                        /*padding-left: 90px;*/
+                        /*box-sizing: border-box;*/
+                        /*padding: 20px 0;*/
+                        padding: 20px 20px 20px 110px;
+                        p {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
+                        .kwh {
+                            margin-top: 6px;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .number {
+                            font-size: 18px;
+                            font-family: DigitaldreamFat;
+                            font-weight: 400;
+                            color: rgba(44, 244, 242, 1);
+                        }
+                        .unit {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
+
+                    }
+                }
+
             }
 
             .bg {
@@ -1000,6 +929,100 @@
                             align-items: center;
                         }
                     }
+                    .item-row-btns {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .menu-left {
+                            display: flex;
+                            align-items: center;
+                            .btn-plcl {
+                                width: 111px;
+                                height: 41px;
+                                background: url("../../assets/PeiDianJianCe/btn_plcl-xz.png") no-repeat;
+                                &.cur {
+                                    background: url("../../assets/PeiDianJianCe/btn_plcl-xz1.png") no-repeat;
+                                }
+                            }
+                            .commit {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: #E8E8E8;
+                            }
+                        }
+                        .menu-right {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            .sort-box {
+                                position: relative;
+                                .pull-down{
+                                    position: absolute;
+                                    top: 28px;
+                                    left: 0;
+                                    width: 170px;
+                                    height: 184px;
+                                    background:rgba(0,17,33,.5);
+                                    /*box-shadow:0px 3px 8px 1px rgba(2,28,60,0.43);*/
+                                }
+                            }
+                            /*pull-down*/
+                            .select-sort {
+                                width: 170px;
+                                height: 28px;
+                                border: 1px solid rgba(45, 243, 255, 1);
+                                border-radius: 2px;
+                                box-sizing: border-box;
+                                padding: 3px 12px;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                span {
+                                    font-size: 14px;
+                                    font-family: HiraginoSansGB-W3;
+                                    font-weight: bold;
+                                    color: rgba(190, 205, 222, 1);
+                                }
+
+                                .icon-arrow {
+                                    width: 12px;
+                                    height: 7px;
+                                    display: inline-block;
+                                    background: url("../../assets/PeiDianJianCe/形状 1054 拷贝 2.png") no-repeat;
+                                    /*-webkit-background-size: ;*/
+                                    background-size: 100% 100%;
+                                }
+                            }
+                            .right-btn {
+                                display: flex;
+                                flex-direction: row;
+                                & > div {
+                                    width: 91px;
+                                    height: 41px;
+                                }
+                                .btn-all {
+                                    background: url("../../assets/PeiDianJianCe/btn_qb.png") no-repeat;
+                                    &.cur {
+                                        background: url("../../assets/PeiDianJianCe/btn_qb-xz.png") no-repeat;
+                                    }
+                                }
+                                .btn-ycl {
+                                    background: url("../../assets/PeiDianJianCe/btn_wcl.png") no-repeat;
+                                    &.cur {
+                                        background: url("../../assets/PeiDianJianCe/btn_wcl -xz.png") no-repeat;
+                                    }
+                                }
+                                .btn-wcl {
+                                    background: url("../../assets/PeiDianJianCe/btn_ycl.png") no-repeat;
+                                    &.cur {
+                                        background: url("../../assets/PeiDianJianCe/btn_ycl-xz.png") no-repeat;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
 
                     .item-row {
                         height: 60px;
@@ -1015,6 +1038,13 @@
                             width: 15px;
                             height: 11px;
                             background: url("../../assets/NengHaoChaXun/icon _fxff.png") no-repeat;
+                        }
+                        .icon-sj {
+                            width: 14px;
+                            height: 15px;
+                            display: inline-block;
+                            background: url("../../assets/PeiDianJianCe/icon_sj.png") no-repeat;
+                            margin-right: 5px;
                         }
                         .icon-wd {
                             display: inline-block;

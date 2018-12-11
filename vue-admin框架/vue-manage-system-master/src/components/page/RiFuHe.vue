@@ -37,27 +37,8 @@
                      :class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>
                 <el-collapse-transition>
                     <div v-show="filtrateShow" class="filtrate-show">
-                        <div class="item-row">
-                            <i class="icon-lx"></i>
-                            <span class="checkbox-tit">分析方法:</span>
-                            <div class="count">
-                                <!--<div class="bg"></div>-->
-                                <select>
-                                    <option>同比</option>
-                                    <option>10</option>
-                                    <option>15</option>
-                                    <option>30</option>
-                                    <option>60</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="item-row">
-                            <i class="icon-wd"></i>
-                            <span class="checkbox-tit">维度:</span>
-                            <el-radio class="choice" v-model="radio" label="1">时</el-radio>
-                            <el-radio class="choice" v-model="radio" label="2">天</el-radio>
-                            <el-radio class="choice" v-model="radio" label="3">月</el-radio>
-                        </div>
+
+
                         <div class="item-row item-row-br">
                             <div class="fl">
                                 <span class="date-select">时间选择</span>
@@ -83,6 +64,21 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="item-row">
+                            <i class="icon-sj"></i>
+                            <span class="checkbox-tit">间隔时间（分)：</span>
+                            <div class="count">
+                                <!--<div class="bg"></div>-->
+                                <select>
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>15</option>
+                                    <option>30</option>
+                                    <option>60</option>
+                                </select>
+                            </div>
+                        </div>
+
 
 
                         <div class="btns-box">
@@ -96,32 +92,46 @@
             </div>
             <!--对比-->
             <div class="contrast">
-                <div class="lists" v-for="v in lists">
-                    <div class="current-period">
-                        <div class="item-left">
-                            <i :class="v.icon"></i>
-                        </div>
-                        <div class="item-right">
-                            <p>{{ v.title }}</p>
-                            <div class="kwh">
-                                <span class="number">166.56</span>
-                                <span class="unit">kWh</span>
+                <el-row :gutter="24">
+                    <el-col :key="index" v-for="(v,index) in lists" :xl="8" :lg="8" :md="24" :sm="24" :xs="24">
+                        <div class="current-period">
+                            <div :style="{background:v.color}" class="item-left">
+                                <i :class="v.icon"></i>
+                            </div>
+                            <div class="item-right">
+                                <div class="p">
+                                    <span>{{ v.title }}</span>
+                                    <span class="time">2018-10-26   00：46：00</span>
+                                </div>
+
+                                <div class="kwh">
+                                    <span class="number">166.56</span>
+                                    <span class="unit">kWh</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="before">
-                        <div class="item-left">
-                            <i :class="v.icon"></i>
-                        </div>
-                        <div class="item-right">
-                            <p>{{ v.title2 }}</p>
-                            <div class="kwh">
-                                <span class="number">166.56</span>
-                                <span class="unit">kWh</span>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="24">
+                    <el-col :key="index" v-for="(v,index) in lists2" :xl="8" :lg="8" :md="24" :sm="24" :xs="24">
+                        <div class="current-period">
+                            <div :style="{background:v.color}" class="item-left">
+                                <i :class="v.icon"></i>
+                            </div>
+                            <div class="item-right">
+                                <div class="p">
+                                    <span>{{ v.title }}</span>
+                                    <span class="time">2018-10-26   00：46：00</span>
+                                </div>
+                                <div class="kwh">
+                                    <span class="number">166.56</span>
+                                    <span class="unit">kWh</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </el-col>
+                </el-row>
+
             </div>
 
             <div class="data-box">
@@ -172,36 +182,42 @@
 <script>
     import TemplateTable from '../views/template-table'
     export default {
-        name: "nenghaoqushi",
+        name: "rifuhe",
         data() {
             return {
                 lists:[
                     {
-                        title:'本期汇总',
-                        icon:'item-icon-hz',
-                        title2:'同期汇总',
-                    },
-                    {
-                        title:'本期平均',
-                        icon:'item-icon-pjf',
-                        title2:'同期平均',
-                    },
-                    {
-                        title:'本期最大值',
+                        title:'最大负荷',
                         icon:'item-icon-max',
-                        title2:'同期最大值',
+                        color:'#00C3F4',
                     },
                     {
-                        title:'本期最小值 ',
+                        title:'最小负荷',
                         icon:'item-icon-min',
-                        title2:'同期最小值',
+                        color:'#2CD27D',
                     },
                     {
-                        title:'本期同比',
-                        icon:'item-icon-tb',
-                        title2:'同期同比',
+                        title:'平均负荷',
+                        icon:'item-icon-pjf',
+                        color:'#D69B44',
                     },
-
+                ],
+                lists2:[
+                    {
+                        title:'日负荷率',
+                        icon:'item-icon-r',
+                        color:'#656EE8',
+                    },
+                    {
+                        title:'最低负荷率',
+                        icon:'item-icon-zdfh',
+                        color:'#CFDB48',
+                    },
+                    {
+                        title:'负荷系数',
+                        icon:'item-icon-fhxs',
+                        color:'#BE6A3C',
+                    }
                 ],
                 option: '2',
                 tabTit: 0,
@@ -678,28 +694,35 @@
             margin-left: 4px;
             .contrast {
                 width: 100%;
-                display: flex;
-                flex-wrap: nowrap;
-                justify-content: space-between;
+                /*display: flex;*/
+                /*flex-wrap: nowrap;*/
+                /*justify-content: space-between;*/
                 margin-top: 24px;
-                @media screen and (max-width: 1500px) {
-                    flex-direction: column;
+                .el-row {
+                    margin-bottom: 24px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    @media screen and (max-width: 1200px) {
+                        margin-bottom: 0;
+                    }
                 }
-                .lists {
 
-                    @media screen and (min-width: 1500px) {
-                        &:not(:first-child) {
-                            margin-left: 25px;
-                        }
-                    }
-                    @media screen and (max-width: 1500px) {
-                        margin-left: 0;
-                        margin-top: 20px;
-                    }
-                    width: 100%;
 
-                    display: flex;
-                    flex-direction: column;
+                    /*@media screen and (min-width: 1500px) {*/
+                        /*&:not(:first-child) {*/
+                            /*margin-left: 25px;*/
+                        /*}*/
+                    /*}*/
+                    /*@media screen and (max-width: 1500px) {*/
+                        /*margin-left: 0;*/
+                        /*margin-top: 20px;*/
+                    /*}*/
+                    /*width: 100%;*/
+
+                    /*display: flex;*/
+                    /*flex-direction: column;*/
                     .item-icon-hz {
                         /*line-height: 90px;*/
                         width: 43px;
@@ -735,6 +758,27 @@
                         display: inline-block;
                         background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
                     }
+                .item-icon-r {
+                    /*line-height: 90px;*/
+                    width: 32px;
+                    height: 41px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_r.png") no-repeat;
+                }
+                .item-icon-zdfh {
+                    /*line-height: 90px;*/
+                    width: 49px;
+                    height: 41px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_zdfh.png") no-repeat;
+                }
+                .item-icon-fhxs {
+                    /*line-height: 90px;*/
+                    width: 48px;
+                    height: 41px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_fhxs.png") no-repeat;
+                }
                     .current-period {
                         /*width: calc(100% - 25px);*/
                         width: 100%;
@@ -746,6 +790,10 @@
                         box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
                         /*opacity:0.5;*/
                         border-radius: 3px;
+                        @media screen and (max-width: 1200px) {
+                            margin-top: 24px;
+                        }
+
 
 
 
@@ -771,11 +819,13 @@
                             /*box-sizing: border-box;*/
                             /*padding: 20px 0;*/
                             padding: 20px 20px 20px 110px;
-                            p {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
+                            .p {
+                                font-size:14px;
+                                font-family:HiraginoSansGB-W3;
+                                font-weight:normal;
+                                color:rgba(223,253,255,1);
+                                display: flex;
+                                justify-content:space-between;
                             }
                             .kwh {
                                 margin-top: 6px;
@@ -862,7 +912,7 @@
 
                         }
                     }
-                }
+
             }
 
             .bg {
@@ -1015,6 +1065,13 @@
                             width: 15px;
                             height: 11px;
                             background: url("../../assets/NengHaoChaXun/icon _fxff.png") no-repeat;
+                        }
+                        .icon-sj{
+                            width: 14px;
+                            height: 15px;
+                            display: inline-block;
+                            background: url("../../assets/PeiDianJianCe/icon_sj.png") no-repeat;
+                            margin-right: 5px;
                         }
                         .icon-wd {
                             display: inline-block;

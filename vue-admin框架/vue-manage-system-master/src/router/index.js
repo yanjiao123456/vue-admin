@@ -76,6 +76,16 @@ export default new Router({
                     meta: { title: '能源计划' }
                 },
                 {
+                    path:'/RiFuHe',
+                    component: resolve => require(['../components/page/RiFuHe.vue'], resolve),
+                    meta: { title: '日负荷' }
+                },
+                {
+                    path:'/BaoJingGuanLi',
+                    component: resolve => require(['../components/page/BaoJingGuanLi.vue'], resolve),
+                    meta: { title: '报警管理' }
+                },
+                {
                     path: '/icon',
                     component: resolve => require(['../components/page/Icon.vue'], resolve),
                     meta: { title: '自定义图标' }

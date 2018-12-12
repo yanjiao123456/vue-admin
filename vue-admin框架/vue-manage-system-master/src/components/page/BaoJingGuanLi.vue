@@ -45,36 +45,41 @@
                                     <div @click="btnCur=2" :class="{'btn-wcl':true,cur:btnCur==2}"></div>
                                 </div>
                                 <div class="sort-box">
-                                    <div class="select-sort">
-                                        <span>默认排序</span>
-                                        <i class="icon-arrow"></i>
+                                    <div @click="sortShow=!sortShow" class="select-sort">
+                                        <span>{{ sortVal }}</span>
+                                        <i :class="{'icon-arrow':true,cur:!sortShow}"></i>
                                     </div>
-                                    <div class="pull-down">
-                                        <div>默认排序</div>
-                                        <div>默认排序</div>
-                                        <div>自定义时间段</div>
-                                        <div class="custom">
-                                            <div class="time-start">
-                                                <input type="text" class="input-year">
-                                                <span>年</span>
-                                                <input type="text" class="input-month">
-                                                <span>月</span>
-                                                <input type="text" class="input-day">
-                                                <span>日</span>
+                                    <el-collapse-transition>
+                                        <div v-show="sortShow" class="pull-down">
+                                            <div @click="sortCur=index" :class="{cur:sortCur==index}"
+                                                 v-for="(v,index) in sortArr">{{ v }}
                                             </div>
-                                            <div class="to">至</div>
-                                            <div class="time-end">
-                                                <input type="text" class="input-year">
-                                                <span>年</span>
-                                                <input type="text" class="input-month">
-                                                <span>月</span>
-                                                <input type="text" class="input-day">
-                                                <span>日</span>
+                                            <!--<div class="cur">默认排序</div>-->
+                                            <!--<div>正向排序</div>-->
+                                            <!--<div>自定义时间段</div>-->
+                                            <div class="custom">
+                                                <div class="time-start">
+                                                    <input v-model="dateStart.year" type="text" class="input-year">
+                                                    <span>年</span>
+                                                    <input v-model="dateStart.month" type="text" class="input-month">
+                                                    <span>月</span>
+                                                    <input v-model="dateStart.day" type="text" class="input-day">
+                                                    <span>日</span>
+                                                </div>
+                                                <div class="to">至</div>
+                                                <div class="time-end">
+                                                    <input v-model="dateEnd.year" type="text" class="input-year">
+                                                    <span>年</span>
+                                                    <input v-model="dateEnd.month" type="text" class="input-month">
+                                                    <span>月</span>
+                                                    <input v-model="dateEnd.day" type="text" class="input-day">
+                                                    <span>日</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="confirm">确定</div>
+                                            <div @click="inSort" class="confirm">确定</div>
 
-                                    </div>
+                                        </div>
+                                    </el-collapse-transition>
                                 </div>
                             </div>
                         </div>
@@ -84,90 +89,103 @@
                 </el-collapse-transition>
 
             </div>
-            <!--对比-->
-            <div class="contrast">
-                <el-row :gutter="24">
-                    <el-col :key="index" v-for="(v,index) in lists" :xl="8" :lg="8" :md="24" :sm="24" :xs="24">
-                        <div class="current-period">
-                            <div :style="{background:v.color}" class="item-left">
-                                <i :class="v.icon"></i>
-                            </div>
-                            <div class="item-right">
-                                <div class="p">
-                                    <span>{{ v.title }}</span>
-                                    <span class="time">2018-10-26   00：46：00</span>
-                                </div>
 
-                                <div class="kwh">
-                                    <span class="number">166.56</span>
-                                    <span class="unit">kWh</span>
-                                </div>
-                            </div>
-                        </div>
-                    </el-col>
-                </el-row>
-                <el-row :gutter="24">
-                    <el-col :key="index" v-for="(v,index) in lists2" :xl="8" :lg="8" :md="24" :sm="24" :xs="24">
-                        <div class="current-period">
-                            <div :style="{background:v.color}" class="item-left">
-                                <i :class="v.icon"></i>
-                            </div>
-                            <div class="item-right">
-                                <div class="p">
-                                    <span>{{ v.title }}</span>
-                                    <span class="time">2018-10-26   00：46：00</span>
-                                </div>
-                                <div class="kwh">
-                                    <span class="number">166.56</span>
-                                    <span class="unit">kWh</span>
-                                </div>
-                            </div>
-                        </div>
-                    </el-col>
-                </el-row>
-
-            </div>
-
-            <div class="data-box">
-                <div class="bg"></div>
-                <div class="title"><h3>总功率因数pf</h3>
-                </div>
-                <div class="my-charts"></div>
-            </div>
-
-
-            <div class="Table">
-                <div class="bg"></div>
-                <div class="title"><h3>数据列表</h3>
-                    <div class="head-right"><i class="icon-pdf"></i><i class="icon-excel"></i></div>
-                </div>
-
-
-                <template-table :data-tit="tableTitle"></template-table>
-                <div class="selector">
-                    <i class="icon-front"></i>
-                    <i class="icon-prev"></i>
-                    <div class="page-num">
-                        <div class="bg"></div>
-                        <input type="text" value="1">
+            <div class="main-box">
+                <div class="Table">
+                    <div class="bg"></div>
+                    <div class="title"><h3>数据列表</h3>
+                        <div class="head-right"><i class="icon-pdf"></i><i class="icon-excel"></i></div>
                     </div>
 
-                    <span class="page-all">
-                        /共1页
-                    </span>
-                    <i class="icon-next"></i>
-                    <i class="icon-last"></i>
-                    <div class="count">
+                    <div class="list-box">
+                        <div class="list-title">
+                            【 报警信息列表 】
+                        </div>
+                        <ul>
+                            <li v-for="v in listData">
+                                <div class="item-box">
+                                    <span class="f1">{{ v.item1Name }}</span>
+                                    <span class="f2">{{ v.item1Commit }}</span>
+                                </div>
+                                <div class="item-box">
+                                    <span class="f1">{{ v.item2Name }}</span>
+                                    <span class="f2">{{ v.item2Commit }}</span>
+                                </div>
+                                <div class="item-box">
+                                    <span v-show="v.item3TF" class="wcl">未处理</span>
+                                    <span v-show="!v.item3TF" class="ycl">已处理</span>
+                                    <span class="f2">{{ v.item3Date }}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+                <div class="main-right-box">
+                    <div class="main-right">
                         <div class="bg"></div>
-                        <select>
-                            <option>10</option>
-                            <option>20</option>
-                            <option>50</option>
-                            <option>100</option>
-                        </select>
+                        <div class="matter">
+                            <div class="title"><h3>报警详情</h3></div>
+                            <ul class="matter-ul">
+                                <li v-for="v in 3">
+                                    <span class="key">报警名称：</span>
+                                    <span class="val">XXXXXX</span>
+                                </li>
+                            </ul>
+                            <span class="key">报警内容：</span>
+                            <div class="bjnr">
+                                报警内容报警内容报警内容报警内容 报警内容报警内容 报警内容
+                            </div>
+                            <span class="key">处理记录：</span>
+                            <div class="cljl">
+                                sdshudheufhucmkvdnuhn cjhhsefhjf xncjdhudfh dfhudhfu
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="dispose">
+                        <div class="bg"></div>
+                        <div class="matter">
+                            <div class="title"><h3>报警详情</h3></div>
+
+                            <div class="bjcl-box">
+                                <div class="more-box">
+                                    <el-checkbox v-model="checked1">支路:</el-checkbox>
+                                    <el-select class="select" v-model="select1" placeholder="默认值">
+                                        <el-option
+                                                v-for="item in options"
+                                                :key="item.value"
+                                                :label="item.label"
+                                                :value="item.value">
+                                        </el-option>
+                                    </el-select>
+                                </div>
+                                <div class="more-box">
+                                    <el-checkbox v-model="checked2">支路:</el-checkbox>
+                                    <el-select class="select" v-model="select2" placeholder="默认值">
+                                        <el-option
+                                                v-for="item in options"
+                                                :key="item.value"
+                                                :label="item.label"
+                                                :value="item.value">
+                                        </el-option>
+                                    </el-select>
+                                </div>
+                            </div>
+                            <textarea name="a" class="textarea"></textarea>
+                            <div class="btn-box">
+                                <div class="button">
+                                    处理报警
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
+
             </div>
+
 
         </div>
     </div>
@@ -180,6 +198,94 @@
         name: "baojingguanli",
         data() {
             return {
+                listData: [
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: true,
+                        item3Date: '2018-10-18  15:24'
+                    },
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: true,
+                        item3Date: '2018-10-18  15:24'
+                    },
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: false,
+                        item3Date: '2018-10-18  15:24'
+                    },
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: true,
+                        item3Date: '2018-10-18  15:24'
+                    },
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: true,
+                        item3Date: '2018-10-18  15:24'
+                    },
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: false,
+                        item3Date: '2018-10-18  15:24'
+                    }
+                ],
+                sortShow: false,
+                sortCur: 0,
+                sortArr: [
+                    "默认排序",
+                    "正向排序",
+                    "自定义时间段"
+                ],
+                sortVal: '默认排序',
+                dateStart: {
+                    year: 2018,
+                    month: '08',
+                    day: '05'
+                },
+                dateEnd: {
+                    year: 2018,
+                    month: '08',
+                    day: '05'
+                },
+                options: [{
+                    value: '选项1',
+                    label: '黄金糕'
+                }, {
+                    value: '选项2',
+                    label: '双皮奶'
+                }, {
+                    value: '选项3',
+                    label: '蚵仔煎'
+                }, {
+                    value: '选项4',
+                    label: '龙须面'
+                }, {
+                    value: '选项5',
+                    label: '北京烤鸭'
+                }],
+                checked1: true,
+                checked2: true,
+                select1: '',
+                select2: '',
                 plclCur: false,
                 btnCur: 0,
                 lists: [
@@ -225,67 +331,18 @@
                 no2off: true,
                 value6: '',
                 days: 2,
-                checked5: true,
-                checked6: true,
-                checked7: true,
-                checked8: false,
-                checked9: false,
-                checked10: false,
-                tableTitle: {
-                    title: '【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】',
-                    titArr: [
-                        {
-                            prop: "id",
-                            label: "日期",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIa",
-                            label: "电流Ia",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIb",
-                            label: "电流Ib",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIc",
-                            label: "电流Ic",
-                            sortable: false
-                        },
-                        {
-                            prop: "zhengDianNeng",
-                            label: "当前正向有功总电能",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUan",
-                            label: "粗电压Uan",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUbn",
-                            label: "粗电压Ubn",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUcn",
-                            label: "粗电压Ucn",
-                            sortable: false
-                        },
-                        {
-                            prop: "sum",
-                            label: "总有功功率W",
-                            sortable: false
-                        },
-                    ]
-                },
+
 
             }
         },
         components: {
             TemplateTable
+        },
+        methods: {
+            inSort() {
+                this.sortShow = false
+                this.sortVal = this.sortArr[this.sortCur]
+            }
         },
         mounted() {
 
@@ -957,13 +1014,95 @@
                             align-items: center;
                             .sort-box {
                                 position: relative;
-                                .pull-down{
+                                cursor: pointer;
+                                margin-left: 20px;
+                                .pull-down {
                                     position: absolute;
                                     top: 28px;
                                     left: 0;
                                     width: 170px;
-                                    height: 184px;
-                                    background:rgba(0,17,33,.5);
+                                    height: 200px;
+                                    background: rgba(0, 17, 33, .59);
+                                    box-sizing: border-box;
+                                    padding: 0 12px;
+                                    font-size: 12px;
+                                    font-family: HiraginoSansGB-W3;
+                                    font-weight: bold;
+                                    color: rgba(198, 212, 228, 1);
+
+                                    & > div {
+                                        margin-top: 11px;
+                                        cursor: pointer;
+                                        &.cur {
+                                            font-size: 12px;
+                                            font-family: HiraginoSansGB-W3;
+                                            font-weight: bold;
+                                            color: rgba(45, 243, 255, 1);
+                                        }
+                                        .time-start, .time-end {
+                                            width: 100%;
+                                            display: flex;
+                                            flex-direction: row;
+                                            justify-content: space-between;
+                                            border: 1px solid #2F506B;
+
+                                            height: 20px;
+                                            input {
+                                                text-align: center;
+                                                background-color: #052747;
+                                                font-size: 10px;
+                                                font-family: HiraginoSansGB-W3;
+                                                font-weight: bold;
+                                                color: rgba(45, 243, 255, 1);
+
+                                                outline: none;
+                                                border: none;
+                                                outline: medium;
+
+                                            }
+
+                                            .input-year {
+                                                width: 35px;
+                                            }
+                                            .input-month {
+                                                width: 32px;
+
+                                            }
+                                            .input-day {
+                                                width: 30px;
+                                            }
+                                            span {
+                                                width: 17px;
+                                                text-align: center;
+                                                display: inline-block;
+                                                background-color: #0D5571;
+                                                font-size: 10px;
+                                                font-family: HiraginoSansGB-W3;
+                                                font-weight: bold;
+                                                color: rgba(198, 212, 228, 1);
+                                            }
+                                        }
+                                        .to {
+                                            width: 100%;
+                                            text-align: center;
+                                            font-size: 8px;
+                                            font-family: HiraginoSansGB-W3;
+                                            font-weight: bold;
+                                            color: rgba(210, 224, 225, 1);
+                                            margin: 5px 0;
+                                        }
+                                    }
+                                    .confirm {
+                                        text-align: center;
+                                        border-radius: 3px;
+                                        font-size: 12px;
+                                        font-family: HiraginoSansGB-W3;
+                                        font-weight: normal;
+                                        color: rgba(255, 255, 255, 1);
+                                        background-color: #1DA1B5;
+                                        cursor: pointer;
+                                    }
+
                                     /*box-shadow:0px 3px 8px 1px rgba(2,28,60,0.43);*/
                                 }
                             }
@@ -992,6 +1131,10 @@
                                     background: url("../../assets/PeiDianJianCe/形状 1054 拷贝 2.png") no-repeat;
                                     /*-webkit-background-size: ;*/
                                     background-size: 100% 100%;
+                                    transition: transform .3s, -webkit-transform .3s;
+                                    &.cur {
+                                        transform: rotateZ(-180deg);
+                                    }
                                 }
                             }
                             .right-btn {
@@ -1328,13 +1471,193 @@
                     }
                 }
             }
+            .main-box {
+                display: flex;
+                flex-direction: row;
+                margin-top: 24px;
+                position: relative;
+                .main-right-box {
+                    width: 372px;
+                    position: relative;
+                    margin-left: 24px;
+                }
+                .list-box {
+                    border: 1px solid #15759A;
+                    margin-top: 22px;
+                    position: relative;
+                    .list-title {
+                        height: 50px;
+                        width: 100%;
+                        background-color: #0A3E6E;
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(95, 251, 248, 1);
+                        text-align: center;
+                        line-height: 50px;
+                    }
+                    ul {
+                        width: 100%;
+                        list-style: none;
+                        li {
+                            width: 100%;
+                            height: 68px;
+                            box-sizing: border-box;
+                            padding: 12px 20px 12px 80px;
+                            background-color: #185588;
+                            display: flex;
+                            justify-content: space-between;
+                            &:nth-child(even) {
+                                background-color: #0A3E6E;
+                            }
+                            .item-box {
+                                display: flex;
+                                flex-direction: column;
+                                .f1 {
+                                    font-size: 14px;
+                                    font-family: HiraginoSansGB-W3;
+                                    font-weight: normal;
+                                    color: rgba(223, 253, 255, 1);
+                                }
+                                .f2 {
+                                    font-size: 12px;
+                                    font-family: HiraginoSansGB-W3;
+                                    font-weight: normal;
+                                    color: rgba(183, 208, 210, 1);
+                                    margin-top: 11px;
+                                }
+                                .wcl {
+                                    font-size: 12px;
+                                    font-family: HiraginoSansGB-W6;
+                                    font-weight: normal;
+                                    color: rgba(119, 233, 56, 1);
+                                }
+                                .ycl {
+                                    font-size: 12px;
+                                    font-family: HiraginoSansGB-W6;
+                                    font-weight: normal;
+                                    color: rgba(241, 171, 59, 1);
+                                }
+                            }
+                        }
+                    }
+                }
+                .title {
+                    /*margin-bottom: 15px;*/
+                    display: flex;
+                    justify-content: space-between;
+                    position: relative;
+                    h3 {
+                        font-size: 16px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(254, 254, 255, 1);
+                    }
+
+                }
+                .dispose {
+                    width: 100%;
+                    position: relative;
+                    box-sizing: border-box;
+                    padding: 23px 20px;
+                    margin-top: 20px;
+
+                    .bjcl-box {
+                        margin-top: 23px;
+                        .more-box {
+                            margin-top: 10px;
+                        }
+
+                    }
+                    .textarea {
+                        width: 100%;
+                        height: 80px;
+                        border: 1px solid #11648E;
+                        background-color: #0B4372;
+                        margin-top: 20px;
+                    }
+                    .btn-box {
+                        width: 100%;
+                        height: 30px;
+                        margin-top: 20px;
+                        /*text-align: right;*/
+                        .button {
+                            width: 100px;
+                            height: 30px;
+                            text-align: center;
+                            line-height: 30px;
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W6;
+                            font-weight: normal;
+                            color: rgba(45, 243, 255, 1);
+
+                            background: linear-gradient(180deg, rgba(6, 88, 110, 1), rgba(27, 138, 168, 1));
+                            border: 1px solid rgba(153, 236, 241, 1);
+                            border-radius: 4px;
+                            float: right;
+                        }
+                    }
+
+                }
+                .matter {
+                    position: relative;
+
+                }
+                .main-right {
+                    width: 100%;
+                    position: relative;
+                    .matter {
+                        box-sizing: border-box;
+                        padding: 23px 20px;
+                        position: relative;
+                        z-index: 5;
+                        .key {
+                            font-size: 12px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(183, 208, 210, 1);
+                            margin-top: 14px;
+                            display: inline-block;
+                        }
+                        .bjnr, .cljl {
+                            width: 100%;
+                            height: 140px;
+                            border: 1px solid #11628B;
+                            margin-top: 8px;
+                            box-sizing: border-box;
+                            padding: 11px 15px;
+                            font-size: 12.5px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(213, 248, 255, 1);
+                        }
+                        .matter-ul {
+                            list-style: none;
+                            width: 100%;
+                            margin-top: 8px;
+                            li {
+                                /*margin-top: 14px;*/
+
+                                .val {
+                                    font-size: 12px;
+                                    font-family: HiraginoSansGB-W3;
+                                    font-weight: bold;
+                                    color: rgba(213, 248, 255, 1);
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
             .Table {
-                width: 100%;
+                width: calc(100% - 372px);
+                min-width: 550px;
                 position: relative;
                 box-sizing: border-box;
                 padding: 23px 20px;
-                margin-top: 25px;
-                margin-bottom: 25px;
+                /*margin-top: 25px;*/
+                /*margin-bottom: 25px;*/
                 .title {
                     display: flex;
                     justify-content: space-between;

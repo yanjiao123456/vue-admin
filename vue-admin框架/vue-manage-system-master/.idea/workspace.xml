@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91dbf1b6-1785-4e9e-879d-5d0cbd4dff66" name="Default Changelist" comment="shy-11-26">
-      <change afterPath="$PROJECT_DIR$/src/components/page/BaoJingGuanLi.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/page/RiFuHe.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Sidebar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/NengHaoQuShi.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/NengHaoQuShi.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/BaoJingGuanLi.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/BaoJingGuanLi.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +28,7 @@
           <entry key="png" value="1" />
           <entry key="svg" value="5" />
           <entry key="txt" value="1" />
-          <entry key="vue" value="42" />
+          <entry key="vue" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -46,7 +40,7 @@
           <entry key="JavaScript" value="21" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="5" />
-          <entry key="Vue.js" value="42" />
+          <entry key="Vue.js" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -56,7 +50,7 @@
           <entry key="js" value="642" />
           <entry key="svg" value="160" />
           <entry key="txt" value="9" />
-          <entry key="vue" value="17079" />
+          <entry key="vue" value="18933" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -66,7 +60,7 @@
           <entry key="JavaScript" value="642" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="SVG" value="160" />
-          <entry key="Vue.js" value="17072" />
+          <entry key="Vue.js" value="18926" />
         </counts>
       </usages-collector>
     </session>
@@ -76,17 +70,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/page/BaoJingGuanLi.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="74" column="69" lean-forward="true" selection-start-line="74" selection-start-column="69" selection-end-line="74" selection-end-column="69" />
+            <state relative-caret-position="588">
+              <caret line="1654" column="33" selection-start-line="1654" selection-start-column="33" selection-end-line="1654" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#0;n#el-collapse-transition#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#div#0;n#div#0;n#el-collapse-transition#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#3;n#div#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="e#8186#15756#0" />
+                <element signature="e#8786#12989#0" />
                 <element signature="e#8272#8801#0" />
                 <element signature="e#8826#9355#0" />
-                <element signature="e#9839#11664#0" />
                 <element signature="n#style#0;n#!!top" />
                 <element signature="e#19856#23777#0" />
                 <element signature="e#23791#24340#0" />
@@ -94,8 +85,34 @@
                 <element signature="e#24695#34166#0" />
                 <element signature="e#24910#25194#0" />
                 <element signature="e#34184#34609#0" />
+                <element signature="e#35190#35447#0" />
+                <element signature="e#35471#36373#0" />
+                <element signature="e#36404#36723#0" />
+                <element signature="e#36754#37073#0" />
                 <element signature="e#37097#38555#0" />
+                <element signature="e#33074#45746#0" />
+                <element signature="e#38884#39338#0" />
+                <element signature="e#34111#34167#0" />
+                <element signature="e#35434#35498#0" />
+                <element signature="e#39370#45389#0" />
+                <element signature="e#45423#45739#0" />
+                <element signature="e#45772#46157#0" />
+                <element signature="e#46188#47417#0" />
                 <element signature="e#47472#52599#0" />
+                <element signature="e#57565#57597#0" />
+                <element signature="e#59135#59613#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/page/NengHaoChengBen.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="304" column="19" lean-forward="true" selection-start-line="289" selection-start-column="16" selection-end-line="304" selection-end-column="19" />
+              <folding>
+                <element signature="n#style#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -149,16 +166,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>selector</find>
-      <find>item-row</find>
-      <find>icon-lx</find>
-      <find>@</find>
-      <find>checked5</find>
       <find>../../src/</find>
       <find>../../</find>
       <find>../../assets</find>
-      <find>Table</find>
-      <find>title</find>
       <find>checked6</find>
       <find>.Inquire .item2 .el-input__inner</find>
       <find>sw</find>
@@ -179,6 +189,13 @@
       <find>left-branch</find>
       <find>menu-right</find>
       <find>count</find>
+      <find>Table</find>
+      <find>main-right</find>
+      <find>title</find>
+      <find>checked1</find>
+      <find>checked5</find>
+      <find>button</find>
+      <find>sort-box</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -241,9 +258,9 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="307" />
-    <option name="y" value="407" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="328" />
+    <option name="y" value="-17" />
     <option name="width" value="1378" />
     <option name="height" value="733" />
   </component>
@@ -328,20 +345,20 @@
       <option name="presentableId" value="Default" />
       <updated>1543197624845</updated>
       <workItem from="1543197626279" duration="191066000" />
-      <workItem from="1544403446365" duration="40788000" />
+      <workItem from="1544403446365" duration="55817000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231854000" />
+    <option name="totallyTimeSpent" value="246883000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="307" y="407" width="1378" height="733" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.20864947" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.20842217" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="1" />
@@ -361,29 +378,6 @@
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.20864947" />
-      <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.33116177" />
-      <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="4" weight="0.32899022" />
-      <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="6" />
-      <window_info anchor="bottom" id="Find" order="7" />
-      <window_info anchor="bottom" id="Run" order="8" />
-      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="12" />
-      <window_info anchor="right" id="Database" order="0" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -632,21 +626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/NengHaoChengBen.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" column="50" lean-forward="true" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#1;n#div#1;n#div#2;n#div#3;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#tr#0;n#table#0;n#div#1;n#div#1;n#div#2;n#div#3;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#table#0;n#div#1;n#div#1;n#div#2;n#div#3;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#table#0;n#div#1;n#div#1;n#div#2;n#div#3;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#!!top" />
-            <element signature="e#53054#56400#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/page/DuiBiFenXi.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
@@ -773,19 +752,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/NengHaoChengBen.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="304" column="19" lean-forward="true" selection-start-line="289" selection-start-column="16" selection-end-line="304" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/page/BaoJingGuanLi.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="74" column="69" lean-forward="true" selection-start-line="74" selection-start-column="69" selection-end-line="74" selection-end-column="69" />
+        <state relative-caret-position="588">
+          <caret line="1654" column="33" selection-start-line="1654" selection-start-column="33" selection-end-line="1654" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#0;n#el-collapse-transition#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#div#0;n#div#0;n#el-collapse-transition#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#3;n#div#1;n#div#0;n#template#0;n#!!top" />
-            <element signature="e#8186#15756#0" />
+            <element signature="e#8786#12989#0" />
             <element signature="e#8272#8801#0" />
             <element signature="e#8826#9355#0" />
-            <element signature="e#9839#11664#0" />
             <element signature="n#style#0;n#!!top" />
             <element signature="e#19856#23777#0" />
             <element signature="e#23791#24340#0" />
@@ -793,8 +779,22 @@
             <element signature="e#24695#34166#0" />
             <element signature="e#24910#25194#0" />
             <element signature="e#34184#34609#0" />
+            <element signature="e#35190#35447#0" />
+            <element signature="e#35471#36373#0" />
+            <element signature="e#36404#36723#0" />
+            <element signature="e#36754#37073#0" />
             <element signature="e#37097#38555#0" />
+            <element signature="e#33074#45746#0" />
+            <element signature="e#38884#39338#0" />
+            <element signature="e#34111#34167#0" />
+            <element signature="e#35434#35498#0" />
+            <element signature="e#39370#45389#0" />
+            <element signature="e#45423#45739#0" />
+            <element signature="e#45772#46157#0" />
+            <element signature="e#46188#47417#0" />
             <element signature="e#47472#52599#0" />
+            <element signature="e#57565#57597#0" />
+            <element signature="e#59135#59613#0" />
           </folding>
         </state>
       </provider>

@@ -353,12 +353,13 @@
                     legend: {
                         data: ['2AA101-1号电源线_能耗', '2AA102-1号电源线_能耗', '2AA103-1号电源线_能耗', '2AA104-1号电源线_能耗'],
                         align: 'left',
-                        // x: 'right',
+                        top:'5%',
+                        x: 'center',
                         right: '4%',
                         icon: 'rect',
                         itemWidth: 10, // 图例图形宽度
                         itemHeight: 10, // 图例图形高度
-                        //itemGap: 13,
+                        itemGap: 50,
                         textStyle: {
                             color: 'rgb(91,227,224)',
                             fontSize: 12
@@ -439,6 +440,9 @@
 
                 // 使用刚指定的配置项和数据显示图表。
                 growRankingChart.setOption(option);
+                window.onresize=function(){
+                    growRankingChart.resize;
+                }
             },
             getSummaries(param) {
                 const {columns, data} = param;
@@ -471,6 +475,7 @@
         mounted() {
             this.SetEchart();
             // =================================================
+               
         }
 
     }

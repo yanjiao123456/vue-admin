@@ -86,6 +86,17 @@ export default new Router({
                     meta: { title: '报警管理' }
                 },
                 {
+                    path:'/GongLvYinShu',
+                    component: resolve => require(['../components/page/GongLvYinShu.vue'], resolve),
+                    meta: { title: '功率因数' }
+                },
+                {
+                    path: '/YiBiaoTaiZhang',
+                    component: resolve => require(['../components/page/YiBiaoTaiZhang.vue'], resolve),
+                    meta: {title: '仪表台账'}
+                },
+
+                {
                     path: '/icon',
                     component: resolve => require(['../components/page/Icon.vue'], resolve),
                     meta: { title: '自定义图标' }

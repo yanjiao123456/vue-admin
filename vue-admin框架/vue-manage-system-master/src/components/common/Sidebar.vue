@@ -201,12 +201,26 @@
                     {
                         icon: "ml5 icon-all icon-sbgl",
                         index: "sbgl",
-                        title: "设备管理"
+                        title: "设备管理",
+                        subs:[
+                            {
+                                icon: "ml5 icon-all icon-sjcx",
+                                index: "yibiaotaizhang",
+                                title: "仪表台账"
+                            }
+                        ]
                     },
                     {
                         icon: "ml5 icon-all icon-dnzl",
                         index: "dnzl",
-                        title: "电能质量"
+                        title: "电能质量",
+                        subs:[
+                            {
+                                icon: "ml5 icon-all icon-dnzl",
+                                index: "gonglvyinshu",
+                                title: "功率因数",
+                            }
+                        ]
                     },
                     {
                         icon: "ml5 icon-all icon-bbsc",

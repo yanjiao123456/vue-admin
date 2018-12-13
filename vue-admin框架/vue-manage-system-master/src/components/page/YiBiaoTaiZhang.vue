@@ -71,15 +71,15 @@
         <div class="filtrate-box">
             <div class="bg"></div>
             <div class="title"><h3>筛选条件</h3></div>
-            <div @click="filtrateShow=!filtrateShow"
-                 :class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>
+            <!--<div @click="filtrateShow=!filtrateShow"-->
+            <!--:class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>-->
             <el-collapse-transition>
                 <div v-show="filtrateShow" class="filtrate-show">
 
                     <div class="item-row item2">
                         <div class="more-box">
-                            <el-checkbox v-model="checked1">支路:</el-checkbox>
-                            <el-select class="select" v-model="select1" placeholder="请选择支路">
+                            <span>仪表类型：</span>
+                            <el-select class="select" v-model="select1" placeholder="仪表类型">
                                 <el-option
                                         v-for="item in options"
                                         :key="item.value"
@@ -89,8 +89,8 @@
                             </el-select>
                         </div>
                         <div class="more-box">
-                            <el-checkbox class="ml92" v-model="checked2">分项:</el-checkbox>
-                            <el-select class="select" v-model="select2" placeholder="请选择分项">
+                            <span>仪表名称：</span>
+                            <el-select class="select" v-model="select1" placeholder="仪表名称">
                                 <el-option
                                         v-for="item in options"
                                         :key="item.value"
@@ -99,9 +99,9 @@
                                 </el-option>
                             </el-select>
                         </div>
-                        <div v-show="sw" class="item-show more-box">
-                            <el-checkbox class="ml92" v-model="checked3">部门:</el-checkbox>
-                            <el-select class="select" v-model="select3" placeholder="请选择部门">
+                        <div class="more-box">
+                            <span>仪表编码：</span>
+                            <el-select class="select" v-model="select1" placeholder="仪表编码">
                                 <el-option
                                         v-for="item in options"
                                         :key="item.value"
@@ -110,9 +110,9 @@
                                 </el-option>
                             </el-select>
                         </div>
-                        <div v-show="sw" class="item-show more-box">
-                            <el-checkbox class="ml92" v-model="checked4">位置:</el-checkbox>
-                            <el-select class="select" v-model="select4" placeholder="请选择位置">
+                        <div class="more-box">
+                            <span>安装位置：</span>
+                            <el-select class="select" v-model="select1" placeholder="安装位置">
                                 <el-option
                                         v-for="item in options"
                                         :key="item.value"
@@ -122,56 +122,13 @@
                             </el-select>
                         </div>
 
+                    </div>
 
-                        <div @click="sw=!sw" class="no-off more-box">
-                            <i :class="{'icon-left':sw,'icon-right':!sw}"></i>
-                            <span v-show="sw">收缩</span>
-                            <span v-show="!sw">更多</span>
-                        </div>
-                    </div>
-                    <div class="item-row">
-                        <el-checkbox class="ml92 checkbox-tit" v-model="checked5">参数:</el-checkbox>
-                        <el-checkbox class="" v-model="checked6">电压</el-checkbox>
-                        <el-checkbox class="ml92" v-model="checked7">电流</el-checkbox>
-                        <el-checkbox class="ml92" v-model="checked8">功率</el-checkbox>
-                        <el-checkbox class="ml92" v-model="checked9">标底</el-checkbox>
-                        <el-checkbox class="ml92" v-model="checked10">功率因数</el-checkbox>
-
-                    </div>
-                    <div class="item-row-2 item-row">
-                        <!--<el-col :xs="24" :sm="24" :lg="8">-->
-                        <div class="fl">
-                            <span class="date-select">时间选择</span>
-                            <el-date-picker
-                                    class=""
-                                    v-model="value6"
-                                    type="daterange"
-                                    range-separator="—"
-                                    start-placeholder="开始日期"
-                                    end-placeholder="结束日期">
-                            </el-date-picker>
-                        </div>
-                        <!--</el-col>-->
-                        <!--<el-col :xs="24" :sm="24" :lg="8">-->
-                        <div class="fl days-box">
-                        <span class="days-tit date-select">
-                            <i class="el-icon-search"></i>
-                            快捷查询:
-                        </span>
-                            <div class="days-btn">
-                                <span @click="days=0" :class="{cur:days==0}">前1天</span>
-                                <span @click="days=1" :class="{cur:days==1}">前3天</span>
-                                <span @click="days=2" :class="{cur:days==2}">前7天</span>
-                                <span @click="days=3" :class="{cur:days==3}">前1月</span>
-                            </div>
-                        </div>
-                        <!--</el-col>-->
-                    </div>
 
                     <div class="btns-box">
                         <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">查询</div>
                         <div @click="btns=1,treeShow=true" :class="{'btn-item':true,cur:btns==1}">重置</div>
-                        <div @click="btns=2,gxhShow=true" :class="{'btn-item':true,cur:btns==2}">个性化</div>
+                        <!--<div @click="btns=2,gxhShow=true" :class="{'btn-item':true,cur:btns==2}">个性化</div>-->
                     </div>
 
                 </div>
@@ -179,26 +136,50 @@
 
         </div>
 
-        <!--能耗-->
-
-        <!--能耗-->
-
-        <!--能耗大数据图表 start-->
-        <div class="energy-Echarts">
-            <div class="bg"></div>
-            <div class="title"><h3>数据列表</h3></div>
-            <div class="myChart" id="myChart" style="width: 100%;height: 100%;"></div>
-        </div>
-        <!--能耗大数据图表 end-->
 
         <div class="Table">
             <div class="bg"></div>
             <div class="title"><h3>数据列表</h3>
-                <div class="head-right"><i class="icon-pdf"></i><i class="icon-excel"></i></div>
+                <div class="head-right">
+                    <div class="count">
+                        <!--<div class="bg"></div>-->
+                        <select>
+                            <option>默认排序</option>
+                            <option>检定时间由远至近</option>
+                            <option>检定时间由近至远</option>
+
+                        </select>
+                    </div>
+                    <i class="icon-pdf"></i><i class="icon-excel"></i></div>
+            </div>
+
+            <div class="table-box">
+                <div class="table-tit">【 仪表台账数据列表 】</div>
+
+                <table border="0">
+                    <tr>
+                        <th v-for="v in 12">仪表类型</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr v-for="(v,index) in 12" :class="{cur:!setShow && setId==index}">
+                        <td v-for="v in 12">电表</td>
+                        <td v-show="setShow"><i class="icon-xg"></i><span @click="setShow = false,setId=index"
+                                                                          class="set">修改</span></td>
+                        <td v-show="!setShow">
+                            <div class="item1">
+                                <i class="icon-xg-ing"></i>
+                                <span>修改</span>
+                            </div>
+                            <div class="item1">
+                                <i class="icon-bc"></i>
+                                <span @click="setShow = true" class="bc">保存</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
 
-            <template-table :data-tit="tableTitle"></template-table>
             <div class="selector">
                 <i class="icon-front"></i>
                 <i class="icon-prev"></i>
@@ -235,6 +216,8 @@
         name: "inquire",
         data() {
             return {
+                setShow: true,
+                setId: '',
                 radio: '1',
                 filtrateShow: true,
                 gxhShow: false,
@@ -260,7 +243,7 @@
                 sw: true,
                 value6: '',
                 tableTitle: {
-                    title: '【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】',
+                    title: '【 仪表台账数据列表 】',
                     titArr: [
                         {
                             prop: "id",
@@ -303,7 +286,7 @@
                             sortable: false
                         },
                         {
-                            prop: "sum",
+                            prop: "操作",
                             label: "总有功功率W",
                             sortable: false
                         },
@@ -450,238 +433,10 @@
                 // 使用刚指定的配置项和数据显示图表。
                 growRankingChart.setOption(option);
             },
-            getSummaries(param) {
-                const {columns, data} = param;
-                const sums = [];
-                columns.forEach((column, index) => {
-                    if (index === 0) {
-                        sums[index] = '总价';
-                        return;
-                    }
-                    const values = data.map(item => Number(item[column.property]));
-                    if (!values.every(value => isNaN(value))) {
-                        sums[index] = values.reduce((prev, curr) => {
-                            const value = Number(curr);
-                            if (!isNaN(value)) {
-                                return prev + curr;
-                            } else {
-                                return prev;
-                            }
-                        }, 0);
-                        sums[index] += ' 元';
-                    } else {
-                        sums[index] = 'N/A';
-                    }
-                });
 
-                return sums;
-            }
 
         },
         mounted() {
-            this.SetEchart();
-
-            // =================================================
-
-            var setting = {
-                check: {
-                    enable: true,
-
-                },
-                view: {
-                    nameIsHTML: true, //允许name支持html
-                    selectedMulti: false
-                },
-                edit: {
-                    enable: false,
-                    editNameSelectAll: false
-                },
-                data: {
-                    simpleData: {
-                        enable: true
-                    }
-                }
-            };
-
-            var zNodes = [
-                {
-                    id: 1,
-                    pId: 0,
-                    name: "随意勾选 1",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 11,
-                    pId: 1,
-                    name: "随意勾选 1-1",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 111,
-                    pId: 11,
-                    name: "随意勾选 1-1-1"
-                },
-                {
-                    id: 111,
-                    pId: 11,
-                    name: "随意勾选 1-1-1",
-                    open:true
-                },
-                {
-                    id: 111,
-                    pId: 11,
-                    name: "随意勾选 1-1-1",
-                    open:true
-                },
-                {
-                    id: 111,
-                    pId: 11,
-                    name: "随意勾选 1-1-1",
-                    open:true
-                },{
-                    id: 111,
-                    pId: 11,
-                    name: "随意勾选 1-1-1",
-                    open:true
-                },
-
-                {
-                    id: 112,
-                    pId: 11,
-                    name: "随意勾选 1-1-2",
-                    open:true
-                },
-                {
-                    id: 1121,
-                    pId: 111,
-                    name: "随意勾选 1-1-21",
-                    // open:true
-                },
-                {
-                    id: 1111,
-                    pId: 111,
-                    name: "随意勾选 1-1-21",
-                    // open:true
-                },
-                {
-                    id: 1112,
-                    pId: 111,
-                    name: "随意勾选 1-1-21",
-                    // open:true
-                },{
-                    id: 1113,
-                    pId: 111,
-                    name: "随意勾选 1-1-21",
-                    // open:true
-                },
-                {
-                    id: 1114,
-                    pId: 111,
-                    name: "随意勾选 1-1-21",
-                    // open:true
-                },
-                {
-                    id: 1115,
-                    pId: 111,
-                    name: "随意勾选 1-1-21",
-                    // open:true
-                },{
-                    id: 1116,
-                    pId: 111,
-                    name: "随意勾选 1-1-21",
-                    // open:true
-                },
-
-
-                {
-                    id: 112,
-                    pId: 12,
-                    name: "随意勾选 1-1-1"
-                },
-                {
-                    id: 12,
-                    pId: 1,
-                    name: "随意勾选 1-2",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 121,
-                    pId: 12,
-                    name: "随意勾选 1-2-1"
-                },
-                {
-                    id: 122,
-                    pId: 12,
-                    name: "随意勾选 1-2-2"
-                },
-                {
-                    id: 2,
-                    pId: 0,
-                    name: "随意勾选 2",
-                    checked: true,
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 21,
-                    pId: 2,
-                    name: "随意勾选 2-1"
-                },
-                {
-                    id: 22,
-                    pId: 2,
-                    name: "随意勾选 2-2",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 221,
-                    pId: 22,
-                    name: "随意勾选 2-2-1",
-                    // checked: true,
-                },
-                {
-                    id: 222,
-                    pId: 22,
-                    name: "随意勾选 2-2-2"
-                },
-                {
-                    id: 23,
-                    pId: 2,
-                    name: "随意勾选 2-3"
-                }
-            ];
-
-            var code;
-
-            function setCheck() {
-                var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
-                    py = $("#py").attr("checked") ? "p" : "",
-                    sy = $("#sy").attr("checked") ? "s" : "",
-                    pn = $("#pn").attr("checked") ? "p" : "",
-                    sn = $("#sn").attr("checked") ? "s" : "",
-                    type = {"Y": py + sy, "N": pn + sn};
-                zTree.setting.check.chkboxType = type;
-                showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
-            }
-
-            function showCode(str) {
-                if (!code) code = $("#code");
-                code.empty();
-                code.append("<li>" + str + "</li>");
-            }
-
-
-            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-            fuzzySearch('treeDemo', '#key', null, true); //初始化模糊搜索方法
-            setCheck();
-            $("#py").bind("change", setCheck);
-            $("#sy").bind("change", setCheck);
-            $("#pn").bind("change", setCheck);
-            $("#sn").bind("change", setCheck);
 
         }
 
@@ -773,11 +528,11 @@
                             right: 0;
                             top: 0;
                         }
-                        .tree-btns{
+                        .tree-btns {
                             display: flex;
                             justify-content: flex-end;
                             margin-top: 11px;
-                            span{
+                            span {
                                 cursor: pointer;
                                 width: 81px;
                                 height: 40px;
@@ -1072,6 +827,12 @@
                         flex-wrap: nowrap;
                         justify-content: flex-start;
                         align-items: center;
+                        span {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(223, 253, 255, 1);
+                        }
                     }
                 }
                 .item-row {
@@ -1376,11 +1137,46 @@
                     height: 21px;
                     background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
                 }
+                .head-right {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+                .count {
+                    width: 170px;
+                    height: 28px;
+                    margin-left: 22px;
+                    position: relative;
+                    border: 1px solid rgba(45, 243, 255, 1);
+                    border-radius: 2px;
+                    background-color: #0A3E6E;
+                    margin-right: 24px;
+
+                    select {
+                        border: 0px;
+                        outline: none;
+                        cursor: pointer;
+                        position: relative;
+                        z-index: 5;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(26, 96, 134, 0);
+                        font-size: 12px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(45, 243, 255, 1);
+                        option {
+                            background-color: #0B3F6F;
+                        }
+                    }
+                }
+
             }
             .table-box {
                 position: relative;
                 z-index: 5;
                 border: 1px solid #15759A;
+                margin-top: 24px;
                 /*padding-bottom: 60px;*/
                 .table-tit {
                     padding: 20px;
@@ -1391,6 +1187,95 @@
                     font-weight: normal;
                     color: rgba(95, 251, 248, 1);
                     text-align: center;
+                }
+                table {
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    border: 0;
+                    border-collapse: collapse; /*边框会合并为一个单一的边框*/
+
+                    tr {
+                        background-color: #104C7B;
+                        &:nth-child(2n) {
+                            background-color: #0A3E6E;
+                        }
+                        &.cur {
+                            td {
+                                background-color: #085E96;
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W6;
+                                font-weight: normal;
+                                color: rgba(255, 255, 255, 1);
+                            }
+
+                        }
+
+                        th {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W6;
+                            font-weight: normal;
+                            color: rgba(95, 251, 248, 1);
+                            background-color: #185588;
+                        }
+                        td {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+
+                        }
+
+                        td, th {
+                            border-right: 1px solid #145F8B;
+                            text-align: center;
+                            height: 48px;
+                        }
+                        .icon-xg {
+                            width: 15px;
+                            height: 14px;
+                            display: inline-block;
+                            background: url("../../assets/PeiDianJianCe/icon_xg.png") no-repeat;
+                            margin-right: 10px;
+                            position: relative;
+                            top: 3px;
+                            /*line-height: 48px;*/
+                        }
+                        .set {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(95, 251, 248, 1);
+                        }
+                        .item1 {
+                            display: inline-block;
+                            /*padding: 0 10px;*/
+                            .icon-xg-ing {
+                                display: inline-block;
+                                width: 15px;
+                                height: 14px;
+                                /*line-height: 48px;*/
+                                background: url("../../assets/PeiDianJianCe/icon_xg-xz.png") no-repeat;
+                                position: relative;
+                                top: 3px;
+                            }
+                            .icon-bc {
+                                width: 16px;
+                                height: 16px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/icon_bc.png") no-repeat;
+                                position: relative;
+                                top: 3px;
+                            }
+                            .bc {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W6;
+                                font-weight: normal;
+                                color: rgba(250, 236, 79, 1);
+                            }
+                        }
+                    }
+
                 }
 
             }

@@ -126,9 +126,11 @@
 
             <div class="data-box">
                 <div class="bg"></div>
-                <div class="title"><h3>总功率因数pf</h3>
+                <div class="title"><h3>光伏发电量监测</h3>
                 </div>
-                <div class="my-charts"></div>
+                <div class="my-charts">
+                    <div id="chart" style="width:100%;height:100%;"></div>
+                </div>
             </div>
 
 
@@ -171,6 +173,7 @@
 
 <script>
     import TemplateTable from '../views/template-table'
+    var echarts = require('echarts');
     export default {
         name: "nenghaoqushi",
         data() {
@@ -273,6 +276,128 @@
         },
         components: {
             TemplateTable
+        },
+        methods:{
+            SetEchart(){
+                var chart=document.getElementById('chart');
+                var chartChart = echarts.init(chart);
+                option={
+                    tooltip: {
+                        color:['#FFF350','#C09DFF','#00FFFF'],
+                        trigger: 'axis',
+                        axisPointer: {
+                            lineStyle: {
+                                type: 'shadow',
+                                color: '#778AA8'
+                            }
+                        }
+                    },
+                    grid: {
+                        top: 50,
+                        bottom: 50,
+                        left:50,
+                        right:20
+                    },
+                    legend: {
+                        top: 0,
+                        data:['电压Uan','电压Ubn','电压Ucn'],
+                        textStyle:{
+                        color:'rgb(91,227,224)'//示例标识文字颜色
+                        }
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            axisLine:{
+                                lineStyle:{
+                                    color:'rgb(91,227,224)'//x轴坐标颜色
+                                }
+                            },
+                            boundaryGap :true,
+                            data :['2018-10-26 00:00:00','2018-10-26 00:10:00','2018-10-26 00:20:00','2018-10-26 00:30:00',
+                            '2018-10-26 00:40:00','2018-10-26 00:50:00','2018-10-26 00:60:00','2018-10-26 01:00:00',
+                            '2018-10-26 01:02:00','2018-10-26 01:03:00','2018-10-26 01:04:00']
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type: 'value',
+                            name: '',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(110,131,162)'
+                                }
+                            },
+                            axisLabel: {
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgb(42,81,125)'
+                                }
+                            }
+                        }
+                    ],
+                series: [
+                    {
+                        name:'电压Uan',
+                        data: [21, 23, 20, 22, 21, 20, 20,24, 20, 23, 22, 21],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(255, 243, 80, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(255, 243, 80, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    }, {
+                        name:'电压Ubn',
+                        data: [31, 33, 30, 32, 31, 30, 30,34, 30, 33, 32, 31],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(192, 157, 255, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(192, 157, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    },{
+                        name:'电压Ucn',
+                        data: [41, 43, 40, 42, 41, 40, 40,44, 40, 43, 42, 41],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(0, 255, 255, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(0, 255, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    }
+                    ]  
+                }
+                chartChart.setOption(option);
+                window.onresize=function(){
+                    chartChart.resize();
+                }
+            }
         },
         mounted() {
             var setting = {
@@ -405,6 +530,8 @@
             $("#sy").bind("change", setCheck);
             $("#pn").bind("change", setCheck);
             $("#sn").bind("change", setCheck);
+
+             this.SetEchart()
 
         }
 

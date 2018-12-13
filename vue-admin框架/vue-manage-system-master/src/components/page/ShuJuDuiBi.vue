@@ -72,33 +72,51 @@
             </div>
             <div class="data-box">
                 <div class="bg"></div>
-                <div class="title"><h3>总功率因数pf</h3>
+                <div class="title"><h3>总功率因数PF</h3>
                 </div>
-                <div class="my-charts"></div>
+                <div class="my-charts">
+                    <div id="chart1" style="width:100%;height:100%;"></div>
+                </div>
             </div>
             <div class="data-box">
                 <div class="bg"></div>
-                <div class="title"><h3>总有功功率w</h3>
+                <div class="title"><h3>总有功功率W</h3>
                 </div>
-                <div class="my-charts"></div>
+                <div class="my-charts">
+                    <div id="chart2" style="width:100%;height:100%;"></div>
+                </div>
             </div>
             <div class="data-box">
                 <div class="bg"></div>
-                <div class="title"><h3>总无功功率q</h3>
+                <div class="title"><h3>总无功功率Q</h3>
                 </div>
-                <div class="my-charts"></div>
+                <div class="my-charts">
+                    <div id="chart3" style="width:100%;height:100%;"></div>
+                </div>
             </div>
             <div class="data-box">
                 <div class="bg"></div>
                 <div class="title"><h3>三项电流</h3>
                 </div>
-                <div class="my-charts"></div>
+                <div class="my-charts">
+                    <div id="chart4" style="width:100%;height:100%;"></div>
+                </div>
+            </div>
+            <div class="data-box">
+                <div class="bg"></div>
+                <div class="title"><h3>三项电压</h3>
+                </div>
+                <div class="my-charts">
+                    <div id="chart5" style="width:100%;height:100%;"></div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import TemplateTable from '../views/template-table'
+    var echarts = require('echarts');
     export default {
         name: "shujuduibi",
         data() {
@@ -117,6 +135,564 @@
                 checked9:false,
                 checked10:false,
             }
+        },
+        methods:{
+            SetEchart(){
+                var chart1=document.getElementById('chart1');
+                var chart2=document.getElementById('chart2');
+                var chart3=document.getElementById('chart3');
+                var chart4=document.getElementById('chart4');
+                var chart5=document.getElementById('chart5');
+
+                var chart1Chart=echarts.init(chart1);
+                var chart2Chart=echarts.init(chart2);
+                var chart3Chart=echarts.init(chart3);
+                var chart4Chart=echarts.init(chart4);
+                var chart5Chart=echarts.init(chart5);
+
+                var option1={
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            lineStyle: {
+                                type: 'shadow',
+                                color: '#778AA8'
+                            }
+                        }
+                        // backgroundColor:"transparent"
+                        // formatter:function(datas){
+                        //     var res=`<div class="popcontent">
+                        //                 <div class="echartpop"></div>
+                        //                 <p class="echartpop-title">`+datas[0].name+`</p> <p class="echartpop-detail">总功率因数PF：`+datas[0].data+`</p>
+                        //             </div>`
+                        //             return res;
+                        // }
+                    },
+                    grid: {
+                        top: 50,
+                        bottom: 50,
+                        left:50,
+                        right:20
+                    },
+                    legend: {
+                        top: 0,
+                        data:['总功率因数PF'],
+                        textStyle:{
+                        color:'rgb(91,227,224)'//示例标识文字颜色
+                        }
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            axisLine:{
+                                lineStyle:{
+                                    color:'rgb(91,227,224)'//x轴坐标颜色 
+                                }
+                            },
+                            boundaryGap :true,
+                            data :['2018-10-26 00:00:00','2018-10-26 00:10:00','2018-10-26 00:20:00','2018-10-26 00:30:00',
+                            '2018-10-26 00:40:00','2018-10-26 00:50:00','2018-10-26 00:60:00','2018-10-26 01:00:00',
+                            '2018-10-26 01:02:00','2018-10-26 01:03:00','2018-10-26 01:04:00']
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type: 'value',
+                            name: '',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(110,131,162)'
+                                }
+                            },
+                            axisLabel: {
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgb(42,81,125)'
+                                }
+                            }
+                        }
+                    ],
+                series: [
+                    {
+                        name:'总功率因数PF',
+                        data: [11, 13, 10, 12, 11, 10, 10, 14, 10, 13, 12, 11],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(0, 255, 255, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(0, 255, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    }]
+                }
+                var option2={
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            lineStyle: {
+                                type: 'shadow',
+                                color: '#778AA8'
+                            }
+                        }
+                        // backgroundColor:"transparent",
+                        // formatter:function(datas){
+                        //     var res=`<div class="popcontent">
+                        //                 <div class="echartpop"></div>
+                        //                 <p class="echartpop-title">`+datas[0].name+`</p> <p class="echartpop-detail">总有功功率W：`+datas[0].data+`</p>
+                        //             </div>`
+                        //             return res;
+                        // }
+                    },
+                    grid: {
+                        top: 50,
+                        bottom: 50,
+                        left:50,
+                        right:20
+                    },
+                    legend: {
+                        top: 0,
+                        data:['总有功功率W'],
+                        textStyle:{
+                        color:'rgb(91,227,224)'//示例标识文字颜色
+                        }
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            axisLine:{
+                                lineStyle:{
+                                    color:'rgb(91,227,224)'//x轴坐标颜色
+                                }
+                            },
+                            boundaryGap :true,
+                            data :['2018-10-26 00:00:00','2018-10-26 00:10:00','2018-10-26 00:20:00','2018-10-26 00:30:00',
+                            '2018-10-26 00:40:00','2018-10-26 00:50:00','2018-10-26 00:60:00','2018-10-26 01:00:00',
+                            '2018-10-26 01:02:00','2018-10-26 01:03:00','2018-10-26 01:04:00']
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type: 'value',
+                            name: '',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(110,131,162)'
+                                }
+                            },
+                            axisLabel: {
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgb(42,81,125)'
+                                }
+                            }
+                        }
+                    ],
+                series: [
+                    {
+                        name:'总有功功率W',
+                        data: [21, 23, 20, 22, 21, 20, 20,24, 20, 23, 22, 21],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(0, 255, 255, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(0, 255, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    }]
+                }
+
+
+                var option3={
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            lineStyle: {
+                                type: 'shadow',
+                                color: '#778AA8'
+                            }
+                        }
+                        // backgroundColor:"transparent",
+                        // formatter:function(datas){
+                        //     var res=`<div class="popcontent">
+                        //                 <div class="echartpop"></div>
+                        //                 <p class="echartpop-title">`+datas[0].name+`</p> <p class="echartpop-detail">总无功功率Q：`+datas[0].data+`</p>
+                        //             </div>`
+                        //             return res;
+                        // }
+                    },
+                    grid: {
+                        top: 50,
+                        bottom: 50,
+                        left:50,
+                        right:20
+                    },
+                    legend: {
+                        top: 0,
+                        data:['总无功功率Q'],
+                        textStyle:{
+                        color:'rgb(91,227,224)'//示例标识文字颜色
+                        }
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            axisLine:{
+                                lineStyle:{
+                                    color:'rgb(91,227,224)'//x轴坐标颜色
+                                }
+                            },
+                            boundaryGap :true,
+                            data :['2018-10-26 00:00:00','2018-10-26 00:10:00','2018-10-26 00:20:00','2018-10-26 00:30:00',
+                            '2018-10-26 00:40:00','2018-10-26 00:50:00','2018-10-26 00:60:00','2018-10-26 01:00:00',
+                            '2018-10-26 01:02:00','2018-10-26 01:03:00','2018-10-26 01:04:00']
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type: 'value',
+                            name: '',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(110,131,162)'
+                                }
+                            },
+                            axisLabel: {
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgb(42,81,125)'
+                                }
+                            }
+                        }
+                    ],
+                series: [
+                    {
+                        name:'总无功功率Q',
+                        data: [21, 23, 20, 22, 21, 20, 20,24, 20, 23, 22, 21],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(0, 255, 255, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(0, 255, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    }]
+                }
+
+
+                  var option4={
+                    tooltip: {
+                        color:['#FFF350','#C09DFF','#00FFFF'],
+                        trigger: 'axis',
+                        axisPointer: {
+                            lineStyle: {
+                                type: 'shadow',
+                                color: '#778AA8'
+                            }
+                        }
+                        // backgroundColor:"transparent",
+                        // formatter:function(datas){
+                        //     console.log(datas);
+                        //     var res=`<div class="popcontent">
+                        //                 <div class="echartpop"></div>
+                        //                 <p class="echartpop-title">`+datas[0].name+`</p>
+                        //                 <p class="echartpop-detail">电流Ia：`+datas[0].data+`</p>
+                        //                 <p class="echartpop-detail">电流Ib`+datas[1].data+`</p>
+                        //                 <p class="echartpop-detail">电流Ic`+datas[2].data+`</p>
+                        //             </div>`
+                        //             return res;
+                        // }
+                    },
+                    grid: {
+                        top: 50,
+                        bottom: 50,
+                        left:50,
+                        right:20
+                    },
+                    legend: {
+                        top: 0,
+                        data:['电流Ia','电流Ib','电流Ic'],
+                        textStyle:{
+                        color:'rgb(91,227,224)'//示例标识文字颜色
+                        }
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            axisLine:{
+                                lineStyle:{
+                                    color:'rgb(91,227,224)'//x轴坐标颜色
+                                }
+                            },
+                            boundaryGap :true,
+                            data :['2018-10-26 00:00:00','2018-10-26 00:10:00','2018-10-26 00:20:00','2018-10-26 00:30:00',
+                            '2018-10-26 00:40:00','2018-10-26 00:50:00','2018-10-26 00:60:00','2018-10-26 01:00:00',
+                            '2018-10-26 01:02:00','2018-10-26 01:03:00','2018-10-26 01:04:00']
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type: 'value',
+                            name: '',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(110,131,162)'
+                                }
+                            },
+                            axisLabel: {
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgb(42,81,125)'
+                                }
+                            }
+                        }
+                    ],
+                series: [
+                    {
+                        name:'电流Ia',
+                        data: [21, 23, 20, 22, 21, 20, 20,24, 20, 23, 22, 21],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(255, 243, 80, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(255, 243, 80, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    }, {
+                        name:'电流Ib',
+                        data: [31, 33, 30, 32, 31, 30, 30,34, 30, 33, 32, 31],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(192, 157, 255, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(192, 157, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    },{
+                        name:'电流Ic',
+                        data: [41, 43, 40, 42, 41, 40, 40,44, 40, 43, 42, 41],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(0, 255, 255, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(0, 255, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    }
+                    ]
+                }
+
+
+
+
+                  var option5={
+                    tooltip: {
+                        color:['#FFF350','#C09DFF','#00FFFF'],
+                        trigger: 'axis',
+                        axisPointer: {
+                            lineStyle: {
+                                type: 'shadow',
+                                color: '#778AA8'
+                            }
+                        }
+                        // backgroundColor:"transparent",
+                        // formatter:function(datas){
+                        //     console.log(datas);
+                        //     var res=`<div class="popcontent">
+                        //                 <div class="echartpop"></div>
+                        //                 <p class="echartpop-title">`+datas[0].name+`</p>
+                        //                 <p class="echartpop-detail">电流Ia：`+datas[0].data+`</p>
+                        //                 <p class="echartpop-detail">电流Ib`+datas[1].data+`</p>
+                        //                 <p class="echartpop-detail">电流Ic`+datas[2].data+`</p>
+                        //             </div>`
+                        //             return res;
+                        // }
+                    },
+                    grid: {
+                        top: 50,
+                        bottom: 50,
+                        left:50,
+                        right:20
+                    },
+                    legend: {
+                        top: 0,
+                        data:['电压Uan','电压Ubn','电压Ucn'],
+                        textStyle:{
+                        color:'rgb(91,227,224)'//示例标识文字颜色
+                        }
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            axisLine:{
+                                lineStyle:{
+                                    color:'rgb(91,227,224)'//x轴坐标颜色
+                                }
+                            },
+                            boundaryGap :true,
+                            data :['2018-10-26 00:00:00','2018-10-26 00:10:00','2018-10-26 00:20:00','2018-10-26 00:30:00',
+                            '2018-10-26 00:40:00','2018-10-26 00:50:00','2018-10-26 00:60:00','2018-10-26 01:00:00',
+                            '2018-10-26 01:02:00','2018-10-26 01:03:00','2018-10-26 01:04:00']
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type: 'value',
+                            name: '',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(110,131,162)'
+                                }
+                            },
+                            axisLabel: {
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgb(42,81,125)'
+                                }
+                            }
+                        }
+                    ],
+                series: [
+                    {
+                        name:'电压Uan',
+                        data: [21, 23, 20, 22, 21, 20, 20,24, 20, 23, 22, 21],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(255, 243, 80, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(255, 243, 80, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    }, {
+                        name:'电压Ubn',
+                        data: [31, 33, 30, 32, 31, 30, 30,34, 30, 33, 32, 31],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(192, 157, 255, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(192, 157, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    },{
+                        name:'电压Ucn',
+                        data: [41, 43, 40, 42, 41, 40, 40,44, 40, 43, 42, 41],
+                        type: 'line',
+                        symbol: 'circle',
+                        symbolSize: 8,
+                        color: '#04B8CE',
+                        lineStyle: {
+                            color: "rgba(0, 255, 255, 1)"
+                        },
+                        itemStyle : {
+								normal : {
+									color : 'rgba(0, 255, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+								}
+							}
+                    }
+                    ]
+                }
+
+
+                chart1Chart.setOption(option1);
+                chart2Chart.setOption(option2);
+                chart3Chart.setOption(option3);
+                chart4Chart.setOption(option4);
+                chart5Chart.setOption(option5);
+
+                chart1Chart.group='group1';
+                chart2Chart.group='group1';
+                chart3Chart.group='group1';
+                chart4Chart.group='group1';
+                chart5Chart.group='group1';
+                echarts.connect([chart1Chart,chart2Chart,chart3Chart,chart4Chart,chart5Chart]);
+                window.onresize = function () {
+                    chart1Chart.resize();
+                    chart2Chart.resize();
+                    chart3Chart.resize();
+                    chart4Chart.resize();
+                    chart5Chart.resize();
+                    };
+            }
+                
         },
         mounted() {
             var setting = {
@@ -246,7 +822,8 @@
             $("#sy").bind("change", setCheck);
             $("#pn").bind("change", setCheck);
             $("#sn").bind("change", setCheck);
-
+            // 调用echarts
+            this.SetEchart();
         }
 
     }

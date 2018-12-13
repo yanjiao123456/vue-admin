@@ -134,9 +134,11 @@
 
             <div class="data-box">
                 <div class="bg"></div>
-                <div class="title"><h3>能耗趋势</h3>
+                <div class="title"><h3>能耗成本</h3>
                 </div>
-                <div class="my-charts"></div>
+                <div class="my-charts">
+                    <div id="base" style="width:100%;height:100%;"></div>
+                </div>
             </div>
 
 
@@ -236,6 +238,7 @@
 
 <script>
     import TemplateTable from '../views/template-table'
+    var echarts=require('echarts')
     export default {
         name: "nenghaochengben",
         data() {
@@ -358,6 +361,129 @@
         },
         components: {
             TemplateTable
+        },
+        methods: {
+            SetEchart() {
+                // 基于准备好的dom，初始化echarts实例
+                // var growRanking = echarts.init(document.getElementById('myChart'));
+
+                var cost = document.getElementById('cost');
+                var costChart = echarts.init(cost);
+                var one = [224, 220, 335, 188, 350, 230, 354, 261];
+                var two = [110, 220, 115, 300, 188, 120, 241, 321];
+                var three = [300, 150, 215, 200, 108, 160, 223, 241];
+                var four = [200, 100, 315, 100, 168, 220, 330, 210];
+                var color = "#fff";
+                // 指定图表的配置项和数据
+
+
+                var option = {
+                    color: ['#637EF9', '#1C97FF', '#38E68D', '#CFDB48', '#66A9C9', '#00BFC7', '#99D683', '#B4C1D7', '#21834B'],
+                    // title: [{
+                    //    text: '对比定标单耗增长排名',
+                    //    x: 'center',
+                    //    y: 'top',
+                    //    textStyle: {
+                    //        color: '#01CED4',
+                    //        textAlign: 'center',
+                    //        fontSize: 14,
+                    //        fontWeight: 'bold'
+                    //    }
+                    // }],
+                    legend: {
+                        data: ['2AA101-1号电源线_能耗', '2AA102-1号电源线_能耗', '2AA103-1号电源线_能耗', '2AA104-1号电源线_能耗'],
+                        align: 'left',
+                        top:'5%',
+                        x: 'center',
+                        right: '4%',
+                        icon: 'rect',
+                        itemWidth: 10, // 图例图形宽度
+                        itemHeight: 10, // 图例图形高度
+                        itemGap: 50,
+                        textStyle: {
+                            color: 'rgb(91,227,224)',
+                            fontSize: 12
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '1%',
+                        bottom: '3%',
+                        top: '15%',
+                        containLabel: true
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'shadow'
+                        }
+                    },
+                    xAxis: [{
+                        data: ['2018年10月16日', '2018年10月17日', '2018年10月18日', '2018年10月19日', '2018年10月20日', '2018年10月21日', '2018年10月22日', '2018年10月23日'],
+                        type: 'category',
+                        axisLine: {
+                            lineStyle: {
+                                color: 'rgb(91,227,224)'//x轴坐标颜色
+                            }
+                        },
+                        boundaryGap: true
+                    }],
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: '单位（%）',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(223,253,255)'
+                                }
+                            },
+                            axisLabel: {
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgb(42,81,125)'
+                                }
+                            }
+                        }
+                    ],
+                    series: [{
+                        name: '2AA101-1号电源线_能耗',
+                        type: 'bar',
+                        stack: '2AA101-1号电源线_能耗',
+                        data: one
+                    }, {
+                        name: '2AA102-1号电源线_能耗',
+                        type: 'bar',
+                        stack: '2AA102-1号电源线_能耗',
+                        data: two
+                    }, {
+                        name: '2AA103-1号电源线_能耗',
+                        type: 'bar',
+                        stack: '2AA103-1号电源线_能耗',
+                        data: three
+                    }, {
+                        name: '2AA104-1号电源线_能耗',
+                        type: 'bar',
+                        stack: '2AA104-1号电源线_能耗',
+                        data: four
+                    }
+                    ]
+                }
+
+
+                // 使用刚指定的配置项和数据显示图表。
+                costChart.setOption(option);
+                window.onresize=function(){
+                    costChart.resize();
+                }
+            }
         },
         mounted() {
             var setting = {
@@ -490,7 +616,9 @@
             $("#sy").bind("change", setCheck);
             $("#pn").bind("change", setCheck);
             $("#sn").bind("change", setCheck);
+            
 
+            this.SetEchart();
         }
 
     }

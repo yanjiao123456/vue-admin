@@ -186,7 +186,7 @@
         <!--能耗大数据图表 start-->
         <div class="energy-Echarts">
             <div class="bg"></div>
-            <div class="title"><h3>数据列表</h3></div>
+            <div class="title"><h3>实时数据</h3></div>
             <div class="myChart" id="myChart" style="width: 100%;height: 100%;"></div>
         </div>
         <!--能耗大数据图表 end-->
@@ -229,7 +229,6 @@
 
 <script>
     import TemplateTable from '../views/template-table'
-
     var echarts = require('echarts');
     export default {
         name: "inquire",
@@ -340,34 +339,18 @@
                 var growRanking = document.getElementById('myChart');
                 var growRankingChart = echarts.init(growRanking);
                 var one = [224, 220, 335, 188, 350, 230, 354, 261];
-                var two = [110, 220, 115, 300, 188, 120, 241, 321];
-                var three = [300, 150, 215, 200, 108, 160, 223, 241];
-                var four = [200, 100, 315, 100, 168, 220, 330, 210];
-                var color = "#fff";
                 // 指定图表的配置项和数据
 
 
                 var option = {
                     color: ['#637EF9', '#1C97FF', '#38E68D', '#CFDB48', '#66A9C9', '#00BFC7', '#99D683', '#B4C1D7', '#21834B'],
-                    //title: [{
-                    //    text: '对比定标单耗增长排名',
-                    //    x: 'center',
-                    //    y: 'top',
-                    //    textStyle: {
-                    //        color: '#01CED4',
-                    //        textAlign: 'center',
-                    //        fontSize: 14,
-                    //        fontWeight: 'bold'
-                    //    }
-                    //}],
+                   
                     legend: {
-                        data: ['2AA101-1号电源线_能耗', '2AA102-1号电源线_能耗', '2AA103-1号电源线_能耗', '2AA104-1号电源线_能耗'],
-                        align: 'left',
-                        // x: 'right',
+                        data: ['5AA102-25TR当前正向有功总电能'],
+                        // align: 'left',
+                        x: 'center',
                         right: '4%',
-                        icon: 'rect',
-                        itemWidth: 10, // 图例图形宽度
-                        itemHeight: 10, // 图例图形高度
+                        // icon: 'rect',
                         //itemGap: 13,
                         textStyle: {
                             color: 'rgb(91,227,224)',
@@ -384,23 +367,26 @@
                     tooltip: {
                         trigger: 'axis',
                         axisPointer: {
-                            type: 'shadow'
+                            lineStyle: {
+                                type: 'shadow',
+                                color: '#778AA8'
+                            }
                         }
                     },
                     xAxis: [{
                         data: ['2018年10月16日', '2018年10月17日', '2018年10月18日', '2018年10月19日', '2018年10月20日', '2018年10月21日', '2018年10月22日', '2018年10月23日'],
                         type: 'category',
+                        boundaryGap: false,
                         axisLine: {
                             lineStyle: {
                                 color: 'rgb(91,227,224)'//x轴坐标颜色
                             }
-                        },
-                        boundaryGap: true
+                        }
                     }],
                     yAxis: [
                         {
                             type: 'value',
-                            name: '单位（%）',
+                            name: '单位（kw）',
                             axisTick: {
                                 show: false
                             },
@@ -423,32 +409,52 @@
                         }
                     ],
                     series: [{
-                        name: '2AA101-1号电源线_能耗',
-                        type: 'bar',
-                        stack: '2AA101-1号电源线_能耗',
-                        data: one
-                    }, {
-                        name: '2AA102-1号电源线_能耗',
-                        type: 'bar',
-                        stack: '2AA102-1号电源线_能耗',
-                        data: two
-                    }, {
-                        name: '2AA103-1号电源线_能耗',
-                        type: 'bar',
-                        stack: '2AA103-1号电源线_能耗',
-                        data: three
-                    }, {
-                        name: '2AA104-1号电源线_能耗',
-                        type: 'bar',
-                        stack: '2AA104-1号电源线_能耗',
-                        data: four
-                    }
+                        name: '5AA102-25TR当前正向有功总电能',
+                        type: 'line',
+                        // symbol: 'circle',
+                        symbolSize: 8,
+                        // showAllSymbol: true,
+                        // color: '#637EF9',
+                        // lineStyle: {
+                        //     color: "#637EF9"
+                        // },
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgba(99, 126, 249, 0.9)'
+                                }, {
+                                    offset: 0.8,
+                                    color: 'rgba(99, 126, 249, 0)'
+                                }], false),
+                                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                shadowBlur: 10
+                            }
+                        },
+                        data: one,
+                        markPoint: {
+                            label:{
+                                show:true,
+                                formatter:'{c}'
+                            },
+                            // symbol:'image://././assets/PeiDianJianCe/data_k.png',
+                            symbol:'roundRect',
+                            data: [
+                                {type: 'max', name: '最大值'},
+                                {type: 'min', name: '最小值'}
+                                // {coord:[41,15],name:'15',value:15} 
+                            ]
+                        },
+                        }
                     ]
                 }
 
 
                 // 使用刚指定的配置项和数据显示图表。
                 growRankingChart.setOption(option);
+                window.onresize = function () {
+                    growRankingChart.resize();
+                    };
             },
             getSummaries(param) {
                 const {columns, data} = param;

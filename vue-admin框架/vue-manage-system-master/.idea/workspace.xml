@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91dbf1b6-1785-4e9e-879d-5d0cbd4dff66" name="Default Changelist" comment="shy-11-26">
-      <change afterPath="$PROJECT_DIR$/src/components/page/GongLvYinShu.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/page/YiBiaoTaiZhang.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Sidebar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/PeiDianInquire.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/PeiDianInquire.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/page/inquire.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/inquire.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/demo.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +51,7 @@
           <entry key="js" value="678" />
           <entry key="svg" value="160" />
           <entry key="txt" value="9" />
-          <entry key="vue" value="19721" />
+          <entry key="vue" value="19722" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -67,7 +61,7 @@
           <entry key="JavaScript" value="678" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="SVG" value="160" />
-          <entry key="Vue.js" value="19714" />
+          <entry key="Vue.js" value="19715" />
         </counts>
       </usages-collector>
     </session>
@@ -118,13 +112,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/page/PeiDianInquire.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="5522">
-              <caret line="715" column="30" lean-forward="true" selection-start-line="715" selection-start-column="30" selection-end-line="715" selection-end-column="30" />
+              <caret line="721" column="30" lean-forward="true" selection-start-line="721" selection-start-column="30" selection-end-line="721" selection-end-column="30" />
               <folding>
                 <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#script#0;n#!!top" />
               </folding>
             </state>
@@ -146,18 +141,17 @@
             <state relative-caret-position="396">
               <caret line="51" column="34" lean-forward="true" selection-start-line="42" selection-start-column="28" selection-end-line="51" selection-end-column="34" />
               <folding>
-                <element signature="n#div#3;n#div#1;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/page/inquire.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7854">
-              <caret line="99" column="40" lean-forward="true" selection-start-line="99" selection-start-column="40" selection-end-line="99" selection-end-column="40" />
+            <state relative-caret-position="526">
+              <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
               <folding>
                 <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -251,9 +245,9 @@
         <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/src/components/common/Sidebar.vue" />
         <option value="$PROJECT_DIR$/static/css/demo.css" />
-        <option value="$PROJECT_DIR$/src/components/page/inquire.vue" />
         <option value="$PROJECT_DIR$/src/components/page/PeiDianInquire.vue" />
         <option value="$PROJECT_DIR$/src/components/page/YiBiaoTaiZhang.vue" />
+        <option value="$PROJECT_DIR$/src/components/page/inquire.vue" />
       </list>
     </option>
   </component>
@@ -371,12 +365,12 @@
       <option name="presentableId" value="Default" />
       <updated>1543197624845</updated>
       <workItem from="1543197626279" duration="191066000" />
-      <workItem from="1544403446365" duration="67831000" />
+      <workItem from="1544403446365" duration="68313000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="258897000" />
+    <option name="totallyTimeSpent" value="259379000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -800,7 +794,6 @@
         <state relative-caret-position="396">
           <caret line="51" column="34" lean-forward="true" selection-start-line="42" selection-start-column="28" selection-end-line="51" selection-end-column="34" />
           <folding>
-            <element signature="n#div#3;n#div#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#!!top" />
           </folding>
         </state>
@@ -821,24 +814,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/inquire.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/page/PeiDianInquire.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7854">
-          <caret line="99" column="40" lean-forward="true" selection-start-line="99" selection-start-column="40" selection-end-line="99" selection-end-column="40" />
+        <state relative-caret-position="5522">
+          <caret line="721" column="30" lean-forward="true" selection-start-line="721" selection-start-column="30" selection-end-line="721" selection-end-column="30" />
           <folding>
             <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#script#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/PeiDianInquire.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/page/inquire.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5522">
-          <caret line="715" column="30" lean-forward="true" selection-start-line="715" selection-start-column="30" selection-end-line="715" selection-end-column="30" />
+        <state relative-caret-position="526">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
           <folding>
             <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#script#0;n#!!top" />
           </folding>
         </state>

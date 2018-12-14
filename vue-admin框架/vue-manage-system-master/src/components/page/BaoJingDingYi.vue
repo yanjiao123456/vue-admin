@@ -1,84 +1,20 @@
 <template>
     <div class="Inquire">
-        <div v-show="gxhShow || treeShow" class="gxhPop">
-            <div class="bgc"></div>
-            <div v-show="treeShow" class="tree-block">
-                <div class="bg-box">
-                    <div class="block-bg"></div>
-                    <div class="details">
-                        <i @click="treeShow=false" class="icon-close"></i>
-                        <div class="title">个性化查询</div>
-                        <div class="tree-content">
-                            <div class="import-box">
-                                <input id="key" type="text" class="import" placeholder="请输入您所需查询的信息">
-                            </div>
-                            <!--树-->
-                            <ul id="treeDemo" class="ztree"></ul>
-                        </div>
-                        <div class="tree-btns">
-                            <span>提交</span>
-                            <span>重置</span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div v-show="gxhShow" class="block">
-                <div class="bg-box">
-                    <div class="block-bg"></div>
-                    <div class="details">
-                        <i @click="gxhShow=false" class="icon-close"></i>
-                        <div class="title">个性化查询</div>
-                        <div class="list-box">
-                            <ul>
-                                <li>
-                                    <p>生产一车间二组</p>
-                                    <div class="compile">
-                                        <span class="item-span">第二生产线前1月用电</span>
-                                        <span class="item-span">2017-10-12</span>
-                                        <div class="btns">
-                                            <span>编辑</span>
-                                            <span>编辑</span>
-                                            <span>编辑</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>生产一车间二组</p>
-                                    <div class="compile">
-                                        <span class="item-span">第二生产线前1月用电</span>
-                                        <span class="item-span">2017-10-12</span>
-                                        <div class="btns">
-                                            <span>编辑</span>
-                                            <span>编辑</span>
-                                            <span>编辑</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="import-box">
-                            <input type="text" class="import" placeholder="请输入您所要添加的个性化查询条件">
-                            <span class="save">保存当前查询条件</span>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!--1321231231-->
-            </div>
+        <div class="addBtn">
+            <div @click="filtrateShow=!filtrateShow" :class="{'btn-item':true}">添加定义</div>
         </div>
-        <div class="filtrate-box">
-            <div class="bg"></div>
-            <div class="title"><h3>筛选条件</h3></div>
-            <!--<div @click="filtrateShow=!filtrateShow"-->
-            <!--:class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>-->
-            <el-collapse-transition>
-                <div v-show="filtrateShow" class="filtrate-show">
+        <el-collapse-transition>
+            <div v-show="filtrateShow" class="filtrate-box">
+                <div class="bg"></div>
+                <div class="title"><h3>添加能耗计量报警</h3></div>
+                <!--<div @click="filtrateShow=!filtrateShow"-->
+                <!--:class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>-->
+
+                <div class="filtrate-show">
 
                     <div class="item-row item2">
                         <div class="more-box">
-                            <span>仪表类型：</span>
+                            <span>报警仪表类型：</span>
                             <el-select class="select" v-model="select1" placeholder="仪表类型">
                                 <el-option
                                         v-for="item in options"
@@ -89,7 +25,7 @@
                             </el-select>
                         </div>
                         <div class="more-box">
-                            <span>仪表名称：</span>
+                            <span>报警支路：</span>
                             <el-select class="select" v-model="select1" placeholder="仪表名称">
                                 <el-option
                                         v-for="item in options"
@@ -100,7 +36,7 @@
                             </el-select>
                         </div>
                         <div class="more-box">
-                            <span>仪表编码：</span>
+                            <span>报警参数：</span>
                             <el-select class="select" v-model="select1" placeholder="仪表编码">
                                 <el-option
                                         v-for="item in options"
@@ -111,7 +47,7 @@
                             </el-select>
                         </div>
                         <div class="more-box">
-                            <span>安装位置：</span>
+                            <span>报警级别：</span>
                             <el-select class="select" v-model="select1" placeholder="安装位置">
                                 <el-option
                                         v-for="item in options"
@@ -123,55 +59,122 @@
                         </div>
 
                     </div>
+                    <div class="item-row item2">
+                        <div class="more-box">
+                            <span>报警上限：</span>
+                            <el-select class="select" v-model="select1" placeholder="仪表类型">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </div>
+                        <div class="more-box">
+                            <span>报警上上限：</span>
+                            <el-select class="select" v-model="select1" placeholder="仪表名称">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </div>
+                        <div class="more-box">
+                            <span>报警下限：</span>
+                            <el-select class="select" v-model="select1" placeholder="仪表编码">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </div>
+                        <div class="more-box">
+                            <span>报警下下限：</span>
+                            <el-select class="select" v-model="select1" placeholder="安装位置">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </div>
+
+                    </div>
+                    <div class="item-row item2">
+                        <div class="more-box">
+                            <span>预警值：</span>
+                            <el-select class="select" v-model="select1" placeholder="仪表类型">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </div>
+                        <div class="more-box">
+                            <span>报警处理：</span>
+                            <el-select class="select" v-model="select1" placeholder="仪表名称">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </div>
+
+
+                    </div>
 
 
                     <div class="btns-box">
-                        <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">查询</div>
+                        <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">保存</div>
                         <div @click="btns=1,treeShow=true" :class="{'btn-item':true,cur:btns==1}">重置</div>
-                        <!--<div @click="btns=2,gxhShow=true" :class="{'btn-item':true,cur:btns==2}">个性化</div>-->
+                        <div @click="btns=2,gxhShow=true" :class="{'btn-item':true,cur:btns==2}">关闭</div>
                     </div>
 
                 </div>
-            </el-collapse-transition>
 
-        </div>
 
+            </div>
+        </el-collapse-transition>
 
         <div class="Table">
             <div class="bg"></div>
-            <div class="title"><h3>数据列表</h3>
-                <div class="head-right">
-                    <div class="count">
-                        <!--<div class="bg"></div>-->
-                        <select>
-                            <option>默认排序</option>
-                            <option>检定时间由远至近</option>
-                            <option>检定时间由近至远</option>
-
-                        </select>
-                    </div>
-                    <i class="icon-pdf"></i><i class="icon-excel"></i></div>
+            <div class="title">
+                <div class="tabTit">
+                    <h3 @click="tabCur=0" :class="{cur:tabCur==0}">实时监测报警</h3>
+                    <h3 @click="tabCur=1" :class="{cur:tabCur==1}">能耗计量报警</h3>
+                </div>
             </div>
 
             <div class="table-box">
-                <div class="table-tit">【 仪表台账数据列表 】</div>
+                <div class="table-tit">【报警定义列表 】</div>
 
                 <table border="0">
                     <tr>
-                        <th v-for="v in 12">仪表类型</th>
+                        <th v-for="v in 5">区域名称</th>
                         <th>操作</th>
                     </tr>
-                    <tr v-for="(v,index) in 12" :class="{cur:!setShow && setId==index}">
-                        <td v-for="v in 12">电表</td>
-                        <td v-show="setId!=index ||setShow"><i class="icon-xg"></i><span @click="setShow = false,setId=index" class="set">修改</span></td>
+                    <tr v-for="(v,index) in 5" :class="{cur:!setShow && setId==index}">
+                        <td v-for="v in 5">七跨行车动力距离</td>
+                        <td v-show="setId!=index ||setShow"><i class="icon-xg"></i><span
+                                @click="setShow = false,setId=index" class="set">修改</span></td>
                         <td v-show="setId==index && !setShow">
                             <div class="item1">
                                 <i class="icon-xg-ing"></i>
                                 <span>修改</span>
                             </div>
                             <div class="item1">
-                                <i class="icon-bc"></i>
-                                <span @click="setShow = true" class="bc">保存</span>
+                                <i class="icon-del"></i>
+                                <span @click="setShow = true" class="del">删除</span>
                             </div>
                         </td>
                     </tr>
@@ -212,9 +215,10 @@
 
     var echarts = require('echarts');
     export default {
-        name: "inquire",
+        name: "baojingdingyi",
         data() {
             return {
+                tabCur:1,
                 setShow: true,
                 setId: '',
                 radio: '1',
@@ -451,6 +455,31 @@
         position: relative;
         .fl {
             float: left;
+        }
+        .addBtn {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+            .btn-item {
+                width: 90px;
+                height: 40px;
+                cursor: pointer;
+                /*margin-right: 20px;*/
+                text-align: center;
+                line-height: 40px;
+                font-size: 14px;
+                font-family: HiraginoSansGB-W6;
+                font-weight: normal;
+                color: rgba(97, 213, 255, 1);
+                background: url("../../assets/NengHaoChaXun/bt_wxz.png") no-repeat;
+                -webkit-background-size: 100% 100%;
+                background-size: 100% 100%;
+            }
+            .cur {
+                background: url("../../assets/NengHaoChaXun/bt_xz.png") no-repeat;
+                -webkit-background-size: 100% 100%;
+                background-size: 100% 100%;
+            }
         }
         .bg {
             width: 100%;
@@ -1117,6 +1146,30 @@
                 position: relative;
                 z-index: 5;
                 /*margin-bottom: 15px;*/
+                .tabTit{
+                    display: flex;
+                    justify-content: flex-start;
+
+                    h3{
+                        cursor: pointer;
+                        font-size:16px;
+                        font-family:HiraginoSansGB-W3;
+                        font-weight:bold;
+                        color:rgba(122,160,187,1);
+                        &.cur{
+                            font-size:16px;
+                            font-family:HiraginoSansGB-W3;
+                            font-weight:bold;
+                            color:rgba(255,255,255,1);
+                            padding-bottom: 3px;
+                            border-bottom: 2px solid #FFFFFF;
+                        }
+                        &:nth-child(2){
+                            margin-left: 33px;
+                        }
+
+                    }
+                }
                 h3 {
                     font-size: 16px;
                     font-family: HiraginoSansGB-W3;
@@ -1245,6 +1298,7 @@
                             font-family: HiraginoSansGB-W3;
                             font-weight: normal;
                             color: rgba(95, 251, 248, 1);
+                            cursor: pointer;
                         }
                         .item1 {
                             display: inline-block;
@@ -1271,6 +1325,22 @@
                                 font-family: HiraginoSansGB-W6;
                                 font-weight: normal;
                                 color: rgba(250, 236, 79, 1);
+                                cursor: pointer;
+                            }
+                            .icon-del{
+                                width: 15px;
+                                height: 15px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/删除-2.png") no-repeat;
+                                position: relative;
+                                top: 3px;
+                            }
+                            .del{
+                                font-size:14px;
+                                font-family:HiraginoSansGB-W6;
+                                font-weight:normal;
+                                color:rgba(255,65,65,1);
+                                cursor: pointer;
                             }
                         }
                     }

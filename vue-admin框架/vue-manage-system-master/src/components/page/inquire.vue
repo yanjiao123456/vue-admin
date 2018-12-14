@@ -25,7 +25,7 @@
                                 </el-option>
                             </el-select>
                         </div>
-                        
+
                         <div class="more-box">
                             <el-checkbox class="ml92" v-model="checked2">分项:</el-checkbox>
                             <el-select class="select" v-model="select2" placeholder="请选择分项">

@@ -195,7 +195,13 @@
                                 icon: "ml5 icon-all icon-sjcx",
                                 index: "baojingguanli",
                                 title: "报警管理"
-                            }
+                            },
+                            {
+                                icon: "ml5 icon-all icon-sjcx",
+                                index: "baojingdingyi",
+                                title: "报警定义"
+                            },
+
                         ]
                     },
                     {

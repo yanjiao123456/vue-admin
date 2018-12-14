@@ -186,7 +186,7 @@
                             type : 'category',
                             axisLine:{
                                 lineStyle:{
-                                    color:'rgb(91,227,224)'//x轴坐标颜色 
+                                    color:'rgb(91,227,224)'//x轴坐标颜色
                                 }
                             },
                             boundaryGap :true,
@@ -692,7 +692,7 @@
                     chart5Chart.resize();
                     };
             }
-                
+
         },
         mounted() {
             var setting = {
@@ -916,9 +916,9 @@
 
         .left-branch {
             width: 245px;
-            height: 894px;
+            height: 100%;
             box-sizing: border-box;
-            margin-bottom: 40px;
+            /*margin-bottom: 40px;*/
             /*float: left;*/
             /*margin-right: 24px;*/
             position: relative;
@@ -1033,7 +1033,7 @@
 
         .main {
             width: 100%;
-            height: 894px;
+            height: 100%;
             overflow-y: auto;
             overflow-x: hidden;
 

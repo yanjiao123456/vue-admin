@@ -1,84 +1,17 @@
 <template>
     <div class="Inquire">
-        <div v-show="gxhShow || treeShow" class="gxhPop">
-            <div class="bgc"></div>
-            <div v-show="treeShow" class="tree-block">
-                <div class="bg-box">
-                    <div class="block-bg"></div>
-                    <div class="details">
-                        <i @click="treeShow=false" class="icon-close"></i>
-                        <div class="title">个性化查询</div>
-                        <div class="tree-content">
-                            <div class="import-box">
-                                <input id="key" type="text" class="import" placeholder="请输入您所需查询的信息">
-                            </div>
-                            <!--树-->
-                            <ul id="treeDemo" class="ztree"></ul>
-                        </div>
-                        <div class="tree-btns">
-                            <span>提交</span>
-                            <span>重置</span>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-            <div v-show="gxhShow" class="block">
-                <div class="bg-box">
-                    <div class="block-bg"></div>
-                    <div class="details">
-                        <i @click="gxhShow=false" class="icon-close"></i>
-                        <div class="title">个性化查询</div>
-                        <div class="list-box">
-                            <ul>
-                                <li>
-                                    <p>生产一车间二组</p>
-                                    <div class="compile">
-                                        <span class="item-span">第二生产线前1月用电</span>
-                                        <span class="item-span">2017-10-12</span>
-                                        <div class="btns">
-                                            <span>编辑</span>
-                                            <span>编辑</span>
-                                            <span>编辑</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>生产一车间二组</p>
-                                    <div class="compile">
-                                        <span class="item-span">第二生产线前1月用电</span>
-                                        <span class="item-span">2017-10-12</span>
-                                        <div class="btns">
-                                            <span>编辑</span>
-                                            <span>编辑</span>
-                                            <span>编辑</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="import-box">
-                            <input type="text" class="import" placeholder="请输入您所要添加的个性化查询条件">
-                            <span class="save">保存当前查询条件</span>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!--1321231231-->
-            </div>
-        </div>
         <div class="filtrate-box">
             <div class="bg"></div>
             <div class="title"><h3>筛选条件</h3></div>
-            <!--<div @click="filtrateShow=!filtrateShow"-->
-            <!--:class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>-->
+            <div @click="filtrateShow=!filtrateShow" :class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>
             <el-collapse-transition>
                 <div v-show="filtrateShow" class="filtrate-show">
 
                     <div class="item-row item2">
                         <div class="more-box">
-                            <span>仪表类型：</span>
+                            <el-radio class="choice" v-model="radio" label="1">部门:</el-radio>
+
                             <el-select class="select" v-model="select1" placeholder="仪表类型">
                                 <el-option
                                         v-for="item in options"
@@ -89,7 +22,8 @@
                             </el-select>
                         </div>
                         <div class="more-box">
-                            <span>仪表名称：</span>
+                            <el-radio class="choice" v-model="radio" label="2">分项:</el-radio>
+
                             <el-select class="select" v-model="select1" placeholder="仪表名称">
                                 <el-option
                                         v-for="item in options"
@@ -100,7 +34,7 @@
                             </el-select>
                         </div>
                         <div class="more-box">
-                            <span>仪表编码：</span>
+                            <el-radio class="choice" v-model="radio" label="3">位置:</el-radio>
                             <el-select class="select" v-model="select1" placeholder="仪表编码">
                                 <el-option
                                         v-for="item in options"
@@ -110,18 +44,39 @@
                                 </el-option>
                             </el-select>
                         </div>
-                        <div class="more-box">
-                            <span>安装位置：</span>
-                            <el-select class="select" v-model="select1" placeholder="安装位置">
-                                <el-option
-                                        v-for="item in options"
-                                        :key="item.value"
-                                        :label="item.label"
-                                        :value="item.value">
-                                </el-option>
-                            </el-select>
-                        </div>
+                        <div class="more-box"></div>
 
+                    </div>
+                    <div class="item-row">
+                        <i class="icon-lx"></i>
+                        <span class="checkbox-tit">类型:</span>
+                        <el-radio class="choice" v-model="radio1" label="1">总</el-radio>
+                        <el-radio class="choice" v-model="radio1" label="2">电</el-radio>
+                        <el-radio class="choice" v-model="radio1" label="3">水</el-radio>
+                    </div>
+                    <div class="item-row">
+                        <i class="icon-jh"></i>
+                        <span class="checkbox-tit">计划:</span>
+                        <el-radio class="choice" v-model="radio2" label="1">产量</el-radio>
+                        <el-radio class="choice" v-model="radio2" label="2">产值</el-radio>
+
+                    </div>
+                    <div class="item-row">
+                        <i class="icon-wd"></i>
+                        <span class="checkbox-tit">维度：</span>
+                        <el-radio class="choice" v-model="radio3" label="1">月</el-radio>
+                        <el-radio class="choice" v-model="radio3" label="2">年</el-radio>
+                    </div>
+                    <div class="item-row">
+                        <span class="date-select">时间选择</span>
+                        <el-date-picker
+                                class=""
+                                v-model="value6"
+                                type="datetimerange"
+                                range-separator="—"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期">
+                        </el-date-picker>
                     </div>
 
 
@@ -135,45 +90,69 @@
             </el-collapse-transition>
 
         </div>
+        <div class="Table">
+            <div class="bg"></div>
+            <div class="title"><h3>能耗趋势</h3>
+                <div class="head-right">
+                    <div class="count">
+                        <!--<div class="bg"></div>-->
+                        <select>
+                            <option>线性回归</option>
+                            <option>二次回归</option>
+
+                        </select>
+                    </div>
+                   <div class="saveBtn">保存分析结果</div>
+                </div>
+            </div>
+            <div class="tit">
+                【 XX部门 2018-09至2018-09产量能耗相关性分析 】
+            </div>
+
+            <div class="charts-left">
+                <div class="charts1"></div>
+                <div class="charts2"></div>
+            </div>
+            <div class="charts-right">
+                <div class="charts3"></div>
+            </div>
+
+
+
+
+
+        </div>
 
 
         <div class="Table">
             <div class="bg"></div>
             <div class="title"><h3>数据列表</h3>
                 <div class="head-right">
-                    <div class="count">
-                        <!--<div class="bg"></div>-->
-                        <select>
-                            <option>默认排序</option>
-                            <option>检定时间由远至近</option>
-                            <option>检定时间由近至远</option>
 
-                        </select>
-                    </div>
                     <i class="icon-pdf"></i><i class="icon-excel"></i></div>
             </div>
 
             <div class="table-box">
-                <div class="table-tit">【 仪表台账数据列表 】</div>
+                <div class="table-tit">【 XX部门 2018-09-18至2018-09-18能耗数据 】</div>
 
                 <table border="0">
                     <tr>
-                        <th v-for="v in 12">仪表类型</th>
-                        <th>操作</th>
+                        <th v-for="v in 5">仪表类型</th>
+                        <!--<th>操作</th>-->
                     </tr>
-                    <tr v-for="(v,index) in 12" :class="{cur:!setShow && setId==index}">
-                        <td v-for="v in 12">电表</td>
-                        <td v-show="setId!=index ||setShow"><i class="icon-xg"></i><span @click="setShow = false,setId=index" class="set">修改</span></td>
-                        <td v-show="setId==index && !setShow">
-                            <div class="item1">
-                                <i class="icon-xg-ing"></i>
-                                <span>修改</span>
-                            </div>
-                            <div class="item1">
-                                <i class="icon-bc"></i>
-                                <span @click="setShow = true" class="bc">保存</span>
-                            </div>
-                        </td>
+                    <tr v-for="(v,index) in 5">
+                        <td v-for="v in 5">电表</td>
+                        <!--<td v-show="setId!=index ||setShow"><i class="icon-xg"></i><span @click="setShow = false,setId=index" class="set">修改</span></td>-->
+                        <!--<td v-show="setId==index && !setShow">-->
+                            <!--<div class="item1">-->
+                                <!--<i class="icon-xg-ing"></i>-->
+                                <!--<span>修改</span>-->
+                            <!--</div>-->
+                            <!--<div class="item1">-->
+                                <!--<i class="icon-bc"></i>-->
+                                <!--<span @click="setShow = true" class="bc">保存</span>-->
+                            <!--</div>-->
+                        <!--</td>-->
                     </tr>
                 </table>
             </div>
@@ -212,12 +191,16 @@
 
     var echarts = require('echarts');
     export default {
-        name: "inquire",
+        name: "dingbiaoguanli",
         data() {
             return {
                 setShow: true,
                 setId: '',
+                value6:'',
                 radio: '1',
+                radio1: '1',
+                radio2: '1',
+                radio3: '1',
                 filtrateShow: true,
                 gxhShow: false,
                 treeShow: false,
@@ -849,6 +832,34 @@
                         font-weight: bold;
                         color: rgba(45, 243, 255, 1);
                     }
+                    .icon-lx{
+                        width: 14px;
+                        height: 14px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/icon_lx.png") no-repeat;
+                    }
+                    .icon-jh{
+                        width: 14px;
+                        height: 16px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/icon_jh1.png") no-repeat;
+                        -webkit-background-size: 100% 100%;
+                        background-size: 100% 100%;
+                    }
+                    .icon-wd {
+                        display: inline-block;
+                        width: 16px;
+                        height: 15px;
+                        background: url("../../assets/NengHaoChaXun/icon_wd.png") no-repeat;
+                    }
+                    .checkbox-tit {
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(45, 243, 255, 1);
+                        margin-left: 4px;
+                        margin-right: 20px;
+                    }
                     .select {
                         /*width: 220px;*/
                         margin-left: 7px;
@@ -1111,6 +1122,7 @@
             padding: 23px 20px;
             margin-top: 25px;
             margin-bottom: 25px;
+            overflow: hidden;
             .title {
                 display: flex;
                 justify-content: space-between;
@@ -1122,6 +1134,21 @@
                     font-family: HiraginoSansGB-W3;
                     font-weight: bold;
                     color: rgba(254, 254, 255, 1);
+                }
+                .saveBtn{
+                    cursor: pointer;
+                    width:112px;
+                    height:30px;
+                    background:linear-gradient(180deg,rgba(6,88,110,0.2),rgba(27,138,168,0.2));
+                    border:1px solid rgba(153, 236, 241, 0.4);
+                    box-shadow:0px 1px 1px 0px rgba(12,28,79,0.2);
+                    border-radius:4px;
+                    font-size:14px;
+                    font-family:HiraginoSansGB-W6;
+                    font-weight:normal;
+                    color:rgba(97,213,255,1);
+                    text-align: center;
+                    line-height: 30px;
                 }
                 .icon-pdf {
                     display: inline-block;
@@ -1171,6 +1198,60 @@
                 }
 
             }
+            .tit{
+                text-align: center;
+                width: 100%;
+                font-size:14px;
+                font-family:HiraginoSansGB-W3;
+                font-weight:normal;
+                color:rgba(95,251,248,1);
+            }
+            .charts-left{
+                position: relative;
+                float: left;
+                width: calc(100% - 515px);
+                min-width: 600px;
+                height: 530px;
+                overflow: hidden;
+                @media screen and (max-width: 1600px) {
+                    width: 100%;
+                }
+                .charts1{
+                    width: 100%;
+                    height: 265px;
+                    background-color: #72ff94;
+                }
+                .charts2{
+                    width: 100%;
+                    height: 265px;
+                    background-color: #ff9c99;
+                }
+            }
+            .charts-right{
+                overflow: hidden;
+                float: left;
+                width: 514px;
+                height: 530px;
+                /*height: 265px;*/
+                position: relative;
+                @media screen and (max-width: 1600px) {
+                    width: 100%;
+                    height: auto;
+                }
+                display: flex;
+                align-items:flex-end;
+                /*overflow: hidden;*/
+                .charts3{
+                    overflow: hidden;
+                    width: 100%;
+                    height: 265px;
+                    background-color: #fff;
+                    /*position: absolute;*/
+                    /*bottom: 0;*/
+                    /*left: 0;*/
+                }
+            }
+
             .table-box {
                 position: relative;
                 z-index: 5;

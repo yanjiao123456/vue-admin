@@ -184,6 +184,23 @@
                                     }
                                 ]
                             },
+                            {
+                                icon: "ml5 icon-all icon-sjcx",
+                                index: "kpiguanli",
+                                title: "KPI管理",
+                                subs:[
+                                    {
+                                        icon: "ml5 icon-all icon-sjcx",
+                                        index: "dingbiaoguanli",
+                                        title: "定标管理"
+                                    },
+                                    {
+                                        icon: "ml5 icon-all icon-sjcx",
+                                        index: "kpifenxi",
+                                        title: "KPI分析"
+                                    }
+                                ]
+                            },
                         ]
                     },
                     {

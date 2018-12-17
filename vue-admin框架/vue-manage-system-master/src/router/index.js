@@ -100,6 +100,16 @@ export default new Router({
                     component: resolve => require(['../components/page/BaoJingDingYi.vue'], resolve),
                     meta: {title: '报警定义'}
                 },
+                {
+                    path: '/DingBiaoGuanLi',
+                    component: resolve => require(['../components/page/DingBiaoGuanLi.vue'], resolve),
+                    meta: {title: '定标管理'}
+                },
+                {
+                    path: '/KPIFenXi',
+                    component: resolve => require(['../components/page/KPIFenXi.vue'], resolve),
+                    meta: {title: 'KPI分析'}
+                },
 
                 {
                     path: '/icon',

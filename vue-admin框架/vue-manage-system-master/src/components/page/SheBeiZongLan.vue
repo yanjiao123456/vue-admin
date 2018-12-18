@@ -1,6 +1,63 @@
 <template>
     <div class="RTData Inquire">
+        <transition name="el-zoom-in-center">
+            <div v-show="leftShow" class="left-branch">
+                <div class="tit"><h3>设备分类</h3></div>
+                <div class="alarm-type">
+                    <!--<ul>-->
+                        <!--<li>全部类型 <span>17</span></li>-->
+                        <!--<li class="f2">安全报警 <span>1</span></li>-->
+                        <!--<li class="f3">配电监控 <span>1</span></li>-->
+                        <!--<li class="f2">环境报警 <span>4</span></li>-->
+                        <!--<li class="f3">温度报警 <span>2</span></li>-->
+                        <!--<li class="f3">湿度报警 <span>2</span></li>-->
+                        <!--<li class="f2">缴费提醒 <span>12</span></li>-->
+                        <!--<li class="f3">预付费用户 <span>8</span></li>-->
+                        <!--<li class="f3">后付费用户 <span>4</span></li>-->
+                    <!--</ul>-->
+                    <span class="menu-top">xxx企业</span>
+                    <el-menu
+                            default-active="2"
+                            class="el-menu-vertical-demo"
+                            background-color="#0A3E6E"
+                            text-color="#FEFEFE"
+                            active-text-color="#4FE4FA">
+                        <el-submenu index="1">
+                            <template slot="title">
+                                <i class="dot"></i>
+                                <span>导航一</span>
+                            </template>
 
+                                <el-menu-item index="1-1">选项1</el-menu-item>
+                                <el-menu-item index="1-2">选项2</el-menu-item>
+                                <el-menu-item index="1-3">选项3</el-menu-item>
+                        </el-submenu>
+                        <el-submenu index="2">
+                            <template slot="title">
+                                <i class="dot"></i>
+                                <span>导航一</span>
+                            </template>
+
+                            <el-menu-item index="1-1">选项1</el-menu-item>
+                            <el-menu-item index="1-2">选项2</el-menu-item>
+                            <el-menu-item index="1-3">选项3</el-menu-item>
+                        </el-submenu>
+                        <el-submenu index="3">
+                            <template slot="title">
+                                <i class="dot"></i>
+                                <span>导航一</span>
+                            </template>
+
+                            <el-menu-item index="1-1">选项1</el-menu-item>
+                            <el-menu-item index="1-2">选项2</el-menu-item>
+                            <el-menu-item index="1-3">选项3</el-menu-item>
+                        </el-submenu>
+
+                    </el-menu>
+                </div>
+            </div>
+        </transition>
+        <div @click="leftShow=!leftShow" :class="{btn:true,shrinkBtn:!leftShow}">设 备 分 类</div>
         <div :class="{main:true,mainShow:leftShow}">
             <div class="filtrate-box">
                 <div class="bg"></div>
@@ -8,135 +65,89 @@
 
                 </div>
                 <div @click="filtrateShow=!filtrateShow"
-                     :class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>
+                :class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>
                 <el-collapse-transition>
                     <div v-show="filtrateShow" class="filtrate-show">
 
+
                         <div class="item-row">
-                            <el-radio class="choice" v-model="radio" label="1">电</el-radio>
-                            <el-radio class="choice" v-model="radio" label="2">水</el-radio>
-                            <el-radio class="choice" v-model="radio" label="3">蒸汽</el-radio>
+                            <i class="icon-wd"></i>
+                            <span class="checkbox-tit">维度:</span>
+                            <el-radio class="choice" v-model="radio" label="1">时</el-radio>
+                            <el-radio class="choice" v-model="radio" label="2">天</el-radio>
+                            <el-radio class="choice" v-model="radio" label="3">月</el-radio>
                         </div>
-                        <div class="item-row item2">
-                            <div class="more-box">
-                                <el-checkbox v-model="checked1">支路:</el-checkbox>
-                                <el-select class="select" v-model="select1" placeholder="请选择支路">
-                                    <el-option
-                                            v-for="item in options"
-                                            :key="item.value"
-                                            :label="item.label"
-                                            :value="item.value">
-                                    </el-option>
-                                </el-select>
-                            </div>
-                            <div class="more-box">
-                                <el-checkbox class="ml92" v-model="checked2">分项:</el-checkbox>
-                                <el-select class="select" v-model="select2" placeholder="请选择分项">
-                                    <el-option
-                                            v-for="item in options"
-                                            :key="item.value"
-                                            :label="item.label"
-                                            :value="item.value">
-                                    </el-option>
-                                </el-select>
-                            </div>
-                            <div v-show="sw" class="item-show more-box">
-                                <el-checkbox class="ml92" v-model="checked3">部门:</el-checkbox>
-                                <el-select class="select" v-model="select3" placeholder="请选择部门">
-                                    <el-option
-                                            v-for="item in options"
-                                            :key="item.value"
-                                            :label="item.label"
-                                            :value="item.value">
-                                    </el-option>
-                                </el-select>
-                            </div>
-                            <div v-show="sw" class="item-show more-box">
-                                <el-checkbox class="ml92" v-model="checked4">位置:</el-checkbox>
-                                <el-select class="select" v-model="select4" placeholder="请选择位置">
-                                    <el-option
-                                            v-for="item in options"
-                                            :key="item.value"
-                                            :label="item.label"
-                                            :value="item.value">
-                                    </el-option>
-                                </el-select>
-                            </div>
-
-
-                            <div @click="sw=!sw" class="no-off more-box">
-                                <i :class="{'icon-left':sw,'icon-right':!sw}"></i>
-                                <span v-show="sw">收缩</span>
-                                <span v-show="!sw">更多</span>
-                            </div>
-                        </div>
-
                         <div class="item-row item-row-br">
                             <div class="fl">
                                 <span class="date-select">时间选择</span>
                                 <el-date-picker
                                         class=""
                                         v-model="value6"
-                                        type="year"
-                                        placeholder="选择年">
+                                        type="datetimerange"
+                                        range-separator="—"
+                                        start-placeholder="开始日期"
+                                        end-placeholder="结束日期">
                                 </el-date-picker>
                             </div>
 
                         </div>
 
-
                         <div class="btns-box">
                             <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">查询</div>
                             <div @click="btns=1" :class="{'btn-item':true,cur:btns==1}">重置</div>
-                            <div @click="btns=2" :class="{'btn-item':true,cur:btns==2}">个性化</div>
                         </div>
+
 
                     </div>
                 </el-collapse-transition>
 
             </div>
-            <!--对比-->
 
-            <div class="annual">
-                <div class="annual-left">
-                    <div class="icon-jh"></div>
+            <div class="main-box">
+                <div class="main-left-box">
+                    <div class="bg"></div>
+                    <div class="title"><h3>空压机能耗占比</h3></div>
+                    <!--echarts-->
+                    <div class="echarts1">
+
+                    </div>
+
+
+
                 </div>
-                <div class="annual-right">
-                    <p>2018年度计划完成指标</p>
-                    <span class="num">34567.56</span>
-                    <el-progress :percentage="80" color="#01D9DF" :stroke-width="10"></el-progress>
+                <div class="main-right-box">
+                    <div class="main-right">
+                        <div class="bg"></div>
+                        <div class="matter">
+                            <div class="title"><h3>空压机能耗占比明细</h3></div>
+
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
 
-            <div class="month-box">
-                <el-row :gutter="24">
-                    <el-col :key="index" v-for="(v,index) in monthData" :xl="4" :lg="4" :md="8" :sm="12" :xs="24">
-                        <div class="month-content">
-                            <div class="bg"></div>
-                            <span class="month-badge">{{ v.month }}</span>
-                            <p>{{ v.title }}</p>
-                            <div class="num">{{ v.num }}</div>
-                            <el-progress :percentage="80" color="#01D9DF" :stroke-width="6"></el-progress>
+            <div class="contrast">
+                <div class="lists" v-for="v in lists">
+                    <div class="current-period">
+                        <!--<div class="item-left">-->
+                            <!--&lt;!&ndash;<i :class="v.icon"></i>&ndash;&gt;-->
+                        <!--</div>-->
+                        <div class="item-right">
+                            <p>{{ v.title }} <span class="sj"> 2018-10-16</span></p>
+                            <div class="kwh">
+                                <span class="number">166.56</span>
+                                <span class="unit">kWh</span>
+                            </div>
                         </div>
-                    </el-col>
-                </el-row>
-                <el-row :gutter="24">
-                    <el-col :key="index" v-for="(v,index) in monthData2" :xl="4" :lg="4" :md="8" :sm="12" :xs="24">
-                        <div class="month-content">
-                            <div class="bg"></div>
-                            <span class="month-badge">{{ v.month }}</span>
-                            <p>{{ v.title }}</p>
-                            <div class="num">{{ v.num }}</div>
-                            <el-progress :percentage="50" color="#01D9DF" :stroke-width="6"></el-progress>
-                        </div>
-                    </el-col>
-                </el-row>
+                    </div>
+
+                </div>
             </div>
-
-
             <div class="data-box">
                 <div class="bg"></div>
-                <div class="title"><h3>对比趋势图</h3>
+                <div class="title"><h3>所选设备用能趋势图</h3>
                 </div>
                 <div class="my-charts"></div>
             </div>
@@ -169,9 +180,9 @@
                         <div class="table-right">
                             <table>
                                 <!--<tr style="border-bottom: 1px solid #1B6D9A;">-->
-                                    <!--<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项1</th>-->
-                                    <!--<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项2</th>-->
-                                    <!--<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项3</th>-->
+                                <!--<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项1</th>-->
+                                <!--<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项2</th>-->
+                                <!--<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项3</th>-->
                                 <!--</tr>-->
                                 <tr>
                                     <th v-for="v in 5">名称</th>
@@ -210,129 +221,98 @@
                 </div>
             </div>
 
+
         </div>
     </div>
 </template>
 
 <script>
-    // import TemplateTable from '../views/template-table'
+    import TemplateTable from '../views/template-table'
+
     export default {
-        name: "nengyuanjihua",
+        name: "shebeizonglan",
         data() {
             return {
-                monthData: [
+                lists:[
                     {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '1月'
+                        title:'本阶段平均用能 ',
+                        icon:'item-icon-hz',
+                        title2:'同期汇总',
                     },
                     {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '2月'
+                        title:'本阶段最大用能－1#空压机  ',
+                        icon:'item-icon-pjf',
+                        title2:'同期平均',
                     },
                     {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '3月'
+                        title:'本阶段最小用能－2#空压机  ',
+                        icon:'item-icon-max',
+                        title2:'同期最大值',
                     },
                     {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '4月'
+                        title:'本阶段用能增幅最大－5＃空压机  ',
+                        icon:'item-icon-min',
+                        title2:'同期最小值',
                     },
                     {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '5月'
-                    },
-                    {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '6月'
-                    },
-                ],
-                monthData2: [
-                    {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '7月'
-                    },
-                    {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '8月'
-                    },
-                    {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '9月'
-                    },
-                    {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '10月'
-                    },
-                    {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '11月'
-                    },
-                    {
-                        title: '计划完成指标',
-                        num: '166.56',
-                        month: '12月'
-                    },
-                ],
-                lists: [
-                    {
-                        title: '本阶段总能耗成本',
-                        icon: 'item-icon-hz',
-                        color: '#00C3F4'
-                    },
-                    {
-                        title: '本阶段平均能耗成本',
-                        icon: 'item-icon-pjf',
-                        color: '#2CD27D'
-                    },
-                    {
-                        title: '本阶段最大用能成本',
-                        icon: 'item-icon-max',
-                        color: '#D69B44'
-                    },
-                    {
-                        title: '本阶段最小用能成本 ',
-                        icon: 'item-icon-min',
-                        color: '#C6D242'
+                        title:'本阶段用能增幅最小－4＃空压机 ',
+                        icon:'item-icon-tb',
+                        title2:'同期同比',
                     },
 
                 ],
-                consumption: 0,
-                sw: true,
-                option: '2',
-                tabTit: 0,
-                radio: 2,
-                leftShow: false,
-                filtrateShow: true,
-                btns: 0,
-                no2off: true,
-                checked1: true,
-                checked2: false,
-                checked3: false,
-                checked4: false,
-                select1: '',
-                select2: '',
-                select3: '',
-                select4: '',
-                value6: '',
-                days: 2,
-                select2: 2,
-                checked5: true,
-                checked6: true,
-                checked7: true,
-                checked8: false,
-                checked9: false,
-                checked10: false,
+
+                listData: [
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: true,
+                        item3Date: '2018-10-18  15:24'
+                    },
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: true,
+                        item3Date: '2018-10-18  15:24'
+                    },
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: false,
+                        item3Date: '2018-10-18  15:24'
+                    },
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: true,
+                        item3Date: '2018-10-18  15:24'
+                    },
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: true,
+                        item3Date: '2018-10-18  15:24'
+                    },
+                    {
+                        item1Name: 'xxx中水泵1445',
+                        item1Commit: '易卡广场',
+                        item2Name: '电流过流',
+                        item2Commit: '实测值：8.6a ,门限值：6.0a',
+                        item3TF: false,
+                        item3Date: '2018-10-18  15:24'
+                    }
+                ],
+
                 options: [{
                     value: '选项1',
                     label: '黄金糕'
@@ -349,193 +329,36 @@
                     value: '选项5',
                     label: '北京烤鸭'
                 }],
-                tableTitle: {
-                    title: '【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】',
-                    titArr: [
-                        {
-                            prop: "id",
-                            label: "日期",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIa",
-                            label: "电流Ia",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIb",
-                            label: "电流Ib",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIc",
-                            label: "电流Ic",
-                            sortable: false
-                        },
-                        {
-                            prop: "zhengDianNeng",
-                            label: "当前正向有功总电能",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUan",
-                            label: "粗电压Uan",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUbn",
-                            label: "粗电压Ubn",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUcn",
-                            label: "粗电压Ucn",
-                            sortable: false
-                        },
-                        {
-                            prop: "sum",
-                            label: "总有功功率W",
-                            sortable: false
-                        },
-                    ]
-                },
+                checked1: true,
+                checked2: true,
+                select1: '',
+                select2: '',
+                plclCur: false,
+                btnCur: 0,
+
+                option: '2',
+                tabTit: 0,
+                radio: 2,
+                leftShow: true,
+                filtrateShow: true,
+                btns: 0,
+                no2off: true,
+                value6: '',
+                days: 2,
+
 
             }
         },
         components: {
-            // TemplateTable
+            TemplateTable
+        },
+        methods: {
+            inSort() {
+                this.sortShow = false
+                this.sortVal = this.sortArr[this.sortCur]
+            }
         },
         mounted() {
-            // var setting = {
-            //     check: {
-            //         enable: true,
-            //         // enable: true,
-            //         chkStyle: "radio",
-            //         radioType: "level"
-            //
-            //     },
-            //     view: {
-            //         nameIsHTML: true, //允许name支持html
-            //         selectedMulti: false
-            //     },
-            //     edit: {
-            //         enable: false,
-            //         editNameSelectAll: false
-            //     },
-            //     data: {
-            //         simpleData: {
-            //             enable: true
-            //         }
-            //     }
-            // };
-            //
-            // var zNodes = [
-            //     {
-            //         id: 1,
-            //         pId: 0,
-            //         name: "随意勾选 1",
-            //         open: true,
-            //         // iconSkin: "icon01"
-            //     },
-            //     {
-            //         id: 11,
-            //         pId: 1,
-            //         name: "随意勾选 1-1",
-            //         open: true,
-            //         // iconSkin: "icon01"
-            //     },
-            //     {
-            //         id: 111,
-            //         pId: 11,
-            //         name: "随意勾选 1-1-1"
-            //     },
-            //     {
-            //         id: 112,
-            //         pId: 11,
-            //         name: "随意勾选 1-1-2"
-            //     },
-            //     {
-            //         id: 12,
-            //         pId: 1,
-            //         name: "随意勾选 1-2",
-            //         open: true,
-            //         // iconSkin: "icon01"
-            //     },
-            //     {
-            //         id: 121,
-            //         pId: 12,
-            //         name: "随意勾选 1-2-1"
-            //     },
-            //     {
-            //         id: 122,
-            //         pId: 12,
-            //         name: "随意勾选 1-2-2"
-            //     },
-            //     {
-            //         id: 2,
-            //         pId: 0,
-            //         name: "随意勾选 2",
-            //         checked: true,
-            //         open: true,
-            //         // iconSkin: "icon01"
-            //     },
-            //     {
-            //         id: 21,
-            //         pId: 2,
-            //         name: "随意勾选 2-1"
-            //     },
-            //     {
-            //         id: 22,
-            //         pId: 2,
-            //         name: "随意勾选 2-2",
-            //         open: true,
-            //         // iconSkin: "icon01"
-            //     },
-            //     {
-            //         id: 221,
-            //         pId: 22,
-            //         name: "随意勾选 2-2-1",
-            //         // checked: true,
-            //     },
-            //     {
-            //         id: 222,
-            //         pId: 22,
-            //         name: "随意勾选 2-2-2"
-            //     },
-            //     {
-            //         id: 23,
-            //         pId: 2,
-            //         name: "随意勾选 2-3"
-            //     }
-            // ];
-            //
-            // var code;
-            //
-            // function setCheck() {
-            //     var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
-            //         py = $("#py").attr("checked") ? "p" : "",
-            //         sy = $("#sy").attr("checked") ? "s" : "",
-            //         pn = $("#pn").attr("checked") ? "p" : "",
-            //         sn = $("#sn").attr("checked") ? "s" : "",
-            //         type = {"Y": py + sy, "N": pn + sn};
-            //     zTree.setting.check.chkboxType = type;
-            //     showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
-            // }
-            //
-            // function showCode(str) {
-            //     if (!code) code = $("#code");
-            //     code.empty();
-            //     code.append("<li>" + str + "</li>");
-            // }
-            //
-            //
-            // $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-            // fuzzySearch('treeDemo', '#key', null, true); //初始化模糊搜索方法
-            // setCheck();
-            // $("#py").bind("change", setCheck);
-            // $("#sy").bind("change", setCheck);
-            // $("#pn").bind("change", setCheck);
-            // $("#sn").bind("change", setCheck);
 
         }
 
@@ -661,9 +484,12 @@
 
         .left-branch {
             width: 245px;
-            height: 894px;
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 500px;
             box-sizing: border-box;
-            margin-bottom: 40px;
+            /*margin-bottom: 40px;*/
             /*float: left;*/
             /*margin-right: 24px;*/
             position: relative;
@@ -676,41 +502,26 @@
             box-shadow: 0px 3px 9px 0px #01101f, 0px 3px 30px 2px #1A8EA0 inset;
             border-radius: 3px;
             padding: 14px 13px;
-            .tabTit {
+            .dot{
+                width: 6px;
+                height: 6px;
+                display: inline-block;
+                border:1px solid rgba(72,206,230,1);
+                border-radius:50%;
+            }
+            .menu-top{
+                font-size:14px;
+                font-family:HiraginoSansGB-W6;
+                font-weight:normal;
+                color:rgba(254,254,254,1);
+                margin-left: 20px;
+
+            }
+            .alarm-type{
+                margin-top: 30px;
                 width: 100%;
-                display: flex;
-                justify-content: flex-start;
-                span {
-                    font-size: 12px;
-                    font-family: HiraginoSansGB-W3;
-                    font-weight: bold;
-                    color: rgba(97, 213, 255, 1);
-                    margin-right: 27px;
-                    cursor: pointer;
-                    &.cur {
-                        font-size: 12px;
-                        font-family: HiraginoSansGB-W6;
-                        font-weight: bold;
-                        color: rgba(45, 243, 255, 1);
-                        padding-bottom: 3px;
-                        border-bottom: 2px solid #2DF3FF;
-                    }
-                }
             }
-            .inputBox {
-                position: relative;
-                .icon-ss {
-                    display: inline-block;
-                    position: absolute;
-                    right: 15px;
-                    bottom: 6px;
-                    float: right;
-                    width: 14px;
-                    height: 14px;
-                    background: url("../../assets/PeiDianJianCe/icon_ss（1）.png") no-repeat;
-                    z-index: 5;
-                }
-            }
+
             .empty {
                 width: 223px;
                 height: 28px;
@@ -731,11 +542,13 @@
             }
 
             .tit {
-                font-size: 18px;
-                font-family: 'HiraginoSansGB-W3';
-                font-weight: bold;
-                /*font-weight: 500;*/
-                color: rgba(254, 254, 255, 1);
+                h3 {
+                    font-size: 16px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: 600;
+                    color: rgba(254, 254, 255, 1);
+                }
+
             }
             .butt {
                 width: 100%;
@@ -799,102 +612,14 @@
 
         .main {
             width: 100%;
-            height: 894px;
-            /*overflow-y: auto;*/
-            /*overflow-x: hidden;*/
+            height: 100%;
+            min-height: 500px;
+            overflow-y: auto;
+            overflow-x: hidden;
 
             position: relative;
-            .month-box {
-                width: 100%;
-                margin-top: 24px;
-                .el-row {
-                    margin-bottom: 24px;
+            margin-left: 4px;
 
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
-                }
-                .month-content {
-                    width: 100%;
-                    height: 90px;
-                    position: relative;
-                    box-sizing: border-box;
-                    padding: 10px;
-
-                    .month-badge {
-                        position: absolute;
-                        right: 10px;
-                        top: 10px;
-                        padding: 2px 17px;
-                        background-color: #0571AD;
-                        border-radius: 11px;
-                        font-size: 14px;
-                        font-family: HiraginoSansGB-W6;
-                        font-weight: normal;
-                        color: rgba(232, 238, 234, 1);
-                    }
-                    p {
-                        font-size: 14px;
-                        font-family: HiraginoSansGB-W3;
-                        font-weight: normal;
-                        color: rgba(223, 253, 255, 1);
-                        position: relative;
-                    }
-                    .num {
-                        font-size: 16px;
-                        font-family: DigitaldreamFat;
-                        font-weight: 400;
-                        color: rgba(44, 244, 242, 1);
-                        line-height: 37px;
-                        position: relative;
-                    }
-                }
-
-            }
-            .annual {
-                width: 100%;
-                height: 120px;
-                margin-top: 24px;
-                background-color: #075888;
-                border-radius: 3px 3px 0px 0px;
-                .annual-left {
-                    width: 120px;
-                    height: 120px;
-                    float: left;
-                    background-color: #0788B6;
-                    border-radius: 3px 3px 0px 0px;
-
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    text-align: center;
-                    .icon-jh {
-                        width: 60px;
-                        height: 70px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_jh.png") no-repeat;
-                    }
-                }
-                .annual-right {
-                    box-sizing: border-box;
-                    padding: 16px 30px 16px 150px;
-
-                    p {
-                        font-size: 14px;
-                        font-family: HiraginoSansGB-W3;
-                        font-weight: normal;
-                        color: rgba(223, 253, 255, 1);
-                    }
-                    .num {
-                        font-size: 18px;
-                        font-family: DigitaldreamFat;
-                        font-weight: 400;
-                        color: rgba(254, 254, 254, 1);
-                        line-height: 52px;
-                    }
-                }
-            }
-            /*margin-left: 4px;*/
             .contrast {
                 width: 100%;
                 display: flex;
@@ -919,6 +644,41 @@
 
                     display: flex;
                     flex-direction: column;
+                    .item-icon-hz {
+                        /*line-height: 90px;*/
+                        width: 43px;
+                        height: 43px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
+                    }
+                    .item-icon-pjf {
+                        /*line-height: 90px;*/
+                        width: 40px;
+                        height: 37px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
+                    }
+                    .item-icon-max {
+                        /*line-height: 90px;*/
+                        width: 59px;
+                        height: 21px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
+                    }
+                    .item-icon-min {
+                        /*line-height: 90px;*/
+                        width: 60px;
+                        height: 24px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
+                    }
+                    .item-icon-tb {
+                        /*line-height: 90px;*/
+                        width: 41px;
+                        height: 34px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
+                    }
                     .current-period {
                         /*width: calc(100% - 25px);*/
                         width: 100%;
@@ -930,6 +690,9 @@
                         box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
                         /*opacity:0.5;*/
                         border-radius: 3px;
+
+
+
                         .item-left {
                             width: 90px;
                             height: 90px;
@@ -944,46 +707,26 @@
                             border-radius: 3px 3px 0px 0px;
                             margin-top: -1px;
                             margin-left: -1px;
-                            .item-icon-hz {
-                                /*line-height: 90px;*/
-                                width: 43px;
-                                height: 43px;
-                                display: inline-block;
-                                background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
-                            }
-                            .item-icon-pjf {
-                                /*line-height: 90px;*/
-                                width: 40px;
-                                height: 37px;
-                                display: inline-block;
-                                background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
-                            }
-                            .item-icon-max {
-                                /*line-height: 90px;*/
-                                width: 59px;
-                                height: 21px;
-                                display: inline-block;
-                                background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
-                            }
-                            .item-icon-min {
-                                /*line-height: 90px;*/
-                                width: 60px;
-                                height: 24px;
-                                display: inline-block;
-                                background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
-                            }
+
                         }
                         .item-right {
                             box-sizing: border-box;
                             /*padding-left: 90px;*/
                             /*box-sizing: border-box;*/
                             /*padding: 20px 0;*/
-                            padding: 20px 20px 20px 110px;
+                            padding: 18px 12px;
                             p {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
+                                font-size:11px;
+                                font-family:HiraginoSansGB-W3;
+                                font-weight:normal;
+                                color:rgba(223,253,255,1);
+                                .sj{
+                                    font-size:10px;
+                                    font-family:HiraginoSansGB-W3;
+                                    font-weight:normal;
+                                    color:#2DF3FF;
+                                    float: right;
+                                }
                             }
                             .kwh {
                                 margin-top: 6px;
@@ -1208,6 +951,186 @@
                             align-items: center;
                         }
                     }
+                    .item-row-btns {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .menu-left {
+                            display: flex;
+                            align-items: center;
+                            .btn-plcl {
+                                width: 111px;
+                                height: 41px;
+                                background: url("../../assets/PeiDianJianCe/btn_plcl-xz.png") no-repeat;
+                                &.cur {
+                                    background: url("../../assets/PeiDianJianCe/btn_plcl-xz1.png") no-repeat;
+                                }
+                            }
+                            .commit {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: #E8E8E8;
+                            }
+                        }
+                        .menu-right {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            .sort-box {
+                                position: relative;
+                                cursor: pointer;
+                                margin-left: 20px;
+                                .pull-down {
+                                    position: absolute;
+                                    top: 28px;
+                                    left: 0;
+                                    width: 170px;
+                                    height: 200px;
+                                    background: rgba(0, 17, 33, .59);
+                                    box-sizing: border-box;
+                                    padding: 0 12px;
+                                    font-size: 12px;
+                                    font-family: HiraginoSansGB-W3;
+                                    font-weight: bold;
+                                    color: rgba(198, 212, 228, 1);
+
+                                    & > div {
+                                        margin-top: 11px;
+                                        cursor: pointer;
+                                        &.cur {
+                                            font-size: 12px;
+                                            font-family: HiraginoSansGB-W3;
+                                            font-weight: bold;
+                                            color: rgba(45, 243, 255, 1);
+                                        }
+                                        .time-start, .time-end {
+                                            width: 100%;
+                                            display: flex;
+                                            flex-direction: row;
+                                            justify-content: space-between;
+                                            border: 1px solid #2F506B;
+
+                                            height: 20px;
+                                            input {
+                                                text-align: center;
+                                                background-color: #052747;
+                                                font-size: 10px;
+                                                font-family: HiraginoSansGB-W3;
+                                                font-weight: bold;
+                                                color: rgba(45, 243, 255, 1);
+
+                                                outline: none;
+                                                border: none;
+                                                outline: medium;
+
+                                            }
+
+                                            .input-year {
+                                                width: 35px;
+                                            }
+                                            .input-month {
+                                                width: 32px;
+
+                                            }
+                                            .input-day {
+                                                width: 30px;
+                                            }
+                                            span {
+                                                width: 17px;
+                                                text-align: center;
+                                                display: inline-block;
+                                                background-color: #0D5571;
+                                                font-size: 10px;
+                                                font-family: HiraginoSansGB-W3;
+                                                font-weight: bold;
+                                                color: rgba(198, 212, 228, 1);
+                                            }
+                                        }
+                                        .to {
+                                            width: 100%;
+                                            text-align: center;
+                                            font-size: 8px;
+                                            font-family: HiraginoSansGB-W3;
+                                            font-weight: bold;
+                                            color: rgba(210, 224, 225, 1);
+                                            margin: 5px 0;
+                                        }
+                                    }
+                                    .confirm {
+                                        text-align: center;
+                                        border-radius: 3px;
+                                        font-size: 12px;
+                                        font-family: HiraginoSansGB-W3;
+                                        font-weight: normal;
+                                        color: rgba(255, 255, 255, 1);
+                                        background-color: #1DA1B5;
+                                        cursor: pointer;
+                                    }
+
+                                    /*box-shadow:0px 3px 8px 1px rgba(2,28,60,0.43);*/
+                                }
+                            }
+                            /*pull-down*/
+                            .select-sort {
+                                width: 170px;
+                                height: 28px;
+                                border: 1px solid rgba(45, 243, 255, 1);
+                                border-radius: 2px;
+                                box-sizing: border-box;
+                                padding: 3px 12px;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                span {
+                                    font-size: 14px;
+                                    font-family: HiraginoSansGB-W3;
+                                    font-weight: bold;
+                                    color: rgba(190, 205, 222, 1);
+                                }
+
+                                .icon-arrow {
+                                    width: 12px;
+                                    height: 7px;
+                                    display: inline-block;
+                                    background: url("../../assets/PeiDianJianCe/形状 1054 拷贝 2.png") no-repeat;
+                                    /*-webkit-background-size: ;*/
+                                    background-size: 100% 100%;
+                                    transition: transform .3s, -webkit-transform .3s;
+                                    &.cur {
+                                        transform: rotateZ(-180deg);
+                                    }
+                                }
+                            }
+                            .right-btn {
+                                display: flex;
+                                flex-direction: row;
+                                & > div {
+                                    width: 91px;
+                                    height: 41px;
+                                }
+                                .btn-all {
+                                    background: url("../../assets/PeiDianJianCe/btn_qb.png") no-repeat;
+                                    &.cur {
+                                        background: url("../../assets/PeiDianJianCe/btn_qb-xz.png") no-repeat;
+                                    }
+                                }
+                                .btn-ycl {
+                                    background: url("../../assets/PeiDianJianCe/btn_wcl.png") no-repeat;
+                                    &.cur {
+                                        background: url("../../assets/PeiDianJianCe/btn_wcl -xz.png") no-repeat;
+                                    }
+                                }
+                                .btn-wcl {
+                                    background: url("../../assets/PeiDianJianCe/btn_ycl.png") no-repeat;
+                                    &.cur {
+                                        background: url("../../assets/PeiDianJianCe/btn_ycl-xz.png") no-repeat;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
 
                     .item-row {
                         height: 60px;
@@ -1223,6 +1146,13 @@
                             width: 15px;
                             height: 11px;
                             background: url("../../assets/NengHaoChaXun/icon _fxff.png") no-repeat;
+                        }
+                        .icon-sj {
+                            width: 14px;
+                            height: 15px;
+                            display: inline-block;
+                            background: url("../../assets/PeiDianJianCe/icon_sj.png") no-repeat;
+                            margin-right: 5px;
                         }
                         .icon-wd {
                             display: inline-block;
@@ -1381,7 +1311,7 @@
             .data-box {
                 width: 100%;
                 position: relative;
-                height: 436px;
+                height: 486px;
                 margin-top: 24px;
                 box-sizing: border-box;
                 padding: 15px 20px;
@@ -1397,61 +1327,6 @@
                         font-weight: bold;
                         color: rgba(254, 254, 255, 1);
                     }
-                    .head-right {
-                        display: flex;
-                        justify-content: space-between;
-                    }
-                    .tab-box {
-                        width: 120px;
-                        height: 30px;
-                        display: flex;
-                        margin-left: 30px;
-                        span {
-                            flex: 1;
-                            text-align: center;
-                            background: rgba(11, 116, 162, 1);
-                            box-shadow: 0px 0px 18px 0px rgba(52, 150, 174, 1) inset;
-                            border-radius: 0px 3px 3px 0px;
-                            font-size: 14px;
-                            line-height: 30px;
-                            font-family: HiraginoSansGB-W3;
-                            font-weight: normal;
-                            color: rgba(255, 255, 255, 1);
-
-                            &.cur {
-                                background-color: #23BDD4;
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W6;
-                                font-weight: normal;
-                                color: rgba(255, 255, 255, 1);
-                            }
-                        }
-
-                    }
-                    .count {
-                        width: 70px;
-                        height: 28px;
-                        margin-left: 12px;
-                        position: relative;
-                        border: 1px solid #29D1E5;
-                        select {
-                            border: 0px;
-                            outline: none;
-                            cursor: pointer;
-                            position: relative;
-                            z-index: 5;
-                            width: 100%;
-                            height: 100%;
-                            background: rgba(26, 96, 134, 0);
-                            font-size: 12px;
-                            font-family: HiraginoSansGB-W3;
-                            font-weight: bold;
-                            color: rgba(45, 243, 255, 1);
-                            option {
-                                background-color: #0B3F6F;
-                            }
-                        }
-                    }
                     .icon-pdf {
                         display: inline-block;
                         width: 21px;
@@ -1459,7 +1334,6 @@
                         background: url("../../assets/NengHaoChaXun/pdf.png") no-repeat;
                         margin-right: 20px;
                     }
-
                     .icon-excel {
                         display: inline-block;
                         width: 21px;
@@ -1562,86 +1436,337 @@
                     }
                 }
             }
-            .content-table {
-                position: relative;
+            .main-box {
                 width: 100%;
-                height: 577px;
-                border: 1px solid #15759A;
-                margin-top: 15px;
-                text-align: center;
-                box-sizing: border-box;
-                padding-top: 16px;
-                .tit {
-                    font-size: 14px;
-                    font-family: HiraginoSansGB-W3;
-                    font-weight: normal;
-                    color: rgba(95, 251, 248, 1);
-                }
-                .table-box {
-                    width: 100%;
-                    height: 528px;
-                    margin-top: 12px;
-                    /*display: flex;*/
-                    /*flex-wrap: nowrap;*/
-                    table {
-                        width: 100%;
-                        height: 100%;
+
+                /*display: flex;*/
+                /*flex-direction: row;*/
+                margin-top: 24px;
+                position: relative;
+                .main-left-box {
+                    width:308px;
+                    height: 298px;
+                    /*min-width: 550px;*/
+                    position: relative;
+                    box-sizing: border-box;
+                    padding: 16px 20px;
+                    float: left;
+                    /*margin-top: 25px;*/
+                    /*margin-bottom: 25px;*/
+                    .title {
+                        display: flex;
+                        justify-content: space-between;
                         position: relative;
-                        border-collapse: collapse;
-                        border: 0; //表示表格没有边框。
-                        cellspacing: '0'; //表示单元格之间间隙为0。
-                        cellpadding: '0'; //表示单元格的边框宽度为0。
-                        /*z-index: 5;*/
-                        tr {
-                            background-color: #0A3E6E;
-                            height: 48px;
+                        z-index: 5;
+                        /*margin-bottom: 15px;*/
+                        h3 {
+                            font-size: 16px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(254, 254, 255, 1);
                         }
-                        tr:nth-child(2n-1) {
-                            background-color: #104C7B;
+                        .icon-pdf {
+                            display: inline-block;
+                            width: 21px;
+                            height: 21px;
+                            background: url("../../assets/NengHaoChaXun/pdf.png") no-repeat;
+                            margin-right: 20px;
                         }
-                        td, th {
-                            border-right: 1px solid #0F5A84;
+                        .icon-excel {
+                            display: inline-block;
+                            width: 21px;
+                            height: 21px;
+                            background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
                         }
-                        th {
-                            background-color: #185588;
-                            font-size: 14px;
-                            font-family: HiraginoSansGB-W6;
-                            font-weight: normal;
-                            color: rgba(95, 251, 248, 1);
-                        }
-                        td {
+                    }
+                    .table-box {
+                        position: relative;
+                        z-index: 5;
+                        border: 1px solid #15759A;
+                        /*padding-bottom: 60px;*/
+                        .table-tit {
+                            padding: 20px;
+                            width: 100%;
+                            /*letter-spacing:2px;*/
                             font-size: 14px;
                             font-family: HiraginoSansGB-W3;
                             font-weight: normal;
-                            color: rgba(223, 253, 255, 1);
+                            color: rgba(95, 251, 248, 1);
+                            text-align: center;
                         }
-                    }
-                    .icon-bxz {
-                        display: inline-block;
-                        width: 20px;
-                        height: 17px;
-                        background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
-                        margin-left: 20px;
-                    }
-                    .table-header {
-                        height: 100%;
-                        width: 215px;
-                        position: relative;
-                        overflow: hidden;
-                        float: left;
 
                     }
-                    .table-right {
-                        width: calc(100% - 215px);
-                        /*width: 100%;*/
-                        overflow-y: hidden;
-                        overflow-x: scroll;
-                        table {
-                            width: 2000px;
+                    .selector {
+                        position: relative;
+                        z-index: 5;
+                        display: flex;
+                        justify-content: flex-end;
+                        margin-top: 20px;
+                        align-items: center;
+
+                        .icon-front {
+                            width: 10px;
+                            height: 14px;
+                            display: inline-block;
+                            background: url("../../assets/NengHaoChaXun/icon_zz.png") no-repeat;
+                        }
+                        .icon-prev {
+                            width: 8px;
+                            height: 14px;
+                            display: inline-block;
+                            transform: rotate(180deg);
+                            margin-left: 10px;
+                            background: url("../../assets/NengHaoChaXun/箭头2.png") no-repeat;
+                        }
+                        .icon-next {
+                            width: 8px;
+                            height: 14px;
+                            display: inline-block;
+                            margin-left: 20px;
+                            background: url("../../assets/NengHaoChaXun/箭头2.png") no-repeat;
+                        }
+                        .icon-last {
+                            margin-left: 10px;
+                            width: 10px;
+                            height: 14px;
+                            display: inline-block;
+                            background: url("../../assets/NengHaoChaXun/icon_yy.png") no-repeat;
+                        }
+                        .page-num {
+
+                            width: 38px;
+                            height: 26px;
+                            margin-left: 20px;
+                            position: relative;
+                            input {
+                                position: relative;
+                                z-index: 5;
+                                width: 100%;
+                                height: 100%;
+                                background: rgba(26, 96, 134, 0);
+                                border: 0px;
+                                outline: none;
+                                cursor: pointer;
+                                font-size: 12px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: bold;
+                                color: rgba(45, 243, 255, 1);
+                                text-align: center;
+                            }
+                        }
+                        .page-all {
+                            font-size: 12px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(45, 243, 255, 1);
+                            margin-left: 10px;
+                        }
+                        .count {
+                            width: 48px;
+                            height: 26px;
+                            margin-left: 22px;
+                            position: relative;
+                            select {
+                                border: 0px;
+                                outline: none;
+                                cursor: pointer;
+                                position: relative;
+                                z-index: 5;
+                                width: 100%;
+                                height: 100%;
+                                background: rgba(26, 96, 134, 0);
+                                font-size: 12px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: bold;
+                                color: rgba(45, 243, 255, 1);
+                                option {
+                                    background-color: #0B3F6F;
+                                }
+                            }
                         }
                     }
                 }
+                .main-right-box {
+                    width: calc(100% - 334px);
+                    height: 298px;
+                    position: relative;
+                    margin-left: 332px;
+                    min-width: 500px;
+                }
+                .list-box {
+                    border: 1px solid #15759A;
+                    margin-top: 22px;
+                    position: relative;
+                    .list-title {
+                        height: 50px;
+                        width: 100%;
+                        background-color: #0A3E6E;
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(95, 251, 248, 1);
+                        text-align: center;
+                        line-height: 50px;
+                    }
+                    ul {
+                        width: 100%;
+                        list-style: none;
+                        li {
+                            width: 100%;
+                            height: 68px;
+                            box-sizing: border-box;
+                            padding: 12px 20px 12px 80px;
+                            background-color: #185588;
+                            display: flex;
+                            justify-content: space-between;
+                            &:nth-child(even) {
+                                background-color: #0A3E6E;
+                            }
+                            .item-box {
+                                display: flex;
+                                flex-direction: column;
+                                .f1 {
+                                    font-size: 14px;
+                                    font-family: HiraginoSansGB-W3;
+                                    font-weight: normal;
+                                    color: rgba(223, 253, 255, 1);
+                                }
+                                .f2 {
+                                    font-size: 12px;
+                                    font-family: HiraginoSansGB-W3;
+                                    font-weight: normal;
+                                    color: rgba(183, 208, 210, 1);
+                                    margin-top: 11px;
+                                }
+                                .wcl {
+                                    font-size: 12px;
+                                    font-family: HiraginoSansGB-W6;
+                                    font-weight: normal;
+                                    color: rgba(119, 233, 56, 1);
+                                }
+                                .ycl {
+                                    font-size: 12px;
+                                    font-family: HiraginoSansGB-W6;
+                                    font-weight: normal;
+                                    color: rgba(241, 171, 59, 1);
+                                }
+                            }
+                        }
+                    }
+                }
+                .title {
+                    /*margin-bottom: 15px;*/
+                    display: flex;
+                    justify-content: space-between;
+                    position: relative;
+                    h3 {
+                        font-size: 16px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(254, 254, 255, 1);
+                    }
+
+                }
+                .dispose {
+                    width: 100%;
+                    position: relative;
+                    box-sizing: border-box;
+                    padding: 23px 20px;
+                    margin-top: 20px;
+
+                    .bjcl-box {
+                        margin-top: 23px;
+                        .more-box {
+                            margin-top: 10px;
+                        }
+
+                    }
+                    .textarea {
+                        width: 100%;
+                        height: 80px;
+                        border: 1px solid #11648E;
+                        background-color: #0B4372;
+                        margin-top: 20px;
+                    }
+                    .btn-box {
+                        width: 100%;
+                        height: 30px;
+                        margin-top: 20px;
+                        /*text-align: right;*/
+                        .button {
+                            width: 100px;
+                            height: 30px;
+                            text-align: center;
+                            line-height: 30px;
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W6;
+                            font-weight: normal;
+                            color: rgba(45, 243, 255, 1);
+
+                            background: linear-gradient(180deg, rgba(6, 88, 110, 1), rgba(27, 138, 168, 1));
+                            border: 1px solid rgba(153, 236, 241, 1);
+                            border-radius: 4px;
+                            float: right;
+                        }
+                    }
+
+                }
+                .matter {
+                    position: relative;
+
+                }
+                .main-right {
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    .matter {
+                        box-sizing: border-box;
+                        padding: 16px 20px;
+                        position: relative;
+                        z-index: 5;
+                        .key {
+                            font-size: 12px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(183, 208, 210, 1);
+                            margin-top: 14px;
+                            display: inline-block;
+                        }
+                        .bjnr, .cljl {
+                            width: 100%;
+                            height: 140px;
+                            border: 1px solid #11628B;
+                            margin-top: 8px;
+                            box-sizing: border-box;
+                            padding: 11px 15px;
+                            font-size: 12.5px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(213, 248, 255, 1);
+                        }
+                        .matter-ul {
+                            list-style: none;
+                            width: 100%;
+                            margin-top: 8px;
+                            li {
+                                /*margin-top: 14px;*/
+
+                                .val {
+                                    font-size: 12px;
+                                    font-family: HiraginoSansGB-W3;
+                                    font-weight: bold;
+                                    color: rgba(213, 248, 255, 1);
+                                }
+                            }
+                        }
+                    }
+
+                }
             }
+
+
+
+
             .Table {
                 width: 100%;
                 position: relative;
@@ -1673,6 +1798,86 @@
                         width: 21px;
                         height: 21px;
                         background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
+                    }
+                }
+                .content-table {
+                    position: relative;
+                    width: 100%;
+                    height: 577px;
+                    border: 1px solid #15759A;
+                    margin-top: 15px;
+                    text-align: center;
+                    box-sizing: border-box;
+                    padding-top: 16px;
+                    .tit {
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(95, 251, 248, 1);
+                    }
+                    .table-box {
+                        width: 100%;
+                        height: 528px;
+                        margin-top: 12px;
+                        /*display: flex;*/
+                        /*flex-wrap: nowrap;*/
+                        table {
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                            border-collapse: collapse;
+                            border: 0; //表示表格没有边框。
+                            cellspacing: '0'; //表示单元格之间间隙为0。
+                            cellpadding: '0'; //表示单元格的边框宽度为0。
+                            /*z-index: 5;*/
+                            tr {
+                                background-color: #0A3E6E;
+                                height: 48px;
+                            }
+                            tr:nth-child(2n-1) {
+                                background-color: #104C7B;
+                            }
+                            td, th {
+                                border-right: 1px solid #0F5A84;
+                            }
+                            th {
+                                background-color: #185588;
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W6;
+                                font-weight: normal;
+                                color: rgba(95, 251, 248, 1);
+                            }
+                            td {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
+                            }
+                        }
+                        .icon-bxz {
+                            display: inline-block;
+                            width: 20px;
+                            height: 17px;
+                            background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
+                            margin-left: 20px;
+                        }
+                        .table-header {
+                            height: 100%;
+                            width: 215px;
+                            position: relative;
+                            overflow: hidden;
+                            float: left;
+
+                        }
+                        .table-right {
+                            width: calc(100% - 215px);
+                            /*width: 100%;*/
+                            overflow-y: hidden;
+                            overflow-x: scroll;
+                            table {
+                                width: 2000px;
+                            }
+                        }
                     }
                 }
                 .table-box {

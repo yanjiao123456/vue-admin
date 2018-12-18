@@ -110,6 +110,11 @@ export default new Router({
                     component: resolve => require(['../components/page/KPIFenXi.vue'], resolve),
                     meta: {title: 'KPI分析'}
                 },
+                {
+                    path: '/SheBeiZongLan',
+                    component: resolve => require(['../components/page/SheBeiZongLan.vue'], resolve),
+                    meta: {title: '设备总览'}
+                },
 
                 {
                     path: '/icon',

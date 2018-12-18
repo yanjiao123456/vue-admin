@@ -176,7 +176,7 @@
                                 icon: "ml5 icon-all icon-sjcx",
                                 index: "fuhefenxi",
                                 title: "负荷分析",
-                                subs:[
+                                subs: [
                                     {
                                         icon: "ml5 icon-all icon-sjcx",
                                         index: "rifuhe",
@@ -188,7 +188,7 @@
                                 icon: "ml5 icon-all icon-sjcx",
                                 index: "kpiguanli",
                                 title: "KPI管理",
-                                subs:[
+                                subs: [
                                     {
                                         icon: "ml5 icon-all icon-sjcx",
                                         index: "dingbiaoguanli",
@@ -207,7 +207,7 @@
                         icon: "ml5 icon-all icon-bjgl",
                         index: "bjgl",
                         title: "报警管理",
-                        subs:[
+                        subs: [
                             {
                                 icon: "ml5 icon-all icon-sjcx",
                                 index: "baojingguanli",
@@ -225,11 +225,23 @@
                         icon: "ml5 icon-all icon-sbgl",
                         index: "sbgl",
                         title: "设备管理",
-                        subs:[
+                        subs: [
                             {
                                 icon: "ml5 icon-all icon-sjcx",
                                 index: "yibiaotaizhang",
                                 title: "仪表台账"
+                            },
+                            {
+                                icon: "ml5 icon-all icon-sjcx",
+                                index: "zhongdianshebei",
+                                title: "重点设备",
+                                subs: [
+                                    {
+                                        icon: "ml5 icon-all icon-sjcx",
+                                        index: "shebeizonglan",
+                                        title: "设备总览",
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -237,7 +249,7 @@
                         icon: "ml5 icon-all icon-dnzl",
                         index: "dnzl",
                         title: "电能质量",
-                        subs:[
+                        subs: [
                             {
                                 icon: "ml5 icon-all icon-dnzl",
                                 index: "gonglvyinshu",
@@ -412,7 +424,8 @@
         color: #f9fffb;
         transform: rotateZ(-90deg);
     }
-    .ul-box .el-submenu__title .icon-all{
+
+    .ul-box .el-submenu__title .icon-all {
         transform: rotateZ(0deg);
     }
 </style>
@@ -482,7 +495,7 @@
             .icon-nhcx {
                 background: url("../../assets/PeiDianJianCe/icon_nhcx.png") no-repeat;
             }
-            .is-active i.icon-nhcx{
+            .is-active i.icon-nhcx {
                 background: url("../../assets/NengHaoChaXun/icon_nhcx.png") no-repeat;
             }
             .icon-nxfx {

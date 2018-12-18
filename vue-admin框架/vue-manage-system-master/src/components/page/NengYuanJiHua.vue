@@ -138,7 +138,9 @@
                 <div class="bg"></div>
                 <div class="title"><h3>对比趋势图</h3>
                 </div>
-                <div class="my-charts"></div>
+                <div class="my-charts">
+                    <div id="plan" style="width:100%;height:100%;"></div>
+                </div>
             </div>
 
 
@@ -182,7 +184,29 @@
                             </table>
                         </div>
                     </div>
+                    <div class="selector">
+                        <i class="icon-front"></i>
+                        <i class="icon-prev"></i>
+                        <div class="page-num">
+                            <div class="bg"></div>
+                            <input type="text" value="1">
+                        </div>
 
+                        <span class="page-all">
+                        /共1页
+                    </span>
+                        <i class="icon-next"></i>
+                        <i class="icon-last"></i>
+                        <div class="count">
+                            <div class="bg"></div>
+                            <select>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>50</option>
+                                <option>100</option>
+                            </select>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="selector">
@@ -216,6 +240,7 @@
 
 <script>
     // import TemplateTable from '../views/template-table'
+    var echarts=require('echarts');
     export default {
         name: "nengyuanjihua",
         data() {
@@ -405,6 +430,110 @@
         components: {
             // TemplateTable
         },
+        methods:{
+            SetChart(){
+                var plan = document.getElementById('plan');
+                var planChart = echarts.init(plan);
+                var one = [224, 220, 335, 188, 350, 230, 354, 261];
+                var two = [110, 220, 115, 300, 188, 120, 241, 321];
+                var option={
+                    color: ['#CFDB48', '#00C3F4','#CFDB48',  '#CFDB48', '#66A9C9', '#00BFC7', '#99D683', '#B4C1D7', '#21834B'],
+                    // title: [{
+                    //    text: '对比定标单耗增长排名',
+                    //    x: 'center',
+                    //    y: 'top',
+                    //    textStyle: {
+                    //        color: '#01CED4',
+                    //        textAlign: 'center',
+                    //        fontSize: 14,
+                    //        fontWeight: 'bold'
+                    //    }
+                    // }],
+                    legend: {
+                        data: ['计划', '实际'],
+                        align: 'left',
+                        top:'5%',
+                        x: 'center',
+                        right: '4%',
+                        icon: 'rect',
+                        itemWidth: 10, // 图例图形宽度
+                        itemHeight: 10, // 图例图形高度
+                        itemGap: 50,
+                        textStyle: {
+                            color: 'rgb(91,227,224)',
+                            fontSize: 12
+                        }
+                    },
+                    grid: {
+                        top: 50,
+                        bottom: 70,
+                        left:50,
+                        right:50
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'shadow'
+                        }
+                    },
+                    xAxis: [{
+                        data: ['2018年10月16日', '2018年10月17日', '2018年10月18日', '2018年10月19日', '2018年10月20日', '2018年10月21日', '2018年10月22日', '2018年10月23日'],
+                        type: 'category',
+                        axisLine: {
+                            lineStyle: {
+                                color: 'rgb(91,227,224)'//x轴坐标颜色
+                            }
+                        },
+                        boundaryGap: true
+                    }],
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: '单位（%）',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(223,253,255)'
+                                }
+                            },
+                            axisLabel: {
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgb(42,81,125)'
+                                }
+                            }
+                        }
+                    ],
+                    series: [{
+                        name: '计划',
+                        type: 'bar',
+                        // // stack: 'all',
+                        // barWidth: '40%',
+                        // barGap:'40%',
+                        data: one
+                    }, {
+                        name: '实际',
+                        type: 'bar',
+                        // stack: 'all',
+                        // barWidth: '40%',
+                        // barGap:'40%',
+                        data: two
+                    }
+                    ]
+                }
+                planChart.setOption(option);
+                window.onresize=function(){
+                    planChart.resize();
+                }
+            }
+        },
         mounted() {
             // var setting = {
             //     check: {
@@ -536,7 +665,7 @@
             // $("#sy").bind("change", setCheck);
             // $("#pn").bind("change", setCheck);
             // $("#sn").bind("change", setCheck);
-
+            this.SetChart();
         }
 
     }

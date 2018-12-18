@@ -136,9 +136,11 @@
 
             <div class="data-box">
                 <div class="bg"></div>
-                <div class="title"><h3>总功率因数pf</h3>
+                <div class="title"><h3>负荷分析</h3>
                 </div>
-                <div class="my-charts"></div>
+                <div class="my-charts">
+                    <div id="fuhe" style="width:100%;height:100%;"></div>
+                </div>
             </div>
 
 
@@ -181,6 +183,7 @@
 
 <script>
     import TemplateTable from '../views/template-table'
+    var echarts = require('echarts');
     export default {
         name: "rifuhe",
         data() {
@@ -289,6 +292,107 @@
         },
         components: {
             TemplateTable
+        },
+        methods:{
+            SetChart(){
+                var fuhe= document.getElementById('fuhe');
+                var fuheChart = echarts.init(fuhe);
+                var one = [224, 220, 335, 188, 350, 230, 354, 261];
+                var two = [110, 220, 115, 300, 188, 120, 241, 321];
+               
+                var option = {
+                    color: ['#637EF9', '#1C97FF', '#38E68D', '#CFDB48', '#66A9C9', '#00BFC7', '#99D683', '#B4C1D7', '#21834B'],
+                   
+                    legend: {
+                        data: ['总有功功率'],
+                        // align: 'left',
+                        x: 'center',
+                        right: '4%',
+                        // icon: 'rect',
+                        //itemGap: 13,
+                        textStyle: {
+                            color: 'rgb(91,227,224)',
+                            fontSize: 12
+                        }
+                    },
+                    grid: {
+                        top: 50,
+                        bottom: 70,
+                        left:50,
+                        right:50
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            lineStyle: {
+                                type: 'shadow',
+                                color: '#778AA8'
+                            }
+                        }
+                    },
+                    xAxis: [{
+                        data: ['2018年10月16日', '2018年10月17日', '2018年10月18日', '2018年10月19日', '2018年10月20日', '2018年10月21日', '2018年10月22日', '2018年10月23日'],
+                        type: 'category',
+                        boundaryGap: false,
+                        axisLine: {
+                            lineStyle: {
+                                color: 'rgb(91,227,224)'//x轴坐标颜色
+                            }
+                        }
+                    }],
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: '单位（kWh）',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(223,253,255)'
+                                }
+                            },
+                            axisLabel: {
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgb(42,81,125)'
+                                }
+                            }
+                        }
+                    ],
+                    series: [{
+                        name: '总有功功率',
+                        type: 'line',
+                       
+                        symbolSize: 8,
+                      
+                        data: one,
+                        markPoint: {
+                            label:{
+                                show:true,
+                                formatter:'{c}'
+                            },
+                            symbol:'img://../../assets/PeiDianJianCe/data_k.png',
+                            // symbol:'roundRect',
+                            data: [
+                                {type: 'max', name: '最大值'},
+                                {type: 'min', name: '最小值'}
+                                // {coord:[41,15],name:'15',value:15} 
+                            ]
+                        },
+                        }
+                    ]
+                }
+                fuheChart.setOption(option);
+                window.onresize=function(){
+                    fuheChart.resize();
+                }
+            }
         },
         mounted() {
             var setting = {
@@ -421,7 +525,7 @@
             $("#sy").bind("change", setCheck);
             $("#pn").bind("change", setCheck);
             $("#sn").bind("change", setCheck);
-
+            this.SetChart();
         }
 
     }

@@ -281,7 +281,7 @@
             SetEchart(){
                 var chart=document.getElementById('chart');
                 var chartChart = echarts.init(chart);
-                option={
+                var option={
                     tooltip: {
                         color:['#FFF350','#C09DFF','#00FFFF'],
                         trigger: 'axis',

@@ -1,490 +1,435 @@
 <template>
     <div class="Dashboard">
         <div class="bg"></div>
-        <div class="tabNav">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="tabNav-list">
-                            <span @click="tabId=index" v-for="(v,index) in tabNavList.list1"
-                                  :class="{'tabNav-item':true,able:index==tabId}">
-                            {{ v }}
-                                <i class="icon-xl el-icon-arrow-down"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="tabNav-list">
-                            <span @click="tabId=index" v-for="(v,index) in tabNavList.list1"
-                                  :class="{'tabNav-item':true,able:index==tabId}">
-                            {{ v }}
-                                <i class="icon-xl el-icon-arrow-down"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- 如果需要分页器 -->
-                <div class="swiper-pagination"></div>
-            </div>
-
+        <div class="index-slider">
+            <el-carousel height="150px">
+                <el-carousel-item v-for="item in 2" :key="item">
+                    <el-row :gutter="20">
+                        <el-col v-for="(d,index) in sliderData" :span="8">
+                            <div class="sliderCon">
+                                <div class="sbg"></div>
+                                    <div class="slider-inner">
+                                        <span class="water-icon  hidden-sm-and-down"></span>
+                                        <div class="see-blank">
+                                            <p>{{d.title}}</p>
+                                            <span class="led-text">{{d.data}}</span>
+                                            <small>T</small>
+                                        </div>
+                                        <div class="tong-huan-bi hidden-md-and-down">
+                                            <p class="tongbi">
+                                                <span>同比：</span>
+                                                <span class="tongbi-detail">{{d.tongbi}}<small>%</small></span>
+                                                
+                                                <i :class="d.class1"></i>
+                                            </p>
+                                            <p class="huanbi">
+                                                <span>环比：</span>
+                                                <span class="hunabi-detail">{{d.huanbi}}<small>%</small></span>
+                                                
+                                                <i :class="d.class2"></i>
+                                            </p>
+                                        </div>
+                                    </div>       
+                                </div>  
+                            </el-col>  
+                        </el-row>
+                </el-carousel-item>
+              </el-carousel>
         </div>
-        <div class="tab-main">
-            <div class="bg"></div>
-            <div class="tab-content">
-                <div class="head-box">
-                    <h3>天诚楼5和6变压器</h3>
-                    <div class="head-right">
-                        <div @click="imgToSize(100)" :class="{pushBtn:1,btnCur:btnCur==0}">
-                            <i class="icon-fd"></i>
-                            <span>放大</span>
-                        </div>
-                        <div @click="imgToSize(-100)" :class="{pushBtn:1,btnCur:btnCur==1}">
-                            <i class="icon-sx"></i>
-                            <span>缩小</span>
-                        </div>
-                        <div @click="imgToSize(0)" :class="{pushBtn:1,btnCur:btnCur==2}">
-                            <i class="icon-hy"></i>
-                            <span>还原</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-title">
-                    【天诚楼5#、5#变接线图（ 2018-10-16绘制)】
-                </div>
-                <div class="svg-box">
-                    <div id="imageView_container"
-                         style="overflow: hidden; position: relative; width: 1487.5px; height: 700px; ">
-                        <img src="../../assets/svg/dlz.svg" id="rotImg"
-                             style="cursor: move; visibility: visible; position: absolute; width: 100%; height: 100%;"/>
-                    </div>
-                </div>
-            </div>
+        
+        <div class="second-line">
+            <el-row :gutter="20">
+                <el-col :lg="12" :md="24" :sm="24" :xs="24">
+                    <div class="sliderCon">
+                        <div class="sbg"></div>
+                        <div class="slider-inner">
+                            <div class="title">
+                                <h3>企业信息</h3>
+                                <el-container>
+                                    <el-aside width="40%" class="hidden-sm-and-down">
+                                        <img src="../../assets/ShouYe/pp.jpg" alt="">
+                                    </el-aside>
+                                    <el-main>
+                                        <div class="b-descrip">
+                                            <span class="b-name">金风园区智慧楼</span>  位于北京市经济开发区博兴一路8号，总面积63889平方米，其中 1#天诚厂房建筑面积42154平方米，由2层生产
+                                        </div>
+                                    </el-main>
+                                </el-container>    
+                            </div>
+                        </div>       
+                    </div>  
+                </el-col>  
+                <el-col :lg="12" :md="24" :sm="24" :xs="24">
+                    <div class="sliderCon">
+                        <div class="sbg"></div>
+                        <div class="slider-inner">
+                            <div class="title">
+                                <h3>24小时功率曲线</h3>
+                                <el-container>
+                                    <div id="gonglv" style="width:100%;height:100%;"></div>
+                                </el-container>      
+                            </div>
+                        </div>       
+                    </div>  
+                </el-col>  
+            </el-row>   
         </div>
+        <div class="three-line">
+                <el-row :gutter="20">
+                    <el-col :lg="24" :md="24" :sm="24" :xs="24">
+                        <div class="sliderCon">
+                            <div class="sbg"></div>
+                            <div class="slider-inner">
+                                <div class="title">
+                                    <h3>能耗趋势与对比</h3>
+                                    <el-container>
+                                       
+                                    </el-container>    
+                                </div>
+                            </div>       
+                        </div>  
+                    </el-col>  
+                    
+                </el-row>   
+            </div>
     </div>
 </template>
 
 <script>
-    import Schart from "vue-schart";
+    // import Schart from "vue-schart";
     import bus from "../common/bus";
     import Swiper from "swiper";
-    // import Icon from 'vue-svg-icon/Icon.vue'
-    import '../../assets/svg/dlz.svg';
-
+    import 'element-ui/lib/theme-chalk/display.css';
+    var echarts = require('echarts');
     export default {
         name: "dashboard",
         data() {
             return {
-                w: '1000px',
-                // name: localStorage.getItem("ms_username"),
-                btnCur: -1,
-                tabId: 0,
-                tabNavList: {
-                    list1: [
-                        "主配",
-                        "办公室配电室",
-                        "生产区西南角配电室",
-                        "生产一层2号货梯...",
-                        "生产辅房三层配电室",
-                        "生产一层实验仓",
-                        "生产二层生产区域...",
-                        "生产四层2号货梯..."
-                    ]
-                },
-                data: [
+                sliderData:[
                     {
-                        name: "2018/09/04",
-                        value: 1083
+                        title:'今日用水',
+                        data:62.86,
+                        tongbi:32.12,
+                        class1:'icon-tb',
+                        huanbi:12.10,
+                        class2:'icon-hb'
                     },
                     {
-                        name: "2018/09/05",
-                        value: 941
+                        title:'今月用水',
+                        data:1062.86,
+                        tongbi:0.13,
+                        class1:'icon-tb',
+                        huanbi:0.10,
+                        class2:'icon-hb'
                     },
                     {
-                        name: "2018/09/06",
-                        value: 1139
-                    },
-                    {
-                        name: "2018/09/07",
-                        value: 816
-                    },
-                    {
-                        name: "2018/09/08",
-                        value: 327
-                    },
-                    {
-                        name: "2018/09/09",
-                        value: 228
-                    },
-                    {
-                        name: "2018/09/10",
-                        value: 1065
+                        title:'今年用水',
+                        data:20562.86,
+                        tongbi:0.14,
+                        class1:'icon-tb',
+                        huanbi:0.10,
+                        class2:'icon-hb'
                     }
-                ]
+                ],
+                img:'../../assets/ShouYe/pp.jpg',
             };
         },
         components: {
-            Schart
+            
         },
         computed: {
             role() {
                 // return this.name === "admin" ? "超级管理员" : "普通用户";
             }
         },
-        created() {
-            this.handleListener();
-            this.changeDate();
-        },
-        activated() {
-            this.handleListener();
-        },
-        deactivated() {
-            window.removeEventListener("resize", this.renderChart);
-            bus.$off("collapse", this.handleBus);
-        },
+      
         methods: {
-            imgToSize(size) {
+            SetEchart() {
+                // 基于准备好的dom，初始化echarts实例
+                // var growRanking = echarts.init(document.getElementById('myChart'));
 
-                var img = $("#rotImg");
-                if (size == 0) {
-                    img.width('100%');
-                    img.height('100%');
-                } else {
-                    var oWidth = img.width(); //取得图片的实际宽度
-                    var oHeight = img.height(); //取得图片的实际高度
+                var gonglv = document.getElementById('gonglv');
+                var gonglvChart = echarts.init(gonglv);
+                var one = [224, 220, 335, 188, 350, 230, 354, 261,220,231,241,351,254,123,255,154,365,234,125,421,322,122,352,421];
+                var two = [124, 120, 235, 288, 250, 330, 254, 361,320,331,141,351];
+                
+                // 指定图表的配置项和数据
 
-                    img.width(oWidth + size);
-                    img.height(oHeight + (size / oWidth) * oHeight);
+
+                var option = {
+                    color: ['#1A9BFF', '#00E099', '#38E68D', '#CFDB48', '#66A9C9', '#00BFC7', '#99D683', '#B4C1D7', '#21834B'],
+                   
+                    legend: {
+                        data: ['昨日曲线','今日曲线'],
+                        // align: 'left',
+                        x: 'center',
+                        right: '4%',
+                        // icon: 'rect',
+                        //itemGap: 13,
+                        textStyle: {
+                            color: 'rgb(91,227,224)',
+                            fontSize: 12
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '1%',
+                        bottom: '3%',
+                        top: '15%',
+                        containLabel: true
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            lineStyle: {
+                                type: 'shadow',
+                                color: '#778AA8'
+                            }
+                        }
+                    },
+                    xAxis: [{
+                        data: ['0', '1', '2','3','4','5', '6', '7','8','9','10','11','12','13','14','15', '16', '17','18','19','20','21','22','23'],
+                        type: 'category',
+                        boundaryGap: false,
+                        axisLine: {
+                            lineStyle: {
+                                color: 'rgb(91,227,224)'//x轴坐标颜色
+                            }
+                        }
+                    }],
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: '单位（kw）',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(223,253,255)'
+                                }
+                            },
+                            axisLabel: {
+                                margin: 10,
+                                textStyle: {
+                                    fontSize: 14
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgb(42,81,125)'
+                                }
+                            }
+                        }
+                    ],
+                    series: [{
+                        name: '昨日曲线',
+                        type: 'line',
+                        smooth: true,
+                        symbolSize: 0,
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgba(26, 155, 255, 0.9)'
+                                }, {
+                                    offset: 0.8,
+                                    color: 'rgba(26, 155, 255, 0)'
+                                }], false),
+                                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                shadowBlur: 10
+                            }
+                        },
+                        data: one,
+                        },
+                        {
+                        name: '今日曲线',
+                        type: 'line',
+                        smooth: true,
+                        symbolSize: 0,
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgba(0, 224, 153, 0.9)'
+                                }, {
+                                    offset: 0.8,
+                                    color: 'rgba(0, 224, 153, 0)'
+                                }], false),
+                                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                shadowBlur: 10
+                            }
+                        },
+                        data: two,
+                        }
+                    ]
                 }
 
+
+                // 使用刚指定的配置项和数据显示图表。
+                gonglvChart.setOption(option);
+                window.onresize = function () {
+                    gonglvChart.resize();
+                    };
             },
-            changeDate() {
-                const now = new Date().getTime();
-                this.data.forEach((item, index) => {
-                    const date = new Date(now - (6 - index) * 86400000);
-                    item.name = `${date.getFullYear()}/${date.getMonth() +
-                    1}/${date.getDate()}`;
-                });
-            },
-            handleListener() {
-                bus.$on("collapse", this.handleBus);
-                // 调用renderChart方法对图表进行重新渲染
-                window.addEventListener("resize", this.renderChart);
-            },
-            handleBus(msg) {
-                setTimeout(() => {
-                    this.renderChart();
-                }, 300);
-            },
-            renderChart() {
-                //   this.$refs.bar.renderChart();
-                //   this.$refs.line.renderChart();
-            }
         },
         mounted() {
-            var mySwiper = new Swiper(".swiper-container", {
-                // autoplay: true,
-                // loop: true
-                initialSlide: 0,
-                observer: true, //修改swiper自己或子元素时，自动初始化swiper
-                observeParents: true, //修改swiper的父元素时，自动初始化swiper
-                // 如果需要分页器
-                pagination: {
-                    el: ".swiper-pagination"
-                }
-            });
-
-
-            var param = {
-                // right: document.getElementById("rotRight"),
-                // left: document.getElementById("rotLeft"),
-                img: document.getElementById("rotImg"),
-                rot: 0
-            };
-
-            var fun = {
-                right: function () {
-                    param.rot += 1;
-                    param.img.className = "rot" + param.rot;
-                    if (param.rot === 3) {
-                        param.rot = -1;
-                    }
-                },
-                left: function () {
-                    param.rot -= 1;
-                    if (param.rot === -1) {
-                        param.rot = 3;
-                    }
-                    param.img.className = "rot" + param.rot;
-                }
-            };
-            // param.right.onclick = function() {
-            //     fun.right();
-            //     return false;
-            // };
-            // param.left.onclick = function() {
-            //     fun.left();
-            //     return false;
-            // };
-
-            $("#imageView_container").imageView({width: 1604, height: 700});
-
-            var size = 0;
-
-            //放大缩小图片
-            function imgToSize(size) {
-                var img = $("#rotImg");
-                var oWidth = img.width(); //取得图片的实际宽度
-                var oHeight = img.height(); //取得图片的实际高度
-
-                img.width(oWidth + size);
-                img.height(oHeight + (size / oWidth) * oHeight);
-            }
-
+            this.SetEchart();
         }
     };
 </script>
 <style>
+    .second-line,.three-line{
+        margin-bottom:20px;
+    }
+    .b-descrip{
+        color:#DFFDFF;
+    }
+    .b-name{
+        color:#2CF4F2;
+    }
+    .title{
+        width:100%;
+        padding:15px;
+    }
+    img{
+        width:100%;
+        height:95%;
+    }
+    .title>h3{
+        padding-bottom:27px;
+        color:#FEFEFF;
+        text-align: left;
+        width:100%;
+        display: flex;
+        font-size:16px;
+    }
+    .el-container{
+        padding-left:30px;
+        height:222px;
+    }
+    /* .title img{
+        margin:0 30px;
+    } */
+    .cbg{
+    width: 98%;
+    height: 100%;
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+    border: 1px solid #2af4ff;
+    -webkit-box-shadow: 0px 3px 10px 0px #173050, 0px 3px 30px 0px rgba(42, 244, 255, 0.84) inset;
+    box-shadow: 0px 3px 10px 0px #173050, 0px 3px 30px 0px rgba(42, 244, 255, 0.84) inset;
+    opacity: 0.5;
+    border-radius: 3px;
+    z-index: 0;
+    }
+
+
+    
+    .el-carousel__container{
+        height:100%;
+    }
     .Dashboard .swiper-pagination-bullet-active {
         background: #fff;
     }
-</style>
-
-<style lang="scss" scoped>
-    .Dashboard {
+    .sliderCon{
+        position:relative;
+    }
+    .sbg{
         width: 100%;
         height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px solid #2af4ff;
+        -webkit-box-shadow: 0px 3px 10px 0px #173050, 0px 3px 30px 0px rgba(42, 244, 255, 0.84) inset;
+        box-shadow: 0px 3px 10px 0px #173050, 0px 3px 30px 0px rgba(42, 244, 255, 0.84) inset;
+        opacity: 0.5;
+        border-radius: 3px;
+        z-index: 0;
+    }
+    .slider-inner{
+        width:100%;
+        display: flex;
+        justify-content: space-around;
         position: relative;
-
-        .tab-main {
-            width: 100%;
-            height: 840px;
-            margin-bottom: 30px;
-            position: relative;
-            .bg {
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 0;
-                border: 1px solid rgba(42, 244, 255, 1);
-                box-shadow: 0px 3px 9px 0px rgba(1, 16, 31, 1),
-                0px 3px 30px 0px rgba(42, 244, 255, 0.84) inset;
-                opacity: 0.51;
-                border-radius: 3px;
-            }
-            .tab-content {
-                width: 100%;
-                height: 100%;
-                box-sizing: border-box;
-                padding: 22px 9px 35px 20px;
-                z-index: 10;
-                position: relative;
-                h3 {
-                    color: #fff;
-                }
-                .head-right {
-                    float: right;
-                    margin-top: -25px;
-                    .pushBtn {
-                        float: left;
-                        display: flex;
-                        cursor: pointer;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        width: 61px;
-                        height: 57px;
-                        background: url("../../assets/PeiDianJianCe/btn1.png") no-repeat;
-                        text-align: center;
-                        i {
-                            display: inline-block;
-                            width: 16px;
-                            height: 15px;
-                            text-align: center;
-                        }
-                        span {
-                            margin-top: 4px;
-                            font-size: 12px;
-                            font-family: HiraginoSansGB-W3;
-                            font-weight: normal;
-                            color: rgba(254, 254, 254, 1);
-                        }
-                        .icon-fd {
-                            background: url("../../assets/PeiDianJianCe/icon_fd.png") no-repeat;
-                        }
-                        .icon-sx {
-                            background: url("../../assets/PeiDianJianCe/icon_sx.png") no-repeat;
-                        }
-                        .icon-hy {
-                            background: url("../../assets/PeiDianJianCe/icon_hy.png") no-repeat;
-                        }
-                        .btnCur {
-                            background: url("../../assets/PeiDianJianCe/btn选中.png") no-repeat;
-
-                        }
-                    }
-                }
-                .form-title {
-                    width: 100%;
-                    margin-top: 25px;
-                    text-align: center;
-                    font-size: 14px;
-                    font-family: Adobe Heiti Std R;
-                    font-weight: normal;
-                    color: rgba(95, 251, 248, 1);
-                }
-                .svg-box {
-                    width: 1612px;
-                    height: 711px;
-                    margin-top: 10px;
-                    background: #072042;
-                }
-            }
-        }
     }
-
-    .tabNav-list {
-        width: 100%;
-        height: 66px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        .tabNav-item {
-            flex: 1;
-            cursor: pointer;
-            text-align: center;
-            height: 45px;
-            line-height: 45px;
-            background: url("../../assets/PeiDianJianCe/tab-2(2).png") no-repeat;
-            background-size: 100% 100%;
-            font-size: 14px;
-            font-family: HiraginoSansGB-W3;
-            font-weight: normal;
-            color: #FEFEFE;
-            text-shadow: 0px 1px 2px rgba(0, 2, 14, 1);
-            position: relative;
-            .icon-xl {
-                position: absolute;
-                right: 15px;
-                top: 50%;
-                margin-top: -8px;
-
-            }
-        }
-        .able {
-            background: url("../../assets/PeiDianJianCe/tab-2.png") no-repeat;
-            color: #2DF3FF;
-        }
-
+    .el-carousel__indicators{
+        bottom:20px;
     }
-
-    .el-row {
-        margin-bottom: 20px;
+    .water-icon{
+        width:100px;
+        height:104px;
+        line-height:124px;
+        flex-grow:0;
+        position:relative;
+        flex-shrink:1;
+        margin-top:20px;
+        margin-left:40px;
+        background: url("../../assets/ShouYe/icon_water.png") no-repeat;
     }
-
-    .grid-content {
-        display: flex;
-        align-items: center;
-        height: 100px;
+    .see-blank{
+        position:relative;
+        height:100px;
+        color:#E8EEEA;
+        font-family:'DS-Digital';
+        font-size:16px;
+        margin-top:33px;
+        margin-left:20px;
+        flex-grow:1;
     }
-
-    .grid-cont-right {
-        flex: 1;
-        text-align: center;
+    .see-blank small{
+        padding-left:5%;
+    }
+    .see-blank>small{
+        color:#2CF4F2;
+        font-size: 16px;
+        margin-top:15px;
+    }
+    .led-text{
+        color:#2CF4F2;
+        display: inline-block;
+        font-size:30px;
+        margin-top:15px;
+    }
+    .el-carousel{
+        height:100%;
+    }
+    .icon-tb{
+        background: url("../../assets/ShouYe/icon_tb.png") no-repeat;
+        width:11px;
+        height:14px;
+        position:relative;
+        display: inline-block;
+    }
+    .icon-hb{
+        background: url("../../assets/ShouYe/icon_hb.png") no-repeat;
+        width:11px;
+        height:14px;
+        position:relative;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .tong-huan-bi{
+        color:#E8EEEA;
         font-size: 14px;
-        color: #999;
+        margin-top:40px;
+        text-align: left;
+        flex-grow:1;
+        /* margin-right:10%; */
     }
-
-    .grid-num {
-        font-size: 30px;
-        font-weight: bold;
+    .tongbi .tongbi-detail{
+        color:#2FA1FF;
+        width:50px;
+        display: inline-block;
     }
-
-    .grid-con-icon {
-        font-size: 50px;
-        width: 100px;
-        height: 100px;
-        text-align: center;
-        line-height: 100px;
-        color: #fff;
+    .tongbi{
+        margin-bottom:13px;
     }
-
-    .grid-con-1 .grid-con-icon {
-        background: rgb(45, 140, 240);
-    }
-
-    .grid-con-1 .grid-num {
-        color: rgb(45, 140, 240);
-    }
-
-    .grid-con-2 .grid-con-icon {
-        background: rgb(100, 213, 114);
-    }
-
-    .grid-con-2 .grid-num {
-        color: rgb(45, 140, 240);
-    }
-
-    .grid-con-3 .grid-con-icon {
-        background: rgb(242, 94, 67);
-    }
-
-    .grid-con-3 .grid-num {
-        color: rgb(242, 94, 67);
-    }
-
-    .user-info {
-        display: flex;
-        align-items: center;
-        padding-bottom: 20px;
-        border-bottom: 2px solid #ccc;
-        margin-bottom: 20px;
-    }
-
-    .user-avator {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-    }
-
-    .user-info-cont {
-        padding-left: 50px;
-        flex: 1;
-        font-size: 14px;
-        color: #999;
-    }
-
-    .user-info-cont div:first-child {
-        font-size: 30px;
-        color: #222;
-    }
-
-    .user-info-list {
-        font-size: 14px;
-        color: #999;
-        line-height: 25px;
-    }
-
-    .user-info-list span {
-        margin-left: 70px;
-    }
-
-    .mgb20 {
-        margin-bottom: 20px;
-    }
-
-    .todo-item {
-        font-size: 14px;
-    }
-
-    .todo-item-del {
-        text-decoration: line-through;
-        color: #999;
-    }
-
-    .schart {
-        width: 100%;
-        height: 300px;
+    .huanbi .hunabi-detail{
+        color:#FE6134;
+        width:50px;
+        display: inline-block;
     }
 </style>

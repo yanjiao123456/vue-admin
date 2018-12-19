@@ -137,7 +137,7 @@
                 <div class="title"><h3>能耗成本</h3>
                 </div>
                 <div class="my-charts">
-                    <div id="base" style="width:100%;height:100%;"></div>
+                    <div id="cost" style="width:100%;height:100%;"></div>
                 </div>
             </div>
 
@@ -379,17 +379,7 @@
 
                 var option = {
                     color: ['#637EF9', '#1C97FF', '#38E68D', '#CFDB48', '#66A9C9', '#00BFC7', '#99D683', '#B4C1D7', '#21834B'],
-                    // title: [{
-                    //    text: '对比定标单耗增长排名',
-                    //    x: 'center',
-                    //    y: 'top',
-                    //    textStyle: {
-                    //        color: '#01CED4',
-                    //        textAlign: 'center',
-                    //        fontSize: 14,
-                    //        fontWeight: 'bold'
-                    //    }
-                    // }],
+                   
                     legend: {
                         data: ['2AA101-1号电源线_能耗', '2AA102-1号电源线_能耗', '2AA103-1号电源线_能耗', '2AA104-1号电源线_能耗'],
                         align: 'left',

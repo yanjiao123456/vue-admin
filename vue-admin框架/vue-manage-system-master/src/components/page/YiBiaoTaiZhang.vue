@@ -150,7 +150,8 @@
 
                         </select>
                     </div>
-                    <i class="icon-pdf"></i><i class="icon-excel"></i></div>
+                    <i class="icon-pdf"></i><i class="icon-excel"></i>
+                </div>
             </div>
 
             <div class="table-box">

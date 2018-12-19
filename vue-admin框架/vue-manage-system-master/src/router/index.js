@@ -115,6 +115,11 @@ export default new Router({
                     component: resolve => require(['../components/page/SheBeiZongLan.vue'], resolve),
                     meta: {title: '设备总览'}
                 },
+                {
+                    path: '/SheBeiDangAn',
+                    component: resolve => require(['../components/page/SheBeiDangAn.vue'], resolve),
+                    meta: {title: '设备档案'}
+                },
 
                 {
                     path: '/icon',

@@ -692,3 +692,75 @@
     padding: 0 45px;
     min-width: 200px;
 }
+.Inquire .rank5 .el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: 160px;
+    height: 28px;
+}
+.Inquire .rank5 .el-input__prefix {
+    left: 134px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+
+
+
+.myTable .el-table--small th {
+    padding: 6.5px 0;
+    border-bottom: 1px solid #1B6D9A;
+}
+.myTable .el-table--small td{
+    padding: 1px 0;
+    border-bottom: 1px solid #1B6D9A;
+    font-size:14px;
+    font-family:HiraginoSansGB-W3;
+    font-weight:normal;
+    color:rgba(223,253,255,1);
+}
+.myTable .el-table td, .myTable .el-table th.is-leaf {
+    border-bottom: 1px solid #1B6D9A;
+}
+.myTable .el-table--border td, .myTable .el-table--border th, .myTable .el-table__body-wrapper .el-table--border.is-scrolling-left~.el-table__fixed {
+    border-right: 1px solid #1B6D9A;
+}
+
+.myTable .el-table th{
+    background-color: #185588;
+    font-size:14px;
+    font-family:HiraginoSansGB-W6;
+    font-weight:normal;
+    color:rgba(95,251,248,1);
+}
+.myTable .el-table .descending .sort-caret.descending {
+    border-top-color: #9EF3FF;
+}
+.myTable  .el-table .ascending .sort-caret.ascending {
+    border-bottom-color: #9EF3FF;
+}
+.myTable .el-table .sort-caret.ascending {
+    border-bottom-color: #33A5B6;
+    top: 5px;
+}
+.myTable .el-table .sort-caret.descending {
+    border-top-color: #33A5B6;
+    bottom: 7px;
+}
+.myTable .el-table--border, .el-table--group {
+    border: 0;
+}
+.myTable .el-table tr {
+    background-color: #0A3E6E;
+}
+.myTable .el-table--striped .el-table__body tr.el-table__row--striped td {
+    background: #104C7B;
+}
+/*.myTable .el-table--striped.hover-row .el-table__body tr.el-table__row--striped td {*/
+    /*background: #085F97;*/
+/*}*/
+.myTable .el-table--striped .el-table__body tr.el-table__row--striped.current-row td, .myTable .el-table__body tr.current-row>td, .myTable .el-table__body tr.hover-row.current-row>td, .myTable .el-table__body tr.hover-row.el-table__row--striped.current-row>td, .myTable .el-table__body tr.hover-row.el-table__row--striped>td, .myTable .el-table__body tr.hover-row>td {
+    background-color: #085E96;
+}
+.myTable .el-table tr:hover {
+    background: #085E96;
+}

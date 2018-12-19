@@ -2,86 +2,137 @@
     <div class="RTData Inquire">
         <transition name="el-zoom-in-center">
             <div v-show="leftShow" class="left-branch">
-                <div class="tit"><h3>报警分类</h3></div>
+                <div class="tit"><h3>设备分类</h3></div>
                 <div class="alarm-type">
-                    <ul>
-                        <li>全部类型 <span>17</span></li>
-                        <li class="f2">安全报警 <span>1</span></li>
-                        <li class="f3">配电监控 <span>1</span></li>
-                        <li class="f2">环境报警 <span>4</span></li>
-                        <li class="f3">温度报警 <span>2</span></li>
-                        <li class="f3">湿度报警 <span>2</span></li>
-                        <li class="f2">缴费提醒 <span>12</span></li>
-                        <li class="f3">预付费用户 <span>8</span></li>
-                        <li class="f3">后付费用户 <span>4</span></li>
-                    </ul>
+                    <!--<ul>-->
+                    <!--<li>全部类型 <span>17</span></li>-->
+                    <!--<li class="f2">安全报警 <span>1</span></li>-->
+                    <!--<li class="f3">配电监控 <span>1</span></li>-->
+                    <!--<li class="f2">环境报警 <span>4</span></li>-->
+                    <!--<li class="f3">温度报警 <span>2</span></li>-->
+                    <!--<li class="f3">湿度报警 <span>2</span></li>-->
+                    <!--<li class="f2">缴费提醒 <span>12</span></li>-->
+                    <!--<li class="f3">预付费用户 <span>8</span></li>-->
+                    <!--<li class="f3">后付费用户 <span>4</span></li>-->
+                    <!--</ul>-->
+                    <span class="menu-top">xxx企业</span>
+                    <el-menu
+                            default-active="2"
+                            class="el-menu-vertical-demo"
+                            background-color="#0A3E6E"
+                            text-color="#FEFEFE"
+                            active-text-color="#4FE4FA">
+                        <el-submenu index="1">
+                            <template slot="title">
+                                <i class="dot"></i>
+                                <span>导航一</span>
+                            </template>
+
+                            <el-menu-item index="1-1">选项1</el-menu-item>
+                            <el-menu-item index="1-2">选项2</el-menu-item>
+                            <el-menu-item index="1-3">选项3</el-menu-item>
+                        </el-submenu>
+                        <el-submenu index="2">
+                            <template slot="title">
+                                <i class="dot"></i>
+                                <span>导航一</span>
+                            </template>
+
+                            <el-menu-item index="1-1">选项1</el-menu-item>
+                            <el-menu-item index="1-2">选项2</el-menu-item>
+                            <el-menu-item index="1-3">选项3</el-menu-item>
+                        </el-submenu>
+                        <el-submenu index="3">
+                            <template slot="title">
+                                <i class="dot"></i>
+                                <span>导航一</span>
+                            </template>
+
+                            <el-menu-item index="1-1">选项1</el-menu-item>
+                            <el-menu-item index="1-2">选项2</el-menu-item>
+                            <el-menu-item index="1-3">选项3</el-menu-item>
+                        </el-submenu>
+
+                    </el-menu>
                 </div>
             </div>
         </transition>
-        <div @click="leftShow=!leftShow" :class="{btn:true,shrinkBtn:!leftShow}">报 警 分 类</div>
+        <div @click="leftShow=!leftShow" :class="{btn:true,shrinkBtn:!leftShow}">设 备 分 类</div>
         <div :class="{main:true,mainShow:leftShow}">
             <div class="filtrate-box">
                 <div class="bg"></div>
                 <div class="title"><h3>筛选条件</h3>
 
                 </div>
-                <!--<div @click="filtrateShow=!filtrateShow"-->
-                <!--:class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>-->
+                <div @click="filtrateShow=!filtrateShow"
+                     :class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>
                 <el-collapse-transition>
                     <div v-show="filtrateShow" class="filtrate-show">
 
 
-                        <div class="item-row item-row-btns">
-                            <div class="menu-left">
-                                <div @click="plclCur=!plclCur" :class="{'btn-plcl':true,cur:plclCur}"></div>
-                                <div class="commit">
-                                    <span style="color: #FF755E">100</span>条未读，<span style="color: #48D997">234</span>条已处理
-                                </div>
+                        <div class="item-row rank5 item2">
+                            <div class="more-box">
+                                <span>设备类型：</span>
+                                <el-select class="select" v-model="select1" placeholder="请选择设备类型">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
                             </div>
-                            <div class="menu-right">
-                                <div class="right-btn">
-                                    <div @click="btnCur=0" :class="{'btn-all':true,cur:btnCur==0}"></div>
-                                    <div @click="btnCur=1" :class="{'btn-ycl':true,cur:btnCur==1}"></div>
-                                    <div @click="btnCur=2" :class="{'btn-wcl':true,cur:btnCur==2}"></div>
-                                </div>
-                                <div ref="searchMain" class="sort-box">
-                                    <div @click="togglePanel" class="select-sort">
-                                        <span>{{ sortVal }}</span>
-                                        <i :class="{'icon-arrow':true,cur:!sortShow}"></i>
-                                    </div>
-                                    <el-collapse-transition>
-                                        <div v-show="sortShow" ref="main" class="pull-down">
-                                            <div @click="sortCur=index" :class="{cur:sortCur==index}"
-                                                 v-for="(v,index) in sortArr">{{ v }}
-                                            </div>
-                                            <!--<div class="cur">默认排序</div>-->
-                                            <!--<div>正向排序</div>-->
-                                            <!--<div>自定义时间段</div>-->
-                                            <div class="custom">
-                                                <div class="time-start">
-                                                    <input v-model="dateStart.year" type="text" class="input-year">
-                                                    <span>年</span>
-                                                    <input v-model="dateStart.month" type="text" class="input-month">
-                                                    <span>月</span>
-                                                    <input v-model="dateStart.day" type="text" class="input-day">
-                                                    <span>日</span>
-                                                </div>
-                                                <div class="to">至</div>
-                                                <div class="time-end">
-                                                    <input v-model="dateEnd.year" type="text" class="input-year">
-                                                    <span>年</span>
-                                                    <input v-model="dateEnd.month" type="text" class="input-month">
-                                                    <span>月</span>
-                                                    <input v-model="dateEnd.day" type="text" class="input-day">
-                                                    <span>日</span>
-                                                </div>
-                                            </div>
-                                            <div @click="inSort" class="confirm">确定</div>
+                            <div class="more-box">
+                                <span>设备编码：</span>
+                                <el-select class="select" v-model="select1" placeholder="请输入设备编码">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div class="more-box">
+                                <span>设备名称：</span>
+                                <el-select class="select" v-model="select1" placeholder="请输入设备名称">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div class="more-box">
+                                <span>设备位置：</span>
+                                <el-select class="select" v-model="select1" placeholder="请输入设备位置">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div class="more-box">
+                                <span>生产厂家：</span>
+                                <el-select class="select" v-model="select1" placeholder="请输入生产厂家">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </div>
 
-                                        </div>
-                                    </el-collapse-transition>
-                                </div>
-                            </div>
+                        </div>
+
+
+                        <div class="btns-box">
+                            <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">查询</div>
+                            <div @click="btns=1" :class="{'btn-item':true,cur:btns==1}">重置</div>
                         </div>
 
 
@@ -89,101 +140,286 @@
                 </el-collapse-transition>
 
             </div>
-
-            <div class="main-box">
-                <div class="Table">
+            <div class="addBtn-box">
+                <div @click="addBoxShow=!addBoxShow" class="addBtn">新增设备</div>
+            </div>
+            <el-collapse-transition>
+                <div v-show="addBoxShow" class="filtrate-box">
                     <div class="bg"></div>
-                    <div class="title"><h3>数据列表</h3>
-                        <div class="head-right"><i class="icon-pdf"></i><i class="icon-excel"></i></div>
-                    </div>
+                    <div class="title"><h3>添加设备档案信息</h3>
 
-                    <div class="list-box">
-                        <div class="list-title">
-                            【 报警信息列表 】
+                    </div>
+                    <!--<div-->
+                    <!--:class="{'shift-knob-t':filtrateShow,'shift-knob-b':!filtrateShow}"></div>-->
+
+                    <div class="filtrate-show">
+
+
+                        <div class="item-row rank5 item2">
+                            <div class="more-box">
+                                <div class="item-input">
+                                    <span>设备类别：</span>
+                                    <input type="text" placeholder="请输入设备类别">
+                                </div>
+                            </div>
+                            <div class="more-box">
+                                <div class="item-input">
+                                    <span>设备名称：</span>
+                                    <input type="text" placeholder="请输入设备名称">
+                                </div>
+                            </div>
+                            <div class="more-box">
+                                <div class="item-input">
+                                    <span>生产厂家：</span>
+                                    <input type="text" placeholder="请输入生产厂家">
+                                </div>
+                            </div>
+                            <div class="more-box">
+                                <div class="item-input">
+                                    <span>设备型号：</span>
+                                    <input type="text" placeholder="请输入设备型号">
+                                </div>
+                            </div>
+                            <div class="more-box">
+                                <div class="item-input">
+                                    <span>设备功率：</span>
+                                    <input type="text" placeholder="请输入设备功率">
+                                </div>
+                            </div>
                         </div>
-                        <ul>
-                            <li v-for="v in listData">
-                                <div class="item-box">
-                                    <span class="f1">{{ v.item1Name }}</span>
-                                    <span class="f2">{{ v.item1Commit }}</span>
+                        <div class="item-row rank5 item2">
+                            <div class="more-box">
+                                <div class="item-input">
+                                    <span>安装位置：</span>
+                                    <input type="text" placeholder="请输入安装位置">
                                 </div>
-                                <div class="item-box">
-                                    <span class="f1">{{ v.item2Name }}</span>
-                                    <span class="f2">{{ v.item2Commit }}</span>
+                            </div>
+                            <div class="more-box">
+                                <div class="item-input">
+                                    <span>设备规格：</span>
+                                    <input type="text" placeholder="请输入设备规格">
                                 </div>
-                                <div class="item-box">
-                                    <span v-show="v.item3TF" class="wcl">未处理</span>
-                                    <span v-show="!v.item3TF" class="ycl">已处理</span>
-                                    <span class="f2">{{ v.item3Date }}</span>
+                            </div>
+                            <div class="more-box">
+                                <div class="item-input">
+                                    <span>出厂日期：</span>
+                                    <el-date-picker
+                                            v-model="value1"
+                                            type="date"
+                                            placeholder="请选择出厂日期">
+                                    </el-date-picker>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                            <div class="more-box">
+                                <div class="item-input">
+                                    <span>出厂日期：</span>
+                                    <el-date-picker
+                                            v-model="value1"
+                                            type="date"
+                                            placeholder="请选择采购日期">
+                                    </el-date-picker>
+                                </div>
+                            </div>
+                            <div class="more-box">
+                                <div class="item-input">
+                                    <span>使用部门：</span>
+                                    <input type="text" placeholder="请输入使用部门">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-row rank2 item2">
+
+                            <div class="item-input">
+                                <span>责任人： &nbsp;&nbsp;  </span>
+                                <input type="text" placeholder="请输入安装位置">
+                            </div>
+
+
+                            <div class="item-input">
+                                <span>设备编号：</span>
+                                <el-radio class="choice" v-model="radio" label="1">系统生产</el-radio>
+                                <el-radio class="choice" v-model="radio" label="2">人工智能</el-radio>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="btns-box">
+                            <div @click="btns=0" style="width: 120px;" :class="{'btn-item':true,cur:btns==0}">生成批量信息
+                            </div>
+                            <div @click="btns=1" :class="{'btn-item':true,cur:btns==1}">设备入库</div>
+                            <div @click="btns=2" :class="{'btn-item':true,cur:btns==2}">重置</div>
+                        </div>
+
+
                     </div>
 
 
                 </div>
-                <div class="main-right-box">
-                    <div class="main-right">
-                        <div class="bg"></div>
-                        <div class="matter">
-                            <div class="title"><h3>报警详情</h3></div>
-                            <ul class="matter-ul">
-                                <li v-for="v in 3">
-                                    <span class="key">报警名称：</span>
-                                    <span class="val">XXXXXX</span>
-                                </li>
-                            </ul>
-                            <span class="key">报警内容：</span>
-                            <div class="bjnr">
-                                报警内容报警内容报警内容报警内容 报警内容报警内容 报警内容
-                            </div>
-                            <span class="key">处理记录：</span>
-                            <div class="cljl">
-                                sdshudheufhucmkvdnuhn cjhhsefhjf xncjdhudfh dfhudhfu
-                            </div>
+            </el-collapse-transition>
 
+
+            <div class="Table">
+                <div class="bg"></div>
+                <div class="title"><h3>设备档案信息</h3>
+                    <div class="head-right">
+                        <div class="count">
+                            <!--<div class="bg"></div>-->
+                            <select>
+                                <option>默认排序</option>
+                                <option>检定时间由远至近</option>
+                                <option>检定时间由近至远</option>
+
+                            </select>
                         </div>
-                    </div>
-                    <div class="dispose">
-                        <div class="bg"></div>
-                        <div class="matter">
-                            <div class="title"><h3>报警详情</h3></div>
-
-                            <div class="bjcl-box">
-                                <div class="more-box">
-                                    <el-checkbox v-model="checked1">支路:</el-checkbox>
-                                    <el-select class="select" v-model="select1" placeholder="默认值">
-                                        <el-option
-                                                v-for="item in options"
-                                                :key="item.value"
-                                                :label="item.label"
-                                                :value="item.value">
-                                        </el-option>
-                                    </el-select>
-                                </div>
-                                <div class="more-box">
-                                    <el-checkbox v-model="checked2">支路:</el-checkbox>
-                                    <el-select class="select" v-model="select2" placeholder="默认值">
-                                        <el-option
-                                                v-for="item in options"
-                                                :key="item.value"
-                                                :label="item.label"
-                                                :value="item.value">
-                                        </el-option>
-                                    </el-select>
-                                </div>
-                            </div>
-                            <textarea name="a" class="textarea"></textarea>
-                            <div class="btn-box">
-                                <div class="button">
-                                    处理报警
-                                </div>
-                            </div>
-
-                        </div>
+                        <i class="icon-pdf"></i><i class="icon-excel"></i>
                     </div>
                 </div>
 
+
+                <div class="content-table">
+                    <div class="tit">【2018-10-18 16:05:30】</div>
+
+                    <div class="myTable table-box">
+                        <el-table
+                                :data="tableData"
+                                align="center"
+                                border
+                                stripe
+                                :default-sort="{prop: 'date', order: 'descending'}"
+                                style="width: 100%">
+                            <el-table-column
+                                    align="center"
+                                    fixed
+                                    sortable
+                                    prop="date"
+                                    label="日期"
+                                    width="158">
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="province"
+                                    sortable
+                                    label="省份"
+                                    width="150"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="city"
+                                    sortable
+                                    label="市区"
+                                    width="150"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="address"
+                                    sortable
+                                    label="地址"
+                                    width="150"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="zip"
+                                    sortable
+                                    label="邮编"
+                                    width="150"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    fixed="right"
+                                    label="操作"
+                                    width="150"
+                            >
+                                <template slot-scope="scope">
+                                    <i class="icon-xg"></i>
+                                    <span class="setBtn">修改</span>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <!--<div class="table-header">-->
+                        <!--<table>-->
+                        <!--<tr>-->
+                        <!--<th>日期</th>-->
+                        <!--&lt;!&ndash;<th>日期</th>&ndash;&gt;-->
+                        <!--</tr>-->
+                        <!--&lt;!&ndash;<tr></tr>&ndash;&gt;-->
+
+                        <!--<tr v-for="v in 10">-->
+                        <!--<td>01-03-LPB-E4-00</td>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                        <!--</div>-->
+                        <!--<div class="table-right">-->
+                        <!--<table>-->
+                        <!--&lt;!&ndash;<tr style="border-bottom: 1px solid #1B6D9A;">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项1</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项2</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项3</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--<tr>-->
+                        <!--<th v-for="v in 5">名称</th>-->
+                        <!--</tr>-->
+                        <!--<tr v-for="v in 10">-->
+                        <!--<td v-for="v in 5">01-03-LPB-E4-00</td>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                        <!--</div>-->
+                    </div>
+
+
+                </div>
+                <div class="selector">
+                    <i class="icon-front"></i>
+                    <i class="icon-prev"></i>
+                    <div class="page-num">
+                        <div class="bg"></div>
+                        <input type="text" value="1">
+                    </div>
+
+                    <span class="page-all">
+                        /共1页
+                    </span>
+                    <i class="icon-next"></i>
+                    <i class="icon-last"></i>
+                    <div class="count">
+                        <div class="bg"></div>
+                        <select>
+                            <option>10</option>
+                            <option>20</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
 
@@ -195,9 +431,69 @@
     import TemplateTable from '../views/template-table'
 
     export default {
-        name: "baojingguanli",
+        name: "shebeizonglan",
         data() {
             return {
+                tableData: [{
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }],
+                addBoxShow: true,
+                value1: '',
+                lists: [
+                    {
+                        title: '本阶段平均用能 ',
+                        icon: 'item-icon-hz',
+                        title2: '同期汇总',
+                    },
+                    {
+                        title: '本阶段最大用能－1#空压机  ',
+                        icon: 'item-icon-pjf',
+                        title2: '同期平均',
+                    },
+                    {
+                        title: '本阶段最小用能－2#空压机  ',
+                        icon: 'item-icon-max',
+                        title2: '同期最大值',
+                    },
+                    {
+                        title: '本阶段用能增幅最大－5＃空压机  ',
+                        icon: 'item-icon-min',
+                        title2: '同期最小值',
+                    },
+                    {
+                        title: '本阶段用能增幅最小－4＃空压机 ',
+                        icon: 'item-icon-tb',
+                        title2: '同期同比',
+                    },
+
+                ],
+
                 listData: [
                     {
                         item1Name: 'xxx中水泵1445',
@@ -248,24 +544,7 @@
                         item3Date: '2018-10-18  15:24'
                     }
                 ],
-                sortShow: false,
-                sortCur: 0,
-                sortArr: [
-                    "默认排序",
-                    "正向排序",
-                    "自定义时间段"
-                ],
-                sortVal: '默认排序',
-                dateStart: {
-                    year: 2018,
-                    month: '08',
-                    day: '05'
-                },
-                dateEnd: {
-                    year: 2018,
-                    month: '08',
-                    day: '05'
-                },
+
                 options: [{
                     value: '选项1',
                     label: '黄金糕'
@@ -288,40 +567,7 @@
                 select2: '',
                 plclCur: false,
                 btnCur: 0,
-                lists: [
-                    {
-                        title: '最大负荷',
-                        icon: 'item-icon-max',
-                        color: '#00C3F4',
-                    },
-                    {
-                        title: '最小负荷',
-                        icon: 'item-icon-min',
-                        color: '#2CD27D',
-                    },
-                    {
-                        title: '平均负荷',
-                        icon: 'item-icon-pjf',
-                        color: '#D69B44',
-                    },
-                ],
-                lists2: [
-                    {
-                        title: '日负荷率',
-                        icon: 'item-icon-r',
-                        color: '#656EE8',
-                    },
-                    {
-                        title: '最低负荷率',
-                        icon: 'item-icon-zdfh',
-                        color: '#CFDB48',
-                    },
-                    {
-                        title: '负荷系数',
-                        icon: 'item-icon-fhxs',
-                        color: '#BE6A3C',
-                    }
-                ],
+
                 option: '2',
                 tabTit: 0,
                 radio: 2,
@@ -342,26 +588,7 @@
             inSort() {
                 this.sortShow = false
                 this.sortVal = this.sortArr[this.sortCur]
-            },
-            // 点击空白区域关闭某个div图层
-            togglePanel() {
-                this.sortShow ? this.hide() : this.show()
-            },
-            show() {
-                this.sortShow = true
-                document.addEventListener('click', this.hidePanel, false)
-            },
-
-            hide() {
-                this.sortShow = false
-                document.removeEventListener('click', this.hidePanel, false)
-            },
-
-            hidePanel(e) {
-                if (!this.$refs.searchMain.contains(e.target)) {
-                    this.hide()
-                }
-            },
+            }
         },
         mounted() {
 
@@ -490,6 +717,8 @@
         .left-branch {
             width: 245px;
             height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
             min-height: 500px;
             box-sizing: border-box;
             /*margin-bottom: 40px;*/
@@ -505,53 +734,24 @@
             box-shadow: 0px 3px 9px 0px #01101f, 0px 3px 30px 2px #1A8EA0 inset;
             border-radius: 3px;
             padding: 14px 13px;
+            .dot {
+                width: 6px;
+                height: 6px;
+                display: inline-block;
+                border: 1px solid rgba(72, 206, 230, 1);
+                border-radius: 50%;
+            }
+            .menu-top {
+                font-size: 14px;
+                font-family: HiraginoSansGB-W6;
+                font-weight: normal;
+                color: rgba(254, 254, 254, 1);
+                margin-left: 20px;
+
+            }
             .alarm-type {
-                width: 100%;
                 margin-top: 30px;
-                ul {
-                    list-style: none;
-                    li {
-                        font-size: 12px;
-                        font-family: HiraginoSansGB-W3;
-                        font-weight: normal;
-                        color: rgba(254, 254, 254, 1);
-                        margin-bottom: 17px;
-                        display: flex;
-                        justify-content: space-between;
-                        &.f2 {
-                            position: relative;
-                            margin-left: 15px;
-                            span {
-                                background-color: #F39800;
-                            }
-                        }
-                        &.f2::before {
-                            content: '';
-                            position: absolute;
-                            top: 5px;
-                            left: -15px;
-                            width: 5px;
-                            height: 5px;
-                            border: 1px solid rgba(72, 206, 230, 1);
-                            border-radius: 50%;
-                        }
-                        &.f3 {
-                            margin-left: 27px;
-                            span {
-                                background-color: #00A0E9;
-                            }
-                        }
-                        span {
-                            font-size: 10px;
-                            font-family: HiraginoSansGB-W6;
-                            font-weight: normal;
-                            color: rgba(255, 255, 255, 1);
-                            padding: 0 7px;
-                            border-radius: 8px;
-                            background-color: #FC5135;
-                        }
-                    }
-                }
+                width: 100%;
             }
 
             .empty {
@@ -651,223 +851,199 @@
 
             position: relative;
             margin-left: 4px;
+
             .contrast {
                 width: 100%;
-                /*display: flex;*/
-                /*flex-wrap: nowrap;*/
-                /*justify-content: space-between;*/
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between;
                 margin-top: 24px;
-                .el-row {
-                    margin-bottom: 24px;
+                @media screen and (max-width: 1500px) {
+                    flex-direction: column;
+                }
+                .lists {
 
-                    &:last-child {
-                        margin-bottom: 0;
+                    @media screen and (min-width: 1500px) {
+                        &:not(:first-child) {
+                            margin-left: 25px;
+                        }
                     }
-                    @media screen and (max-width: 1200px) {
-                        margin-bottom: 0;
+                    @media screen and (max-width: 1500px) {
+                        margin-left: 0;
+                        margin-top: 20px;
                     }
-                }
-
-                /*@media screen and (min-width: 1500px) {*/
-                /*&:not(:first-child) {*/
-                /*margin-left: 25px;*/
-                /*}*/
-                /*}*/
-                /*@media screen and (max-width: 1500px) {*/
-                /*margin-left: 0;*/
-                /*margin-top: 20px;*/
-                /*}*/
-                /*width: 100%;*/
-
-                /*display: flex;*/
-                /*flex-direction: column;*/
-                .item-icon-hz {
-                    /*line-height: 90px;*/
-                    width: 43px;
-                    height: 43px;
-                    display: inline-block;
-                    background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
-                }
-                .item-icon-pjf {
-                    /*line-height: 90px;*/
-                    width: 40px;
-                    height: 37px;
-                    display: inline-block;
-                    background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
-                }
-                .item-icon-max {
-                    /*line-height: 90px;*/
-                    width: 59px;
-                    height: 21px;
-                    display: inline-block;
-                    background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
-                }
-                .item-icon-min {
-                    /*line-height: 90px;*/
-                    width: 60px;
-                    height: 24px;
-                    display: inline-block;
-                    background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
-                }
-                .item-icon-tb {
-                    /*line-height: 90px;*/
-                    width: 41px;
-                    height: 34px;
-                    display: inline-block;
-                    background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
-                }
-                .item-icon-r {
-                    /*line-height: 90px;*/
-                    width: 32px;
-                    height: 41px;
-                    display: inline-block;
-                    background: url("../../assets/PeiDianJianCe/icon_r.png") no-repeat;
-                }
-                .item-icon-zdfh {
-                    /*line-height: 90px;*/
-                    width: 49px;
-                    height: 41px;
-                    display: inline-block;
-                    background: url("../../assets/PeiDianJianCe/icon_zdfh.png") no-repeat;
-                }
-                .item-icon-fhxs {
-                    /*line-height: 90px;*/
-                    width: 48px;
-                    height: 41px;
-                    display: inline-block;
-                    background: url("../../assets/PeiDianJianCe/icon_fhxs.png") no-repeat;
-                }
-                .current-period {
-                    /*width: calc(100% - 25px);*/
                     width: 100%;
-                    height: 90px;
-                    box-sizing: border-box;
-                    /*padding: 20px 0;*/
 
-                    border: 1px solid rgba(42, 244, 255, 1);
-                    box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
-                    /*opacity:0.5;*/
-                    border-radius: 3px;
-                    @media screen and (max-width: 1200px) {
-                        margin-top: 24px;
+                    display: flex;
+                    flex-direction: column;
+                    .item-icon-hz {
+                        /*line-height: 90px;*/
+                        width: 43px;
+                        height: 43px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
                     }
-
-                    .item-left {
-                        width: 90px;
+                    .item-icon-pjf {
+                        /*line-height: 90px;*/
+                        width: 40px;
+                        height: 37px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
+                    }
+                    .item-icon-max {
+                        /*line-height: 90px;*/
+                        width: 59px;
+                        height: 21px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
+                    }
+                    .item-icon-min {
+                        /*line-height: 90px;*/
+                        width: 60px;
+                        height: 24px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
+                    }
+                    .item-icon-tb {
+                        /*line-height: 90px;*/
+                        width: 41px;
+                        height: 34px;
+                        display: inline-block;
+                        background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
+                    }
+                    .current-period {
+                        /*width: calc(100% - 25px);*/
+                        width: 100%;
                         height: 90px;
                         box-sizing: border-box;
-                        /*padding: ;*/
-                        float: left;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        text-align: center;
-                        background-color: #01A8F2;
-                        border-radius: 3px 3px 0px 0px;
-                        margin-top: -1px;
-                        margin-left: -1px;
-
-                    }
-                    .item-right {
-                        box-sizing: border-box;
-                        /*padding-left: 90px;*/
-                        /*box-sizing: border-box;*/
                         /*padding: 20px 0;*/
-                        padding: 20px 20px 20px 110px;
-                        .p {
-                            font-size: 14px;
-                            font-family: HiraginoSansGB-W3;
-                            font-weight: normal;
-                            color: rgba(223, 253, 255, 1);
-                            display: flex;
-                            justify-content: space-between;
-                        }
-                        .kwh {
-                            margin-top: 6px;
-                            display: flex;
-                            justify-content: space-between;
-                        }
-                        .number {
-                            font-size: 18px;
-                            font-family: DigitaldreamFat;
-                            font-weight: 400;
-                            color: rgba(44, 244, 242, 1);
-                        }
-                        .unit {
-                            font-size: 14px;
-                            font-family: HiraginoSansGB-W3;
-                            font-weight: normal;
-                            color: rgba(223, 253, 255, 1);
-                        }
 
+                        border: 1px solid rgba(42, 244, 255, 1);
+                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                        /*opacity:0.5;*/
+                        border-radius: 3px;
+
+                        .item-left {
+                            width: 90px;
+                            height: 90px;
+                            box-sizing: border-box;
+                            /*padding: ;*/
+                            float: left;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            background-color: #01A8F2;
+                            border-radius: 3px 3px 0px 0px;
+                            margin-top: -1px;
+                            margin-left: -1px;
+
+                        }
+                        .item-right {
+                            box-sizing: border-box;
+                            /*padding-left: 90px;*/
+                            /*box-sizing: border-box;*/
+                            /*padding: 20px 0;*/
+                            padding: 18px 12px;
+                            p {
+                                font-size: 11px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
+                                .sj {
+                                    font-size: 10px;
+                                    font-family: HiraginoSansGB-W3;
+                                    font-weight: normal;
+                                    color: #2DF3FF;
+                                    float: right;
+                                }
+                            }
+                            .kwh {
+                                margin-top: 6px;
+                                display: flex;
+                                justify-content: space-between;
+                            }
+                            .number {
+                                font-size: 18px;
+                                font-family: DigitaldreamFat;
+                                font-weight: 400;
+                                color: rgba(44, 244, 242, 1);
+                            }
+                            .unit {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
+                            }
+
+                        }
                     }
-                }
-                .before {
-                    width: 100%;
-                    height: 90px;
-                    box-sizing: border-box;
-                    margin-top: 25px;
-                    /*padding: 20px 0;*/
-
-                    border: 1px solid rgba(42, 244, 255, 1);
-                    box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
-                    /*opacity:0.5;*/
-                    border-radius: 3px;
-                    .item-left {
-                        width: 90px;
+                    .before {
+                        width: 100%;
                         height: 90px;
                         box-sizing: border-box;
-                        /*padding: ;*/
-                        float: left;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        text-align: center;
-                        background-color: #5361DB;
-                        border-radius: 3px 3px 0px 0px;
-                        margin-top: -1px;
-                        margin-left: -1px;
-                        .item-icon-hz {
-                            /*line-height: 90px;*/
-                            width: 43px;
-                            height: 43px;
-                            display: inline-block;
-                            background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
-                        }
-                    }
-                    .item-right {
-                        box-sizing: border-box;
-                        /*padding-left: 90px;*/
-                        /*box-sizing: border-box;*/
+                        margin-top: 25px;
                         /*padding: 20px 0;*/
-                        padding: 20px 20px 20px 110px;
-                        p {
-                            font-size: 14px;
-                            font-family: HiraginoSansGB-W3;
-                            font-weight: normal;
-                            color: rgba(223, 253, 255, 1);
-                        }
-                        .kwh {
-                            margin-top: 6px;
-                            display: flex;
-                            justify-content: space-between;
-                        }
-                        .number {
-                            font-size: 18px;
-                            font-family: DigitaldreamFat;
-                            font-weight: 400;
-                            color: rgba(44, 244, 242, 1);
-                        }
-                        .unit {
-                            font-size: 14px;
-                            font-family: HiraginoSansGB-W3;
-                            font-weight: normal;
-                            color: rgba(223, 253, 255, 1);
-                        }
 
+                        border: 1px solid rgba(42, 244, 255, 1);
+                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                        /*opacity:0.5;*/
+                        border-radius: 3px;
+                        .item-left {
+                            width: 90px;
+                            height: 90px;
+                            box-sizing: border-box;
+                            /*padding: ;*/
+                            float: left;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            background-color: #5361DB;
+                            border-radius: 3px 3px 0px 0px;
+                            margin-top: -1px;
+                            margin-left: -1px;
+                            .item-icon-hz {
+                                /*line-height: 90px;*/
+                                width: 43px;
+                                height: 43px;
+                                display: inline-block;
+                                background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
+                            }
+                        }
+                        .item-right {
+                            box-sizing: border-box;
+                            /*padding-left: 90px;*/
+                            /*box-sizing: border-box;*/
+                            /*padding: 20px 0;*/
+                            padding: 20px 20px 20px 110px;
+                            p {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
+                            }
+                            .kwh {
+                                margin-top: 6px;
+                                display: flex;
+                                justify-content: space-between;
+                            }
+                            .number {
+                                font-size: 18px;
+                                font-family: DigitaldreamFat;
+                                font-weight: 400;
+                                color: rgba(44, 244, 242, 1);
+                            }
+                            .unit {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
+                            }
+
+                        }
                     }
                 }
-
             }
 
             .bg {
@@ -1003,6 +1179,12 @@
                             flex-wrap: nowrap;
                             justify-content: flex-start;
                             align-items: center;
+                            span {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: bold;
+                                color: rgba(223, 253, 255, 1);
+                            }
                         }
                     }
                     .item-row-btns {
@@ -1195,6 +1377,13 @@
                         border-bottom: 2px solid #0B3F6F;
                         box-sizing: border-box;
                         padding: 0 10px;
+
+                        &.rank2 {
+                            .item-input {
+                                margin-right: 24px;
+                            }
+                        }
+
                         .icon-lx {
                             display: inline-block;
                             width: 15px;
@@ -1227,7 +1416,7 @@
                             @media screen and (min-width: 1200px) {
                                 /*margin-left: 0;*/
                                 /*margin-top: 15px;*/
-                                margin-right: 70px;
+                                /*margin-right: 70px;*/
                             }
                             span {
                                 font-size: 14px;
@@ -1236,17 +1425,21 @@
                                 color: rgba(223, 253, 255, 1);
                             }
                             input {
+                                color: #BECDDE;
                                 background-color: #174B7B;
-                                width: 200px;
+                                width: 160px;
                                 height: 28px;
                                 border: 1px solid rgba(45, 243, 255, 1);
                                 border-radius: 2px;
                                 box-sizing: border-box;
                                 padding: 0 13px;
                             }
+                            input::-webkit-input-placeholder {
+                                color: #BECDDE;
+                            }
                         }
                         .select {
-                            /*width: 220px;*/
+                            width: 160px;
                             margin-left: 7px;
                         }
                         .ml92 {
@@ -1362,10 +1555,30 @@
                     }
                 }
             }
+            .addBtn-box {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 24px;
+                .addBtn {
+                    width: 100px;
+                    height: 41px;
+                    cursor: pointer;
+                    margin-right: 20px;
+                    text-align: center;
+                    line-height: 41px;
+                    font-size: 14px;
+                    font-family: HiraginoSansGB-W6;
+                    font-weight: normal;
+                    color: rgba(97, 213, 255, 1);
+                    background: url("../../assets/NengHaoChaXun/bt_wxz.png") no-repeat;
+                    -webkit-background-size: 100% 100%;
+                    background-size: 100% 100%;
+                }
+            }
             .data-box {
                 width: 100%;
                 position: relative;
-                height: 436px;
+                height: 486px;
                 margin-top: 24px;
                 box-sizing: border-box;
                 padding: 15px 20px;
@@ -1491,14 +1704,161 @@
                 }
             }
             .main-box {
-                display: flex;
-                flex-direction: row;
+                width: 100%;
+
+                /*display: flex;*/
+                /*flex-direction: row;*/
                 margin-top: 24px;
                 position: relative;
-                .main-right-box {
-                    width: 372px;
+                .main-left-box {
+                    width: 308px;
+                    height: 298px;
+                    /*min-width: 550px;*/
                     position: relative;
-                    margin-left: 24px;
+                    box-sizing: border-box;
+                    padding: 16px 20px;
+                    float: left;
+                    /*margin-top: 25px;*/
+                    /*margin-bottom: 25px;*/
+                    .title {
+                        display: flex;
+                        justify-content: space-between;
+                        position: relative;
+                        z-index: 5;
+                        /*margin-bottom: 15px;*/
+                        h3 {
+                            font-size: 16px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(254, 254, 255, 1);
+                        }
+                        .icon-pdf {
+                            display: inline-block;
+                            width: 21px;
+                            height: 21px;
+                            background: url("../../assets/NengHaoChaXun/pdf.png") no-repeat;
+                            margin-right: 20px;
+                        }
+                        .icon-excel {
+                            display: inline-block;
+                            width: 21px;
+                            height: 21px;
+                            background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
+                        }
+                    }
+                    .table-box {
+                        position: relative;
+                        z-index: 5;
+                        border: 1px solid #15759A;
+                        /*padding-bottom: 60px;*/
+                        .table-tit {
+                            padding: 20px;
+                            width: 100%;
+                            /*letter-spacing:2px;*/
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(95, 251, 248, 1);
+                            text-align: center;
+                        }
+
+                    }
+                    .selector {
+                        position: relative;
+                        z-index: 5;
+                        display: flex;
+                        justify-content: flex-end;
+                        margin-top: 20px;
+                        align-items: center;
+
+                        .icon-front {
+                            width: 10px;
+                            height: 14px;
+                            display: inline-block;
+                            background: url("../../assets/NengHaoChaXun/icon_zz.png") no-repeat;
+                        }
+                        .icon-prev {
+                            width: 8px;
+                            height: 14px;
+                            display: inline-block;
+                            transform: rotate(180deg);
+                            margin-left: 10px;
+                            background: url("../../assets/NengHaoChaXun/箭头2.png") no-repeat;
+                        }
+                        .icon-next {
+                            width: 8px;
+                            height: 14px;
+                            display: inline-block;
+                            margin-left: 20px;
+                            background: url("../../assets/NengHaoChaXun/箭头2.png") no-repeat;
+                        }
+                        .icon-last {
+                            margin-left: 10px;
+                            width: 10px;
+                            height: 14px;
+                            display: inline-block;
+                            background: url("../../assets/NengHaoChaXun/icon_yy.png") no-repeat;
+                        }
+                        .page-num {
+
+                            width: 38px;
+                            height: 26px;
+                            margin-left: 20px;
+                            position: relative;
+                            input {
+                                position: relative;
+                                z-index: 5;
+                                width: 100%;
+                                height: 100%;
+                                background: rgba(26, 96, 134, 0);
+                                border: 0px;
+                                outline: none;
+                                cursor: pointer;
+                                font-size: 12px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: bold;
+                                color: rgba(45, 243, 255, 1);
+                                text-align: center;
+                            }
+                        }
+                        .page-all {
+                            font-size: 12px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: bold;
+                            color: rgba(45, 243, 255, 1);
+                            margin-left: 10px;
+                        }
+                        .count {
+                            width: 48px;
+                            height: 26px;
+                            margin-left: 22px;
+                            position: relative;
+                            select {
+                                border: 0px;
+                                outline: none;
+                                cursor: pointer;
+                                position: relative;
+                                z-index: 5;
+                                width: 100%;
+                                height: 100%;
+                                background: rgba(26, 96, 134, 0);
+                                font-size: 12px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: bold;
+                                color: rgba(45, 243, 255, 1);
+                                option {
+                                    background-color: #0B3F6F;
+                                }
+                            }
+                        }
+                    }
+                }
+                .main-right-box {
+                    width: calc(100% - 334px);
+                    height: 298px;
+                    position: relative;
+                    margin-left: 332px;
+                    min-width: 500px;
                 }
                 .list-box {
                     border: 1px solid #15759A;
@@ -1624,12 +1984,13 @@
                 }
                 .main-right {
                     width: 100%;
+                    height: 100%;
                     position: relative;
                     .matter {
                         box-sizing: border-box;
-                        padding: 23px 20px;
+                        padding: 16px 20px;
                         position: relative;
-                        /*z-index: 5;*/
+                        z-index: 5;
                         .key {
                             font-size: 12px;
                             font-family: HiraginoSansGB-W3;
@@ -1669,14 +2030,59 @@
 
                 }
             }
+
             .Table {
-                width: calc(100% - 372px);
-                min-width: 550px;
+                width: 100%;
                 position: relative;
                 box-sizing: border-box;
                 padding: 23px 20px;
-                /*margin-top: 25px;*/
-                /*margin-bottom: 25px;*/
+                margin-top: 25px;
+                margin-bottom: 25px;
+                .icon-xg {
+                    width: 15px;
+                    height: 14px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_xg.png") no-repeat;
+                }
+                .setBtn {
+                    font-size: 14px;
+                    font-family: HiraginoSansGB-W6;
+                    font-weight: normal;
+                    color: rgba(95, 251, 248, 1);
+                }
+                .head-right {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+                .count {
+                    width: 170px;
+                    height: 28px;
+                    margin-left: 22px;
+                    position: relative;
+                    border: 1px solid rgba(45, 243, 255, 1);
+                    border-radius: 2px;
+                    background-color: #0A3E6E;
+                    margin-right: 24px;
+
+                    select {
+                        border: 0px;
+                        outline: none;
+                        cursor: pointer;
+                        position: relative;
+                        z-index: 5;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(26, 96, 134, 0);
+                        font-size: 12px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(45, 243, 255, 1);
+                        option {
+                            background-color: #0B3F6F;
+                        }
+                    }
+                }
                 .title {
                     display: flex;
                     justify-content: space-between;
@@ -1701,6 +2107,86 @@
                         width: 21px;
                         height: 21px;
                         background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
+                    }
+                }
+                .content-table {
+                    position: relative;
+                    width: 100%;
+                    /*height: 577px;*/
+                    border: 1px solid #15759A;
+                    margin-top: 15px;
+                    text-align: center;
+                    box-sizing: border-box;
+                    padding-top: 16px;
+                    .tit {
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(95, 251, 248, 1);
+                    }
+                    .table-box {
+                        width: 100%;
+                        /*height: 528px;*/
+                        margin-top: 12px;
+                        /*display: flex;*/
+                        /*flex-wrap: nowrap;*/
+                        table {
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                            border-collapse: collapse;
+                            border: 0; //表示表格没有边框。
+                            cellspacing: '0'; //表示单元格之间间隙为0。
+                            cellpadding: '0'; //表示单元格的边框宽度为0。
+                            /*z-index: 5;*/
+                            tr {
+                                background-color: #0A3E6E;
+                                height: 48px;
+                            }
+                            tr:nth-child(2n-1) {
+                                background-color: #104C7B;
+                            }
+                            td, th {
+                                border-right: 1px solid #0F5A84;
+                            }
+                            th {
+                                background-color: #185588;
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W6;
+                                font-weight: normal;
+                                color: rgba(95, 251, 248, 1);
+                            }
+                            td {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
+                            }
+                        }
+                        .icon-bxz {
+                            display: inline-block;
+                            width: 20px;
+                            height: 17px;
+                            background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
+                            margin-left: 20px;
+                        }
+                        .table-header {
+                            height: 100%;
+                            width: 215px;
+                            position: relative;
+                            overflow: hidden;
+                            float: left;
+
+                        }
+                        .table-right {
+                            width: calc(100% - 215px);
+                            /*width: 100%;*/
+                            overflow-y: hidden;
+                            overflow-x: scroll;
+                            table {
+                                width: 2000px;
+                            }
+                        }
                     }
                 }
                 .table-box {

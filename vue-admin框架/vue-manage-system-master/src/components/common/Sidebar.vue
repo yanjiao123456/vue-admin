@@ -240,6 +240,11 @@
                                         icon: "ml5 icon-all icon-sjcx",
                                         index: "shebeizonglan",
                                         title: "设备总览",
+                                    },
+                                    {
+                                        icon: "ml5 icon-all icon-sjcx",
+                                        index: "shebeidangan",
+                                        title: "设备档案",
                                     }
                                 ]
                             }

@@ -45,13 +45,13 @@
                         <div class="slider-inner">
                             <div class="title">
                                 <h3>企业信息</h3>
-                                <el-container>
-                                    <el-aside width="40%" class="hidden-sm-and-down">
+                                <el-container style="padding-left:30px;">
+                                    <el-aside width="300px" class="hidden-sm-and-down">
                                         <img src="../../assets/ShouYe/pp.jpg" alt="">
                                     </el-aside>
                                     <el-main>
                                         <div class="b-descrip">
-                                            <span class="b-name">金风园区智慧楼</span>  位于北京市经济开发区博兴一路8号，总面积63889平方米，其中 1#天诚厂房建筑面积42154平方米，由2层生产
+                                            <span class="b-name">金风园区智慧楼</span>  位于北京市经济开发区博兴一路8号，总面积63889平方米，其中 1#天诚厂房建筑面积42154平方米，总面积63889平方米，其中 1#天诚厂房建筑面积42154平方米，
                                         </div>
                                     </el-main>
                                 </el-container>    
@@ -82,14 +82,28 @@
                             <div class="slider-inner">
                                 <div class="title">
                                     <h3>能耗趋势与对比</h3>
-                                    <el-container>
-                                       
+                                    <div class="shouye-sel">
+                                        <div class="sel-bg"></div>
+                                        <select>
+                                            <option>日</option>
+                                            <option>月</option>
+                                            <option>年</option>
+                                        </select>
+                                    </div>
+                            
+                                    <el-container style="padding-left:10px;">
+                                       <el-adide width="68px">
+                                           <div v-for="item in energyList" 
+                                            v-if="show" @click="btns" v-bind:class="{butCircle:isActive}">
+                                            {{item.energy}}</div>
+                                       </el-adide>
+                                       <el-main></el-main>
                                     </el-container>    
                                 </div>
                             </div>       
                         </div>  
                     </el-col>  
-                    
+
                 </el-row>   
             </div>
     </div>
@@ -105,6 +119,16 @@
         name: "dashboard",
         data() {
             return {
+                isActiv:true,
+                show:true,
+                energyList:[
+                    {energy:'总'},
+                    {energy:'电'},
+                    {energy:'水'},
+                    {energy:'气'}
+                    // {energy:'冷'},
+                    // {energy:'热'}
+                ],
                 sliderData:[
                     {
                         title:'今日用水',
@@ -164,15 +188,17 @@
                         // align: 'left',
                         x: 'center',
                         right: '4%',
-                        // icon: 'rect',
-                        //itemGap: 13,
+                        icon: 'rect',
+                        itemWidth: 10, 
+                        itemHeight: 10, 
+                        itemGap: 30,
                         textStyle: {
                             color: 'rgb(91,227,224)',
                             fontSize: 12
                         }
                     },
                     grid: {
-                        left: '3%',
+                        left: '2%',
                         right: '1%',
                         bottom: '3%',
                         top: '15%',
@@ -279,16 +305,70 @@
     };
 </script>
 <style>
+    .butCur{
+        background:rgba(0,255,255,1);
+    }
+    .butCircle{
+        width:28px;
+        height:28px;
+        background:rgba(16,124,157,1);
+        opacity:0.7;
+        border-radius:50%;
+        color:#fff;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        line-height:28px;
+        font-size:12px;
+        margin-bottom:30px;
+    }
+    .sel-bg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width:60px;
+        height:30px;
+        border:1px solid rgba(146, 226, 234, 1);
+        box-shadow:0px 0px 18px 0px rgba(52,150,174,1) inset;
+        border-radius:3px;
+    }
+    .shouye-sel{
+        position: absolute;
+        right:50px;
+        top:20px;
+    }
+    .shouye-sel select{
+        border: 0px;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        padding:5px 10px;
+        z-index: 5;
+        width: 60px;
+        height: 30px; 
+        background: rgba(26, 96, 134, 0);
+        font-size: 12px;
+        font-family: HiraginoSansGB-W3;
+        font-weight: bold;
+        color: #fff;
+    }
+    .shouye-sel select option{
+        background: rgba(26, 96, 134, 1);
+    }
     .second-line,.three-line{
         margin-bottom:20px;
     }
     .b-descrip{
         color:#DFFDFF;
+        display: -webkit-box;
+        -webkit-line-clamp: 8;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
     .b-name{
         color:#2CF4F2;
     }
-    .title{
+    .Dashboard .title{
         width:100%;
         padding:15px;
     }
@@ -296,7 +376,7 @@
         width:100%;
         height:95%;
     }
-    .title>h3{
+    .Dashboard .title>h3{
         padding-bottom:27px;
         color:#FEFEFF;
         text-align: left;
@@ -305,7 +385,7 @@
         font-size:16px;
     }
     .el-container{
-        padding-left:30px;
+        /* padding-left:30px; */
         height:222px;
     }
     /* .title img{

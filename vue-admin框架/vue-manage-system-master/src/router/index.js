@@ -120,7 +120,11 @@ export default new Router({
                     component: resolve => require(['../components/page/SheBeiDangAn.vue'], resolve),
                     meta: {title: '设备档案'}
                 },
-
+                {
+                    path: '/FengGuYongDian',
+                    component: resolve => require(['../components/page/FengGuYongDian.vue'], resolve),
+                    meta: {title: '峰谷用电'}
+                },
                 {
                     path: '/icon',
                     component: resolve => require(['../components/page/Icon.vue'], resolve),

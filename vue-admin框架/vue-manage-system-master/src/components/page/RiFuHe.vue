@@ -80,7 +80,6 @@
                         </div>
 
 
-
                         <div class="btns-box">
                             <div @click="btns=0" :class="{'btn-item':true,cur:btns==0}">查询</div>
                             <div @click="btns=1" :class="{'btn-item':true,cur:btns==1}">重置</div>
@@ -151,7 +150,122 @@
                 </div>
 
 
-                <template-table :data-tit="tableTitle"></template-table>
+                <div class="content-table">
+                    <div class="tit">【xxxx部门2018年度用电计划】</div>
+
+                    <div id="myTable" class="myTable table-box">
+                        <el-table
+                                :data="tableData"
+                                align="center"
+                                border
+                                stripe
+                                :default-sort="{prop: 'date', order: 'descending'}"
+                                style="width: 100%">
+                            <el-table-column
+                                    align="center"
+                                    sortable
+                                    prop="date"
+                                    label="日期"
+                                    show-overflow-tooltip
+                                    width="158">
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="province"
+                                    sortable
+                                    label="省份"
+                                    width="250"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="city"
+                                    sortable
+                                    label="市区"
+                                    width="250"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="address"
+                                    sortable
+                                    label="地址"
+                                    width="250"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="zip"
+                                    sortable
+                                    label="邮编"
+                                    width="250"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+
+                        </el-table>
+                        <!--<div class="table-header">-->
+                        <!--<table>-->
+                        <!--<tr>-->
+                        <!--<th>日期</th>-->
+                        <!--&lt;!&ndash;<th>日期</th>&ndash;&gt;-->
+                        <!--</tr>-->
+                        <!--&lt;!&ndash;<tr></tr>&ndash;&gt;-->
+
+                        <!--<tr v-for="v in 10">-->
+                        <!--<td>01-03-LPB-E4-00</td>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                        <!--</div>-->
+                        <!--<div class="table-right">-->
+                        <!--<table>-->
+                        <!--&lt;!&ndash;<tr style="border-bottom: 1px solid #1B6D9A;">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项1</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项2</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项3</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--<tr>-->
+                        <!--<th v-for="v in 5">名称</th>-->
+                        <!--</tr>-->
+                        <!--<tr v-for="v in 10">-->
+                        <!--<td v-for="v in 5">01-03-LPB-E4-00</td>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                        <!--</div>-->
+                    </div>
+
+
+                </div>
                 <div class="selector">
                     <i class="icon-front"></i>
                     <i class="icon-prev"></i>
@@ -183,43 +297,44 @@
 
 <script>
     import TemplateTable from '../views/template-table'
+
     var echarts = require('echarts');
     export default {
         name: "rifuhe",
         data() {
             return {
-                lists:[
+                lists: [
                     {
-                        title:'最大负荷',
-                        icon:'item-icon-max',
-                        color:'#00C3F4',
+                        title: '最大负荷',
+                        icon: 'item-icon-max',
+                        color: '#00C3F4',
                     },
                     {
-                        title:'最小负荷',
-                        icon:'item-icon-min',
-                        color:'#2CD27D',
+                        title: '最小负荷',
+                        icon: 'item-icon-min',
+                        color: '#2CD27D',
                     },
                     {
-                        title:'平均负荷',
-                        icon:'item-icon-pjf',
-                        color:'#D69B44',
+                        title: '平均负荷',
+                        icon: 'item-icon-pjf',
+                        color: '#D69B44',
                     },
                 ],
-                lists2:[
+                lists2: [
                     {
-                        title:'日负荷率',
-                        icon:'item-icon-r',
-                        color:'#656EE8',
+                        title: '日负荷率',
+                        icon: 'item-icon-r',
+                        color: '#656EE8',
                     },
                     {
-                        title:'最低负荷率',
-                        icon:'item-icon-zdfh',
-                        color:'#CFDB48',
+                        title: '最低负荷率',
+                        icon: 'item-icon-zdfh',
+                        color: '#CFDB48',
                     },
                     {
-                        title:'负荷系数',
-                        icon:'item-icon-fhxs',
-                        color:'#BE6A3C',
+                        title: '负荷系数',
+                        icon: 'item-icon-fhxs',
+                        color: '#BE6A3C',
                     }
                 ],
                 option: '2',
@@ -237,65 +352,44 @@
                 checked8: false,
                 checked9: false,
                 checked10: false,
-                tableTitle: {
-                    title: '【 2018-09-18 00:00:00 至 2018-09-18 20:00:00 能耗数据 】',
-                    titArr: [
-                        {
-                            prop: "id",
-                            label: "日期",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIa",
-                            label: "电流Ia",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIb",
-                            label: "电流Ib",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIc",
-                            label: "电流Ic",
-                            sortable: false
-                        },
-                        {
-                            prop: "zhengDianNeng",
-                            label: "当前正向有功总电能",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUan",
-                            label: "粗电压Uan",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUbn",
-                            label: "粗电压Ubn",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUcn",
-                            label: "粗电压Ucn",
-                            sortable: false
-                        },
-                        {
-                            prop: "sum",
-                            label: "总有功功率W",
-                            sortable: false
-                        },
-                    ]
-                },
+                tableData: [{
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }],
 
             }
         },
         components: {
             TemplateTable
         },
-        methods:{
-            SetChart(){
-                var fuhe= document.getElementById('fuhe');
+        methods: {
+            SetChart() {
+                var fuhe = document.getElementById('fuhe');
                 var fuheChart = echarts.init(fuhe);
                 var one = [224, 220, 335, 188, 350, 230, 354, 261];
                 var two = [110, 220, 115, 300, 188, 120, 241, 321];
@@ -318,8 +412,8 @@
                     grid: {
                         top: 50,
                         bottom: 70,
-                        left:50,
-                        right:50
+                        left: 50,
+                        right: 50
                     },
                     tooltip: {
                         trigger: 'axis',
@@ -373,11 +467,11 @@
 
                         data: one,
                         markPoint: {
-                            label:{
-                                show:true,
-                                formatter:'{c}'
+                            label: {
+                                show: true,
+                                formatter: '{c}'
                             },
-                            symbol:'img://../../assets/PeiDianJianCe/data_k.png',
+                            symbol: 'img://../../assets/PeiDianJianCe/data_k.png',
                             // symbol:'roundRect',
                             data: [
                                 {type: 'max', name: '最大值'},
@@ -385,11 +479,11 @@
                                 // {coord:[41,15],name:'15',value:15}
                             ]
                         },
-                        }
+                    }
                     ]
                 }
                 fuheChart.setOption(option);
-                window.onresize=function(){
+                window.onresize = function () {
                     fuheChart.resize();
                 }
             }
@@ -813,55 +907,54 @@
                     }
                 }
 
+                /*@media screen and (min-width: 1500px) {*/
+                /*&:not(:first-child) {*/
+                /*margin-left: 25px;*/
+                /*}*/
+                /*}*/
+                /*@media screen and (max-width: 1500px) {*/
+                /*margin-left: 0;*/
+                /*margin-top: 20px;*/
+                /*}*/
+                /*width: 100%;*/
 
-                    /*@media screen and (min-width: 1500px) {*/
-                        /*&:not(:first-child) {*/
-                            /*margin-left: 25px;*/
-                        /*}*/
-                    /*}*/
-                    /*@media screen and (max-width: 1500px) {*/
-                        /*margin-left: 0;*/
-                        /*margin-top: 20px;*/
-                    /*}*/
-                    /*width: 100%;*/
-
-                    /*display: flex;*/
-                    /*flex-direction: column;*/
-                    .item-icon-hz {
-                        /*line-height: 90px;*/
-                        width: 43px;
-                        height: 43px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
-                    }
-                    .item-icon-pjf {
-                        /*line-height: 90px;*/
-                        width: 40px;
-                        height: 37px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
-                    }
-                    .item-icon-max {
-                        /*line-height: 90px;*/
-                        width: 59px;
-                        height: 21px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
-                    }
-                    .item-icon-min {
-                        /*line-height: 90px;*/
-                        width: 60px;
-                        height: 24px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
-                    }
-                    .item-icon-tb {
-                        /*line-height: 90px;*/
-                        width: 41px;
-                        height: 34px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
-                    }
+                /*display: flex;*/
+                /*flex-direction: column;*/
+                .item-icon-hz {
+                    /*line-height: 90px;*/
+                    width: 43px;
+                    height: 43px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
+                }
+                .item-icon-pjf {
+                    /*line-height: 90px;*/
+                    width: 40px;
+                    height: 37px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
+                }
+                .item-icon-max {
+                    /*line-height: 90px;*/
+                    width: 59px;
+                    height: 21px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
+                }
+                .item-icon-min {
+                    /*line-height: 90px;*/
+                    width: 60px;
+                    height: 24px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
+                }
+                .item-icon-tb {
+                    /*line-height: 90px;*/
+                    width: 41px;
+                    height: 34px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
+                }
                 .item-icon-r {
                     /*line-height: 90px;*/
                     width: 32px;
@@ -883,139 +976,136 @@
                     display: inline-block;
                     background: url("../../assets/PeiDianJianCe/icon_fhxs.png") no-repeat;
                 }
-                    .current-period {
-                        /*width: calc(100% - 25px);*/
-                        width: 100%;
+                .current-period {
+                    /*width: calc(100% - 25px);*/
+                    width: 100%;
+                    height: 90px;
+                    box-sizing: border-box;
+                    /*padding: 20px 0;*/
+
+                    border: 1px solid rgba(42, 244, 255, 1);
+                    box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                    /*opacity:0.5;*/
+                    border-radius: 3px;
+                    @media screen and (max-width: 1200px) {
+                        margin-top: 24px;
+                    }
+
+                    .item-left {
+                        width: 90px;
                         height: 90px;
                         box-sizing: border-box;
-                        /*padding: 20px 0;*/
+                        /*padding: ;*/
+                        float: left;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        background-color: #01A8F2;
+                        border-radius: 3px 3px 0px 0px;
+                        margin-top: -1px;
+                        margin-left: -1px;
 
-                        border: 1px solid rgba(42, 244, 255, 1);
-                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
-                        /*opacity:0.5;*/
-                        border-radius: 3px;
-                        @media screen and (max-width: 1200px) {
-                            margin-top: 24px;
-                        }
-
-
-
-
-                        .item-left {
-                            width: 90px;
-                            height: 90px;
-                            box-sizing: border-box;
-                            /*padding: ;*/
-                            float: left;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            text-align: center;
-                            background-color: #01A8F2;
-                            border-radius: 3px 3px 0px 0px;
-                            margin-top: -1px;
-                            margin-left: -1px;
-
-                        }
-                        .item-right {
-                            box-sizing: border-box;
-                            /*padding-left: 90px;*/
-                            /*box-sizing: border-box;*/
-                            /*padding: 20px 0;*/
-                            padding: 20px 20px 20px 110px;
-                            .p {
-                                font-size:14px;
-                                font-family:HiraginoSansGB-W3;
-                                font-weight:normal;
-                                color:rgba(223,253,255,1);
-                                display: flex;
-                                justify-content:space-between;
-                            }
-                            .kwh {
-                                margin-top: 6px;
-                                display: flex;
-                                justify-content: space-between;
-                            }
-                            .number {
-                                font-size: 18px;
-                                font-family: DigitaldreamFat;
-                                font-weight: 400;
-                                color: rgba(44, 244, 242, 1);
-                            }
-                            .unit {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
-                            }
-
-                        }
                     }
-                    .before {
-                        width: 100%;
+                    .item-right {
+                        box-sizing: border-box;
+                        /*padding-left: 90px;*/
+                        /*box-sizing: border-box;*/
+                        /*padding: 20px 0;*/
+                        padding: 20px 20px 20px 110px;
+                        .p {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .kwh {
+                            margin-top: 6px;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .number {
+                            font-size: 18px;
+                            font-family: DigitaldreamFat;
+                            font-weight: 400;
+                            color: rgba(44, 244, 242, 1);
+                        }
+                        .unit {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
+
+                    }
+                }
+                .before {
+                    width: 100%;
+                    height: 90px;
+                    box-sizing: border-box;
+                    margin-top: 25px;
+                    /*padding: 20px 0;*/
+
+                    border: 1px solid rgba(42, 244, 255, 1);
+                    box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                    /*opacity:0.5;*/
+                    border-radius: 3px;
+                    .item-left {
+                        width: 90px;
                         height: 90px;
                         box-sizing: border-box;
-                        margin-top: 25px;
-                        /*padding: 20px 0;*/
-
-                        border: 1px solid rgba(42, 244, 255, 1);
-                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
-                        /*opacity:0.5;*/
-                        border-radius: 3px;
-                        .item-left {
-                            width: 90px;
-                            height: 90px;
-                            box-sizing: border-box;
-                            /*padding: ;*/
-                            float: left;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            text-align: center;
-                            background-color: #5361DB;
-                            border-radius: 3px 3px 0px 0px;
-                            margin-top: -1px;
-                            margin-left: -1px;
-                            .item-icon-hz {
-                                /*line-height: 90px;*/
-                                width: 43px;
-                                height: 43px;
-                                display: inline-block;
-                                background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
-                            }
-                        }
-                        .item-right {
-                            box-sizing: border-box;
-                            /*padding-left: 90px;*/
-                            /*box-sizing: border-box;*/
-                            /*padding: 20px 0;*/
-                            padding: 20px 20px 20px 110px;
-                            p {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
-                            }
-                            .kwh {
-                                margin-top: 6px;
-                                display: flex;
-                                justify-content: space-between;
-                            }
-                            .number {
-                                font-size: 18px;
-                                font-family: DigitaldreamFat;
-                                font-weight: 400;
-                                color: rgba(44, 244, 242, 1);
-                            }
-                            .unit {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
-                            }
-
+                        /*padding: ;*/
+                        float: left;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        background-color: #5361DB;
+                        border-radius: 3px 3px 0px 0px;
+                        margin-top: -1px;
+                        margin-left: -1px;
+                        .item-icon-hz {
+                            /*line-height: 90px;*/
+                            width: 43px;
+                            height: 43px;
+                            display: inline-block;
+                            background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
                         }
                     }
+                    .item-right {
+                        box-sizing: border-box;
+                        /*padding-left: 90px;*/
+                        /*box-sizing: border-box;*/
+                        /*padding: 20px 0;*/
+                        padding: 20px 20px 20px 110px;
+                        p {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
+                        .kwh {
+                            margin-top: 6px;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .number {
+                            font-size: 18px;
+                            font-family: DigitaldreamFat;
+                            font-weight: 400;
+                            color: rgba(44, 244, 242, 1);
+                        }
+                        .unit {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
+
+                    }
+                }
 
             }
 
@@ -1170,7 +1260,7 @@
                             height: 11px;
                             background: url("../../assets/NengHaoChaXun/icon _fxff.png") no-repeat;
                         }
-                        .icon-sj{
+                        .icon-sj {
                             width: 14px;
                             height: 15px;
                             display: inline-block;
@@ -1459,6 +1549,7 @@
                     }
                 }
             }
+
             .Table {
                 width: 100%;
                 position: relative;
@@ -1492,22 +1583,86 @@
                         background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
                     }
                 }
-                .table-box {
+                .content-table {
                     position: relative;
-                    z-index: 5;
+                    width: 100%;
+                    /*height: 577px;*/
                     border: 1px solid #15759A;
-                    /*padding-bottom: 60px;*/
-                    .table-tit {
-                        padding: 20px;
-                        width: 100%;
-                        /*letter-spacing:2px;*/
+                    margin-top: 15px;
+                    text-align: center;
+                    box-sizing: border-box;
+                    padding-top: 16px;
+                    .tit {
                         font-size: 14px;
                         font-family: HiraginoSansGB-W3;
                         font-weight: normal;
                         color: rgba(95, 251, 248, 1);
-                        text-align: center;
                     }
 
+                }
+                .table-box {
+                    width: 100%;
+                    /*height: 528px;*/
+                    margin-top: 12px;
+                    /*display: flex;*/
+                    /*flex-wrap: nowrap;*/
+                    table {
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        border-collapse: collapse;
+                        border: 0; //表示表格没有边框。
+                        cellspacing: '0'; //表示单元格之间间隙为0。
+                        cellpadding: '0'; //表示单元格的边框宽度为0。
+                        /*z-index: 5;*/
+                        tr {
+                            background-color: #0A3E6E;
+                            height: 48px;
+                        }
+                        tr:nth-child(2n-1) {
+                            background-color: #104C7B;
+                        }
+                        td, th {
+                            border-right: 1px solid #0F5A84;
+                        }
+                        th {
+                            background-color: #185588;
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W6;
+                            font-weight: normal;
+                            color: rgba(95, 251, 248, 1);
+                        }
+                        td {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
+                    }
+                    .icon-bxz {
+                        display: inline-block;
+                        width: 20px;
+                        height: 17px;
+                        background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
+                        margin-left: 20px;
+                    }
+                    .table-header {
+                        height: 100%;
+                        width: 215px;
+                        position: relative;
+                        overflow: hidden;
+                        float: left;
+
+                    }
+                    .table-right {
+                        width: calc(100% - 215px);
+                        /*width: 100%;*/
+                        overflow-y: hidden;
+                        overflow-x: scroll;
+                        table {
+                            width: 2000px;
+                        }
+                    }
                 }
                 .selector {
                     position: relative;

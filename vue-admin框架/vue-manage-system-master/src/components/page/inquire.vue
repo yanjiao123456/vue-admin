@@ -114,33 +114,36 @@
 
         <!--能耗-->
         <div class="consumption-box">
-            <el-col :key="index" v-for="(v, index) in consumptionData" :xs="24" :sm="24" :lg="6">
-                <div :class="v.class">
-                    <div class="bg"></div>
-                    <div :class="v.col">
-                        <i class="icon-nh"></i>
-                        {{ v.tit }}
-                    </div>
-                    <div class="electricity">
-                        <span class="ele-tit">用电量</span>
-                        <span class="num">{{ v.electricity }}</span>
-                        <span class="unit">kWh</span>
-                    </div>
-                    <div class="number-box">
-                        <div class="electricity-number">
-                            <span class="nums">{{ v.num1 }}</span>
-                            <span class="date">{{ v.data1 }}</span>
+            <el-row :gutter="24">
+                <el-col :key="index" v-for="(v,index) in consumptionData" :xl="6" :lg="6" :md="24" :sm="24" :xs="24">
+                    <div :class="v.class">
+                        <div class="bg"></div>
+                        <div :class="v.col">
+                            <i class="icon-nh"></i>
+                            {{ v.tit }}
                         </div>
-                        <div class="electricity-center">
-                            <i class="point"></i>
+                        <div class="electricity">
+                            <span class="ele-tit">用电量</span>
+                            <span class="num">{{ v.electricity }}</span>
+                            <span class="unit">kWh</span>
                         </div>
-                        <div class="electricity-number">
-                            <span class="nums">{{ v.num2 }}</span>
-                            <span class="date">{{ v.data2 }}</span>
+                        <div class="number-box">
+                            <div class="electricity-number">
+                                <span class="nums">{{ v.num1 }}</span>
+                                <span class="date">{{ v.data1 }}</span>
+                            </div>
+                            <div class="electricity-center">
+                                <i class="point"></i>
+                            </div>
+                            <div class="electricity-number">
+                                <span class="nums">{{ v.num2 }}</span>
+                                <span class="date">{{ v.data2 }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </el-col>
+                </el-col>
+            </el-row>
+
         </div>
         <!--能耗-->
 
@@ -241,7 +244,7 @@
                     {
                         tit: '2AAH101-1电源线_能耗',
                         col: 'head col2',
-                        class: 'consumption-item ml27',
+                        class: 'consumption-item',
                         electricity: 1066.56,
                         num1: 156345666.56,
                         num2: 126065666.54,
@@ -251,7 +254,7 @@
                     {
                         tit: '2AAH101-1电源线_能耗',
                         col: 'head col3',
-                        class: 'consumption-item ml27',
+                        class: 'consumption-item',
                         electricity: 1066.56,
                         num1: 156345666.56,
                         num2: 126065666.54,
@@ -261,7 +264,7 @@
                     {
                         tit: '2AAH101-1电源线_能耗',
                         col: 'head col4',
-                        class: 'consumption-item ml27',
+                        class: 'consumption-item',
                         electricity: 1066.56,
                         num1: 156345666.56,
                         num2: 126065666.54,

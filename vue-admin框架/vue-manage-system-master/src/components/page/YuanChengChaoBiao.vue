@@ -93,27 +93,116 @@
                 <div class="content-table">
                     <div class="tit">【 2018-10-18 16:05:30 】</div>
 
-                    <div class="table-box">
-                        <div class="table-header">
-                            <table>
-                                <tr>
-                                    <th>名称 <i class="icon-bxz"></i></th>
-                                </tr>
-                                <tr v-for="v in 10">
-                                    <td>01-03-LPB-E4-00</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="table-right">
-                            <table>
-                                <tr>
-                                    <th v-for="v in 15">名称 <i class="icon-bxz"></i></th>
-                                </tr>
-                                <tr v-for="v in 10">
-                                    <td v-for="v in 15">01-03-LPB-E4-00</td>
-                                </tr>
-                            </table>
-                        </div>
+                    <div id="myTable" class="myTable table-box">
+                        <el-table
+                                :data="tableData"
+                                align="center"
+                                border
+                                stripe
+                                :default-sort="{prop: 'date', order: 'descending'}"
+                                style="width: 100%">
+                            <el-table-column
+                                    align="center"
+                                    fixed
+                                    sortable
+                                    prop="date"
+                                    label="日期"
+                                    show-overflow-tooltip
+                                    width="158">
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="province"
+                                    sortable
+                                    label="省份"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="city"
+                                    sortable
+                                    label="市区"
+                                    width="250"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="address"
+                                    sortable
+                                    label="地址"
+                                    width="250"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="zip"
+                                    sortable
+                                    label="邮编"
+                                    width="250"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+
+                        </el-table>
+                        <!--<div class="table-header">-->
+                        <!--<table>-->
+                        <!--<tr>-->
+                        <!--<th>日期</th>-->
+                        <!--&lt;!&ndash;<th>日期</th>&ndash;&gt;-->
+                        <!--</tr>-->
+                        <!--&lt;!&ndash;<tr></tr>&ndash;&gt;-->
+
+                        <!--<tr v-for="v in 10">-->
+                        <!--<td>01-03-LPB-E4-00</td>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                        <!--</div>-->
+                        <!--<div class="table-right">-->
+                        <!--<table>-->
+                        <!--&lt;!&ndash;<tr style="border-bottom: 1px solid #1B6D9A;">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项1</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项2</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项3</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--<tr>-->
+                        <!--<th v-for="v in 5">名称</th>-->
+                        <!--</tr>-->
+                        <!--<tr v-for="v in 10">-->
+                        <!--<td v-for="v in 5">01-03-LPB-E4-00</td>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                        <!--</div>-->
                     </div>
                     <div class="selector">
                         <i class="icon-front"></i>
@@ -157,6 +246,35 @@
                 no2off: true,
                 value6: '',
                 days: 2,
+                tableData: [{
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }],
             }
         },
         mounted() {
@@ -829,7 +947,7 @@
                     }
                     .table-box {
                         width: 100%;
-                        height: 528px;
+                        /*height: 528px;*/
                         margin-top: 12px;
                         /*display: flex;*/
                         /*flex-wrap: nowrap;*/

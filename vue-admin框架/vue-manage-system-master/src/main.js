@@ -17,6 +17,13 @@ import 'swiper/dist/css/swiper.min.css';
 import axios from 'axios';
 Vue.prototype.$axios = axios;
 
+
+axios.defaults.baseURL = 'http://10.76.107.100:18080/jinfeng';
+// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+
+
 // ==========================================================================
 
 // import Icon from 'vue-svg-icon/Icon.vue'
@@ -49,5 +56,6 @@ router.beforeEach((to, from, next) => {
 // ===========================================================================
 var vm = new Vue({
     router,
+    axios,
     render: h => h(App)
 }).$mount('#app');

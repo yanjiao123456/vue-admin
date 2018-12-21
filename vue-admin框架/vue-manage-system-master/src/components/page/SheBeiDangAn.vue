@@ -281,7 +281,7 @@
                 <div class="content-table">
                     <div class="tit">【2018-10-18 16:05:30】</div>
 
-                    <div class="myTable table-box">
+                    <div id="myTable" class="myTable table-box">
                         <el-table
                                 :data="tableData"
                                 align="center"

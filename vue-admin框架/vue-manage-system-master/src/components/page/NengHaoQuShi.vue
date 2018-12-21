@@ -16,14 +16,14 @@
                 <!--<div class="zTreeDemoBackground left">-->
                 <ul id="treeDemo" class="ztree"></ul>
                 <!--</div>-->
-                <div class="butt">
-                    <div class="tit">已选支路</div>
-                    <ul>
-                        <li><i :class="option == 0?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
-                        <li><i :class="option == 1?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
-                        <li><i :class="option == 2?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>
-                    </ul>
-                </div>
+                <!--<div class="butt">-->
+                <!--<div class="tit">已选支路</div>-->
+                <!--<ul>-->
+                <!--<li><i :class="option == 0?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>-->
+                <!--<li><i :class="option == 1?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>-->
+                <!--<li><i :class="option == 2?'icon-not':'icon-yes'"></i><span>2AH103-馈线-</span></li>-->
+                <!--</ul>-->
+                <!--</div>-->
             </div>
         </transition>
         <div @click="leftShow=!leftShow" :class="{btn:true,shrinkBtn:!leftShow}">支 路 选 择</div>
@@ -42,14 +42,15 @@
                             <span class="checkbox-tit">分析方法:</span>
                             <div class="count">
                                 <!--<div class="bg"></div>-->
-                                <select>
+                                <select v-model="compareVal">
                                     <option>同比</option>
-                                    <option>10</option>
+                                    <option>环比</option>
                                     <option>15</option>
                                     <option>30</option>
                                     <option>60</option>
                                 </select>
                             </div>
+
                         </div>
                         <div class="item-row">
                             <i class="icon-wd"></i>
@@ -58,7 +59,7 @@
                             <el-radio class="choice" v-model="radio" label="2">天</el-radio>
                             <el-radio class="choice" v-model="radio" label="3">月</el-radio>
                         </div>
-                        <div class="item-row item-row-br">
+                        <div v-show="compareVal == 15" class="item-row item-row-br">
                             <div class="fl">
                                 <span class="date-select">时间选择</span>
                                 <el-date-picker
@@ -70,18 +71,18 @@
                                         end-placeholder="结束日期">
                                 </el-date-picker>
                             </div>
-                            <div class="fl days-box">
-                        <span class="days-tit date-select">
-                            <i class="el-icon-search"></i>
-                            快捷查询:
-                        </span>
-                                <div class="days-btn">
-                                    <span @click="days=0" :class="{cur:days==0}">前1天</span>
-                                    <span @click="days=1" :class="{cur:days==1}">前3天</span>
-                                    <span @click="days=2" :class="{cur:days==2}">前7天</span>
-                                    <span @click="days=3" :class="{cur:days==3}">前1月</span>
-                                </div>
-                            </div>
+                            <!--<div class="fl days-box">-->
+                            <!--<span class="days-tit date-select">-->
+                            <!--<i class="el-icon-search"></i>-->
+                            <!--快捷查询:-->
+                            <!--</span>-->
+                            <!--<div class="days-btn">-->
+                            <!--<span @click="days=0" :class="{cur:days==0}">前1天</span>-->
+                            <!--<span @click="days=1" :class="{cur:days==1}">前3天</span>-->
+                            <!--<span @click="days=2" :class="{cur:days==2}">前7天</span>-->
+                            <!--<span @click="days=3" :class="{cur:days==3}">前1月</span>-->
+                            <!--</div>-->
+                            <!--</div>-->
                         </div>
 
 
@@ -141,7 +142,19 @@
                 </div>
 
 
-                <template-table :data-tit="tableTitle"></template-table>
+                <!--<template-table :data-tit="tableTitle"></template-table>-->
+                <div class="table-box">
+                    <div class="table-tit">{{ tableTitle.title }}</div>
+                    <el-table
+                            :data="tableData6"
+                            border
+                            stripe
+                            style="width: 100%">
+                        <el-table-column :key="index" v-for="(v,index) in tableTitle.titArr" class="trs" :prop="v.prop"
+                                         :label="v.label"></el-table-column>
+
+                    </el-table>
+                </div>
                 <div class="selector">
                     <i class="icon-front"></i>
                     <i class="icon-prev"></i>
@@ -173,101 +186,135 @@
 
 <script>
     import TemplateTable from '../views/template-table'
+
     var echarts = require('echarts');
     export default {
         name: "nenghaoqushi",
         data() {
             return {
-                lists:[
+                compareVal: '同比',
+                compareShow: false,
+                tableData6: [{
+                    id: '12987122',
+                    name: '王小虎',
+                    amount1: '234',
+                    amount2: '3.2',
+                    amount3: 10
+                }, {
+                    id: '12987123',
+                    name: '王小虎',
+                    amount1: '165',
+                    amount2: '4.43',
+                    amount3: 12
+                }, {
+                    id: '12987124',
+                    name: '王小虎',
+                    amount1: '324',
+                    amount2: '1.9',
+                    amount3: 9
+                }, {
+                    id: '12987125',
+                    name: '王小虎',
+                    amount1: '621',
+                    amount2: '2.2',
+                    amount3: 17
+                }, {
+                    id: '12987126',
+                    name: '王小虎',
+                    amount1: '539',
+                    amount2: '4.1',
+                    amount3: 15
+                }],
+                lists: [
                     {
-                        title:'本期汇总',
-                        icon:'item-icon-hz',
-                        title2:'同期汇总',
+                        title: '本期汇总',
+                        icon: 'item-icon-hz',
+                        title2: '同期汇总',
                     },
                     {
-                        title:'本期平均',
-                        icon:'item-icon-pjf',
-                        title2:'同期平均',
+                        title: '本期平均',
+                        icon: 'item-icon-pjf',
+                        title2: '同期平均',
                     },
                     {
-                        title:'本期最大值',
-                        icon:'item-icon-max',
-                        title2:'同期最大值',
+                        title: '本期最大值',
+                        icon: 'item-icon-max',
+                        title2: '同期最大值',
                     },
                     {
-                        title:'本期最小值 ',
-                        icon:'item-icon-min',
-                        title2:'同期最小值',
+                        title: '本期最小值 ',
+                        icon: 'item-icon-min',
+                        title2: '同期最小值',
                     },
                     {
-                        title:'本期同比',
-                        icon:'item-icon-tb',
-                        title2:'同期同比',
+                        title: '本期同比',
+                        icon: 'item-icon-tb',
+                        title2: '同期同比',
                     },
 
                 ],
-                lists:[
-                    {
-                        f1:{
-                            title:'本期汇总',
-                            icon:'item-icon-hz',
-                            number:166.56
-                        },
-                        f2:{
-                            title:'同期汇总',
-                            icon:'item-icon-hz',
-                            number:166.56
-                        },
-                    },
-                    {
-                        f1:{
-                            title:'本期平均',
-                            icon:'item-icon-pjf',
-                            number:166.56
-                        },
-                        f2:{
-                            title:'同期平均',
-                            icon:'item-icon-pjf',
-                            number:166.56
-                        },
-                    },
-                    {
-                        f1:{
-                            title:'本期最大值',
-                            icon:'item-icon-max',
-                            number:166.56
-                        },
-                        f2:{
-                            title:'同期最大值',
-                            icon:'item-icon-max',
-                            number:166.56
-                        },
-                    },
-                    {
-                        f1:{
-                            title:'本期最小值 ',
-                            icon:'item-icon-min',
-                            number:166.56
-                        },
-                        f2:{
-                            title:'同期最小值 ',
-                            icon:'item-icon-min',
-                            number:166.56
-                        },
-                    },
-                    {
-                        f1:{
-                            title:'本期同比',
-                            icon:'item-icon-tb',
-                            number:166.56
-                        },
-                        f2:{
-                            title:'同期同比',
-                            icon:'item-icon-tb',
-                            number:166.56
-                        },
-                    }
-                ],
+                // lists:[
+                //     {
+                //         f1:{
+                //             title:'本期汇总',
+                //             icon:'item-icon-hz',
+                //             number:166.56
+                //         },
+                //         f2:{
+                //             title:'同期汇总',
+                //             icon:'item-icon-hz',
+                //             number:166.56
+                //         },
+                //     },
+                //     {
+                //         f1:{
+                //             title:'本期平均',
+                //             icon:'item-icon-pjf',
+                //             number:166.56
+                //         },
+                //         f2:{
+                //             title:'同期平均',
+                //             icon:'item-icon-pjf',
+                //             number:166.56
+                //         },
+                //     },
+                //     {
+                //         f1:{
+                //             title:'本期最大值',
+                //             icon:'item-icon-max',
+                //             number:166.56
+                //         },
+                //         f2:{
+                //             title:'同期最大值',
+                //             icon:'item-icon-max',
+                //             number:166.56
+                //         },
+                //     },
+                //     {
+                //         f1:{
+                //             title:'本期最小值 ',
+                //             icon:'item-icon-min',
+                //             number:166.56
+                //         },
+                //         f2:{
+                //             title:'同期最小值 ',
+                //             icon:'item-icon-min',
+                //             number:166.56
+                //         },
+                //     },
+                //     {
+                //         f1:{
+                //             title:'本期同比',
+                //             icon:'item-icon-tb',
+                //             number:166.56
+                //         },
+                //         f2:{
+                //             title:'同期同比',
+                //             icon:'item-icon-tb',
+                //             number:166.56
+                //         },
+                //     }
+                // ],
                 option: '2',
                 tabTit: 0,
                 radio: 2,
@@ -339,13 +386,13 @@
         components: {
             TemplateTable
         },
-        methods:{
-            SetEchart(){
-                var chart=document.getElementById('chart');
+        methods: {
+            SetEchart() {
+                var chart = document.getElementById('chart');
                 var chartChart = echarts.init(chart);
-                var option={
+                var option = {
                     tooltip: {
-                        color:['#FFF350','#C09DFF','#00FFFF'],
+                        color: ['#FFF350', '#C09DFF', '#00FFFF'],
                         trigger: 'axis',
                         axisPointer: {
                             lineStyle: {
@@ -357,31 +404,31 @@
                     grid: {
                         top: 50,
                         bottom: 50,
-                        left:50,
-                        right:20
+                        left: 50,
+                        right: 20
                     },
                     legend: {
                         top: 0,
-                        data:['电压Uan','电压Ubn','电压Ucn'],
-                        textStyle:{
-                        color:'rgb(91,227,224)'//示例标识文字颜色
+                        data: ['电压Uan', '电压Ubn', '电压Ucn'],
+                        textStyle: {
+                            color: 'rgb(91,227,224)'//示例标识文字颜色
                         }
                     },
-                    xAxis : [
+                    xAxis: [
                         {
-                            type : 'category',
-                            axisLine:{
-                                lineStyle:{
-                                    color:'rgb(91,227,224)'//x轴坐标颜色
+                            type: 'category',
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgb(91,227,224)'//x轴坐标颜色
                                 }
                             },
-                            boundaryGap :true,
-                            data :['2018-10-26 00:00:00','2018-10-26 00:10:00','2018-10-26 00:20:00','2018-10-26 00:30:00',
-                            '2018-10-26 00:40:00','2018-10-26 00:50:00','2018-10-26 00:60:00','2018-10-26 01:00:00',
-                            '2018-10-26 01:02:00','2018-10-26 01:03:00','2018-10-26 01:04:00']
+                            boundaryGap: true,
+                            data: ['2018-10-26 00:00:00', '2018-10-26 00:10:00', '2018-10-26 00:20:00', '2018-10-26 00:30:00',
+                                '2018-10-26 00:40:00', '2018-10-26 00:50:00', '2018-10-26 00:60:00', '2018-10-26 01:00:00',
+                                '2018-10-26 01:02:00', '2018-10-26 01:03:00', '2018-10-26 01:04:00']
                         }
                     ],
-                    yAxis : [
+                    yAxis: [
                         {
                             type: 'value',
                             name: '',
@@ -406,66 +453,66 @@
                             }
                         }
                     ],
-                series: [
-                    {
-                        name:'电压Uan',
-                        data: [21, 23, 20, 22, 21, 20, 20,24, 20, 23, 22],
-                        type: 'bar',
-                        barWidth:'40%',
-                        // symbol: 'circle',
-                        // symbolSize: 8,
-                        // color: '#04B8CE',
-                        lineStyle: {
-                            color: "rgba(255, 243, 80, 1)"
-                        },
-                        itemStyle:{
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgba(46, 160, 255, 1)'
-                                }, {
-                                    offset: 0.8,
-                                    color: 'rgba(86, 213, 254, 1)'
-                                }], false),
-                                shadowColor: 'rgba(0, 0, 0, 0.1)',
-                                shadowBlur: 10
+                    series: [
+                        {
+                            name: '电压Uan',
+                            data: [21, 23, 20, 22, 21, 20, 20, 24, 20, 23, 22],
+                            type: 'bar',
+                            barWidth: '40%',
+                            // symbol: 'circle',
+                            // symbolSize: 8,
+                            // color: '#04B8CE',
+                            lineStyle: {
+                                color: "rgba(255, 243, 80, 1)"
+                            },
+                            itemStyle: {
+                                normal: {
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: 'rgba(46, 160, 255, 1)'
+                                    }, {
+                                        offset: 0.8,
+                                        color: 'rgba(86, 213, 254, 1)'
+                                    }], false),
+                                    shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                    shadowBlur: 10
+                                }
+                            },
+                        }, {
+                            name: '电压Ubn',
+                            data: [31, 33, 30, 32, 31, 30, 30, 34, 30, 33, 32, 31],
+                            type: 'line',
+                            symbol: 'circle',
+                            symbolSize: 8,
+                            color: '#04B8CE',
+                            lineStyle: {
+                                color: "rgba(192, 157, 255, 1)"
+                            },
+                            itemStyle: {
+                                normal: {
+                                    color: 'rgba(192, 157, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+                                }
                             }
-                        },
-                    }, {
-                        name:'电压Ubn',
-                        data: [31, 33, 30, 32, 31, 30, 30,34, 30, 33, 32, 31],
-                        type: 'line',
-                        symbol: 'circle',
-                        symbolSize: 8,
-                        color: '#04B8CE',
-                        lineStyle: {
-                            color: "rgba(192, 157, 255, 1)"
-                        },
-                        itemStyle : {
-								normal : {
-									color : 'rgba(192, 157, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
-								}
-							}
-                    },{
-                        name:'电压Ucn',
-                        data: [41, 43, 40, 42, 41, 40, 40,44, 40, 43, 42, 41],
-                        type: 'line',
-                        symbol: 'circle',
-                        symbolSize: 8,
-                        color: '#04B8CE',
-                        lineStyle: {
-                            color: "rgba(0, 255, 255, 1)"
-                        },
-                        itemStyle : {
-								normal : {
-									color : 'rgba(0, 255, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
-								}
-							}
-                    }
+                        }, {
+                            name: '电压Ucn',
+                            data: [41, 43, 40, 42, 41, 40, 40, 44, 40, 43, 42, 41],
+                            type: 'line',
+                            symbol: 'circle',
+                            symbolSize: 8,
+                            color: '#04B8CE',
+                            lineStyle: {
+                                color: "rgba(0, 255, 255, 1)"
+                            },
+                            itemStyle: {
+                                normal: {
+                                    color: 'rgba(0, 255, 255, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
+                                }
+                            }
+                        }
                     ]
                 }
                 chartChart.setOption(option);
-                window.onresize=function(){
+                window.onresize = function () {
                     chartChart.resize();
                 }
             }
@@ -494,85 +541,100 @@
                 }
             };
 
-            var zNodes = [
-                {
-                    id: 1,
-                    pId: 0,
-                    name: "随意勾选 1",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 11,
-                    pId: 1,
-                    name: "随意勾选 1-1",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 111,
-                    pId: 11,
-                    name: "随意勾选 1-1-1"
-                },
-                {
-                    id: 112,
-                    pId: 11,
-                    name: "随意勾选 1-1-2"
-                },
-                {
-                    id: 12,
-                    pId: 1,
-                    name: "随意勾选 1-2",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 121,
-                    pId: 12,
-                    name: "随意勾选 1-2-1"
-                },
-                {
-                    id: 122,
-                    pId: 12,
-                    name: "随意勾选 1-2-2"
-                },
-                {
-                    id: 2,
-                    pId: 0,
-                    name: "随意勾选 2",
-                    checked: true,
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 21,
-                    pId: 2,
-                    name: "随意勾选 2-1"
-                },
-                {
-                    id: 22,
-                    pId: 2,
-                    name: "随意勾选 2-2",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 221,
-                    pId: 22,
-                    name: "随意勾选 2-2-1",
-                    // checked: true,
-                },
-                {
-                    id: 222,
-                    pId: 22,
-                    name: "随意勾选 2-2-2"
-                },
-                {
-                    id: 23,
-                    pId: 2,
-                    name: "随意勾选 2-3"
-                }
-            ];
+            // var zNodes = [
+            //     {
+            //         id: 1,
+            //         pId: 0,
+            //         name: "随意勾选 1",
+            //         open: true,
+            //         // iconSkin: "icon01"
+            //     },
+            //     {
+            //         id: 11,
+            //         pId: 1,
+            //         name: "随意勾选 1-1",
+            //         open: true,
+            //         // iconSkin: "icon01"
+            //     },
+            //     {
+            //         id: 111,
+            //         pId: 11,
+            //         name: "随意勾选 1-1-1"
+            //     },
+            //     {
+            //         id: 112,
+            //         pId: 11,
+            //         name: "随意勾选 1-1-2"
+            //     },
+            //     {
+            //         id: 12,
+            //         pId: 1,
+            //         name: "随意勾选 1-2",
+            //         open: true,
+            //         // iconSkin: "icon01"
+            //     },
+            //     {
+            //         id: 121,
+            //         pId: 12,
+            //         name: "随意勾选 1-2-1"
+            //     },
+            //     {
+            //         id: 122,
+            //         pId: 12,
+            //         name: "随意勾选 1-2-2"
+            //     },
+            //     {
+            //         id: 2,
+            //         pId: 0,
+            //         name: "随意勾选 2",
+            //         checked: true,
+            //         open: true,
+            //         // iconSkin: "icon01"
+            //     },
+            //     {
+            //         id: 21,
+            //         pId: 2,
+            //         name: "随意勾选 2-1"
+            //     },
+            //     {
+            //         id: 22,
+            //         pId: 2,
+            //         name: "随意勾选 2-2",
+            //         open: true,
+            //         // iconSkin: "icon01"
+            //     },
+            //     {
+            //         id: 221,
+            //         pId: 22,
+            //         name: "随意勾选 2-2-1",
+            //         // checked: true,
+            //     },
+            //     {
+            //         id: 222,
+            //         pId: 22,
+            //         name: "随意勾选 2-2-2"
+            //     },
+            //     {
+            //         id: 23,
+            //         pId: 2,
+            //         name: "随意勾选 2-3"
+            //     }
+            // ];
+            let zNodes = [{
+                "id": 1,
+                "parentId": 0,
+                "level": 0,
+                "name": "默认总节点",
+                "children": [{
+                    "id": 2,
+                    "parentId": 1,
+                    "level": 1,
+                    "name": "1545378009097sss",
+                    "children": [],
+                    "key": "1-"
+                }],
+                "key": ""
+            }]
 
             var code;
 
@@ -602,7 +664,22 @@
             $("#pn").bind("change", setCheck);
             $("#sn").bind("change", setCheck);
 
-             this.SetEchart()
+            this.SetEchart()
+
+        },
+        created() {
+            this.$axios.get('/sep_tree!queryTreeByType.action', {
+                params: {
+                    type: 1,
+                    parentId: 0
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
 
         }
 
@@ -944,8 +1021,6 @@
                         box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
                         /*opacity:0.5;*/
                         border-radius: 3px;
-
-
 
                         .item-left {
                             width: 90px;

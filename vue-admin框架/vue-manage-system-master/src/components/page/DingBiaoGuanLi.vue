@@ -132,29 +132,95 @@
                     <i class="icon-pdf"></i><i class="icon-excel"></i></div>
             </div>
 
-            <div class="table-box">
-                <div class="table-tit">【 XX部门 2018-09-18至2018-09-18能耗数据 】</div>
+            <div class="content-table">
+                <div class="tit">【xxxx部门2018年度用电计划】</div>
 
-                <table border="0">
-                    <tr>
-                        <th v-for="v in 5">仪表类型</th>
-                        <!--<th>操作</th>-->
-                    </tr>
-                    <tr v-for="(v,index) in 5">
-                        <td v-for="v in 5">电表</td>
-                        <!--<td v-show="setId!=index ||setShow"><i class="icon-xg"></i><span @click="setShow = false,setId=index" class="set">修改</span></td>-->
-                        <!--<td v-show="setId==index && !setShow">-->
-                            <!--<div class="item1">-->
-                                <!--<i class="icon-xg-ing"></i>-->
-                                <!--<span>修改</span>-->
-                            <!--</div>-->
-                            <!--<div class="item1">-->
-                                <!--<i class="icon-bc"></i>-->
-                                <!--<span @click="setShow = true" class="bc">保存</span>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    </tr>
-                </table>
+                <div id="myTable" class="myTable table-box">
+                    <el-table
+                            :data="tableData"
+                            align="center"
+                            border
+                            stripe
+                            :default-sort="{prop: 'date', order: 'descending'}"
+                            style="width: 100%">
+                        <el-table-column
+                                align="center"
+                                sortable
+                                prop="date"
+                                label="日期"
+                                show-overflow-tooltip
+                                >
+                        </el-table-column>
+                        <el-table-column
+                                align="center"
+                                prop="name"
+                                sortable
+                                label="姓名"
+
+                                show-overflow-tooltip
+                        >
+                        </el-table-column>
+                        <el-table-column
+                                align="center"
+                                prop="name"
+                                sortable
+                                label="姓名"
+
+                                show-overflow-tooltip
+                        >
+                        </el-table-column>
+                        <el-table-column
+                                align="center"
+                                prop="name"
+                                sortable
+                                label="姓名"
+
+                                show-overflow-tooltip
+                        >
+                        </el-table-column>
+
+                        <el-table-column
+                                align="center"
+                                prop="zip"
+                                sortable
+                                label="邮编"
+                                width="250"
+                                show-overflow-tooltip
+                        >
+                        </el-table-column>
+
+                    </el-table>
+                    <!--<div class="table-header">-->
+                    <!--<table>-->
+                    <!--<tr>-->
+                    <!--<th>日期</th>-->
+                    <!--&lt;!&ndash;<th>日期</th>&ndash;&gt;-->
+                    <!--</tr>-->
+                    <!--&lt;!&ndash;<tr></tr>&ndash;&gt;-->
+
+                    <!--<tr v-for="v in 10">-->
+                    <!--<td>01-03-LPB-E4-00</td>-->
+                    <!--</tr>-->
+                    <!--</table>-->
+                    <!--</div>-->
+                    <!--<div class="table-right">-->
+                    <!--<table>-->
+                    <!--&lt;!&ndash;<tr style="border-bottom: 1px solid #1B6D9A;">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项1</th>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项2</th>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项3</th>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                    <!--<tr>-->
+                    <!--<th v-for="v in 5">名称</th>-->
+                    <!--</tr>-->
+                    <!--<tr v-for="v in 10">-->
+                    <!--<td v-for="v in 5">01-03-LPB-E4-00</td>-->
+                    <!--</tr>-->
+                    <!--</table>-->
+                    <!--</div>-->
+                </div>
+
+
             </div>
 
 
@@ -224,56 +290,35 @@
 
                 sw: true,
                 value6: '',
-                tableTitle: {
-                    title: '【 仪表台账数据列表 】',
-                    titArr: [
-                        {
-                            prop: "id",
-                            label: "日期",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIa",
-                            label: "电流Ia",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIb",
-                            label: "电流Ib",
-                            sortable: false
-                        },
-                        {
-                            prop: "dianliuIc",
-                            label: "电流Ic",
-                            sortable: false
-                        },
-                        {
-                            prop: "zhengDianNeng",
-                            label: "当前正向有功总电能",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUan",
-                            label: "粗电压Uan",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUbn",
-                            label: "粗电压Ubn",
-                            sortable: false
-                        },
-                        {
-                            prop: "cuUcn",
-                            label: "粗电压Ucn",
-                            sortable: false
-                        },
-                        {
-                            prop: "操作",
-                            label: "总有功功率W",
-                            sortable: false
-                        },
-                    ]
-                },
+                tableData: [{
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }],
 
                 options: [{
                     value: '选项1',
@@ -1252,113 +1297,88 @@
                 }
             }
 
-            .table-box {
+            .content-table {
                 position: relative;
-                z-index: 5;
+                width: 100%;
+                /*height: 577px;*/
                 border: 1px solid #15759A;
-                margin-top: 24px;
-                /*padding-bottom: 60px;*/
-                .table-tit {
-                    padding: 20px;
-                    width: 100%;
-                    /*letter-spacing:2px;*/
+                margin-top: 15px;
+                text-align: center;
+                box-sizing: border-box;
+                padding-top: 16px;
+                .tit {
                     font-size: 14px;
                     font-family: HiraginoSansGB-W3;
                     font-weight: normal;
                     color: rgba(95, 251, 248, 1);
-                    text-align: center;
                 }
+
+            }
+            .table-box {
+                width: 100%;
+                /*height: 528px;*/
+                margin-top: 12px;
+                /*display: flex;*/
+                /*flex-wrap: nowrap;*/
                 table {
                     width: 100%;
                     height: 100%;
                     position: relative;
-                    border: 0;
-                    border-collapse: collapse; /*边框会合并为一个单一的边框*/
-
+                    border-collapse: collapse;
+                    border: 0; //表示表格没有边框。
+                    cellspacing: '0'; //表示单元格之间间隙为0。
+                    cellpadding: '0'; //表示单元格的边框宽度为0。
+                    /*z-index: 5;*/
                     tr {
-                        background-color: #104C7B;
-                        &:nth-child(2n) {
-                            background-color: #0A3E6E;
-                        }
-                        &.cur {
-                            td {
-                                background-color: #085E96;
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W6;
-                                font-weight: normal;
-                                color: rgba(255, 255, 255, 1);
-                            }
-
-                        }
-
-                        th {
-                            font-size: 14px;
-                            font-family: HiraginoSansGB-W6;
-                            font-weight: normal;
-                            color: rgba(95, 251, 248, 1);
-                            background-color: #185588;
-                        }
-                        td {
-                            font-size: 14px;
-                            font-family: HiraginoSansGB-W3;
-                            font-weight: normal;
-                            color: rgba(223, 253, 255, 1);
-
-                        }
-
-                        td, th {
-                            border-right: 1px solid #145F8B;
-                            text-align: center;
-                            height: 48px;
-                        }
-                        .icon-xg {
-                            width: 15px;
-                            height: 14px;
-                            display: inline-block;
-                            background: url("../../assets/PeiDianJianCe/icon_xg.png") no-repeat;
-                            margin-right: 10px;
-                            position: relative;
-                            top: 3px;
-                            /*line-height: 48px;*/
-                        }
-                        .set {
-                            font-size: 14px;
-                            font-family: HiraginoSansGB-W3;
-                            font-weight: normal;
-                            color: rgba(95, 251, 248, 1);
-                        }
-                        .item1 {
-                            display: inline-block;
-                            /*padding: 0 10px;*/
-                            .icon-xg-ing {
-                                display: inline-block;
-                                width: 15px;
-                                height: 14px;
-                                /*line-height: 48px;*/
-                                background: url("../../assets/PeiDianJianCe/icon_xg-xz.png") no-repeat;
-                                position: relative;
-                                top: 3px;
-                            }
-                            .icon-bc {
-                                width: 16px;
-                                height: 16px;
-                                display: inline-block;
-                                background: url("../../assets/PeiDianJianCe/icon_bc.png") no-repeat;
-                                position: relative;
-                                top: 3px;
-                            }
-                            .bc {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W6;
-                                font-weight: normal;
-                                color: rgba(250, 236, 79, 1);
-                            }
-                        }
+                        background-color: #0A3E6E;
+                        height: 48px;
                     }
+                    tr:nth-child(2n-1) {
+                        background-color: #104C7B;
+                    }
+                    td, th {
+                        border-right: 1px solid #0F5A84;
+                    }
+                    th {
+                        background-color: #185588;
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W6;
+                        font-weight: normal;
+                        color: rgba(95, 251, 248, 1);
+                    }
+                    td {
+                        font-size: 14px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: normal;
+                        color: rgba(223, 253, 255, 1);
+                    }
+                }
+                .icon-bxz {
+                    display: inline-block;
+                    width: 20px;
+                    height: 17px;
+                    background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
+                    margin-left: 20px;
+                }
+                .table-header {
+                    height: 100%;
+                    width: 215px;
+                    position: relative;
+                    overflow: hidden;
+                    float: left;
 
                 }
-
+                .table-right {
+                    width: calc(100% - 215px);
+                    /*width: 100%;*/
+                    overflow-y: hidden;
+                    overflow-x: scroll;
+                    table {
+                        width: 2000px;
+                    }
+                }
             }
+
             .selector {
                 position: relative;
                 z-index: 5;

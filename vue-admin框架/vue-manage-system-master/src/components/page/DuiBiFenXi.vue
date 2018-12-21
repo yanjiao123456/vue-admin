@@ -162,59 +162,151 @@
                 <div class="content-table">
                     <div class="tit">【 2018-10-16 至 2018-10-23能耗成本统计报表 】</div>
 
-                    <div class="table-box">
-                        <div class="table-header">
-                            <table>
-                                <tr>
-                                    <th rowspan="2">日期</th>
-                                    <!--<th>日期</th>-->
-                                </tr>
-                                <tr></tr>
+                    <div id="myTable" class="myTable table-box">
+                        <el-table
+                                :data="tableData"
+                                align="center"
+                                border
+                                stripe
+                                :default-sort="{prop: 'date', order: 'descending'}"
+                                style="width: 100%">
 
-                                <tr v-for="v in 9">
-                                    <td>01-03-LPB-E4-00</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="table-right">
-                            <table>
-                                <tr style="border-bottom: 1px solid #1B6D9A;">
-                                    <th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项1</th>
-                                    <th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项2</th>
-                                    <th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项3</th>
-                                </tr>
-                                <tr>
-                                    <th v-for="v in 15">名称</th>
-                                </tr>
-                                <tr v-for="v in 9">
-                                    <td v-for="v in 15">01-03-LPB-E4-00</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="selector">
-                        <i class="icon-front"></i>
-                        <i class="icon-prev"></i>
-                        <div class="page-num">
-                            <div class="bg"></div>
-                            <input type="text" value="1">
-                        </div>
+                            <el-table-column
+                                    align="center"
+                                    fixed
+                                    sortable
+                                    prop="date"
+                                    label="日期"
+                                    show-overflow-tooltip
+                                    width="158">
+                            </el-table-column>
+                            <el-table-column label="查询结果项1">
+                                <el-table-column
+                                        align="center"
+                                        prop="name"
+                                        sortable
+                                        label="姓名"
+                                        width="150"
+                                        show-overflow-tooltip
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                        align="center"
+                                        prop="name"
+                                        sortable
+                                        label="姓名"
+                                        width="150"
+                                        show-overflow-tooltip
+                                >
+                                </el-table-column>
 
-                        <span class="page-all">
-                        /共1页
-                    </span>
-                        <i class="icon-next"></i>
-                        <i class="icon-last"></i>
-                        <div class="count">
-                            <div class="bg"></div>
-                            <select>
-                                <option>10</option>
-                                <option>20</option>
-                                <option>50</option>
-                                <option>100</option>
-                            </select>
-                        </div>
+                                <el-table-column
+                                        align="center"
+                                        prop="name"
+                                        sortable
+                                        label="姓名"
+                                        width="250"
+                                        show-overflow-tooltip
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                        align="center"
+                                        prop="province"
+                                        sortable
+                                        label="省份"
+                                        width="250"
+                                        show-overflow-tooltip
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                        align="center"
+                                        prop="city"
+                                        sortable
+                                        label="市区"
+                                        width="250"
+                                        show-overflow-tooltip
+                                >
+                                </el-table-column>
+                            </el-table-column>
+                            <el-table-column label="查询结果项2">
+                                <el-table-column
+                                        align="center"
+                                        prop="address"
+                                        sortable
+                                        label="地址"
+                                        width="250"
+                                        show-overflow-tooltip
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                        align="center"
+                                        prop="zip"
+                                        sortable
+                                        label="邮编"
+                                        width="250"
+                                        show-overflow-tooltip
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                        align="center"
+                                        prop="zip"
+                                        sortable
+                                        label="邮编"
+                                        width="250"
+                                        show-overflow-tooltip
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                        align="center"
+                                        prop="zip"
+                                        sortable
+                                        label="邮编"
+                                        width="250"
+                                        show-overflow-tooltip
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                        align="center"
+                                        prop="zip"
+                                        sortable
+                                        label="邮编"
+                                        width="250"
+                                        show-overflow-tooltip
+                                >
+                                </el-table-column>
+                            </el-table-column>
+
+                        </el-table>
+                        <!--<div class="table-header">-->
+                        <!--<table>-->
+                        <!--<tr>-->
+                        <!--<th>日期</th>-->
+                        <!--&lt;!&ndash;<th>日期</th>&ndash;&gt;-->
+                        <!--</tr>-->
+                        <!--&lt;!&ndash;<tr></tr>&ndash;&gt;-->
+
+                        <!--<tr v-for="v in 10">-->
+                        <!--<td>01-03-LPB-E4-00</td>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                        <!--</div>-->
+                        <!--<div class="table-right">-->
+                        <!--<table>-->
+                        <!--&lt;!&ndash;<tr style="border-bottom: 1px solid #1B6D9A;">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项1</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项2</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项3</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--<tr>-->
+                        <!--<th v-for="v in 5">名称</th>-->
+                        <!--</tr>-->
+                        <!--<tr v-for="v in 10">-->
+                        <!--<td v-for="v in 5">01-03-LPB-E4-00</td>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                        <!--</div>-->
                     </div>
+
 
                 </div>
                 <div class="selector">
@@ -253,6 +345,35 @@
         name: "duibifenxi",
         data() {
             return {
+                tableData: [{
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }],
                 lists:[
                     {
                         title:'本阶段总能耗成本',
@@ -1548,7 +1669,7 @@
             .content-table{
                 position: relative;
                 width: 100%;
-                height: 577px;
+                /*height: 577px;*/
                 border:1px solid #15759A;
                 margin-top: 15px;
                 text-align: center;
@@ -1560,71 +1681,7 @@
                     font-weight:normal;
                     color:rgba(95,251,248,1);
                 }
-                .table-box{
-                    width: 100%;
-                    height: 528px;
-                    margin-top: 12px;
-                    /*display: flex;*/
-                    /*flex-wrap: nowrap;*/
-                    table{
-                        width: 100%;
-                        height: 100%;
-                        position: relative;
-                        border-collapse:collapse;
-                        border:0;//表示表格没有边框。
-                        cellspacing:'0';//表示单元格之间间隙为0。
-                        cellpadding:'0';//表示单元格的边框宽度为0。
-                        /*z-index: 5;*/
-                        tr{
-                            background-color: #0A3E6E;
-                            height: 48px;
-                        }
-                        tr:nth-child(2n-1){
-                            background-color: #104C7B;
-                        }
-                        td, th{
-                            border-right: 1px solid #0F5A84;
-                        }
-                        th{
-                            background-color: #185588;
-                            font-size:14px;
-                            font-family:HiraginoSansGB-W6;
-                            font-weight:normal;
-                            color:rgba(95,251,248,1);
-                        }
-                        td{
-                            font-size:14px;
-                            font-family:HiraginoSansGB-W3;
-                            font-weight:normal;
-                            color:rgba(223,253,255,1);
-                        }
-                    }
-                    .icon-bxz{
-                        display: inline-block;
-                        width: 20px;
-                        height: 17px;
-                        background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
-                        margin-left: 20px;
-                    }
-                    .table-header{
-                        height: 100%;
-                        width: 215px;
-                        position: relative;
-                        overflow: hidden;
-                        float: left;
 
-
-                    }
-                    .table-right{
-                        width: calc(100% - 215px);
-                        /*width: 100%;*/
-                        overflow-y: hidden;
-                        overflow-x: scroll;
-                        table{
-                            width: 2000px;
-                        }
-                    }
-                }
             }
             .Table {
                 width: 100%;
@@ -1660,21 +1717,68 @@
                     }
                 }
                 .table-box {
-                    position: relative;
-                    z-index: 5;
-                    border: 1px solid #15759A;
-                    /*padding-bottom: 60px;*/
-                    .table-tit {
-                        padding: 20px;
+                    width: 100%;
+                    /*height: 528px;*/
+                    margin-top: 12px;
+                    /*display: flex;*/
+                    /*flex-wrap: nowrap;*/
+                    table {
                         width: 100%;
-                        /*letter-spacing:2px;*/
-                        font-size: 14px;
-                        font-family: HiraginoSansGB-W3;
-                        font-weight: normal;
-                        color: rgba(95, 251, 248, 1);
-                        text-align: center;
+                        height: 100%;
+                        position: relative;
+                        border-collapse: collapse;
+                        border: 0; //表示表格没有边框。
+                        cellspacing: '0'; //表示单元格之间间隙为0。
+                        cellpadding: '0'; //表示单元格的边框宽度为0。
+                        /*z-index: 5;*/
+                        tr {
+                            background-color: #0A3E6E;
+                            height: 48px;
+                        }
+                        tr:nth-child(2n-1) {
+                            background-color: #104C7B;
+                        }
+                        td, th {
+                            border-right: 1px solid #0F5A84;
+                        }
+                        th {
+                            background-color: #185588;
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W6;
+                            font-weight: normal;
+                            color: rgba(95, 251, 248, 1);
+                        }
+                        td {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
                     }
+                    .icon-bxz {
+                        display: inline-block;
+                        width: 20px;
+                        height: 17px;
+                        background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
+                        margin-left: 20px;
+                    }
+                    .table-header {
+                        height: 100%;
+                        width: 215px;
+                        position: relative;
+                        overflow: hidden;
+                        float: left;
 
+                    }
+                    .table-right {
+                        width: calc(100% - 215px);
+                        /*width: 100%;*/
+                        overflow-y: hidden;
+                        overflow-x: scroll;
+                        table {
+                            width: 2000px;
+                        }
+                    }
                 }
                 .selector {
                     position: relative;

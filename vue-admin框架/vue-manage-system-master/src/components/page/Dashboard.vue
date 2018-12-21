@@ -5,7 +5,7 @@
             <el-carousel height="150px">
                 <el-carousel-item v-for="item in 2" :key="item">
                     <el-row :gutter="20">
-                        <el-col v-for="(d,index) in sliderData" :span="8">
+                        <el-col :key="index" v-for="(d,index) in sliderData" :span="8">
                             <div class="sliderCon">
                                 <div class="sbg"></div>
                                     <div class="slider-inner">

@@ -3,13 +3,13 @@
         <div class="bg"></div>
         <div class="index-slider">
             <el-carousel height="150px">
-                <el-carousel-item v-for="item in 2" :key="item">
+                <el-carousel-item v-for="item in Data" :key="item">
                     <el-row :gutter="20">
-                        <el-col :key="index" v-for="(d,index) in sliderData" :span="8">
+                        <el-col :key="index" v-for="(d,index) in item" :span="8">
                             <div class="sliderCon">
                                 <div class="sbg"></div>
                                     <div class="slider-inner">
-                                        <span class="water-icon  hidden-sm-and-down"></span>
+                                        <span v-bind:class="{'water-icon':d.view==1 ,'yd-icon':d.view==2,'hidden-sm-and-down':true}"></span>
                                         <div class="see-blank">
                                             <p>{{d.title}}</p>
                                             <span class="led-text">{{d.data}}</span>
@@ -416,9 +416,11 @@
                     // {energy:'冷'},
                     // {energy:'热'}
                 ],
-                sliderData:[
+                Data:{
+                    sliderData1:[
                     {
                         title:'今日用水',
+                        view:1,
                         data:62.86,
                         tongbi:32.12,
                         class1:'icon-tb',
@@ -426,8 +428,9 @@
                         class2:'icon-hb'
                     },
                     {
-                        title:'今月用水',
+                        title:'12313今月用水',
                         data:1062.86,
+                        view:1,
                         tongbi:0.13,
                         class1:'icon-tb',
                         huanbi:0.10,
@@ -435,6 +438,7 @@
                     },
                     {
                         title:'今年用水',
+                        view:1,
                         data:20562.86,
                         tongbi:0.14,
                         class1:'icon-tb',
@@ -442,6 +446,38 @@
                         class2:'icon-hb'
                     }
                 ],
+                sliderData2:[
+                    {
+                        title:'今日用电',
+                        view:2,
+                        data:62.86,
+                        tongbi:32.12,
+                        class1:'icon-tb',
+                        huanbi:12.10,
+                        class2:'icon-hb'
+                    },
+                    {
+                        title:'12313今月用电',
+                        view:2,
+                        data:1062.86,
+                        tongbi:0.13,
+                        class1:'icon-tb',
+                        huanbi:0.10,
+                        class2:'icon-hb'
+                    },
+                    {
+                        title:'今年用电',
+                        view:2,
+                        data:20562.86,
+                        tongbi:0.14,
+                        class1:'icon-tb',
+                        huanbi:0.10,
+                        class2:'icon-hb'
+                    }
+                ],
+                },
+                
+                
                 img:'../../assets/ShouYe/pp.jpg',
             };
         },
@@ -1087,6 +1123,7 @@
                     qushiChart.resize();
                     yongnengChart.resize();
                     fenxiangChart.resize();
+                    zhiluChart.resize();
                     quyuChart.resize();
                     duibiChart.resize();
                     zengjianChart.resize();
@@ -1262,8 +1299,19 @@
         position:relative;
         flex-shrink:1;
         margin-top:20px;
-        margin-left:40px;
+        margin-left:4%;
         background: url("../../assets/ShouYe/icon_water.png") no-repeat;
+    }
+    .yd-icon{
+        width:100px;
+        height:104px;
+        line-height:124px;
+        flex-grow:0;
+        position:relative;
+        flex-shrink:1;
+        margin-top:20px;
+        margin-left:4%;
+        background: url("../../assets/ShouYe/icon_yd.png") no-repeat;
     }
     .see-blank{
         position:relative;
@@ -1272,7 +1320,7 @@
         font-family:'DS-Digital';
         font-size:16px;
         margin-top:33px;
-        margin-left:20px;
+        /* margin-left:20px; */
         flex-grow:1;
     }
     .see-blank small{

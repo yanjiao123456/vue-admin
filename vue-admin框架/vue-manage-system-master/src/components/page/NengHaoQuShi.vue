@@ -206,6 +206,68 @@
                     },
 
                 ],
+                lists:[
+                    {
+                        f1:{
+                            title:'本期汇总',
+                            icon:'item-icon-hz',
+                            number:166.56
+                        },
+                        f2:{
+                            title:'同期汇总',
+                            icon:'item-icon-hz',
+                            number:166.56
+                        },
+                    },
+                    {
+                        f1:{
+                            title:'本期平均',
+                            icon:'item-icon-pjf',
+                            number:166.56
+                        },
+                        f2:{
+                            title:'同期平均',
+                            icon:'item-icon-pjf',
+                            number:166.56
+                        },
+                    },
+                    {
+                        f1:{
+                            title:'本期最大值',
+                            icon:'item-icon-max',
+                            number:166.56
+                        },
+                        f2:{
+                            title:'同期最大值',
+                            icon:'item-icon-max',
+                            number:166.56
+                        },
+                    },
+                    {
+                        f1:{
+                            title:'本期最小值 ',
+                            icon:'item-icon-min',
+                            number:166.56
+                        },
+                        f2:{
+                            title:'同期最小值 ',
+                            icon:'item-icon-min',
+                            number:166.56
+                        },
+                    },
+                    {
+                        f1:{
+                            title:'本期同比',
+                            icon:'item-icon-tb',
+                            number:166.56
+                        },
+                        f2:{
+                            title:'同期同比',
+                            icon:'item-icon-tb',
+                            number:166.56
+                        },
+                    }
+                ],
                 option: '2',
                 tabTit: 0,
                 radio: 2,
@@ -347,19 +409,28 @@
                 series: [
                     {
                         name:'电压Uan',
-                        data: [21, 23, 20, 22, 21, 20, 20,24, 20, 23, 22, 21],
-                        type: 'line',
-                        symbol: 'circle',
-                        symbolSize: 8,
-                        color: '#04B8CE',
+                        data: [21, 23, 20, 22, 21, 20, 20,24, 20, 23, 22],
+                        type: 'bar',
+                        barWidth:'40%',
+                        // symbol: 'circle',
+                        // symbolSize: 8,
+                        // color: '#04B8CE',
                         lineStyle: {
                             color: "rgba(255, 243, 80, 1)"
                         },
-                        itemStyle : {
-								normal : {
-									color : 'rgba(255, 243, 80, 1)'// 描边线条上的圆圈颜色及示例指示标颜色
-								}
-							}
+                        itemStyle:{
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgba(46, 160, 255, 1)'
+                                }, {
+                                    offset: 0.8,
+                                    color: 'rgba(86, 213, 254, 1)'
+                                }], false),
+                                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                shadowBlur: 10
+                            }
+                        },
                     }, {
                         name:'电压Ubn',
                         data: [31, 33, 30, 32, 31, 30, 30,34, 30, 33, 32, 31],
@@ -391,7 +462,7 @@
 								}
 							}
                     }
-                    ]  
+                    ]
                 }
                 chartChart.setOption(option);
                 window.onresize=function(){

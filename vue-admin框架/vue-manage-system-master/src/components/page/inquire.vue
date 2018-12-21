@@ -147,6 +147,7 @@
         <!--能耗大数据图表 start-->
         <div class="energy-Echarts">
             <div class="bg"></div>
+            <div class="title"><h3>能耗趋势</h3></div>
             <div id="myChart" style="width: 100%;height: 100%;"></div>
         </div>
         <!--能耗大数据图表 end-->
@@ -340,17 +341,6 @@
 
                 var option = {
                     color: ['#637EF9', '#1C97FF', '#38E68D', '#CFDB48', '#66A9C9', '#00BFC7', '#99D683', '#B4C1D7', '#21834B'],
-                    // title: [{
-                    //    text: '对比定标单耗增长排名',
-                    //    x: 'center',
-                    //    y: 'top',
-                    //    textStyle: {
-                    //        color: '#01CED4',
-                    //        textAlign: 'center',
-                    //        fontSize: 14,
-                    //        fontWeight: 'bold'
-                    //    }
-                    // }],
                     legend: {
                         data: ['2AA101-1号电源线_能耗', '2AA102-1号电源线_能耗', '2AA103-1号电源线_能耗', '2AA104-1号电源线_能耗'],
                         align: 'left',
@@ -495,6 +485,7 @@
             width: 100%;
             height: 100%;
             position: absolute;
+            box-sizing: border-box;
             top: 0;
             left: 0;
             border: 1px solid rgba(42, 244, 255, 1);
@@ -768,6 +759,7 @@
                     padding: 0 21px;
                     margin-top: 30px;
                     position: relative;
+                    padding-bottom: 12px;
                     z-index: 5;
                     .electricity-number {
                         display: flex;
@@ -809,6 +801,22 @@
             margin-top: 25px;
             background: #0B3F6F;
             position: relative;
+            box-sizing: border-box;
+            padding: 23px 20px;
+            .title {
+                display: flex;
+                justify-content: space-between;
+                position: relative;
+                z-index: 5;
+                /*margin-bottom: 15px;*/
+                h3 {
+                    font-size: 16px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: bold;
+                    color: rgba(254, 254, 255, 1);
+                }
+
+            }
             #main {
                 width: 100%;
                 height: 100%;

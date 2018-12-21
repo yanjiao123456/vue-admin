@@ -237,32 +237,32 @@
 </template>
 
 <script>
-    import TemplateTable from '../views/template-table'
-    var echarts=require('echarts')
+    // var echarts=require('echarts')
+    import echarts from 'echarts';
     export default {
         name: "nenghaochengben",
         data() {
             return {
-                lists:[
+                lists: [
                     {
-                        title:'本阶段总能耗成本',
-                        icon:'item-icon-hz',
-                        color:'#00C3F4'
+                        title: '本阶段总能耗成本',
+                        icon: 'item-icon-hz',
+                        color: '#00C3F4'
                     },
                     {
-                        title:'本阶段平均能耗成本',
-                        icon:'item-icon-pjf',
-                        color:'#2CD27D'
+                        title: '本阶段平均能耗成本',
+                        icon: 'item-icon-pjf',
+                        color: '#2CD27D'
                     },
                     {
-                        title:'本阶段最大用能成本',
-                        icon:'item-icon-max',
-                        color:'#D69B44'
+                        title: '本阶段最大用能成本',
+                        icon: 'item-icon-max',
+                        color: '#D69B44'
                     },
                     {
-                        title:'本阶段最小用能成本 ',
-                        icon:'item-icon-min',
-                        color:'#C6D242'
+                        title: '本阶段最小用能成本 ',
+                        icon: 'item-icon-min',
+                        color: '#C6D242'
                     },
 
                 ],
@@ -359,9 +359,7 @@
 
             }
         },
-        components: {
-            TemplateTable
-        },
+        components: {},
         methods: {
             SetEchart() {
                 // 基于准备好的dom，初始化echarts实例
@@ -379,11 +377,11 @@
 
                 var option = {
                     color: ['#637EF9', '#1C97FF', '#38E68D', '#CFDB48', '#66A9C9', '#00BFC7', '#99D683', '#B4C1D7', '#21834B'],
-                   
+
                     legend: {
                         data: ['2AA101-1号电源线_能耗', '2AA102-1号电源线_能耗', '2AA103-1号电源线_能耗', '2AA104-1号电源线_能耗'],
                         align: 'left',
-                        top:'5%',
+                        top: '5%',
                         x: 'center',
                         right: '4%',
                         icon: 'rect',
@@ -470,144 +468,147 @@
 
                 // 使用刚指定的配置项和数据显示图表。
                 costChart.setOption(option);
-                window.onresize=function(){
+                window.onresize = function () {
                     costChart.resize();
                 }
+            },
+            treeInit() {
+                var setting = {
+                    check: {
+                        enable: true,
+                        // enable: true,
+                        chkStyle: "radio",
+                        radioType: "level"
+
+                    },
+                    view: {
+                        nameIsHTML: true, //允许name支持html
+                        selectedMulti: false
+                    },
+                    edit: {
+                        enable: false,
+                        editNameSelectAll: false
+                    },
+                    data: {
+                        simpleData: {
+                            enable: true
+                        }
+                    }
+                };
+
+                var zNodes = [
+                    {
+                        id: 1,
+                        pId: 0,
+                        name: "随意勾选 1",
+                        open: true,
+                        // iconSkin: "icon01"
+                    },
+                    {
+                        id: 11,
+                        pId: 1,
+                        name: "随意勾选 1-1",
+                        open: true,
+                        // iconSkin: "icon01"
+                    },
+                    {
+                        id: 111,
+                        pId: 11,
+                        name: "随意勾选 1-1-1"
+                    },
+                    {
+                        id: 112,
+                        pId: 11,
+                        name: "随意勾选 1-1-2"
+                    },
+                    {
+                        id: 12,
+                        pId: 1,
+                        name: "随意勾选 1-2",
+                        open: true,
+                        // iconSkin: "icon01"
+                    },
+                    {
+                        id: 121,
+                        pId: 12,
+                        name: "随意勾选 1-2-1"
+                    },
+                    {
+                        id: 122,
+                        pId: 12,
+                        name: "随意勾选 1-2-2"
+                    },
+                    {
+                        id: 2,
+                        pId: 0,
+                        name: "随意勾选 2",
+                        checked: true,
+                        open: true,
+                        // iconSkin: "icon01"
+                    },
+                    {
+                        id: 21,
+                        pId: 2,
+                        name: "随意勾选 2-1"
+                    },
+                    {
+                        id: 22,
+                        pId: 2,
+                        name: "随意勾选 2-2",
+                        open: true,
+                        // iconSkin: "icon01"
+                    },
+                    {
+                        id: 221,
+                        pId: 22,
+                        name: "随意勾选 2-2-1",
+                        // checked: true,
+                    },
+                    {
+                        id: 222,
+                        pId: 22,
+                        name: "随意勾选 2-2-2"
+                    },
+                    {
+                        id: 23,
+                        pId: 2,
+                        name: "随意勾选 2-3"
+                    }
+                ];
+
+                var code;
+
+                function setCheck() {
+                    var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                        py = $("#py").attr("checked") ? "p" : "",
+                        sy = $("#sy").attr("checked") ? "s" : "",
+                        pn = $("#pn").attr("checked") ? "p" : "",
+                        sn = $("#sn").attr("checked") ? "s" : "",
+                        type = {"Y": py + sy, "N": pn + sn};
+                    zTree.setting.check.chkboxType = type;
+                    showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
+                }
+
+                function showCode(str) {
+                    if (!code) code = $("#code");
+                    code.empty();
+                    code.append("<li>" + str + "</li>");
+                }
+
+
+                $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+                fuzzySearch('treeDemo', '#key', null, true); //初始化模糊搜索方法
+                setCheck();
+                $("#py").bind("change", setCheck);
+                $("#sy").bind("change", setCheck);
+                $("#pn").bind("change", setCheck);
+                $("#sn").bind("change", setCheck);
             }
         },
         mounted() {
-            var setting = {
-                check: {
-                    enable: true,
-                    // enable: true,
-                    chkStyle: "radio",
-                    radioType: "level"
-
-                },
-                view: {
-                    nameIsHTML: true, //允许name支持html
-                    selectedMulti: false
-                },
-                edit: {
-                    enable: false,
-                    editNameSelectAll: false
-                },
-                data: {
-                    simpleData: {
-                        enable: true
-                    }
-                }
-            };
-
-            var zNodes = [
-                {
-                    id: 1,
-                    pId: 0,
-                    name: "随意勾选 1",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 11,
-                    pId: 1,
-                    name: "随意勾选 1-1",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 111,
-                    pId: 11,
-                    name: "随意勾选 1-1-1"
-                },
-                {
-                    id: 112,
-                    pId: 11,
-                    name: "随意勾选 1-1-2"
-                },
-                {
-                    id: 12,
-                    pId: 1,
-                    name: "随意勾选 1-2",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 121,
-                    pId: 12,
-                    name: "随意勾选 1-2-1"
-                },
-                {
-                    id: 122,
-                    pId: 12,
-                    name: "随意勾选 1-2-2"
-                },
-                {
-                    id: 2,
-                    pId: 0,
-                    name: "随意勾选 2",
-                    checked: true,
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 21,
-                    pId: 2,
-                    name: "随意勾选 2-1"
-                },
-                {
-                    id: 22,
-                    pId: 2,
-                    name: "随意勾选 2-2",
-                    open: true,
-                    // iconSkin: "icon01"
-                },
-                {
-                    id: 221,
-                    pId: 22,
-                    name: "随意勾选 2-2-1",
-                    // checked: true,
-                },
-                {
-                    id: 222,
-                    pId: 22,
-                    name: "随意勾选 2-2-2"
-                },
-                {
-                    id: 23,
-                    pId: 2,
-                    name: "随意勾选 2-3"
-                }
-            ];
-
-            var code;
-
-            function setCheck() {
-                var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
-                    py = $("#py").attr("checked") ? "p" : "",
-                    sy = $("#sy").attr("checked") ? "s" : "",
-                    pn = $("#pn").attr("checked") ? "p" : "",
-                    sn = $("#sn").attr("checked") ? "s" : "",
-                    type = {"Y": py + sy, "N": pn + sn};
-                zTree.setting.check.chkboxType = type;
-                showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
-            }
-
-            function showCode(str) {
-                if (!code) code = $("#code");
-                code.empty();
-                code.append("<li>" + str + "</li>");
-            }
 
 
-            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-            fuzzySearch('treeDemo', '#key', null, true); //初始化模糊搜索方法
-            setCheck();
-            $("#py").bind("change", setCheck);
-            $("#sy").bind("change", setCheck);
-            $("#pn").bind("change", setCheck);
-            $("#sn").bind("change", setCheck);
-            
-
+            // this.treeInit();
             this.SetEchart();
         }
 
@@ -1488,82 +1489,81 @@
                     }
                 }
             }
-            .content-table{
+            .content-table {
                 position: relative;
                 width: 100%;
                 height: 577px;
-                border:1px solid #15759A;
+                border: 1px solid #15759A;
                 margin-top: 15px;
                 text-align: center;
                 box-sizing: border-box;
                 padding-top: 16px;
-                .tit{
-                    font-size:14px;
-                    font-family:HiraginoSansGB-W3;
-                    font-weight:normal;
-                    color:rgba(95,251,248,1);
+                .tit {
+                    font-size: 14px;
+                    font-family: HiraginoSansGB-W3;
+                    font-weight: normal;
+                    color: rgba(95, 251, 248, 1);
                 }
-                .table-box{
+                .table-box {
                     width: 100%;
                     height: 528px;
                     margin-top: 12px;
                     /*display: flex;*/
                     /*flex-wrap: nowrap;*/
-                    table{
+                    table {
                         width: 100%;
                         height: 100%;
                         position: relative;
-                        border-collapse:collapse;
-                        border:0;//表示表格没有边框。
-                        cellspacing:'0';//表示单元格之间间隙为0。
-                        cellpadding:'0';//表示单元格的边框宽度为0。
+                        border-collapse: collapse;
+                        border: 0; //表示表格没有边框。
+                        cellspacing: '0'; //表示单元格之间间隙为0。
+                        cellpadding: '0'; //表示单元格的边框宽度为0。
                         /*z-index: 5;*/
-                        tr{
+                        tr {
                             background-color: #0A3E6E;
                             height: 48px;
                         }
-                        tr:nth-child(2n-1){
+                        tr:nth-child(2n-1) {
                             background-color: #104C7B;
                         }
-                        td, th{
+                        td, th {
                             border-right: 1px solid #0F5A84;
                         }
-                        th{
+                        th {
                             background-color: #185588;
-                            font-size:14px;
-                            font-family:HiraginoSansGB-W6;
-                            font-weight:normal;
-                            color:rgba(95,251,248,1);
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W6;
+                            font-weight: normal;
+                            color: rgba(95, 251, 248, 1);
                         }
-                        td{
-                            font-size:14px;
-                            font-family:HiraginoSansGB-W3;
-                            font-weight:normal;
-                            color:rgba(223,253,255,1);
+                        td {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
                         }
                     }
-                    .icon-bxz{
+                    .icon-bxz {
                         display: inline-block;
                         width: 20px;
                         height: 17px;
                         background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
                         margin-left: 20px;
                     }
-                    .table-header{
+                    .table-header {
                         height: 100%;
                         width: 215px;
                         position: relative;
                         overflow: hidden;
                         float: left;
 
-
                     }
-                    .table-right{
+                    .table-right {
                         width: calc(100% - 215px);
                         /*width: 100%;*/
                         overflow-y: hidden;
                         overflow-x: scroll;
-                        table{
+                        table {
                             width: 2000px;
                         }
                     }

@@ -3,9 +3,9 @@
         <div class="bg"></div>
         <div class="index-slider">
             <el-carousel height="150px">
-                <el-carousel-item v-for="item in Data" :key="item">
+                <el-carousel-item v-for="(all,item) in Data" :key="item">
                     <el-row :gutter="20">
-                        <el-col :key="index" v-for="(d,index) in item" :span="8">
+                        <el-col :key="index" v-for="(d,index) in all" :span="8">
                             <div class="sliderCon">
                                 <div class="sbg"></div>
                                     <div class="slider-inner">
@@ -428,9 +428,9 @@
                         class2:'icon-hb'
                     },
                     {
-                        title:'12313今月用水',
-                        data:1062.86,
+                        title:'今月用水',
                         view:1,
+                        data:1062.86,
                         tongbi:0.13,
                         class1:'icon-tb',
                         huanbi:0.10,

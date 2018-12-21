@@ -444,22 +444,22 @@
                     series: [{
                         name: '2AA101-1号电源线_能耗',
                         type: 'bar',
-                        stack: '2AA101-1号电源线_能耗',
+                        stack: 'all',
                         data: one
                     }, {
                         name: '2AA102-1号电源线_能耗',
                         type: 'bar',
-                        stack: '2AA102-1号电源线_能耗',
+                        stack: 'all',
                         data: two
                     }, {
                         name: '2AA103-1号电源线_能耗',
                         type: 'bar',
-                        stack: '2AA103-1号电源线_能耗',
+                        stack: 'all',
                         data: three
                     }, {
                         name: '2AA104-1号电源线_能耗',
                         type: 'bar',
-                        stack: '2AA104-1号电源线_能耗',
+                        stack: 'all',
                         data: four
                     }
                     ]

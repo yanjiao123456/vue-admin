@@ -38,7 +38,13 @@
                 <el-collapse-transition>
                     <div v-show="filtrateShow" class="filtrate-show">
 
-
+                        <div class="item-row">
+                            <i class="icon-wd"></i>
+                            <span class="checkbox-tit">维度：</span>
+                            <el-radio class="choice" v-model="radio3" label="1">时</el-radio>
+                            <el-radio class="choice" v-model="radio3" label="2">天</el-radio>
+                            <el-radio class="choice" v-model="radio3" label="3">月</el-radio>
+                        </div>
                         <div class="item-row item-row-br">
                             <div class="fl">
                                 <span class="date-select">时间选择</span>
@@ -64,21 +70,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item-row">
-                            <i class="icon-sj"></i>
-                            <span class="checkbox-tit">间隔时间（分)：</span>
-                            <div class="count">
-                                <!--<div class="bg"></div>-->
-                                <select>
-                                    <option>5</option>
-                                    <option>10</option>
-                                    <option>15</option>
-                                    <option>30</option>
-                                    <option>60</option>
-                                </select>
-                            </div>
-                        </div>
-
 
 
                         <div class="btns-box">
@@ -90,59 +81,63 @@
                 </el-collapse-transition>
 
             </div>
-            <!--对比-->
-            <div class="contrast">
-                <el-row :gutter="24">
-                    <el-col :key="index" v-for="(v,index) in lists" :xl="8" :lg="8" :md="24" :sm="24" :xs="24">
-                        <div class="current-period">
-                            <div :style="{background:v.color}" class="item-left">
-                                <i :class="v.icon"></i>
-                            </div>
-                            <div class="item-right">
-                                <div class="p">
-                                    <span>{{ v.title }}</span>
-                                    <span class="time">2018-10-26   00：46：00</span>
-                                </div>
-
-                                <div class="kwh">
-                                    <span class="number">166.56</span>
-                                    <span class="unit">kWh</span>
-                                </div>
-                            </div>
-                        </div>
-                    </el-col>
-                </el-row>
-                <el-row :gutter="24">
-                    <el-col :key="index" v-for="(v,index) in lists2" :xl="8" :lg="8" :md="24" :sm="24" :xs="24">
-                        <div class="current-period">
-                            <div :style="{background:v.color}" class="item-left">
-                                <i :class="v.icon"></i>
-                            </div>
-                            <div class="item-right">
-                                <div class="p">
-                                    <span>{{ v.title }}</span>
-                                    <span class="time">2018-10-26   00：46：00</span>
-                                </div>
-                                <div class="kwh">
-                                    <span class="number">166.56</span>
-                                    <span class="unit">kWh</span>
-                                </div>
-                            </div>
-                        </div>
-                    </el-col>
-                </el-row>
-
-            </div>
-
-            <div class="data-box">
+            <!--表1   start-->
+            <div class="filtrate-box chart-box">
                 <div class="bg"></div>
-                <div class="title"><h3>负荷分析</h3>
+                <div class="title"><h3>用电分析-逐月</h3>
+
                 </div>
-                <div class="my-charts">
-                    <div id="fuhe" style="width:100%;height:100%;"></div>
+                <div @click="chartsShow1=!chartsShow1"
+                     :class="{'shift-knob-t':chartsShow1,'shift-knob-b':!chartsShow1}"></div>
+                <el-collapse-transition>
+                    <div v-show="chartsShow1" class="filtrate-show">
+                        <!--echarts-->
+                    </div>
+                </el-collapse-transition>
+
+            </div>
+            <!--表1   end-->
+            <!--表2   start-->
+            <div class="filtrate-box chart-box">
+                <div class="bg"></div>
+                <div class="title"><h3>用电分析-逐天</h3></div>
+                <div @click="chartsShow2=!chartsShow2"
+                     :class="{'shift-knob-t':chartsShow2,'shift-knob-b':!chartsShow2}"></div>
+                <el-collapse-transition>
+                    <div v-show="chartsShow2" class="filtrate-show">
+                        <!--echarts-->
+                    </div>
+                </el-collapse-transition>
+
+            </div>
+            <!--表2   end-->
+            <!--表3   start-->
+            <div class="filtrate-box chart-box">
+                <div class="bg"></div>
+                <div class="title"><h3>用电分析-逐时</h3>
+                    <div class="head-right">
+                        <div class="saveBtn">模拟调峰</div>
+                    </div>
+                </div>
+                <div @click="chartsShow3=!chartsShow3"
+                     :class="{'shift-knob-t':chartsShow3,'shift-knob-b':!chartsShow3}"></div>
+                <el-collapse-transition>
+                    <div v-show="chartsShow3" class="filtrate-show">
+                        <!--echarts-->
+                    </div>
+                </el-collapse-transition>
+            </div>
+            <!--表3   end-->
+            <div class="twins-box">
+                <div class="child">
+                    <div class="bg"></div>
+                    <div class="title"><h3>用电分析-逐天</h3></div>
+                </div>
+                <div class="child">
+                    <div class="bg"></div>
+                    <div class="title"><h3>用电分析-逐天</h3></div>
                 </div>
             </div>
-
 
             <div class="Table">
                 <div class="bg"></div>
@@ -151,7 +146,134 @@
                 </div>
 
 
-                <template-table :data-tit="tableTitle"></template-table>
+                <div class="content-table">
+                    <div class="tit">【2018-10-18 16:05:30】</div>
+
+                    <div class="myTable table-box">
+                        <el-table
+                                :data="tableData"
+                                align="center"
+                                show-summary
+                                border
+                                stripe
+                                :default-sort="{prop: 'date', order: 'descending'}"
+                                style="width: 100%">
+                            <el-table-column
+                                    align="center"
+                                    fixed
+                                    sortable
+                                    prop="date"
+                                    label="日期"
+                                    show-overflow-tooltip
+                                    width="158">
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="name"
+                                    sortable
+                                    label="姓名"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="province"
+                                    sortable
+                                    label="省份"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="city"
+                                    sortable
+                                    label="市区"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="address"
+                                    sortable
+                                    label="地址"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="zip"
+                                    sortable
+                                    label="邮编"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    label="操作"
+                                    width="150"
+                                    show-overflow-tooltip
+                            >
+                                <template slot-scope="scope">
+                                    <i class="icon-xg"></i>
+                                    <span class="setBtn">修改</span>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <!--<div class="table-header">-->
+                        <!--<table>-->
+                        <!--<tr>-->
+                        <!--<th>日期</th>-->
+                        <!--&lt;!&ndash;<th>日期</th>&ndash;&gt;-->
+                        <!--</tr>-->
+                        <!--&lt;!&ndash;<tr></tr>&ndash;&gt;-->
+
+                        <!--<tr v-for="v in 10">-->
+                        <!--<td>01-03-LPB-E4-00</td>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                        <!--</div>-->
+                        <!--<div class="table-right">-->
+                        <!--<table>-->
+                        <!--&lt;!&ndash;<tr style="border-bottom: 1px solid #1B6D9A;">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项1</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项2</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th style="border-right: 1px solid #1B6D9A;" colspan="5">查询结果项3</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--<tr>-->
+                        <!--<th v-for="v in 5">名称</th>-->
+                        <!--</tr>-->
+                        <!--<tr v-for="v in 10">-->
+                        <!--<td v-for="v in 5">01-03-LPB-E4-00</td>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                        <!--</div>-->
+                    </div>
+
+
+                </div>
                 <div class="selector">
                     <i class="icon-front"></i>
                     <i class="icon-prev"></i>
@@ -183,45 +305,45 @@
 
 <script>
     import TemplateTable from '../views/template-table'
+
     var echarts = require('echarts');
     export default {
-        name: "rifuhe",
+        name: "fengguyongdian",
         data() {
             return {
-                lists:[
-                    {
-                        title:'最大负荷',
-                        icon:'item-icon-max',
-                        color:'#00C3F4',
-                    },
-                    {
-                        title:'最小负荷',
-                        icon:'item-icon-min',
-                        color:'#2CD27D',
-                    },
-                    {
-                        title:'平均负荷',
-                        icon:'item-icon-pjf',
-                        color:'#D69B44',
-                    },
-                ],
-                lists2:[
-                    {
-                        title:'日负荷率',
-                        icon:'item-icon-r',
-                        color:'#656EE8',
-                    },
-                    {
-                        title:'最低负荷率',
-                        icon:'item-icon-zdfh',
-                        color:'#CFDB48',
-                    },
-                    {
-                        title:'负荷系数',
-                        icon:'item-icon-fhxs',
-                        color:'#BE6A3C',
-                    }
-                ],
+                tableData: [{
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    province: '上海',
+                    city: '普陀区',
+                    address: '上海市普陀区金沙江路 1518 弄',
+                    zip: 200333
+                }],
+                radio3: '1',
+                chartsShow1: true,
+                chartsShow2: true,
+                chartsShow3: true,
                 option: '2',
                 tabTit: 0,
                 radio: 2,
@@ -293,105 +415,9 @@
         components: {
             TemplateTable
         },
-        methods:{
-            SetChart(){
-                var fuhe= document.getElementById('fuhe');
-                var fuheChart = echarts.init(fuhe);
-                var one = [224, 220, 335, 188, 350, 230, 354, 261];
-                var two = [110, 220, 115, 300, 188, 120, 241, 321];
-
-                var option = {
-                    color: ['#637EF9', '#1C97FF', '#38E68D', '#CFDB48', '#66A9C9', '#00BFC7', '#99D683', '#B4C1D7', '#21834B'],
-
-                    legend: {
-                        data: ['总有功功率'],
-                        // align: 'left',
-                        x: 'center',
-                        right: '4%',
-                        // icon: 'rect',
-                        //itemGap: 13,
-                        textStyle: {
-                            color: 'rgb(91,227,224)',
-                            fontSize: 12
-                        }
-                    },
-                    grid: {
-                        top: 50,
-                        bottom: 70,
-                        left:50,
-                        right:50
-                    },
-                    tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {
-                            lineStyle: {
-                                type: 'shadow',
-                                color: '#778AA8'
-                            }
-                        }
-                    },
-                    xAxis: [{
-                        data: ['2018年10月16日', '2018年10月17日', '2018年10月18日', '2018年10月19日', '2018年10月20日', '2018年10月21日', '2018年10月22日', '2018年10月23日'],
-                        type: 'category',
-                        boundaryGap: false,
-                        axisLine: {
-                            lineStyle: {
-                                color: 'rgb(91,227,224)'//x轴坐标颜色
-                            }
-                        }
-                    }],
-                    yAxis: [
-                        {
-                            type: 'value',
-                            name: '单位（kWh）',
-                            axisTick: {
-                                show: false
-                            },
-                            axisLine: {
-                                lineStyle: {
-                                    color: 'rgb(223,253,255)'
-                                }
-                            },
-                            axisLabel: {
-                                margin: 10,
-                                textStyle: {
-                                    fontSize: 14
-                                }
-                            },
-                            splitLine: {
-                                lineStyle: {
-                                    color: 'rgb(42,81,125)'
-                                }
-                            }
-                        }
-                    ],
-                    series: [{
-                        name: '总有功功率',
-                        type: 'line',
-
-                        symbolSize: 8,
-
-                        data: one,
-                        markPoint: {
-                            label:{
-                                show:true,
-                                formatter:'{c}'
-                            },
-                            symbol:'img://../../assets/PeiDianJianCe/data_k.png',
-                            // symbol:'roundRect',
-                            data: [
-                                {type: 'max', name: '最大值'},
-                                {type: 'min', name: '最小值'}
-                                // {coord:[41,15],name:'15',value:15}
-                            ]
-                        },
-                        }
-                    ]
-                }
-                fuheChart.setOption(option);
-                window.onresize=function(){
-                    fuheChart.resize();
-                }
+        methods: {
+            SetChart() {
+                // echarts
             }
         },
         mounted() {
@@ -647,6 +673,26 @@
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-between;
+        .head-right {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .saveBtn{
+                cursor: pointer;
+                text-align: center;
+                width:90px;
+                height:30px;
+                background:linear-gradient(180deg,rgba(6,88,110,0.2),rgba(27,138,168,0.2));
+                border:1px solid rgba(153, 236, 241, 0.4);
+                box-shadow:0px 1px 1px 0px rgba(12,28,79,0.2) inset;
+                border-radius:4px;
+                font-size:14px;
+                font-family:HiraginoSansGB-W6;
+                font-weight:normal;
+                color:rgba(97,213,255,1);
+                line-height: 30px;
+            }
+        }
 
         .left-branch {
             width: 245px;
@@ -813,55 +859,54 @@
                     }
                 }
 
+                /*@media screen and (min-width: 1500px) {*/
+                /*&:not(:first-child) {*/
+                /*margin-left: 25px;*/
+                /*}*/
+                /*}*/
+                /*@media screen and (max-width: 1500px) {*/
+                /*margin-left: 0;*/
+                /*margin-top: 20px;*/
+                /*}*/
+                /*width: 100%;*/
 
-                    /*@media screen and (min-width: 1500px) {*/
-                        /*&:not(:first-child) {*/
-                            /*margin-left: 25px;*/
-                        /*}*/
-                    /*}*/
-                    /*@media screen and (max-width: 1500px) {*/
-                        /*margin-left: 0;*/
-                        /*margin-top: 20px;*/
-                    /*}*/
-                    /*width: 100%;*/
-
-                    /*display: flex;*/
-                    /*flex-direction: column;*/
-                    .item-icon-hz {
-                        /*line-height: 90px;*/
-                        width: 43px;
-                        height: 43px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
-                    }
-                    .item-icon-pjf {
-                        /*line-height: 90px;*/
-                        width: 40px;
-                        height: 37px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
-                    }
-                    .item-icon-max {
-                        /*line-height: 90px;*/
-                        width: 59px;
-                        height: 21px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
-                    }
-                    .item-icon-min {
-                        /*line-height: 90px;*/
-                        width: 60px;
-                        height: 24px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
-                    }
-                    .item-icon-tb {
-                        /*line-height: 90px;*/
-                        width: 41px;
-                        height: 34px;
-                        display: inline-block;
-                        background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
-                    }
+                /*display: flex;*/
+                /*flex-direction: column;*/
+                .item-icon-hz {
+                    /*line-height: 90px;*/
+                    width: 43px;
+                    height: 43px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
+                }
+                .item-icon-pjf {
+                    /*line-height: 90px;*/
+                    width: 40px;
+                    height: 37px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_pjf.png") no-repeat;
+                }
+                .item-icon-max {
+                    /*line-height: 90px;*/
+                    width: 59px;
+                    height: 21px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/max.png") no-repeat;
+                }
+                .item-icon-min {
+                    /*line-height: 90px;*/
+                    width: 60px;
+                    height: 24px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/mIN.png") no-repeat;
+                }
+                .item-icon-tb {
+                    /*line-height: 90px;*/
+                    width: 41px;
+                    height: 34px;
+                    display: inline-block;
+                    background: url("../../assets/PeiDianJianCe/icon_tb.png") no-repeat;
+                }
                 .item-icon-r {
                     /*line-height: 90px;*/
                     width: 32px;
@@ -883,139 +928,136 @@
                     display: inline-block;
                     background: url("../../assets/PeiDianJianCe/icon_fhxs.png") no-repeat;
                 }
-                    .current-period {
-                        /*width: calc(100% - 25px);*/
-                        width: 100%;
+                .current-period {
+                    /*width: calc(100% - 25px);*/
+                    width: 100%;
+                    height: 90px;
+                    box-sizing: border-box;
+                    /*padding: 20px 0;*/
+
+                    border: 1px solid rgba(42, 244, 255, 1);
+                    box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                    /*opacity:0.5;*/
+                    border-radius: 3px;
+                    @media screen and (max-width: 1200px) {
+                        margin-top: 24px;
+                    }
+
+                    .item-left {
+                        width: 90px;
                         height: 90px;
                         box-sizing: border-box;
-                        /*padding: 20px 0;*/
+                        /*padding: ;*/
+                        float: left;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        background-color: #01A8F2;
+                        border-radius: 3px 3px 0px 0px;
+                        margin-top: -1px;
+                        margin-left: -1px;
 
-                        border: 1px solid rgba(42, 244, 255, 1);
-                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
-                        /*opacity:0.5;*/
-                        border-radius: 3px;
-                        @media screen and (max-width: 1200px) {
-                            margin-top: 24px;
-                        }
-
-
-
-
-                        .item-left {
-                            width: 90px;
-                            height: 90px;
-                            box-sizing: border-box;
-                            /*padding: ;*/
-                            float: left;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            text-align: center;
-                            background-color: #01A8F2;
-                            border-radius: 3px 3px 0px 0px;
-                            margin-top: -1px;
-                            margin-left: -1px;
-
-                        }
-                        .item-right {
-                            box-sizing: border-box;
-                            /*padding-left: 90px;*/
-                            /*box-sizing: border-box;*/
-                            /*padding: 20px 0;*/
-                            padding: 20px 20px 20px 110px;
-                            .p {
-                                font-size:14px;
-                                font-family:HiraginoSansGB-W3;
-                                font-weight:normal;
-                                color:rgba(223,253,255,1);
-                                display: flex;
-                                justify-content:space-between;
-                            }
-                            .kwh {
-                                margin-top: 6px;
-                                display: flex;
-                                justify-content: space-between;
-                            }
-                            .number {
-                                font-size: 18px;
-                                font-family: DigitaldreamFat;
-                                font-weight: 400;
-                                color: rgba(44, 244, 242, 1);
-                            }
-                            .unit {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
-                            }
-
-                        }
                     }
-                    .before {
-                        width: 100%;
+                    .item-right {
+                        box-sizing: border-box;
+                        /*padding-left: 90px;*/
+                        /*box-sizing: border-box;*/
+                        /*padding: 20px 0;*/
+                        padding: 20px 20px 20px 110px;
+                        .p {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .kwh {
+                            margin-top: 6px;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .number {
+                            font-size: 18px;
+                            font-family: DigitaldreamFat;
+                            font-weight: 400;
+                            color: rgba(44, 244, 242, 1);
+                        }
+                        .unit {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
+
+                    }
+                }
+                .before {
+                    width: 100%;
+                    height: 90px;
+                    box-sizing: border-box;
+                    margin-top: 25px;
+                    /*padding: 20px 0;*/
+
+                    border: 1px solid rgba(42, 244, 255, 1);
+                    box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
+                    /*opacity:0.5;*/
+                    border-radius: 3px;
+                    .item-left {
+                        width: 90px;
                         height: 90px;
                         box-sizing: border-box;
-                        margin-top: 25px;
-                        /*padding: 20px 0;*/
-
-                        border: 1px solid rgba(42, 244, 255, 1);
-                        box-shadow: 0px 0px 10px 0px rgba(23, 48, 80, 1), 0px 0px 30px 0px rgba(42, 244, 255, 0.84) inset;
-                        /*opacity:0.5;*/
-                        border-radius: 3px;
-                        .item-left {
-                            width: 90px;
-                            height: 90px;
-                            box-sizing: border-box;
-                            /*padding: ;*/
-                            float: left;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            text-align: center;
-                            background-color: #5361DB;
-                            border-radius: 3px 3px 0px 0px;
-                            margin-top: -1px;
-                            margin-left: -1px;
-                            .item-icon-hz {
-                                /*line-height: 90px;*/
-                                width: 43px;
-                                height: 43px;
-                                display: inline-block;
-                                background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
-                            }
-                        }
-                        .item-right {
-                            box-sizing: border-box;
-                            /*padding-left: 90px;*/
-                            /*box-sizing: border-box;*/
-                            /*padding: 20px 0;*/
-                            padding: 20px 20px 20px 110px;
-                            p {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
-                            }
-                            .kwh {
-                                margin-top: 6px;
-                                display: flex;
-                                justify-content: space-between;
-                            }
-                            .number {
-                                font-size: 18px;
-                                font-family: DigitaldreamFat;
-                                font-weight: 400;
-                                color: rgba(44, 244, 242, 1);
-                            }
-                            .unit {
-                                font-size: 14px;
-                                font-family: HiraginoSansGB-W3;
-                                font-weight: normal;
-                                color: rgba(223, 253, 255, 1);
-                            }
-
+                        /*padding: ;*/
+                        float: left;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        background-color: #5361DB;
+                        border-radius: 3px 3px 0px 0px;
+                        margin-top: -1px;
+                        margin-left: -1px;
+                        .item-icon-hz {
+                            /*line-height: 90px;*/
+                            width: 43px;
+                            height: 43px;
+                            display: inline-block;
+                            background: url("../../assets/PeiDianJianCe/icon_hz2.png") no-repeat;
                         }
                     }
+                    .item-right {
+                        box-sizing: border-box;
+                        /*padding-left: 90px;*/
+                        /*box-sizing: border-box;*/
+                        /*padding: 20px 0;*/
+                        padding: 20px 20px 20px 110px;
+                        p {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
+                        .kwh {
+                            margin-top: 6px;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .number {
+                            font-size: 18px;
+                            font-family: DigitaldreamFat;
+                            font-weight: 400;
+                            color: rgba(44, 244, 242, 1);
+                        }
+                        .unit {
+                            font-size: 14px;
+                            font-family: HiraginoSansGB-W3;
+                            font-weight: normal;
+                            color: rgba(223, 253, 255, 1);
+                        }
+
+                    }
+                }
 
             }
 
@@ -1038,6 +1080,13 @@
                 box-sizing: border-box;
                 padding: 15px 20px 9px 20px;
                 background-color: #0B3F6F;
+                &.chart-box {
+                    margin-top: 25px;
+                    /*height: 495px;*/
+                    .filtrate-show {
+                        height: 453px;
+                    }
+                }
                 .interval {
                     font-size: 14px;
                     font-family: HiraginoSansGB-W3;
@@ -1140,6 +1189,7 @@
                     flex-direction: column;
                     z-index: 5;
                     margin-top: 15px;
+                    overflow: hidden;
                     /*margin-bottom: 60px;*/
                     .item2 {
                         display: flex;
@@ -1170,7 +1220,7 @@
                             height: 11px;
                             background: url("../../assets/NengHaoChaXun/icon _fxff.png") no-repeat;
                         }
-                        .icon-sj{
+                        .icon-sj {
                             width: 14px;
                             height: 15px;
                             display: inline-block;
@@ -1338,6 +1388,24 @@
                 margin-top: 24px;
                 box-sizing: border-box;
                 padding: 15px 20px;
+                .shift-knob-t {
+                    width: 61px;
+                    height: 20px;
+                    background: url("../../assets/NengHaoChaXun/bt_zk.png") no-repeat;
+                    position: absolute;
+                    left: 50%;
+                    bottom: -20px;
+                    margin-left: -30px;
+                }
+                .shift-knob-b {
+                    width: 61px;
+                    height: 20px;
+                    background: url("../../assets/NengHaoChaXun/bt_ss.png") no-repeat;
+                    position: absolute;
+                    left: 50%;
+                    bottom: -20px;
+                    margin-left: -30px;
+                }
                 .title {
                     display: flex;
                     justify-content: space-between;
@@ -1459,11 +1527,41 @@
                     }
                 }
             }
+            .twins-box{
+                position: relative;
+                width: 100%;
+                margin-top: 24px;
+                display: flex;
+                .title {
+                    display: flex;
+                    justify-content: space-between;
+                    position: relative;
+                    z-index: 5;
+                    /*margin-bottom: 15px;*/
+                    h3 {
+                        font-size: 16px;
+                        font-family: HiraginoSansGB-W3;
+                        font-weight: bold;
+                        color: rgba(254, 254, 255, 1);
+                    }
+
+                }
+                .child{
+                    flex: 1;
+                    box-sizing: border-box;
+                    padding: 21px 20px;
+                    position: relative;
+                    height: 340px;
+                    &:nth-child(2){
+                        margin-left: 24px;
+                    }
+                }
+            }
             .Table {
                 width: 100%;
                 position: relative;
                 box-sizing: border-box;
-                padding: 23px 20px;
+                padding: 20px 20px;
                 margin-top: 25px;
                 margin-bottom: 25px;
                 .title {
@@ -1492,22 +1590,85 @@
                         background: url("../../assets/NengHaoChaXun/excel.png") no-repeat;
                     }
                 }
-                .table-box {
+                .content-table {
                     position: relative;
-                    z-index: 5;
+                    width: 100%;
+                    /*height: 577px;*/
                     border: 1px solid #15759A;
-                    /*padding-bottom: 60px;*/
-                    .table-tit {
-                        padding: 20px;
-                        width: 100%;
-                        /*letter-spacing:2px;*/
+                    margin-top: 15px;
+                    text-align: center;
+                    box-sizing: border-box;
+                    padding-top: 16px;
+                    .tit {
                         font-size: 14px;
                         font-family: HiraginoSansGB-W3;
                         font-weight: normal;
                         color: rgba(95, 251, 248, 1);
-                        text-align: center;
                     }
+                    .table-box {
+                        width: 100%;
+                        /*height: 528px;*/
+                        margin-top: 12px;
+                        /*display: flex;*/
+                        /*flex-wrap: nowrap;*/
+                        table {
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                            border-collapse: collapse;
+                            border: 0; //表示表格没有边框。
+                            cellspacing: '0'; //表示单元格之间间隙为0。
+                            cellpadding: '0'; //表示单元格的边框宽度为0。
+                            /*z-index: 5;*/
+                            tr {
+                                background-color: #0A3E6E;
+                                height: 48px;
+                            }
+                            tr:nth-child(2n-1) {
+                                background-color: #104C7B;
+                            }
+                            td, th {
+                                border-right: 1px solid #0F5A84;
+                            }
+                            th {
+                                background-color: #185588;
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W6;
+                                font-weight: normal;
+                                color: rgba(95, 251, 248, 1);
+                            }
+                            td {
+                                font-size: 14px;
+                                font-family: HiraginoSansGB-W3;
+                                font-weight: normal;
+                                color: rgba(223, 253, 255, 1);
+                            }
+                        }
+                        .icon-bxz {
+                            display: inline-block;
+                            width: 20px;
+                            height: 17px;
+                            background: url("../../assets/PeiDianJianCe/icon_bxz.png") no-repeat;
+                            margin-left: 20px;
+                        }
+                        .table-header {
+                            height: 100%;
+                            width: 215px;
+                            position: relative;
+                            overflow: hidden;
+                            float: left;
 
+                        }
+                        .table-right {
+                            width: calc(100% - 215px);
+                            /*width: 100%;*/
+                            overflow-y: hidden;
+                            overflow-x: scroll;
+                            table {
+                                width: 2000px;
+                            }
+                        }
+                    }
                 }
                 .selector {
                     position: relative;

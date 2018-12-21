@@ -186,6 +186,11 @@
                             },
                             {
                                 icon: "ml5 icon-all icon-sjcx",
+                                index: "fengguyongdian",
+                                title: "峰谷用电"
+                            },
+                            {
+                                icon: "ml5 icon-all icon-sjcx",
                                 index: "kpiguanli",
                                 title: "KPI管理",
                                 subs: [

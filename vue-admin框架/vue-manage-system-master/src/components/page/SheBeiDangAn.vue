@@ -295,6 +295,7 @@
                                     sortable
                                     prop="date"
                                     label="日期"
+                                    show-overflow-tooltip
                                     width="158">
                             </el-table-column>
                             <el-table-column
@@ -303,6 +304,7 @@
                                     sortable
                                     label="姓名"
                                     width="150"
+                                    show-overflow-tooltip
                             >
                             </el-table-column>
                             <el-table-column
@@ -311,6 +313,7 @@
                                     sortable
                                     label="姓名"
                                     width="150"
+                                    show-overflow-tooltip
                             >
                             </el-table-column>
                             <el-table-column
@@ -319,6 +322,7 @@
                                     sortable
                                     label="姓名"
                                     width="150"
+                                    show-overflow-tooltip
                             >
                             </el-table-column>
                             <el-table-column
@@ -327,6 +331,7 @@
                                     sortable
                                     label="省份"
                                     width="150"
+                                    show-overflow-tooltip
                             >
                             </el-table-column>
                             <el-table-column
@@ -335,6 +340,7 @@
                                     sortable
                                     label="市区"
                                     width="150"
+                                    show-overflow-tooltip
                             >
                             </el-table-column>
                             <el-table-column
@@ -343,6 +349,7 @@
                                     sortable
                                     label="地址"
                                     width="150"
+                                    show-overflow-tooltip
                             >
                             </el-table-column>
                             <el-table-column
@@ -351,6 +358,7 @@
                                     sortable
                                     label="邮编"
                                     width="150"
+                                    show-overflow-tooltip
                             >
                             </el-table-column>
                             <el-table-column
@@ -358,6 +366,7 @@
                                     fixed="right"
                                     label="操作"
                                     width="150"
+                                    show-overflow-tooltip
                             >
                                 <template slot-scope="scope">
                                     <i class="icon-xg"></i>

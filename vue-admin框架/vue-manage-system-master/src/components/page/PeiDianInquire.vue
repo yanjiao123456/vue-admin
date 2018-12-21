@@ -1019,7 +1019,6 @@
                                 text-align: center;
                             }
                         }
-
                     }
                 }
             }

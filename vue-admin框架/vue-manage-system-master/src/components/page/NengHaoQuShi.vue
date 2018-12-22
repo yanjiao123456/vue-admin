@@ -866,6 +866,11 @@
                 padding: 0 14px;
                 box-sizing: border-box;
                 position: relative;
+                font-size: 12px;
+                font-family: HiraginoSansGB-W3;
+                font-weight: bold;
+                color: #5F81A3;
+                outline:none;
                 &:before {
                     content: '';
 
